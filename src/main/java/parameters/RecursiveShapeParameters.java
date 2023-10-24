@@ -60,8 +60,8 @@ public class RecursiveShapeParameters {
         centerX = 500;
         centerY = 500;
         initialRadius = 250.0;
-        depth = 5;
-        numShapes = 4;
+        depth = 4;
+        numShapes = 6;
 
         //Repetition
         repeatX = 3.0;

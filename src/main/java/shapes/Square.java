@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Square implements PatternShape {
     @Override
-
     public void draw(Graphics2D g2d, int x, int y, double radius, Color lineColor, float lineWidth, Color fillColor, String lineType) {
         // Set fill color
         g2d.setColor(fillColor);
