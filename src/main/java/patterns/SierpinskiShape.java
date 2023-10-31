@@ -1,12 +1,8 @@
 package patterns;
 
-import shapes.Triangle;
-
 import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class SierpinskiShape extends JPanel {
 
@@ -68,7 +64,7 @@ public class SierpinskiShape extends JPanel {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Sierpinski Shape");
-        SierpinskiShape shape = new SierpinskiShape("triangle");  // Change to "square" to test square
+        SierpinskiShape shape = new SierpinskiShape("square");  // Change to "square" to test square
         frame.add(shape);
         frame.setSize(800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

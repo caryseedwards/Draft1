@@ -45,13 +45,13 @@ public class RecursiveShapeParameters {
         lineWidth = 2.0f;  // 2 pixels wide
 
 
-        largeShapeType = "circle";  // "circle", "triangle", "hexagon" or "square"
+        largeShapeType = "triangle";  // "circle", "triangle", "hexagon" or "square"
         largeShapeLineColor = Color.BLACK;
         largeShapeLineWidth = 1.0f;
         largeShapeFillColor = new Color(0, 0, 0, 250);  // RGBA where A is alpha (opacity);
         largeShapeLineType = "dashed"; // "solid", "dashed", "dotted"
 
-        smallShapeType = "circle";
+        smallShapeType = "triangle";
         smallShapeLineColor = new Color(0, 0, 0, 250); ;
         smallShapeLineWidth = 1.0f;
         smallShapeFillColor = new Color(0, 0, 255, 150);  // RGBA where A is alpha (opacity);;
@@ -60,7 +60,7 @@ public class RecursiveShapeParameters {
         centerX = 500;
         centerY = 500;
         initialRadius = 250.0;
-        depth = 4;
+        depth = 3;
         numShapes = 6;
 
         //Repetition
