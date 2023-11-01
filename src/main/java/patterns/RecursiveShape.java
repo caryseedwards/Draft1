@@ -83,18 +83,6 @@ public class RecursiveShape extends JPanel {
             this.smallShape = new Hexagon();
         }
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Euclidean Pattern");
-
-        RecursiveShapeParameters params = new RecursiveShapeParameters();
-        params.initialiseUserParameters();
-        RecursiveShape pattern = new RecursiveShape(params);
-        frame.add(pattern);
-        frame.setSize(params.canvasSizeX, params.canvasSizeY);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }
 
 
