@@ -24,9 +24,22 @@ public class RecursiveShapeParameters {
 
     public int centerX;
     public int centerY;
-    public double initialRadius;
+    public double initialSize;
     public int depth;
     public int numShapes;
+
+
+    // Boundary shape parameters
+    public int centreX = 250;
+    public int centreY = 250;
+    public int circleRadius = 150;
+    public int rectWidth = 150;
+    public int rectHeight = 100;
+    public int x1 = 400,y1 = 100,x2 = 100,y2 = 700,x3 = 700,y3 = 700;
+    public int polygonSize = 100;
+    public Color boundaryFillColour = Color.WHITE;
+    public Color boundaryLineColour = Color.RED;
+    public float boundaryLineWidth = 1;
 
     // Setters
 
@@ -39,7 +52,7 @@ public class RecursiveShapeParameters {
     }
 
     public void setInitialRadius(double initialRadius) {
-        this.initialRadius = initialRadius;
+        this.initialSize = initialRadius;
     }
 
     public void setDepth(int depth) {
@@ -82,6 +95,33 @@ public class RecursiveShapeParameters {
         this.smallShapeFillColor = smallShapeFillColor;
     }
 
+    public void initialiseUserParameters(){
+// Canvas
+        canvasSizeX =1000;
+        canvasSizeY =1000;
+        backgroundColor = Color.WHITE;
+        lineColor = Color.BLACK;
+        lineWidth = 2.0f;  // 2 pixels wide
 
+
+        largeShapeType = "triangle";  // "circle", "triangle", "hexagon" or "square"
+        largeShapeLineColor = Color.BLACK;
+        largeShapeLineWidth = 1.0f;
+        largeShapeFillColor = new Color(0, 0, 0, 250);  // RGBA where A is alpha (opacity);
+        largeShapeLineType = "dashed"; // "solid", "dashed", "dotted"
+
+        smallShapeType = "triangle";
+        smallShapeLineColor = new Color(0, 0, 0, 250); ;
+        smallShapeLineWidth = 1.0f;
+        smallShapeFillColor = new Color(0, 0, 255, 150);  // RGBA where A is alpha (opacity);;
+        smallShapeLineType = "dashed"; // "solid", "dashed", "dotted"
+
+        centerX = 500;
+        centerY = 500;
+        initialSize = 250.0;
+        depth = 3;
+        numShapes = 6;
+
+    }
 }
 
