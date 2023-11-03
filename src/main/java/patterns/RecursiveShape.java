@@ -1,4 +1,5 @@
 package patterns;
+
 import parameters.RecursiveShapeParameters;
 import shapes.*;
 
@@ -15,33 +16,38 @@ public class RecursiveShape extends JPanel {
         initialiseShapes();
     }
 
-    private void drawPattern(Graphics2D g2d, int x, int y, double radius, int depth) {
+    private void drawPattern(Graphics2D g2d, int x, int y, int size, int depth) {
         if (depth == 0) return;
 
-        // Draw the large shape at the center only once
-        if (depth == params.depth) {
-            largeShape.setPosition(x, y);
-            largeShape.setScale(params.initialSize);
-            largeShape.draw(g2d, params.largeShapeLineColor, params.largeShapeLineWidth,
-                    params.largeShapeFillColor, params.largeShapeLineType);
-        }
+        // Draw the large shape
+        largeShape.setPosition(x, y);
+        largeShape.setScale(size);
+        largeShape.draw(g2d, params.largeShapeLineColor, params.largeShapeLineWidth,
+                params.largeShapeFillColor, params.largeShapeLineType);
 
-        double angleStep = Math.PI * 2 / params.numShapes;
-        double smallRadius = (radius * Math.sin(angleStep / 2));
+        // Number of smaller shapes
+        int numShapes = params.numShapes;
 
-        for (int i = 0; i < params.numShapes; i++) {
+        // Calculate the radius and position of the smaller shapes
+        double angleStep = Math.PI * 2 / numShapes;
+        int smallerSize = (int) (size * Math.sin(angleStep / 2));
+
+        for (int i = 0; i < numShapes; i++) {
             double angle = i * angleStep;
-            int newX = (int) (x + radius * Math.cos(angle));
-            int newY = (int) (y + radius * Math.sin(angle));
+            int newX = (int) (x + size * Math.cos(angle)); // Adjusted position calculation
+            int newY = (int) (y + size * Math.sin(angle)); // Adjusted position calculation
 
+            // Draw smaller shape
             smallShape.setPosition(newX, newY);
-            smallShape.setScale((int) smallRadius);
+            smallShape.setScale(smallerSize);
             smallShape.draw(g2d, params.smallShapeLineColor, params.smallShapeLineWidth,
                     params.smallShapeFillColor, params.smallShapeLineType);
 
-            drawPattern(g2d, newX, newY, smallRadius, depth - 1);
+            // Recursive call to drawPattern
+            drawPattern(g2d, newX, newY, smallerSize, depth - 1);
         }
     }
+
 
 
     @Override
@@ -52,8 +58,6 @@ public class RecursiveShape extends JPanel {
         g2d.setColor(params.backgroundColor);
         g2d.fillRect(0, 0, getWidth(), getHeight());
 
-        largeShape.setPosition(params.centerX, params.centerY);
-        largeShape.setScale(params.initialSize);
         drawPattern(g2d, params.centerX, params.centerY, params.initialSize, params.depth);
     }
 
@@ -74,7 +78,7 @@ public class RecursiveShape extends JPanel {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Euclidean Pattern");
+        JFrame frame = new JFrame("Fractal Pattern");
 
         RecursiveShapeParameters params = new RecursiveShapeParameters();
         params.initialiseUserParameters();
@@ -85,3 +89,4 @@ public class RecursiveShape extends JPanel {
         frame.setVisible(true);
     }
 }
+

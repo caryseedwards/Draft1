@@ -7,7 +7,7 @@ public class Triangle implements PatternShape {
     double radius;
     int x1, y1, x2, y2, x3, y3;
 
-    public Triangle(int x, int y, int radius) {
+    public Triangle(int x, int y, double radius) {
         this.centerX = x;
         this.centerY = y;
         this.radius = radius;

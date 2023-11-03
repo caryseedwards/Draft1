@@ -13,7 +13,7 @@ public class CirclePackingParameters{
     public String boundaryType = "triangle";
     public int centreX = 250;
     public int centreY = 250;
-    public int polygonSize = 111;
+    public int polygonSize = 111;  // change size of boundary shape
     public Color boundaryFillColour = Color.WHITE;
     public Color boundaryLineColour = Color.RED;
     public float boundaryLineWidth = 1;

@@ -83,33 +83,33 @@ public class RecursiveShapeParameters {
         this.smallShapeFillColor = smallShapeFillColor;
     }
 
-    public void initialiseUserParameters(){
-// Canvas
-        canvasSizeX =1000;
-        canvasSizeY =1000;
+    public void initialiseUserParameters() {
+        // Canvas
+        canvasSizeX = 800;
+        canvasSizeY = 800;
         backgroundColor = Color.WHITE;
-        lineColor = Color.BLACK;
-        lineWidth = 2.0f;  // 2 pixels wide
 
-
-        largeShapeType = "triangle";  // "circle", "triangle", "hexagon" or "square"
+        // Large shape (outer circle)
+        largeShapeType = "circle";
         largeShapeLineColor = Color.BLACK;
         largeShapeLineWidth = 1.0f;
-        largeShapeFillColor = new Color(0, 0, 0, 22);  // RGBA where A is alpha (opacity);
-        largeShapeLineType = "dashed"; // "solid", "dashed", "dotted"
+        largeShapeFillColor = new Color(0, 0, 0, 0);  // Transparent
+        largeShapeLineType = "solid";
 
-        smallShapeType = "triangle";
-        smallShapeLineColor = new Color(0, 0, 0, 250); ;
+        // Small shape (small circles)
+        smallShapeType = "circle";
+        smallShapeLineColor = Color.BLACK;
         smallShapeLineWidth = 1.0f;
-        smallShapeFillColor = new Color(0, 0, 255, 150);  // RGBA where A is alpha (opacity);;
-        smallShapeLineType = "dashed"; // "solid", "dashed", "dotted"
+        smallShapeFillColor = new Color(0, 0, 0, 0);  // Transparent
+        smallShapeLineType = "solid";
 
-        centerX = 500;
-        centerY = 500;
-        initialSize = 250;
-        depth = 6;
-        numShapes = 5;
-
+        // Center of the canvas
+        centerX = canvasSizeX / 2;
+        centerY = canvasSizeY / 2;
+        initialSize = 150;
+        depth = 4;
+        numShapes = 6;  // Number of smaller circles
     }
+
 }
 
