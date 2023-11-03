@@ -10,6 +10,7 @@ public class CirclePacking extends JPanel {
     PatternShape boundaryShape;
     ArrayList<Circle> circles;
     CirclePackingParameters params;
+
     public CirclePacking(){
         this.circles = new ArrayList<>();
         this.params = new CirclePackingParameters();
@@ -18,10 +19,10 @@ public class CirclePacking extends JPanel {
 
     public void setBoundary(String type) {
         switch (type) {
-            case "circle" -> this.boundaryShape = new Circle(params.centreX, params.centreY, params.circleRadius);
-            case "square" -> this.boundaryShape = new Square(params.centreX, params.centreY, params.rectWidth, params.rectHeight);
-            case "triangle" -> this.boundaryShape = new Triangle(params.x1, params.y1, params.x2, params.y2, params.x3, params.y3);
-            case "hexagon" -> this.boundaryShape = new Hexagon(params.centreX, params.centreY,params.polygonSize);
+            case "circle" -> this.boundaryShape = new Circle(params.centreX, params.centreY, params.polygonSize);
+            case "square" -> this.boundaryShape = new Square(params.centreX, params.centreY, params.polygonSize);
+            case "triangle" -> this.boundaryShape = new Triangle(params.centreX, params.centreY, params.polygonSize);
+            case "hexagon" -> this.boundaryShape = new Hexagon(params.centreX, params.centreY, params.polygonSize);
         }
     }
 

@@ -24,22 +24,10 @@ public class RecursiveShapeParameters {
 
     public int centerX;
     public int centerY;
-    public double initialSize;
+    public int initialSize;
     public int depth;
     public int numShapes;
 
-
-    // Boundary shape parameters
-    public int centreX = 250;
-    public int centreY = 250;
-    public int circleRadius = 150;
-    public int rectWidth = 150;
-    public int rectHeight = 100;
-    public int x1 = 400,y1 = 100,x2 = 100,y2 = 700,x3 = 700,y3 = 700;
-    public int polygonSize = 100;
-    public Color boundaryFillColour = Color.WHITE;
-    public Color boundaryLineColour = Color.RED;
-    public float boundaryLineWidth = 1;
 
     // Setters
 
@@ -51,7 +39,7 @@ public class RecursiveShapeParameters {
         this.centerY = centerY;
     }
 
-    public void setInitialRadius(double initialRadius) {
+    public void setInitialRadius(int initialRadius) {
         this.initialSize = initialRadius;
     }
 
@@ -107,7 +95,7 @@ public class RecursiveShapeParameters {
         largeShapeType = "triangle";  // "circle", "triangle", "hexagon" or "square"
         largeShapeLineColor = Color.BLACK;
         largeShapeLineWidth = 1.0f;
-        largeShapeFillColor = new Color(0, 0, 0, 250);  // RGBA where A is alpha (opacity);
+        largeShapeFillColor = new Color(0, 0, 0, 22);  // RGBA where A is alpha (opacity);
         largeShapeLineType = "dashed"; // "solid", "dashed", "dotted"
 
         smallShapeType = "triangle";
@@ -118,9 +106,9 @@ public class RecursiveShapeParameters {
 
         centerX = 500;
         centerY = 500;
-        initialSize = 250.0;
-        depth = 3;
-        numShapes = 6;
+        initialSize = 250;
+        depth = 6;
+        numShapes = 5;
 
     }
 }

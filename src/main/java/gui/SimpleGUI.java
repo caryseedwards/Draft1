@@ -1,14 +1,14 @@
 package gui;
 
-import patterns.RecursiveShape;
+//import patterns.RecursiveShape;
 
 import java.awt.*;
 import java.awt.event.*;
-import patterns.RecursiveShape;
+//import patterns.RecursiveShape;
 import parameters.RecursiveShapeParameters;
 
 public class SimpleGUI {
-    public static RecursiveShape recursiveShape = null;
+//    public static RecursiveShape recursiveShape = null;
 
     public static Panel createColorPickerPanel(String title, TextField[] rgbaFields, int[] defaultValues) {
         Panel colorPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
@@ -287,11 +287,11 @@ public class SimpleGUI {
                 params.setSmallShapeLineColor(new Color(Integer.parseInt(smallLineColourFields[0].getText()), Integer.parseInt(smallLineColourFields[1].getText()), Integer.parseInt(smallLineColourFields[2].getText()), Integer.parseInt(smallLineColourFields[3].getText()) ));
                 params.setSmallShapeLineWidth(Float.parseFloat(smallLineWidthTextField.getText()));
 
-                recursiveShape = new RecursiveShape(params);
+//                recursiveShape = new RecursiveShape(params);
 
                 Graphics g = canvas.getGraphics();
                 Graphics2D g2d = (Graphics2D) g;
-                recursiveShape.paintComponent(g2d);
+//                recursiveShape.paintComponent(g2d);
             } else {
                 // Handle other algorithms here
                 Graphics g = canvas.getGraphics();

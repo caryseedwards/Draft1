@@ -3,11 +3,10 @@ package shapes;
 import java.awt.*;
 
 public class Circle implements PatternShape {
-    public int centerX;
-    public int centerY;
-    public double radius;
+    public int centerX, centerY;
+    double radius;
 
-    public Circle(int x, int y, double radius) {
+    public Circle(int x, int y, int radius) {
         this.centerX = x;
         this.centerY = y;
         this.radius = radius;
@@ -61,31 +60,15 @@ public class Circle implements PatternShape {
         g2d.drawOval(x, y, diameter, diameter);
     }
 
-    public void drawPrev(Graphics2D g2d, int x, int y, double size, Color lineColor, float lineWidth, Color fillColor, String lineType) {
-        g2d.setColor(fillColor);
-        g2d.fillOval(x - (int) size, y - (int) size, (int) size * 2, (int) size * 2);
-
-        g2d.setColor(lineColor);
-        g2d.setStroke(new BasicStroke(lineWidth));
-        g2d.drawOval(x - (int) size, y - (int) size, (int) size * 2, (int) size * 2);
+    @Override
+    public void setPosition(int x, int y) {
+        this.centerX = x;
+        this.centerY = y;
     }
 
-    public void drawRadial(Graphics2D g2d, int x, int y, double radius, Color lineColor, float lineWidth, Color fillColor, String lineType) {
-        // Set fill color
-        g2d.setColor(fillColor);
-        g2d.fillOval(x - (int) radius, y - (int) radius, (int) (2 * radius), (int) (2 * radius));
-
-        // Set line color and type
-        g2d.setColor(lineColor);
-        if ("dashed".equals(lineType)) {
-            float[] dash = {5.0f};
-            g2d.setStroke(new BasicStroke(lineWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1.0f, dash, 0.0f));
-        } else if ("dotted".equals(lineType)) {
-            float[] dash = {1.0f};
-            g2d.setStroke(new BasicStroke(lineWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1.0f, dash, 0.0f));
-        } else {
-            g2d.setStroke(new BasicStroke(lineWidth));
-        }
-        g2d.drawOval(x - (int) radius, y - (int) radius, (int) (2 * radius), (int) (2 * radius));
+    @Override
+    public void setScale(double size) {
+        this.radius = size;
     }
+
 }
