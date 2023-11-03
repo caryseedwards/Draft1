@@ -1,14 +1,16 @@
 package gui;
 
-//import patterns.RecursiveShape;
+import patterns.CirclePacking;
+import patterns.RecursiveShape;
 
 import java.awt.*;
 import java.awt.event.*;
-//import patterns.RecursiveShape;
+import parameters.CirclePackingParameters;
 import parameters.RecursiveShapeParameters;
 
 public class SimpleGUI {
-//    public static RecursiveShape recursiveShape = null;
+    public static RecursiveShape recursiveShape = null;
+    public static CirclePacking circlePacking = null;
 
     public static Panel createColorPickerPanel(String title, TextField[] rgbaFields, int[] defaultValues) {
         Panel colorPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
@@ -42,17 +44,19 @@ public class SimpleGUI {
         leftPanel.add(algorithmLabel, gbc);
 
         Choice algorithmDropdown = new Choice();
+        algorithmDropdown.add("");
         algorithmDropdown.add("Circle Packing");
         algorithmDropdown.add("Recursive Shape");
         algorithmDropdown.add("Sierpinski Shape");
         gbc.gridx = 1;
         leftPanel.add(algorithmDropdown, gbc);
         gbc.gridx = 0;
+
+
         // Recursive Panel Layout
         gbc.gridy++;
         Panel recursivePanel = new Panel(new GridBagLayout());
         leftPanel.add(recursivePanel, gbc);
-
 
     // Algorithm Parameters
         GridBagConstraints recursiveGbc = new GridBagConstraints();
@@ -109,10 +113,7 @@ public class SimpleGUI {
         recursiveGbc.gridy++;
         recursivePanel.add(emptyLabel, recursiveGbc);
 
-
-
     // Shape Parameters:
-
         // Large Shape
         recursiveGbc.gridy++;
         Label largeShapeInputsLabel = new Label("Large Shape Inputs:");
@@ -129,8 +130,6 @@ public class SimpleGUI {
         largeShapeType.add("Hexagon");
         recursivePanel.add(largeShapeType, recursiveGbc);
 
-
-        // Large Shape Additional Choices
         recursiveGbc.gridy++;
         recursiveGbc.gridx = 0;
         recursiveGbc.gridwidth = 8; // span across multiple columns if needed
@@ -193,7 +192,6 @@ public class SimpleGUI {
         Panel smallLineColour = createColorPickerPanel("Line Colour:", smallLineColourFields, defaultColourValues);
         recursivePanel.add(smallLineColour, recursiveGbc);
 
-
         recursiveGbc.gridy++;
         Label smallLineWidthLabel = new Label ("Line Width:");
         recursiveGbc.gridx = 0;
@@ -204,11 +202,151 @@ public class SimpleGUI {
         recursivePanel.add(smallLineWidthTextField, recursiveGbc);
         recursivePanel.setVisible(false);
 
+        // Circle Packing Panel Layout
+
         gbc.gridy++;
-        Panel circlePanel = new Panel();
-        TextField circleTextField = new TextField("Circle Packing Param");
-        circlePanel.add(circleTextField);
+        gbc.gridx = 0;
+        Panel circlePanel = new Panel(new GridBagLayout());
         leftPanel.add(circlePanel, gbc);
+
+        // Algorithm Parameters
+        GridBagConstraints packingGbc = new GridBagConstraints();
+        packingGbc.gridx = 0;
+        packingGbc.gridy = 0;
+        packingGbc.anchor = GridBagConstraints.NORTHWEST;
+
+        Label startXLabel2 = new Label("Initial 'x' co-ordinate:");
+        circlePanel.add(startXLabel2, packingGbc);
+        TextField startXTextField2 = new TextField(5); // 5 is the column width of the TextField
+        startXTextField2.setText("500");
+        packingGbc.gridx = 1; // place text field in the second column
+        circlePanel.add(startXTextField2, packingGbc);
+        packingGbc.gridy++;
+
+        Label startYLabel2 = new Label("Initial 'y' co-ordinate:");
+        packingGbc.gridx = 0; // place label in the first column
+        circlePanel.add(startYLabel2, packingGbc);
+        TextField startYTextField2 = new TextField(5); // 5 is the column width of the TextField
+        startYTextField2.setText("500");
+        packingGbc.gridx = 1; // place text field in the second column
+        circlePanel.add(startYTextField2, packingGbc);
+        packingGbc.gridy++;
+
+        Label maxAttemptsLabel = new Label("Maximum attempts:");
+        packingGbc.gridx = 0; // place label in the first column
+        circlePanel.add(maxAttemptsLabel, packingGbc);
+        TextField maxAttemptsTextField = new TextField(5); // 5 is the column width of the TextField
+        maxAttemptsTextField.setText("500");
+        packingGbc.gridx = 1; // place text field in the second column
+        circlePanel.add(maxAttemptsTextField, packingGbc);
+        packingGbc.gridy++;
+
+        packingGbc.gridx = 0;
+        Label boundaryShapeInputLabel = new Label("Boundary Shape Inputs:");
+        circlePanel.add(boundaryShapeInputLabel, packingGbc);
+        packingGbc.gridy++;
+        Label boundaryShapeLabel = new Label("Shape Type:");
+        circlePanel.add(boundaryShapeLabel, packingGbc);
+
+
+        Choice boundaryShapeType = new Choice();
+        boundaryShapeType.add("Circle");
+        boundaryShapeType.add("Square");
+        boundaryShapeType.add("Triangle");
+        boundaryShapeType.add("Hexagon");
+        packingGbc.gridx = 1;
+        circlePanel.add(boundaryShapeType, packingGbc);
+
+
+        packingGbc.gridy++;
+        packingGbc.gridx = 0;
+        packingGbc.gridwidth = 8; // span across multiple columns if needed
+
+
+        TextField[] boundaryFillColourFields = new TextField[4];
+        Panel boundaryFillColour = createColorPickerPanel("Fill Colour:", boundaryFillColourFields, defaultColourValues);
+        circlePanel.add(boundaryFillColour, packingGbc);
+
+        packingGbc.gridy++;
+
+        TextField[] boundaryLineColourFields = new TextField[4];
+        Panel boundaryLineColour = createColorPickerPanel("Line Colour:", boundaryLineColourFields, defaultColourValues);
+        circlePanel.add(boundaryLineColour, packingGbc);
+
+
+        packingGbc.gridy++;
+        Label boundaryLineWidthLabel = new Label ("Line Width:");
+        packingGbc.gridx = 0;
+        circlePanel.add(boundaryLineWidthLabel, packingGbc);
+        packingGbc.gridx = 1;
+        TextField boundaryLineWidthTextField = new TextField(5);
+        boundaryLineWidthTextField.setText("1.0");
+        circlePanel.add(boundaryLineWidthTextField, packingGbc);
+
+        packingGbc.gridy++;
+        Label boundaryRadiusSizeLabel = new Label("Scale size:");
+        packingGbc.gridx = 0;
+        circlePanel.add(boundaryRadiusSizeLabel, packingGbc);
+        packingGbc.gridx = 1;
+        TextField boundaryRadiusTextField = new TextField(5);
+        boundaryRadiusTextField.setText("250");
+        circlePanel.add(boundaryRadiusTextField, packingGbc);
+
+        packingGbc.gridx = 0;
+        packingGbc.gridy++;
+        Label packingShapeInputLabel = new Label("Circle Packing Shape Inputs:");
+        circlePanel.add(packingShapeInputLabel, packingGbc);
+
+
+        packingGbc.gridy++;
+        packingGbc.gridx = 0;
+        packingGbc.gridwidth = 8; // span across multiple columns if needed
+
+
+        TextField[] packingFillColourFields = new TextField[4];
+        Panel packingFillColour = createColorPickerPanel("Fill Colour:", packingFillColourFields, defaultColourValues);
+        circlePanel.add(packingFillColour, packingGbc);
+
+        packingGbc.gridy++;
+
+        TextField[] packingLineColourFields = new TextField[4];
+        Panel packingLineColour = createColorPickerPanel("Line Colour:", packingLineColourFields, defaultColourValues);
+        circlePanel.add(packingLineColour, packingGbc);
+
+
+        packingGbc.gridy++;
+        Label packingLineWidthLabel = new Label ("Line Width:");
+        packingGbc.gridx = 0;
+        circlePanel.add(packingLineWidthLabel, packingGbc);
+        packingGbc.gridx = 1;
+        TextField packingLineWidthTextField = new TextField(5);
+        packingLineWidthTextField.setText("1.0");
+        circlePanel.add(packingLineWidthTextField, packingGbc);
+
+        packingGbc.gridy++;
+        Label minRadiusCircleLabel = new Label("Minimum circle radius:");
+        packingGbc.gridx = 0;
+        circlePanel.add(minRadiusCircleLabel, packingGbc);
+        packingGbc.gridx = 1;
+        TextField minRadiusCircleTextField = new TextField(5);
+        minRadiusCircleTextField.setText("6");
+        circlePanel.add(minRadiusCircleTextField, packingGbc);
+
+        packingGbc.gridy++;
+        Label maxRadiusCircleLabel = new Label("Maximum circle radius:");
+        packingGbc.gridx = 0; // place label in the first column
+        circlePanel.add(maxRadiusCircleLabel, packingGbc);
+        TextField maxRadiusCircleTextField = new TextField(5); // 5 is the column width of the TextField
+        maxRadiusCircleTextField.setText("3");
+        packingGbc.gridx = 1; // place text field in the second column
+        circlePanel.add(maxRadiusCircleTextField, packingGbc);
+
+        packingGbc.gridy++;
+        emptyLabel = new Label(" ");
+        circlePanel.add(emptyLabel, packingGbc);
+        packingGbc.gridy++;
+        circlePanel.add(emptyLabel, packingGbc);
+
         circlePanel.setVisible(false);
 
         gbc.gridy++;
@@ -287,12 +425,36 @@ public class SimpleGUI {
                 params.setSmallShapeLineColor(new Color(Integer.parseInt(smallLineColourFields[0].getText()), Integer.parseInt(smallLineColourFields[1].getText()), Integer.parseInt(smallLineColourFields[2].getText()), Integer.parseInt(smallLineColourFields[3].getText()) ));
                 params.setSmallShapeLineWidth(Float.parseFloat(smallLineWidthTextField.getText()));
 
-//                recursiveShape = new RecursiveShape(params);
+                recursiveShape = new RecursiveShape(params);
 
                 Graphics g = canvas.getGraphics();
                 Graphics2D g2d = (Graphics2D) g;
-//                recursiveShape.paintComponent(g2d);
-            } else {
+                recursiveShape.paintComponent(g2d);
+            }
+            else if ("Circle Packing".equals(selected)){
+                CirclePackingParameters params = new CirclePackingParameters();
+                params.setCentreX(Integer.parseInt(startXTextField2.getText()));
+                params.setCentreY(Integer.parseInt(startYTextField2.getText()));
+                params.setMaxAttempts(Integer.parseInt(maxAttemptsTextField.getText()));
+                params.setBoundaryType(boundaryShapeType.getSelectedItem().toLowerCase());
+                params.setPolygonSize(Integer.parseInt(boundaryRadiusTextField.getText()));
+                params.setBoundaryFillColour(new Color(Integer.parseInt(boundaryFillColourFields[0].getText()), Integer.parseInt(boundaryFillColourFields[1].getText()), Integer.parseInt(boundaryFillColourFields[2].getText()), Integer.parseInt(boundaryFillColourFields[3].getText())));
+                params.setBoundaryLineColour(new Color (Integer.parseInt(boundaryLineColourFields[0].getText()), Integer.parseInt(boundaryLineColourFields[1].getText()), Integer.parseInt(boundaryLineColourFields[2].getText()), Integer.parseInt(boundaryLineColourFields[3].getText())));
+                params.setBoundaryLineWidth(Float.parseFloat(boundaryLineWidthTextField.getText()));
+                params.setCircleFillColour(new Color(Integer.parseInt(packingFillColourFields[0].getText()), Integer.parseInt(packingFillColourFields[1].getText()), Integer.parseInt(packingFillColourFields[2].getText()), Integer.parseInt(packingFillColourFields[3].getText())));
+                params.setCircleLineColour(new Color(Integer.parseInt(packingLineColourFields[0].getText()), Integer.parseInt(packingLineColourFields[1].getText()), Integer.parseInt(packingLineColourFields[2].getText()), Integer.parseInt(packingLineColourFields[3].getText())));
+                params.setCircleLineWidth(Float.parseFloat(packingLineWidthTextField.getText()));
+                params.setMaxRadius(Integer.parseInt(maxRadiusCircleTextField.getText()));
+                params.setMinRadius(Integer.parseInt(minRadiusCircleTextField.getText()));
+
+                circlePacking = new CirclePacking(params);
+                Graphics g = canvas.getGraphics();
+                Graphics2D g2d = (Graphics2D) g;
+                circlePacking.paintComponent(g2d);
+
+
+            }
+            else{
                 // Handle other algorithms here
                 Graphics g = canvas.getGraphics();
                 g.setColor(Color.red);

@@ -11,10 +11,12 @@ public class CirclePacking extends JPanel {
     ArrayList<Circle> circles;
     CirclePackingParameters params;
 
-    public CirclePacking(){
-        this.circles = new ArrayList<>();
-        this.params = new CirclePackingParameters();
+    public CirclePacking(CirclePackingParameters params){
+
+        this.params = params;
         setBoundary(this.params.boundaryType);
+        this.circles = new ArrayList<>();
+        addCircle();
     }
 
     public void setBoundary(String type) {
@@ -37,7 +39,6 @@ public class CirclePacking extends JPanel {
                 boolean isInside = boundaryShape.isInside(newCircle);
                 if (isInside) {
                     circles.add(newCircle);
-                    return;
                 }
             }
         }
@@ -51,18 +52,20 @@ public class CirclePacking extends JPanel {
         g2d.setColor(params.backgroundColor);
         g2d.fillRect(0, 0, params.canvasWidth, params.canvasHeight);
 
+        // Draw boundary shape
         boundaryShape.draw(g2d, params.boundaryLineColour, params.boundaryLineWidth, params.boundaryFillColour, "solid");
 
+        // Draw circles
         for (Circle circle : circles) {
             circle.draw(g2d, params.circleLineColour, params.circleLineWidth, params.circleFillColour, "solid");
-        }
 
+        }
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Circle Packing in Shapes");
-
-        CirclePacking packing = new CirclePacking();
+        CirclePackingParameters paramTest = new CirclePackingParameters();
+        CirclePacking packing = new CirclePacking(paramTest);
 
         frame.add(packing);
         frame.setSize(packing.params.canvasWidth, packing.params.canvasHeight);
