@@ -13,81 +13,65 @@ public class Triangle implements PatternShape {
         this.radius = radius;
         setVertices();
     }
+
     public void setVertices(){
+        double height = radius * Math.sqrt(3);
         // Vertex 1
-         x1 = (int)(centerX + radius * Math.cos(Math.toRadians(0)));
-         y1 = (int)(centerY + radius * Math.sin(Math.toRadians(0)));
+        x1 = centerX;
+        y1 = (int)(centerY - height/2);
 
         // Vertex 2
-         x2 = (int)(centerX + radius * Math.cos(Math.toRadians(120)));
-         y2 = (int)(centerY + radius * Math.sin(Math.toRadians(120)));
+        x2 = (int)(centerX - radius);
+        y2 = (int)(centerY + height/2);
 
         // Vertex 3
-         x3 = (int)(centerX + radius * Math.cos(Math.toRadians(240)));
-         y3 = (int)(centerY + radius * Math.sin(Math.toRadians(240)));
-    }
-
-    public int[] getVertices() {
-        return new int[]{x1, y1, x2, y2, x3, y3};
+        x3 = (int)(centerX + radius);
+        y3 = (int)(centerY + height/2);
     }
 
     @Override
     public Point randomPositionInside() {
         double r1 = Math.sqrt(Math.random());
         double r2 = Math.random();
-        int[] vertices = getVertices();
-        int x = (int) (r1 * vertices[0] + r2 * vertices[2] + (1 - r1 - r2) * vertices[4]);
-        int y = (int) (r1 * vertices[1] + r2 * vertices[3] + (1 - r1 - r2) * vertices[5]);
+        int x = (int) (r1 * x1 + r2 * x2 + (1 - r1 - r2) * x3);
+        int y = (int) (r1 * y1 + r2 * y2 + (1 - r1 - r2) * y3);
         return new Point(x, y);
     }
 
     @Override
     public boolean isInside(Circle circle) {
-        int[] vertices = getVertices();
-        for (int angle = 0; angle < 360; angle += 5) {
-            double rad = Math.toRadians(angle);
-            int pointX = (int) (circle.getX() + circle.getRadius() * Math.cos(rad));
-            int pointY = (int) (circle.getY() + circle.getRadius() * Math.sin(rad));
-
-            if (!isPointInside(pointX, pointY)) {
-                return false;
-            }
-        }
-        return true;
+        return isPointInside(circle.centerX - (int)circle.radius, circle.centerY) &&
+                isPointInside(circle.centerX + (int)circle.radius, circle.centerY) &&
+                isPointInside(circle.centerX, circle.centerY - (int)circle.radius) &&
+                isPointInside(circle.centerX, circle.centerY + (int)circle.radius);
     }
 
+
     public boolean isPointInside(int x, int y) {
-        // Logic to check if a point (x, y) is inside the triangle
-        int[] vertices = getVertices();
-        int[] xPoints = {vertices[0], vertices[2], vertices[4]};
-        int[] yPoints = {vertices[1], vertices[3], vertices[5]};
-        Polygon triangle = new Polygon(xPoints, yPoints, 3);
+        Polygon triangle = new Polygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
         return triangle.contains(x, y);
     }
 
     @Override
     public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType) {
-        int[] vertices = getVertices();
-        int[] xPoints = {vertices[0], vertices[2], vertices[4]};
-        int[] yPoints = {vertices[1], vertices[3], vertices[5]};
-
         g2d.setColor(fillColor);
-        g2d.fillPolygon(xPoints, yPoints, 3);
+        g2d.fillPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
 
         g2d.setColor(lineColor);
         g2d.setStroke(new BasicStroke(lineWidth));
-        g2d.drawPolygon(xPoints, yPoints, 3);
+        g2d.drawPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
     }
 
     @Override
     public void setPosition(int x, int y) {
         this.centerX = x;
         this.centerY = y;
+        setVertices();
     }
 
     @Override
     public void setScale(double scale) {
         this.radius = scale;
+        setVertices();
     }
-
 }

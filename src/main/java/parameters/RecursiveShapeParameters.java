@@ -12,13 +12,13 @@ public class RecursiveShapeParameters {
     public String largeShapeType;
     public Color largeShapeLineColor;
     public float largeShapeLineWidth;
-    public Color largeShapeFillColor;  // RGBA where A is alpha (opacity)
+    public Color largeShapeFillColor;
     public String largeShapeLineType = "solid"; // "solid", "dashed", "dotted"
 
     public String smallShapeType;
     public Color smallShapeLineColor = Color.BLACK;
     public float smallShapeLineWidth;
-    public Color smallShapeFillColor;  // RGBA where A is alpha (opacity)
+    public Color smallShapeFillColor;
     public String smallShapeLineType = "solid"; // "solid", "dashed", "dotted"
 
 
@@ -89,18 +89,18 @@ public class RecursiveShapeParameters {
         canvasSizeY = 800;
         backgroundColor = Color.WHITE;
 
-        // Large shape (outer circle)
-        largeShapeType = "circle";
+        // Large shape
+        largeShapeType = "triangle";
         largeShapeLineColor = Color.BLACK;
         largeShapeLineWidth = 1.0f;
-        largeShapeFillColor = new Color(0, 0, 0, 0);  // Transparent
+        largeShapeFillColor = new Color(0, 0, 0, 0);
         largeShapeLineType = "solid";
 
-        // Small shape (small circles)
-        smallShapeType = "circle";
+        // Small shape
+        smallShapeType = "triangle";
         smallShapeLineColor = Color.BLACK;
         smallShapeLineWidth = 1.0f;
-        smallShapeFillColor = new Color(0, 0, 0, 0);  // Transparent
+        smallShapeFillColor = new Color(0, 0, 0, 0);
         smallShapeLineType = "solid";
 
         // Center of the canvas
@@ -108,7 +108,7 @@ public class RecursiveShapeParameters {
         centerY = canvasSizeY / 2;
         initialSize = 150;
         depth = 4;
-        numShapes = 6;  // Number of smaller circles
+        numShapes = 6;
     }
 
 }
