@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Square implements PatternShape {
     public int centerX, centerY;
-    double radius;
+    public double radius;
 
     public Square(int x, int y, double radius) {
         this.centerX = x;

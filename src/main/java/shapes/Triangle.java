@@ -3,9 +3,9 @@ package shapes;
 import java.awt.*;
 
 public class Triangle implements PatternShape {
-    int centerX, centerY;
-    double radius;
-    int x1, y1, x2, y2, x3, y3;
+    public int centerX, centerY;
+    public double radius;
+    public int x1, y1, x2, y2, x3, y3;
 
     public Triangle(int x, int y, double radius) {
         this.centerX = x;
@@ -15,19 +15,19 @@ public class Triangle implements PatternShape {
     }
 
     public void setVertices(){
-        double height = radius * Math.sqrt(3);
         // Vertex 1
         x1 = centerX;
-        y1 = (int)(centerY - height/2);
+        y1 = (int)(centerY - radius);
 
         // Vertex 2
-        x2 = (int)(centerX - radius);
-        y2 = (int)(centerY + height/2);
+        x2 = (int)(centerX - radius * Math.cos(Math.toRadians(30)));
+        y2 = (int)(centerY + radius * Math.sin(Math.toRadians(30)));
 
         // Vertex 3
-        x3 = (int)(centerX + radius);
-        y3 = (int)(centerY + height/2);
+        x3 = (int)(centerX + radius * Math.cos(Math.toRadians(30)));
+        y3 = (int)(centerY + radius * Math.sin(Math.toRadians(30)));
     }
+
 
     @Override
     public Point randomPositionInside() {

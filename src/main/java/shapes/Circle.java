@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Circle implements PatternShape {
     public int centerX, centerY;
-    double radius;
+    public double radius;
 
     public Circle(int x, int y, int radius) {
         this.centerX = x;
