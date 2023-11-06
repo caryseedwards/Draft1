@@ -1,4 +1,4 @@
-package patterns;
+package individuals;
 
 import java.awt.*;
 import javax.swing.*;

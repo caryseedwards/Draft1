@@ -23,6 +23,7 @@ public class CirclePackingParameters{
     public Color circleFillColour = Color.YELLOW;
     public Color circleLineColour = Color.BLACK;
     public float circleLineWidth = 1;
+
     // Setter methods for Canvas parameters
     public void setCanvasWidth(int canvasWidth) {
         this.canvasWidth = canvasWidth;

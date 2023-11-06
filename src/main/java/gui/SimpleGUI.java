@@ -1,5 +1,6 @@
 package gui;
 
+import parameters.SierpinskiShapeParameters;
 import patterns.CirclePacking;
 import patterns.RecursiveShape;
 
@@ -7,10 +8,12 @@ import java.awt.*;
 import java.awt.event.*;
 import parameters.CirclePackingParameters;
 import parameters.RecursiveShapeParameters;
+import patterns.SierpinskiShape;
 
 public class SimpleGUI {
     public static RecursiveShape recursiveShape = null;
     public static CirclePacking circlePacking = null;
+    public static SierpinskiShape sierpinskiShape = null;
 
     public static Panel createColorPickerPanel(String title, TextField[] rgbaFields, int[] defaultValues) {
         Panel colorPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
@@ -35,10 +38,9 @@ public class SimpleGUI {
         // Left Panel
         Panel leftPanel = new Panel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-      //  gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10);
 
         Label algorithmLabel = new Label("Please select an algorithm:");
         leftPanel.add(algorithmLabel, gbc);
@@ -51,8 +53,9 @@ public class SimpleGUI {
         gbc.gridx = 1;
         leftPanel.add(algorithmDropdown, gbc);
         gbc.gridx = 0;
-
-
+        gbc.gridy++;
+        Label emptyLabel = new Label("");
+        leftPanel.add(emptyLabel, gbc);
         // Recursive Panel Layout
         gbc.gridy++;
         Panel recursivePanel = new Panel(new GridBagLayout());
@@ -108,7 +111,7 @@ public class SimpleGUI {
         recursivePanel.add(numShapeTextField, recursiveGbc);
 
         recursiveGbc.gridy++;
-        Label emptyLabel = new Label(" ");
+        emptyLabel = new Label(" ");
         recursivePanel.add(emptyLabel, recursiveGbc);
         recursiveGbc.gridy++;
         recursivePanel.add(emptyLabel, recursiveGbc);
@@ -349,11 +352,97 @@ public class SimpleGUI {
 
         circlePanel.setVisible(false);
 
-        gbc.gridy++;
-        Panel sierpinskiPanel = new Panel();
-        Checkbox sierpinskiCheckbox = new Checkbox("Enable Sierpinski Options");
-        sierpinskiPanel.add(sierpinskiCheckbox);
-        leftPanel.add(sierpinskiPanel, gbc);
+
+        Panel sierpinskiPanel = new Panel(new GridBagLayout());
+        leftPanel.add(sierpinskiPanel,gbc);
+        // Algorithm Parameters
+        GridBagConstraints sierpinskiGbc = new GridBagConstraints();
+        sierpinskiGbc.gridx = 0;
+        sierpinskiGbc.gridy = 0;
+        sierpinskiGbc.anchor = GridBagConstraints.NORTHWEST;
+
+        Label startXLabel3 = new Label("Initial 'x' co-ordinate:");
+        sierpinskiPanel.add(startXLabel3, sierpinskiGbc);
+        TextField startXTextField3 = new TextField(4); // 4 is the column width of the TextField
+        startXTextField3.setText("500");
+        sierpinskiGbc.gridx = 1; // place text field in the second column
+        sierpinskiPanel.add(startXTextField3, sierpinskiGbc);
+        sierpinskiGbc.gridy++;
+        sierpinskiGbc.gridx = 0;
+        Label startYLabel3 = new Label("Initial 'y' co-ordinate:");
+        sierpinskiPanel.add(startYLabel3, sierpinskiGbc);
+        TextField startYTextField3 = new TextField(4); // 4 is the column width of the TextField
+        startYTextField3.setText("500");
+        sierpinskiGbc.gridx = 1; // place text field in the second column
+        sierpinskiPanel.add(startYTextField3, sierpinskiGbc);
+        sierpinskiGbc.gridy++;
+        sierpinskiGbc.gridx = 0;
+        
+        Label startSizeLabel = new Label ("Size:");
+        sierpinskiPanel.add(startSizeLabel, sierpinskiGbc);
+        TextField startSizeTextField = new TextField(5); // 5 is the column width of the TextField
+        startSizeTextField.setText("300");
+        sierpinskiGbc.gridx = 1; // place text field in the second column
+        sierpinskiPanel.add(startSizeTextField, sierpinskiGbc);
+
+        sierpinskiGbc.gridy++;
+        sierpinskiGbc.gridx = 0;
+        Label depthLabel = new Label("Depth:");
+        sierpinskiPanel.add(depthLabel, sierpinskiGbc);
+        TextField depthTextField = new TextField(2); // 5 is the column width of the TextField
+        depthTextField.setText("5");
+        sierpinskiGbc.gridx = 1; // place text field in the second column
+        sierpinskiPanel.add(depthTextField, sierpinskiGbc);
+        sierpinskiGbc.gridy++;
+        sierpinskiGbc.gridx = 0;
+        
+        Label sierpinskiShapeInputLabel = new Label("Shape Inputs:");
+        sierpinskiPanel.add(sierpinskiShapeInputLabel, sierpinskiGbc);
+        sierpinskiGbc.gridy++;
+
+        Label sierpinskiShapeTypeLabel = new Label("Shape Type:");
+        sierpinskiPanel.add(sierpinskiShapeTypeLabel, sierpinskiGbc);
+        
+        Choice sierpinskiShapeType = new Choice();
+        sierpinskiShapeType.add("Circle");
+        sierpinskiShapeType.add("Square");
+        sierpinskiShapeType.add("Triangle");
+        sierpinskiShapeType.add("Hexagon");
+        sierpinskiGbc.gridx = 1;
+        sierpinskiPanel.add(sierpinskiShapeType, sierpinskiGbc);
+
+
+        sierpinskiGbc.gridy++;
+        sierpinskiGbc.gridx = 0;
+        sierpinskiGbc.gridwidth = 8; // span across multiple columns if needed
+
+
+        TextField[] sierpinskiFillColourFields = new TextField[4];
+        Panel sierpinskiFillColour = createColorPickerPanel("Fill Colour:", sierpinskiFillColourFields, defaultColourValues);
+        sierpinskiPanel.add(sierpinskiFillColour, sierpinskiGbc);
+
+        sierpinskiGbc.gridy++;
+
+        TextField[] sierpinskiLineColourFields = new TextField[4];
+        Panel sierpinskiLineColour = createColorPickerPanel("Line Colour:", sierpinskiLineColourFields, defaultColourValues);
+        sierpinskiPanel.add(sierpinskiLineColour, sierpinskiGbc);
+
+
+        sierpinskiGbc.gridy++;
+        Label sierpinskiLineWidthLabel = new Label ("Line Width:");
+        sierpinskiGbc.gridx = 0;
+        sierpinskiPanel.add(sierpinskiLineWidthLabel, sierpinskiGbc);
+        sierpinskiGbc.gridx = 1;
+        TextField sierpinskiLineWidthTextField = new TextField(5);
+        sierpinskiLineWidthTextField.setText("1.0");
+        sierpinskiPanel.add(sierpinskiLineWidthTextField,sierpinskiGbc);
+
+        sierpinskiGbc.gridy++;
+        emptyLabel = new Label(" ");
+        sierpinskiPanel.add(emptyLabel, sierpinskiGbc);
+        sierpinskiGbc.gridy++;
+        sierpinskiPanel.add(emptyLabel, sierpinskiGbc);
+        
         sierpinskiPanel.setVisible(false);
 
         gbc.gridy++;
@@ -451,10 +540,26 @@ public class SimpleGUI {
                 Graphics g = canvas.getGraphics();
                 Graphics2D g2d = (Graphics2D) g;
                 circlePacking.paintComponent(g2d);
-
-
+                
             }
-            else{
+            else if ("Sierpinski Shape".equals(selected)){
+                SierpinskiShapeParameters params = new SierpinskiShapeParameters();
+                params.setCentreX(Integer.parseInt(startXTextField3.getText()));
+                params.setCentreY(Integer.parseInt(startYTextField2.getText()));
+                params.setDepth(Integer.parseInt(depthTextField.getText()));
+                params.setShapeType(sierpinskiShapeType.getSelectedItem().toLowerCase());
+                params.setPolygonSize(Integer.parseInt(startSizeTextField.getText()));
+                params.setShapeFillColour(new Color(Integer.parseInt(sierpinskiFillColourFields[0].getText()), Integer.parseInt(sierpinskiFillColourFields[1].getText()), Integer.parseInt(sierpinskiFillColourFields[2].getText()), Integer.parseInt(sierpinskiFillColourFields[3].getText())));
+                params.setShapeLineColour(new Color(Integer.parseInt(sierpinskiLineColourFields[0].getText()), Integer.parseInt(sierpinskiLineColourFields[1].getText()), Integer.parseInt(sierpinskiLineColourFields[2].getText()), Integer.parseInt(sierpinskiLineColourFields[3].getText())));
+                params.setShapeLineWidth(Float.parseFloat(sierpinskiLineWidthTextField.getText()));
+
+                sierpinskiShape = new SierpinskiShape(params);
+                Graphics g = canvas.getGraphics();
+                Graphics2D g2d = (Graphics2D) g;
+                sierpinskiShape.paintComponent(g2d);
+            }
+            else
+            {
                 // Handle other algorithms here
                 Graphics g = canvas.getGraphics();
                 g.setColor(Color.red);

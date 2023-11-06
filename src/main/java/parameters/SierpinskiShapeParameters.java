@@ -3,10 +3,10 @@ package parameters;
 import java.awt.*;
 
 public class SierpinskiShapeParameters {
-    int centreX, centreY, polygonSize, depth;
-    Color shapeFillColour, shapeLineColour;
-    float shapeLineWidth;
-    String shapeType;
+    public int centreX, centreY, polygonSize, depth;
+    public Color shapeFillColour, shapeLineColour;
+    public float shapeLineWidth;
+    public String shapeType;
 
     public void setCentreX(int centreX) {
         this.centreX = centreX;
