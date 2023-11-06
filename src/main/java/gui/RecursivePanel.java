@@ -8,16 +8,16 @@ public class RecursivePanel {
     private final TextField startXTextField;
     private final TextField startYTextField;
     private final TextField recursiveDepthTextField = new TextField("3",5);
-    private final TextField initialRadiusTextField = new TextField("250",5);
+    private final TextField initialRadiusTextField = new TextField("125",5);
     private final TextField numShapeTextField = new TextField("6",5);
     private final Choice largeShapeType = new Choice();
-    private Color largeFillColour = new Color(255, 255, 255, 255); // Default white
-    private Color largeLineColour = new Color(0, 0, 0, 255); // Default black
-    private final TextField largeLineWidthTextField = new TextField("2", 5);
+    private Color largeFillColour = new Color(255, 255, 255, 255);
+    private Color largeLineColour = new Color(0, 0, 0, 255);
+    private final TextField largeLineWidthTextField = new TextField("1", 5);
     private final Choice smallShapeType = new Choice();
-    private Color smallFillColour = new Color(255, 255, 255, 255); // Default white
-    private Color smallLineColour = new Color(0, 0, 0, 255); // Default black
-    private final TextField smallLineWidthTextField = new TextField("2",5);
+    private Color smallFillColour = new Color(255, 255, 255, 255);
+    private Color smallLineColour = new Color(0, 0, 0, 255);
+    private final TextField smallLineWidthTextField = new TextField("1",5);
     private final Panel recursivePanel = new Panel(new GridBagLayout());
 
 

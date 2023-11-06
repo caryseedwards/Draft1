@@ -10,14 +10,14 @@ public class SierpinskiPanel {
     private final TextField sizeTextField = new TextField("300", 5);
     private final TextField depthTextField = new TextField("5", 5);
     private final Choice shapeTypeChoice = new Choice();
-    private Color fillColour = new Color(255, 255, 255, 255); // Default white
-    private Color lineColour = new Color(0, 0, 0, 255); // Default black
-    private final TextField lineWidthTextField = new TextField("1.0", 5);
+    private Color fillColour = new Color(255, 255, 255, 255);
+    private Color lineColour = new Color(0, 0, 0, 255);
+    private final TextField lineWidthTextField = new TextField("1", 5);
     private final Panel sierpinskiPanel = new Panel(new GridBagLayout());
 
     public SierpinskiPanel(int width, int height) {
         this.startXTextField = new TextField(String.valueOf(width/2), 5);
-        this.startYTextField= new TextField(String.valueOf(height/2), 5);
+        this.startYTextField= new TextField(String.valueOf(1050), 5);
         setupPanel();
     }
 
@@ -38,7 +38,7 @@ public class SierpinskiPanel {
         addLabelAndField(gbc, "Size:", sizeTextField, gridy++);
         addLabelAndField(gbc, "Depth:", depthTextField, gridy++);
 
-        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
+        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Triangle", "Square", "Circle", "Hexagon"}, gridy++);
         addColorChooserButton(gbc, gridy++, fillColour, e -> {
             Color chosenColor = JColorChooser.showDialog(sierpinskiPanel, "Choose Boundary Fill Color", fillColour);
             if (chosenColor != null) {

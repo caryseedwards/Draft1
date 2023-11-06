@@ -9,13 +9,13 @@ public class CirclePackingPanel {
     private final TextField startYTextField;
     private final TextField maxAttemptsTextField = new TextField("500", 5);
     private final Choice boundaryShapeType = new Choice();
-    private Color boundaryFillColor = new Color(255, 255, 255, 255); // Default white
-    private Color boundaryLineColor = new Color(0, 0, 0, 255); // Default black
-    private final TextField boundaryLineWidthTextField = new TextField("1.0", 5);
+    private Color boundaryFillColor = new Color(255, 255, 255, 255);
+    private Color boundaryLineColor = new Color(0, 0, 0, 255);
+    private final TextField boundaryLineWidthTextField = new TextField("1", 5);
     private final TextField boundaryRadiusTextField = new TextField("250", 5);
-    private Color packingFillColor = new Color(255, 255, 255, 255); // Default white
-    private Color packingLineColor = new Color(0, 0, 0, 255); // Default black
-    private final TextField packingLineWidthTextField = new TextField("1.0", 5);
+    private Color packingFillColor = new Color(255, 255, 255, 255);
+    private Color packingLineColor = new Color(0, 0, 0, 255);
+    private final TextField packingLineWidthTextField = new TextField("1", 5);
     private final TextField minRadiusCircleTextField = new TextField("6", 5);
     private final TextField maxRadiusCircleTextField = new TextField("3", 5);
     private final Panel circlePackingPanel = new Panel(new GridBagLayout());
@@ -148,17 +148,6 @@ public class CirclePackingPanel {
 
         gbc.gridx = 1; // Place button in the second column
         circlePackingPanel.add(colorButton, gbc);
-    }
-
-    // You'll need to implement or adjust createColorPickerPanel to match this setup.
-    private Panel createColorPickerPanel(String labelText, TextField[] colorFields, int[] defaultValues) {
-        Panel colorPanel = new Panel();
-        colorPanel.add(new Label(labelText));
-        for (int i = 0; i < colorFields.length; i++) {
-            colorFields[i] = new TextField(Integer.toString(defaultValues[i]), 3);
-            colorPanel.add(colorFields[i]);
-        }
-        return colorPanel;
     }
 
     public TextField getStartXTextField() {

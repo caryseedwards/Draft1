@@ -6,19 +6,31 @@ import patterns.RecursiveShape;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import parameters.CirclePackingParameters;
 import parameters.RecursiveShapeParameters;
 import patterns.SierpinskiShape;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class SimpleGUI {
     public static RecursiveShape recursiveShape = null;
     public static CirclePacking circlePacking = null;
     public static SierpinskiShape sierpinskiShape = null;
 
+    public static int windowWidth = 1200;
+    public static int windowHeight = 1000;
+    public static int canvasWidth = 800;
+    public static int canvasHeight = 800;
+
     public static void main(String[] args) {
         Frame frame = new Frame("Generative Art API");
         frame.setLayout(new BorderLayout());
-        frame.setSize(1000, 800);
+        frame.setSize(windowWidth, windowHeight);
 
         // Left Panel
         Panel leftPanel = new Panel(new GridBagLayout());
@@ -43,30 +55,27 @@ public class SimpleGUI {
 
         gbc.gridy++;
         // Recursive Panel Layout
-        RecursivePanel recursiveParameterPanel = new RecursivePanel(frame.getWidth(), frame.getHeight());
+        RecursivePanel recursiveParameterPanel = new RecursivePanel(canvasWidth, canvasHeight);
         Panel recursivePanel = recursiveParameterPanel.getRecursivePanel();
         recursivePanel.setVisible(false); // initially hidden
         leftPanel.add(recursivePanel, gbc);
 
-        CirclePackingPanel circlePackingParameterPanel = new CirclePackingPanel(frame.getWidth(), frame.getHeight());
+        CirclePackingPanel circlePackingParameterPanel = new CirclePackingPanel(canvasWidth, canvasHeight);
         Panel circlePackingPanel = circlePackingParameterPanel.getCirclePackingPanel();
         circlePackingPanel.setVisible(false); // initially hidden
         leftPanel.add(circlePackingPanel, gbc);
 
-        SierpinskiPanel sierpinskiParameterPanel = new SierpinskiPanel(frame.getWidth(), frame.getHeight());
+        SierpinskiPanel sierpinskiParameterPanel = new SierpinskiPanel(canvasWidth, canvasHeight);
         Panel sierpinskiPanel = sierpinskiParameterPanel.getSierpinskiPanel();
         sierpinskiPanel.setVisible(false); // initially hidden
         leftPanel.add(sierpinskiPanel, gbc);
 
         // Update the visibility based on dropdown selection
-        algorithmDropdown.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                recursivePanel.setVisible(algorithmDropdown.getSelectedItem().equals("Recursive Shape"));
-                circlePackingPanel.setVisible(algorithmDropdown.getSelectedItem().equals("Circle Packing"));
-                sierpinskiPanel.setVisible(algorithmDropdown.getSelectedItem().equals("Sierpinski Shape"));
-                frame.validate(); // Adjust the frame layout after changes
-            }
+        algorithmDropdown.addItemListener(e -> {
+            recursivePanel.setVisible(algorithmDropdown.getSelectedItem().equals("Recursive Shape"));
+            circlePackingPanel.setVisible(algorithmDropdown.getSelectedItem().equals("Circle Packing"));
+            sierpinskiPanel.setVisible(algorithmDropdown.getSelectedItem().equals("Sierpinski Shape"));
+            frame.validate();
         });
 
         gbc.gridy++;
@@ -77,10 +86,9 @@ public class SimpleGUI {
         Button generateBtn = new Button("Generate Artwork");
         leftPanel.add(generateBtn, gbc);
 
-        // Reset gbc settings if adding more components after this
-        gbc.gridwidth = 1; // Reset gridwidth
-        gbc.anchor = GridBagConstraints.NORTHWEST; // Reset anchor
-        gbc.insets = new Insets(0, 0, 0, 0); // Reset insets
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(0, 0, 0, 0);
 
         frame.add(leftPanel, BorderLayout.WEST);
 
@@ -95,6 +103,7 @@ public class SimpleGUI {
 
         // Main Center Panel with Padding
         Panel centerPanel = new Panel(new BorderLayout());
+        canvas.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
         centerPanel.add(canvas, BorderLayout.CENTER);
 
         Panel topPadding = new Panel();
@@ -109,9 +118,9 @@ public class SimpleGUI {
 
         // Bottom Buttons Centered to Canvas
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
-        Button refreshBtn = new Button("Refresh");
+        Button saveBtn = new Button("Save Image");
         Button resetBtn = new Button("Reset");
-        bottomPanel.add(refreshBtn);
+        bottomPanel.add(saveBtn);
         bottomPanel.add(resetBtn);
 
         centerPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -207,8 +216,45 @@ public class SimpleGUI {
         });
 
 
-        // Event handlers for Generate Artwork button
-        refreshBtn.addActionListener(e -> canvas.repaint());
+        saveBtn.addActionListener(e -> {
+            Dimension size = canvas.getSize();
+            BufferedImage image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = image.createGraphics();
+
+            // Ensure the background is filled, or the saved image will have a transparent background
+            g2d.setColor(canvas.getBackground());
+            g2d.fillRect(0, 0, size.width, size.height);
+
+            // Instead of canvas.printAll(g2d), directly invoke the same drawing code used for the canvas.
+            if (recursiveShape != null) {
+                recursiveShape.paintComponent(g2d);
+            } else if (circlePacking != null) {
+                circlePacking.paintComponent(g2d);
+            } else if (sierpinskiShape != null) {
+                sierpinskiShape.paintComponent(g2d);
+            }
+
+            g2d.dispose(); // Always dispose of the Graphics object when done
+
+            // The rest of the code for saving remains the same
+            FileDialog fd = new FileDialog(frame, "Save Image", FileDialog.SAVE);
+            fd.setVisible(true);
+            String filename = fd.getFile();
+            if (filename != null) {
+                try {
+                    // Add .png extension if user does not provide an extension
+                    if (!filename.contains(".")) filename += ".png";
+                    File file = new File(fd.getDirectory() + filename);
+                    ImageIO.write(image, "PNG", file);
+                    JOptionPane.showMessageDialog(frame, "Image saved successfully!", "Image Export", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(frame, "Error saving image: " + ex.getMessage(), "Save Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+
 
         resetBtn.addActionListener(e -> {
             Graphics g = canvas.getGraphics();
