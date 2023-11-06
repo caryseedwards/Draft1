@@ -10,7 +10,7 @@ import javax.swing.*;
 import parameters.*;
 import patterns.*;
 
-public class SimpleGUI {
+public class ArtworkGUI {
 
     private static final int WINDOW_WIDTH = 1200;
     private static final int WINDOW_HEIGHT = 1000;
