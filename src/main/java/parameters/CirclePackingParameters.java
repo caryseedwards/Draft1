@@ -37,8 +37,8 @@ public class CirclePackingParameters{
         this.backgroundColor = backgroundColor;
     }
 
-    public void setAnimationSpeed(int animationSpeed) {
-        this.animationSpeed = animationSpeed;
+    public int getAnimationSpeed() {
+        return this.animationSpeed;
     }
 
     // Setter methods for Boundary shape parameters
