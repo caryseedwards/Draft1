@@ -22,7 +22,7 @@ public class SimpleGUI {
     private static SierpinskiShape sierpinskiShape;
     private static Timer animationTimer;
     private static Frame frame;
-    private static Canvas canvas;
+    private static JPanel canvas;
     private static Choice algorithmDropdown;
     private static RecursivePanel rp = new RecursivePanel(CANVAS_WIDTH, CANVAS_HEIGHT);
     private static CirclePackingPanel cpp = new CirclePackingPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -90,15 +90,23 @@ public class SimpleGUI {
     }
 
     private static void setupCanvas() {
-        canvas = new Canvas() {
+        canvas = new JPanel() {
             @Override
-            public void paint(Graphics g) {
-                g.setColor(Color.black);
-                g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(Color.WHITE);
+                g.fillRect(0, 0, getWidth(), getHeight()); // fills the background
+
+                // Draw a border
+                g.setColor(Color.BLACK); // border color
+                g.drawRect(0, 0, getWidth() - 1, getHeight() - 1); // draw the border
+                if (circlePacking != null) {
+                    circlePacking.paintComponent(g);
+                }
             }
         };
-        canvas.setBackground(Color.white);
         canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
+        canvas.setBackground(Color.WHITE); // This sets the background of the panel but is now redundant
 
         Panel centerPanel = new Panel(new BorderLayout());
         centerPanel.add(canvas, BorderLayout.CENTER);
@@ -113,6 +121,7 @@ public class SimpleGUI {
 
         frame.add(centerPanel, BorderLayout.CENTER);
     }
+
 
     private static void setupBottomPanel() {
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
@@ -129,12 +138,28 @@ public class SimpleGUI {
 
     private static void updateAlgorithmPanelVisibility() {
         String selected = algorithmDropdown.getSelectedItem();
+        int newCanvasWidth = canvas.getWidth();
+        int newCanvasHeight = canvas.getHeight();
+
+        resetCanvas();
+        updateCenterForPanels(newCanvasWidth, newCanvasHeight);
         recursivePanel.setVisible("Recursive Shape".equals(selected));
         circlePackingPanel.setVisible("Circle Packing".equals(selected));
         sierpinskiPanel.setVisible("Sierpinski Shape".equals(selected));
+
         frame.invalidate();
         frame.validate();
         frame.repaint();
+    }
+
+
+    private static void updateCenterForPanels(int width, int height) {
+        rp.getStartXTextField().setText(String.valueOf(width / 2));
+        rp.getStartYTextField().setText(String.valueOf(height / 2));
+        cpp.getStartXTextField().setText(String.valueOf(width / 2));
+        cpp.getStartYTextField().setText(String.valueOf(height / 2));
+        sp.getStartXTextField().setText(String.valueOf(width / 2));
+        sp.getStartYTextField().setText(String.valueOf(height / 2));
     }
 
     private static void generateArtwork() {
@@ -148,10 +173,19 @@ public class SimpleGUI {
                 recursiveShape.paintComponent(g2d);
                 break;
             case "Circle Packing":
-                CirclePackingParameters circlePackingParams = getCirclePackingParameters();
-                circlePacking = new CirclePacking(circlePackingParams);
-                circlePacking.paintComponent(g2d);
-//                startCirclePackingAnimation(circlePackingParams);
+                if (circlePacking == null) {
+                    circlePacking = new CirclePacking(getCirclePackingParameters());
+                }
+                if (animationTimer != null) {
+                    animationTimer.stop();
+                }
+                animationTimer = new Timer(100, e -> {
+                    if (circlePacking != null) {
+                        circlePacking.addCircle();
+                        canvas.repaint();
+                    }
+                });
+                animationTimer.start();
                 break;
             case "Sierpinski Shape":
                 SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();

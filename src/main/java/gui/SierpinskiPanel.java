@@ -38,7 +38,7 @@ public class SierpinskiPanel {
         addLabelAndField(gbc, "Size:", sizeTextField, gridy++);
         addLabelAndField(gbc, "Depth:", depthTextField, gridy++);
 
-        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Triangle", "Square", "Circle", "Hexagon"}, gridy++);
+        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Hexagon", "Square", "Circle", "Triangle"}, gridy++);
         addColorChooserButton(gbc, gridy++, fillColour, e -> {
             Color chosenColor = JColorChooser.showDialog(sierpinskiPanel, "Choose Boundary Fill Color", fillColour);
             if (chosenColor != null) {

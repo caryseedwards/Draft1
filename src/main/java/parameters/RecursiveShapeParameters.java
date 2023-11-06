@@ -5,8 +5,6 @@ import java.awt.*;
 public class RecursiveShapeParameters {
     public int canvasSizeX;
     public int canvasSizeY;
-    public Color lineColor = Color.BLACK;
-    public float lineWidth = 1.0f;
     public Color backgroundColor = Color.WHITE;
 
     public String largeShapeType;

@@ -7,19 +7,18 @@ import java.awt.event.ActionListener;
 public class RecursivePanel {
     private final TextField startXTextField;
     private final TextField startYTextField;
-    private final TextField recursiveDepthTextField = new TextField("3",5);
-    private final TextField initialRadiusTextField = new TextField("125",5);
+    private final TextField recursiveDepthTextField = new TextField("4",5);
+    private final TextField initialRadiusTextField = new TextField("150",5);
     private final TextField numShapeTextField = new TextField("6",5);
     private final Choice largeShapeType = new Choice();
-    private Color largeFillColour = new Color(255, 255, 255, 255);
-    private Color largeLineColour = new Color(0, 0, 0, 255);
+    private Color largeFillColour = new Color(0, 0, 0, 0);
+    private Color largeLineColour = Color.BLACK;
     private final TextField largeLineWidthTextField = new TextField("1", 5);
     private final Choice smallShapeType = new Choice();
-    private Color smallFillColour = new Color(255, 255, 255, 255);
-    private Color smallLineColour = new Color(0, 0, 0, 255);
+    private Color smallFillColour = new Color(0, 0, 0, 0);
+    private Color smallLineColour = Color.BLACK;
     private final TextField smallLineWidthTextField = new TextField("1",5);
     private final Panel recursivePanel = new Panel(new GridBagLayout());
-
 
     public RecursivePanel(int width, int height) {
         this.startXTextField = new TextField(String.valueOf(width/2), 5);
@@ -27,34 +26,28 @@ public class RecursivePanel {
         setupPanel();
     }
 
-
     private void setupPanel() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
 
-        // General section
-        gbc.insets = new Insets(10, 5, 0, 5); // Increase top padding for section title
+        gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "General:", 0);
 
-        int gridy = 1; // Start with 1 to leave space for the section label
-
+        int gridy = 1;
         addLabelAndField(gbc, "Initial 'x' co-ordinate:", startXTextField, gridy++);
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
         addLabelAndField(gbc, "Depth/Iterations:", recursiveDepthTextField, gridy++);
         addLabelAndField(gbc, "Initial radius length:", initialRadiusTextField, gridy++);
         addLabelAndField(gbc, "Number of shapes:", numShapeTextField, gridy++);
 
-        // Space before large shape section
         gbc.gridy = gridy++;
         recursivePanel.add(new Label(" "), gbc);
 
-        // Large Shape
-        gbc.insets = new Insets(10, 5, 0, 5); // Increase top padding for section label
+        gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Large Shape Inputs:", gridy++);
 
-        // Reset insets and continue with fields
         gbc.insets = new Insets(2, 5, 2, 5);
-        addLabelAndChoice(gbc, largeShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
+        addLabelAndChoice(gbc, largeShapeType, new String[]{"Triangle", "Square", "Circle", "Hexagon"}, gridy++);
         addColorChooserButton(gbc, gridy++, largeFillColour, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Boundary Fill Color", largeFillColour);
             if (chosenColor != null) {
@@ -69,17 +62,14 @@ public class RecursivePanel {
         });
         addLabelAndField(gbc, "Line Width:", largeLineWidthTextField, gridy++);
 
-        // Space before small shape section
         gbc.gridy = gridy++;
         recursivePanel.add(new Label(" "), gbc);
 
-        // Small Shape
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Small Shape Inputs:", gridy++);
 
-        // Reset insets and continue with fields
         gbc.insets = new Insets(2, 5, 2, 5);
-        addLabelAndChoice(gbc, smallShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
+        addLabelAndChoice(gbc, smallShapeType, new String[]{"Triangle", "Square", "Triangle", "Hexagon"}, gridy++);
         addColorChooserButton(gbc, gridy++, smallFillColour, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Boundary Fill Color", smallFillColour);
             if (chosenColor != null) {
@@ -138,11 +128,10 @@ public class RecursivePanel {
         gbc.anchor = GridBagConstraints.WEST;
         recursivePanel.add(new Label("Fill Colour:"), gbc);
 
-        // Button for color chooser
         Button colorButton = new Button("Choose Colour");
         colorButton.addActionListener(action);
 
-        gbc.gridx = 1; // Place button in the second column
+        gbc.gridx = 1;
         recursivePanel.add(colorButton, gbc);
     }
 
