@@ -12,10 +12,10 @@ import patterns.*;
 
 public class ArtworkGUI {
 
-    private static final int WINDOW_WIDTH = 1200;
-    private static final int WINDOW_HEIGHT = 1000;
-    private static final int CANVAS_WIDTH = 800;
-    private static final int CANVAS_HEIGHT = 800;
+    private static final int WINDOW_WIDTH = 1280;
+    private static final int WINDOW_HEIGHT = 720;
+    private static final int CANVAS_WIDTH = 1280;
+    private static final int CANVAS_HEIGHT = 720;
 
     private static RecursiveShape recursiveShape;
     private static CirclePacking circlePacking;
@@ -68,7 +68,7 @@ public class ArtworkGUI {
 
     private static void setupAlgorithmDropdown() {
         algorithmDropdown = new Choice();
-        algorithmDropdown.add("");
+        algorithmDropdown.add("-");
         algorithmDropdown.add("Circle Packing");
         algorithmDropdown.add("Recursive Shape");
         algorithmDropdown.add("Sierpinski Shape");
@@ -95,18 +95,16 @@ public class ArtworkGUI {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(Color.WHITE);
-                g.fillRect(0, 0, getWidth(), getHeight()); // fills the background
-
-                // Draw a border
-                g.setColor(Color.BLACK); // border color
-                g.drawRect(0, 0, getWidth() - 1, getHeight() - 1); // draw the border
+                g.fillRect(0, 0, getWidth(), getHeight());
+                g.setColor(Color.BLACK);
+                g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
                 if (circlePacking != null) {
                     circlePacking.paintComponent(g);
                 }
             }
         };
         canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
-        canvas.setBackground(Color.WHITE); // This sets the background of the panel but is now redundant
+        canvas.setBackground(Color.WHITE);
 
         Panel centerPanel = new Panel(new BorderLayout());
         centerPanel.add(canvas, BorderLayout.CENTER);
@@ -122,9 +120,11 @@ public class ArtworkGUI {
         frame.add(centerPanel, BorderLayout.CENTER);
     }
 
-
     private static void setupBottomPanel() {
+        int bottomPanelHeight = 50;
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
+        bottomPanel.setPreferredSize(new Dimension(WINDOW_WIDTH, bottomPanelHeight));
+
         Button saveBtn = new Button("Save Image");
         saveBtn.addActionListener(e -> saveImage());
         Button resetBtn = new Button("Reset");
@@ -132,7 +132,6 @@ public class ArtworkGUI {
 
         bottomPanel.add(saveBtn);
         bottomPanel.add(resetBtn);
-
         frame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
@@ -151,7 +150,6 @@ public class ArtworkGUI {
         frame.validate();
         frame.repaint();
     }
-
 
     private static void updateCenterForPanels(int width, int height) {
         rp.getStartXTextField().setText(String.valueOf(width / 2));
@@ -191,9 +189,6 @@ public class ArtworkGUI {
                 SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();
                 sierpinskiShape = new SierpinskiShape(sierpinskiParams);
                 sierpinskiShape.paintComponent(g2d);
-                break;
-            default:
-                drawDefaultArt(g2d);
                 break;
         }
     }
@@ -247,11 +242,6 @@ public class ArtworkGUI {
         return params;
     }
 
-    private static void drawDefaultArt(Graphics2D g2d) {
-        g2d.setColor(Color.red);
-        g2d.fillRect(50, 50, 80, 80);
-    }
-
     private static void saveImage() {
         Dimension size = canvas.getSize();
         BufferedImage image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
@@ -275,10 +265,10 @@ public class ArtworkGUI {
                 if (!filename.contains(".")) filename += ".png";
                 File file = new File(fd.getDirectory() + filename);
                 ImageIO.write(image, "PNG", file);
-                JOptionPane.showMessageDialog(frame, "Image saved successfully!", "Image Export", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Image saved!", "Image Save", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(frame, "Error saving image: " + ex.getMessage(), "Save Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Error saving image: " + ex.getMessage(), "Image Save Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -289,7 +279,6 @@ public class ArtworkGUI {
         g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         g.setColor(Color.black);
         g.drawRect(0, 0, canvas.getWidth() - 1, canvas.getHeight() - 1);
-        // Assuming you want to reset the shapes as well
         recursiveShape = null;
         circlePacking = null;
         sierpinskiShape = null;
