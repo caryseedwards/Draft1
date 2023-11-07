@@ -76,14 +76,12 @@ public class SierpinskiShape extends JPanel {
 
         double newRadius = hexagon.radius / 3;
 
-        // Draw 6 smaller hexagons around the central point
         for (int i = 0; i < 6; i++) {
             int newX = hexagon.centerX + (int) (newRadius * 2 * Math.cos(i * Math.PI / 3));
             int newY = hexagon.centerY + (int) (newRadius * 2 * Math.sin(i * Math.PI / 3));
             drawHexagon(g, new Hexagon(newX, newY, newRadius), depth - 1);
         }
 
-        // Draw a smaller hexagon in the center
         drawHexagon(g, new Hexagon(hexagon.centerX, hexagon.centerY, newRadius), depth - 1);
     }
     public void drawCarpet(Graphics2D g, Square square, int depth) {

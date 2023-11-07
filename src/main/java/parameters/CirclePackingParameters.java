@@ -3,45 +3,24 @@ package parameters;
 import java.awt.*;
 
 public class CirclePackingParameters{
-    // Canvas parameters
     public int canvasWidth = 500;
     public int canvasHeight = 500;
     public Color backgroundColor = Color.WHITE;
     public int animationSpeed = 1;
 
-    // Boundary shape parameters
     public String boundaryType = "triangle";
     public int centreX = 250;
     public int centreY = 250;
-    public int polygonSize = 111;  // change size of boundary shape
+    public int polygonSize = 111;
     public Color boundaryFillColour = Color.WHITE;
     public Color boundaryLineColour = Color.RED;
     public float boundaryLineWidth = 1;
 
-    // Packing circle parameters
     public int minRadius = 5, maxRadius = 22, maxAttempts = 100;
     public Color circleFillColour = Color.YELLOW;
     public Color circleLineColour = Color.BLACK;
     public float circleLineWidth = 1;
 
-    // Setter methods for Canvas parameters
-    public void setCanvasWidth(int canvasWidth) {
-        this.canvasWidth = canvasWidth;
-    }
-
-    public void setCanvasHeight(int canvasHeight) {
-        this.canvasHeight = canvasHeight;
-    }
-
-    public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
-    public int getAnimationSpeed() {
-        return this.animationSpeed;
-    }
-
-    // Setter methods for Boundary shape parameters
     public void setBoundaryType(String boundaryType) {
         this.boundaryType = boundaryType;
     }
@@ -70,7 +49,6 @@ public class CirclePackingParameters{
         this.boundaryLineWidth = boundaryLineWidth;
     }
 
-    // Setter methods for Packing circle parameters
     public void setMinRadius(int minRadius) {
         this.minRadius = minRadius;
     }

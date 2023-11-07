@@ -26,13 +26,10 @@ public class SierpinskiPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
 
-        // General section
-        gbc.insets = new Insets(10, 5, 0, 5); // Increase top padding for section title
+        gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc);
 
-        int gridy = 1; // Start with 1 to leave space for the section label
-
-
+        int gridy = 1;
         addLabelAndField(gbc, "Initial 'x' co-ordinate:", startXTextField, gridy++);
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
         addLabelAndField(gbc, "Size:", sizeTextField, gridy++);
@@ -97,11 +94,10 @@ public class SierpinskiPanel {
         gbc.anchor = GridBagConstraints.WEST;
         sierpinskiPanel.add(new Label("Fill Colour:"), gbc);
 
-        // Button for color chooser
         Button colorButton = new Button("Choose Colour");
         colorButton.addActionListener(action);
 
-        gbc.gridx = 1; // Place button in the second column
+        gbc.gridx = 1;
         sierpinskiPanel.add(colorButton, gbc);
     }
 

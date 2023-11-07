@@ -19,31 +19,25 @@ public class RecursiveShape extends JPanel {
     private void drawPattern(Graphics2D g2d, int x, int y, int size, int depth) {
         if (depth == 0) return;
 
-        // Draw the large shape
         largeShape.setPosition(x, y);
         largeShape.setScale(size);
         largeShape.draw(g2d, params.largeShapeLineColor, params.largeShapeLineWidth,
                 params.largeShapeFillColor, params.largeShapeLineType);
 
-        // Number of smaller shapes
         int numShapes = params.numShapes;
-
-        // Calculate the radius and position of the smaller shapes
         double angleStep = Math.PI * 2 / numShapes;
         int smallerSize = (int) (size * Math.sin(angleStep / 2));
 
         for (int i = 0; i < numShapes; i++) {
             double angle = i * angleStep;
-            int newX = (int) (x + size * Math.cos(angle)); // Adjusted position calculation
-            int newY = (int) (y + size * Math.sin(angle)); // Adjusted position calculation
+            int newX = (int) (x + size * Math.cos(angle));
+            int newY = (int) (y + size * Math.sin(angle));
 
-            // Draw smaller shape
             smallShape.setPosition(newX, newY);
             smallShape.setScale(smallerSize);
             smallShape.draw(g2d, params.smallShapeLineColor, params.smallShapeLineWidth,
                     params.smallShapeFillColor, params.smallShapeLineType);
 
-            // Recursive call to drawPattern
             drawPattern(g2d, newX, newY, smallerSize, depth - 1);
         }
     }

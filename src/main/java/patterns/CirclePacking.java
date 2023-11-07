@@ -47,15 +47,10 @@ public class CirclePacking extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-
-        // Set background color
         g2d.setColor(params.backgroundColor);
         g2d.fillRect(0, 0, params.canvasWidth, params.canvasHeight);
 
-        // Draw boundary shape
         boundaryShape.draw(g2d, params.boundaryLineColour, params.boundaryLineWidth, params.boundaryFillColour, "solid");
-
-        // Draw circles
         for (Circle circle : circles) {
             circle.draw(g2d, params.circleLineColour, params.circleLineWidth, params.circleFillColour, "solid");
 

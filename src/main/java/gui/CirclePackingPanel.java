@@ -26,31 +26,23 @@ public class CirclePackingPanel {
         setupPanel();
     }
 
-
     private void setupPanel() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
-
-        // General section
-        gbc.insets = new Insets(10, 5, 0, 5); // Increase top padding for section title
+        gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "General:", 0);
 
-        int gridy = 1; // Start with 1 to leave space for the section label
-
+        int gridy = 1;
         addLabelAndField(gbc, "Initial 'x' co-ordinate:", startXTextField, gridy++);
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
         addLabelAndField(gbc, "Maximum attempts:", maxAttemptsTextField, gridy++);
 
-        // Boundary Shape Inputs section
-        // Space before small shape section
         gbc.gridy = gridy++;
         circlePackingPanel.add(new Label(" "), gbc);
 
-        // Small Shape
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Boundary Shape Inputs:", gridy++);
 
-        // Boundary Shape Type
         addLabelAndChoice(gbc, boundaryShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
 
         addColorChooserButton(gbc, "Boundary Fill Colour:", gridy++, boundaryFillColor, e -> {
@@ -66,15 +58,12 @@ public class CirclePackingPanel {
             }
         });
 
-        // Boundary Line Width and Radius
         addLabelAndField(gbc, "Boundary Line Width:", boundaryLineWidthTextField, gridy++);
         addLabelAndField(gbc, "Boundary Radius:", boundaryRadiusTextField, gridy++);
 
-        // Circle Packing Shape Inputs section
         gbc.gridy = gridy++;
         circlePackingPanel.add(new Label(" "), gbc);
 
-        // Small Shape
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Circle Packing Shape Inputs:", gridy++);
 
@@ -91,12 +80,9 @@ public class CirclePackingPanel {
             }
         });
 
-        // Packing Line Width and Radius Range
         addLabelAndField(gbc, "Packing Line Width:", packingLineWidthTextField, gridy++);
         addLabelAndField(gbc, "Minimum Circle Radius:", minRadiusCircleTextField, gridy++);
         addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy++);
-
-        // Final adjustments
         gbc.weighty = 1;
         circlePackingPanel.setVisible(true);
     }
@@ -138,15 +124,14 @@ public class CirclePackingPanel {
     private void addColorChooserButton(GridBagConstraints gbc, String labelText, int gridy, Color initialColor, ActionListener action) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
-        gbc.gridwidth = 1; // Use one column for the label
+        gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.WEST;
         circlePackingPanel.add(new Label(labelText), gbc);
 
-        // Button for color chooser
         Button colorButton = new Button("Choose Colour");
         colorButton.addActionListener(action);
 
-        gbc.gridx = 1; // Place button in the second column
+        gbc.gridx = 1;
         circlePackingPanel.add(colorButton, gbc);
     }
 

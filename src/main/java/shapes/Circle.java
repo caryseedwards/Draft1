@@ -32,7 +32,7 @@ public class Circle implements PatternShape {
     @Override
     public Point randomPositionInside() {
         double angle = 2 * Math.PI * Math.random();
-        double radiusScale = Math.sqrt(Math.random()); // Use square root for uniform distribution
+        double radiusScale = Math.sqrt(Math.random());
         int newX = (int) (centerX + radius * radiusScale * Math.cos(angle));
         int newY = (int) (centerY + radius * radiusScale * Math.sin(angle));
         return new Point(newX, newY);

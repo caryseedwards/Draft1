@@ -11,13 +11,13 @@ public class RecursiveShapeParameters {
     public Color largeShapeLineColor;
     public float largeShapeLineWidth;
     public Color largeShapeFillColor;
-    public String largeShapeLineType = "solid"; // "solid", "dashed", "dotted"
+    public String largeShapeLineType = "solid";
 
     public String smallShapeType;
     public Color smallShapeLineColor = Color.BLACK;
     public float smallShapeLineWidth;
     public Color smallShapeFillColor;
-    public String smallShapeLineType = "solid"; // "solid", "dashed", "dotted"
+    public String smallShapeLineType = "solid";
 
 
     public int centerX;
@@ -82,26 +82,22 @@ public class RecursiveShapeParameters {
     }
 
     public void initialiseUserParameters() {
-        // Canvas
         canvasSizeX = 800;
         canvasSizeY = 800;
         backgroundColor = Color.WHITE;
 
-        // Large shape
         largeShapeType = "triangle";
         largeShapeLineColor = Color.BLACK;
         largeShapeLineWidth = 1.0f;
         largeShapeFillColor = new Color(0, 0, 0, 0);
         largeShapeLineType = "solid";
 
-        // Small shape
         smallShapeType = "triangle";
         smallShapeLineColor = Color.BLACK;
         smallShapeLineWidth = 1.0f;
         smallShapeFillColor = new Color(0, 0, 0, 0);
         smallShapeLineType = "solid";
 
-        // Center of the canvas
         centerX = canvasSizeX / 2;
         centerY = canvasSizeY / 2;
         initialSize = 150;
