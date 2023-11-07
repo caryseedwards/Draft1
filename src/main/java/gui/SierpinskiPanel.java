@@ -133,7 +133,7 @@ public class SierpinskiPanel {
         return lineWidthTextField;
     }
 
-    public Panel getSierpinskiPanel() {
+    public Panel getPanel() {
         return sierpinskiPanel;
     }
 

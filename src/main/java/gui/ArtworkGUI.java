@@ -76,9 +76,9 @@ public class ArtworkGUI {
     }
 
     private static void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
-        recursivePanel = rp.getRecursivePanel();
-        circlePackingPanel = cpp.getCirclePackingPanel();
-        sierpinskiPanel = sp.getSierpinskiPanel();
+        recursivePanel = rp.getPanel();
+        circlePackingPanel = cpp.getPanel();
+        sierpinskiPanel = sp.getPanel();
 
         recursivePanel.setVisible(false);
         circlePackingPanel.setVisible(false);

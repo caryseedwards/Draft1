@@ -187,7 +187,7 @@ public class CirclePackingPanel {
         return maxRadiusCircleTextField;
     }
 
-    public Panel getCirclePackingPanel() {
+    public Panel getPanel() {
         return circlePackingPanel;
     }
 }

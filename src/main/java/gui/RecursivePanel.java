@@ -186,7 +186,8 @@ public class RecursivePanel {
     public TextField getSmallLineWidthTextField() {
         return smallLineWidthTextField;
     }
-    public Panel getRecursivePanel() {
+
+    public Panel getPanel() {
         return this.recursivePanel;
     }
 }
