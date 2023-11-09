@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.*;
 
-public class Circle implements PatternShape {
+public class Circle extends Shape {
     public int centerX, centerY;
     public double radius;
 
@@ -22,6 +22,7 @@ public class Circle implements PatternShape {
     public double getRadius() {
         return radius;
     }
+
     public boolean overlaps(Circle other) {
         int dx = this.centerX - other.centerX;
         int dy = this.centerY - other.centerY;

@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.*;
 
-public class Square implements PatternShape {
+public class Square extends Shape {
     public int centerX, centerY;
     public double radius;
 

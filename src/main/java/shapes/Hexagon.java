@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.*;
 
-public class Hexagon implements PatternShape {
+public class Hexagon extends Shape {
     public int centerX, centerY;
     public double radius;
 
@@ -20,7 +20,7 @@ public class Hexagon implements PatternShape {
             double distance = Math.random() * radius;
             x = centerX + (int) (distance * Math.cos(angle));
             y = centerY + (int) (distance * Math.sin(angle));
-        } while (!isPointInside(x, y));
+        } while (isPointInside(x, y));
         return new Point(x, y);
     }
 
@@ -32,7 +32,7 @@ public class Hexagon implements PatternShape {
             yPoints[i] = (int) (centerY + radius * Math.sin(i * Math.PI / 3));
         }
         Polygon hexagon = new Polygon(xPoints, yPoints, 6);
-        return hexagon.contains(x, y);
+        return !hexagon.contains(x, y);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Hexagon implements PatternShape {
             double rad = Math.toRadians(angle);
             int pointX = (int) (circle.getX() + circle.getRadius() * Math.cos(rad));
             int pointY = (int) (circle.getY() + circle.getRadius() * Math.sin(rad));
-            if (!isPointInside(pointX, pointY)) {
+            if (isPointInside(pointX, pointY)) {
                 return false;
             }
         }

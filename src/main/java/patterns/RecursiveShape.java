@@ -2,14 +2,15 @@ package patterns;
 
 import parameters.RecursiveShapeParameters;
 import shapes.*;
+import shapes.Shape;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class RecursiveShape extends JPanel {
     public RecursiveShapeParameters params;
-    public PatternShape largeShape;
-    public PatternShape smallShape;
+    public Shape largeShape;
+    public Shape smallShape;
 
     public RecursiveShape(RecursiveShapeParameters params) {
         this.params = params;

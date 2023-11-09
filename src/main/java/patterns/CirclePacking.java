@@ -1,13 +1,14 @@
 package patterns;
 import parameters.CirclePackingParameters;
 import shapes.*;
+import shapes.Shape;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePacking extends JPanel {
-    PatternShape boundaryShape;
+    Shape boundaryShape;
     ArrayList<Circle> circles;
     CirclePackingParameters params;
 

@@ -1,4 +1,5 @@
 package patterns;
+
 import parameters.SierpinskiShapeParameters;
 import shapes.*;
 

@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.*;
 
-public class Triangle implements PatternShape {
+public class Triangle extends Shape {
     public int centerX, centerY;
     public double radius;
     public int x1, y1, x2, y2, x3, y3;
@@ -15,19 +15,13 @@ public class Triangle implements PatternShape {
     }
 
     public void setVertices(){
-        // Vertex 1
         x1 = centerX;
         y1 = (int)(centerY - radius);
-
-        // Vertex 2
         x2 = (int)(centerX - radius * Math.cos(Math.toRadians(30)));
         y2 = (int)(centerY + radius * Math.sin(Math.toRadians(30)));
-
-        // Vertex 3
         x3 = (int)(centerX + radius * Math.cos(Math.toRadians(30)));
         y3 = (int)(centerY + radius * Math.sin(Math.toRadians(30)));
     }
-
 
     @Override
     public Point randomPositionInside() {
