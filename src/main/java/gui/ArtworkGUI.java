@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import parameters.*;
-import patterns.*;
+import algorithms.*;
 import validation.Validate;
 
 public class ArtworkGUI {
@@ -58,17 +58,16 @@ public class ArtworkGUI {
         gbc.gridy++;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0); // top padding for button
+        gbc.insets = new Insets(20, 0, 0, 0);
 
         Button generateBtn = new Button("Generate Artwork");
         generateBtn.addActionListener(e -> generateArtwork());
         leftPanel.add(generateBtn, gbc);
 
-        // Setup error label
-        gbc.gridy++; // Move to the next grid row
-        gbc.insets = new Insets(10, 0, 0, 0); // top padding for error label
+        gbc.gridy++;
+        gbc.insets = new Insets(10, 0, 0, 0);
         errorLabel.setHorizontalAlignment(JLabel.CENTER);
-        errorLabel.setForeground(Color.RED); // Set the text color to red for visibility
+        errorLabel.setForeground(Color.RED);
         leftPanel.add(errorLabel, gbc);
 
         frame.add(leftPanel, BorderLayout.WEST);
@@ -216,6 +215,7 @@ public class ArtworkGUI {
                 if (validationError.isEmpty()) {
                     SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();
                     sierpinskiShape = new SierpinskiShape(sierpinskiParams);
+                    sierpinskiShape.initializeShapes();
                     sierpinskiShape.paintComponent(g2d);
                 } else {
                     setErrorLabel(validationError);

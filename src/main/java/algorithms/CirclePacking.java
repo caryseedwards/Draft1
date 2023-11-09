@@ -1,4 +1,5 @@
-package patterns;
+package algorithms;
+
 import parameters.CirclePackingParameters;
 import shapes.*;
 import shapes.Shape;

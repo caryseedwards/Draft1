@@ -1,4 +1,4 @@
-package patterns;
+package algorithms;
 
 import parameters.RecursiveShapeParameters;
 import shapes.*;
@@ -6,24 +6,25 @@ import shapes.Shape;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class RecursiveShape extends JPanel {
     public RecursiveShapeParameters params;
     public Shape largeShape;
     public Shape smallShape;
+    private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
 
     public RecursiveShape(RecursiveShapeParameters params) {
         this.params = params;
         initialiseShapes();
+        addPattern(params.centerX, params.centerY, params.initialSize, params.depth);
     }
 
-    private void drawPattern(Graphics2D g2d, int x, int y, int size, int depth) {
+    private void addPattern(int x, int y, int size, int depth) {
         if (depth == 0) return;
 
-        largeShape.setPosition(x, y);
-        largeShape.setScale(size);
-        largeShape.draw(g2d, params.largeShapeLineColor, params.largeShapeLineWidth,
-                params.largeShapeFillColor, params.largeShapeLineType);
+        Shape newLargeShape = createShape(params.largeShapeType, x, y, size);
+        shapesToDraw.add(newLargeShape);
 
         int numShapes = params.numShapes;
         double angleStep = Math.PI * 2 / numShapes;
@@ -34,13 +35,21 @@ public class RecursiveShape extends JPanel {
             int newX = (int) (x + size * Math.cos(angle));
             int newY = (int) (y + size * Math.sin(angle));
 
-            smallShape.setPosition(newX, newY);
-            smallShape.setScale(smallerSize);
-            smallShape.draw(g2d, params.smallShapeLineColor, params.smallShapeLineWidth,
-                    params.smallShapeFillColor, params.smallShapeLineType);
+            Shape newSmallShape = createShape(params.smallShapeType, newX, newY, smallerSize);
+            shapesToDraw.add(newSmallShape);
 
-            drawPattern(g2d, newX, newY, smallerSize, depth - 1);
+            addPattern(newX, newY, smallerSize, depth - 1);
         }
+    }
+
+    private Shape createShape(String shapeType, int x, int y, int size) {
+        return switch (shapeType) {
+            case "circle" -> new Circle(x, y, size);
+            case "square" -> new Square(x, y, size);
+            case "triangle" -> new Triangle(x, y, size);
+            case "hexagon" -> new Hexagon(x, y, size);
+            default -> throw new IllegalArgumentException("Unknown shape type: " + shapeType);
+        };
     }
 
     @Override
@@ -51,7 +60,10 @@ public class RecursiveShape extends JPanel {
         g2d.setColor(params.backgroundColor);
         g2d.fillRect(0, 0, getWidth(), getHeight());
 
-        drawPattern(g2d, params.centerX, params.centerY, params.initialSize, params.depth);
+        for (Shape shape : shapesToDraw) {
+            shape.draw(g2d, params.largeShapeLineColor, params.largeShapeLineWidth,
+                    params.largeShapeFillColor, params.largeShapeLineType);
+        }
     }
 
     private void initialiseShapes(){
