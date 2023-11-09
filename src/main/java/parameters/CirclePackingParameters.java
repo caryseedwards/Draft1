@@ -14,12 +14,12 @@ public class CirclePackingParameters{
     public int polygonSize = 111;
     public Color boundaryFillColour = Color.WHITE;
     public Color boundaryLineColour = Color.RED;
-    public float boundaryLineWidth = 1;
+    public int boundaryLineWidth = 1;
 
     public int minRadius = 5, maxRadius = 22, maxAttempts = 100;
     public Color circleFillColour = Color.YELLOW;
     public Color circleLineColour = Color.BLACK;
-    public float circleLineWidth = 1;
+    public int circleLineWidth = 1;
 
     public void setBoundaryType(String boundaryType) {
         this.boundaryType = boundaryType;
@@ -45,7 +45,7 @@ public class CirclePackingParameters{
         this.boundaryLineColour = boundaryLineColour;
     }
 
-    public void setBoundaryLineWidth(float boundaryLineWidth) {
+    public void setBoundaryLineWidth(int boundaryLineWidth) {
         this.boundaryLineWidth = boundaryLineWidth;
     }
 
@@ -69,7 +69,7 @@ public class CirclePackingParameters{
         this.circleLineColour = circleLineColour;
     }
 
-    public void setCircleLineWidth(float circleLineWidth) {
+    public void setCircleLineWidth(int circleLineWidth) {
         this.circleLineWidth = circleLineWidth;
     }
 }

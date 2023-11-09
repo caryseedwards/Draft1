@@ -5,7 +5,7 @@ import java.awt.*;
 public class SierpinskiShapeParameters {
     public int centreX, centreY, polygonSize, depth;
     public Color shapeFillColour, shapeLineColour;
-    public float shapeLineWidth;
+    public int shapeLineWidth;
     public String shapeType;
 
     public void setCentreX(int centreX) {
@@ -32,7 +32,7 @@ public class SierpinskiShapeParameters {
         this.shapeLineColour = shapeLineColour;
     }
 
-    public void setShapeLineWidth(float shapeLineWidth) {
+    public void setShapeLineWidth(int shapeLineWidth) {
         this.shapeLineWidth = shapeLineWidth;
     }
 }

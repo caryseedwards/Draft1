@@ -9,13 +9,13 @@ public class RecursiveShapeParameters {
 
     public String largeShapeType;
     public Color largeShapeLineColor;
-    public float largeShapeLineWidth;
+    public int largeShapeLineWidth;
     public Color largeShapeFillColor;
     public String largeShapeLineType = "solid";
 
     public String smallShapeType;
     public Color smallShapeLineColor = Color.BLACK;
-    public float smallShapeLineWidth;
+    public int smallShapeLineWidth;
     public Color smallShapeFillColor;
     public String smallShapeLineType = "solid";
 
@@ -57,7 +57,7 @@ public class RecursiveShapeParameters {
         this.largeShapeLineColor = largeShapeLineColor;
     }
 
-    public void setLargeShapeLineWidth(float largeShapeLineWidth) {
+    public void setLargeShapeLineWidth(int largeShapeLineWidth) {
         this.largeShapeLineWidth = largeShapeLineWidth;
     }
 
@@ -73,7 +73,7 @@ public class RecursiveShapeParameters {
         this.smallShapeLineColor = smallShapeLineColor;
     }
 
-    public void setSmallShapeLineWidth(float smallShapeLineWidth) {
+    public void setSmallShapeLineWidth(int smallShapeLineWidth) {
         this.smallShapeLineWidth = smallShapeLineWidth;
     }
 
@@ -88,13 +88,13 @@ public class RecursiveShapeParameters {
 
         largeShapeType = "triangle";
         largeShapeLineColor = Color.BLACK;
-        largeShapeLineWidth = 1.0f;
+        largeShapeLineWidth = 1;
         largeShapeFillColor = new Color(0, 0, 0, 0);
         largeShapeLineType = "solid";
 
         smallShapeType = "triangle";
         smallShapeLineColor = Color.BLACK;
-        smallShapeLineWidth = 1.0f;
+        smallShapeLineWidth = 1;
         smallShapeFillColor = new Color(0, 0, 0, 0);
         smallShapeLineType = "solid";
 

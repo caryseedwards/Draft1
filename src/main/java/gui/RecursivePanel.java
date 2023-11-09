@@ -69,7 +69,7 @@ public class RecursivePanel {
         addSectionLabel(gbc, "Small Shape Inputs:", gridy++);
 
         gbc.insets = new Insets(2, 5, 2, 5);
-        addLabelAndChoice(gbc, smallShapeType, new String[]{"Triangle", "Square", "Triangle", "Hexagon"}, gridy++);
+        addLabelAndChoice(gbc, smallShapeType, new String[]{"Triangle", "Square", "Circle", "Hexagon"}, gridy++);
         addColorChooserButton(gbc, gridy++, smallFillColour, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Boundary Fill Color", smallFillColour);
             if (chosenColor != null) {

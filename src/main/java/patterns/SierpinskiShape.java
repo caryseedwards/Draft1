@@ -1,9 +1,6 @@
 package patterns;
 import parameters.SierpinskiShapeParameters;
-import shapes.Circle;
-import shapes.Hexagon;
-import shapes.Square;
-import shapes.Triangle;
+import shapes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -116,7 +113,7 @@ public class SierpinskiShape extends JPanel {
         params.setShapeType("hexagon");
         params.setShapeLineColour(Color.BLACK);
         params.setShapeFillColour(Color.WHITE);
-        params.setShapeLineWidth(1.0f);
+        params.setShapeLineWidth(1);
 
         SierpinskiShape sierpinskiShape = new SierpinskiShape(params);
         frame.add(sierpinskiShape);

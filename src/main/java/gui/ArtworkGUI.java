@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import parameters.*;
 import patterns.*;
+import validation.Validate;
 
 public class ArtworkGUI {
 
@@ -16,6 +17,10 @@ public class ArtworkGUI {
     private static final int WINDOW_HEIGHT = 720;
     private static final int CANVAS_WIDTH = 1280;
     private static final int CANVAS_HEIGHT = 720;
+    private static final RecursivePanel rp = new RecursivePanel(CANVAS_WIDTH, CANVAS_HEIGHT);
+    private static final CirclePackingPanel cpp = new CirclePackingPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
+    private static final SierpinskiPanel sp = new SierpinskiPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
+    private static final JLabel errorLabel = new JLabel("");
 
     private static RecursiveShape recursiveShape;
     private static CirclePacking circlePacking;
@@ -24,10 +29,6 @@ public class ArtworkGUI {
     private static Frame frame;
     private static JPanel canvas;
     private static Choice algorithmDropdown;
-    private static RecursivePanel rp = new RecursivePanel(CANVAS_WIDTH, CANVAS_HEIGHT);
-    private static CirclePackingPanel cpp = new CirclePackingPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
-    private static SierpinskiPanel sp = new SierpinskiPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
-
     private static Panel recursivePanel, circlePackingPanel, sierpinskiPanel;
 
     private static void setupFrame() {
@@ -57,11 +58,18 @@ public class ArtworkGUI {
         gbc.gridy++;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 20, 0);
+        gbc.insets = new Insets(20, 0, 0, 0); // top padding for button
 
         Button generateBtn = new Button("Generate Artwork");
         generateBtn.addActionListener(e -> generateArtwork());
         leftPanel.add(generateBtn, gbc);
+
+        // Setup error label
+        gbc.gridy++; // Move to the next grid row
+        gbc.insets = new Insets(10, 0, 0, 0); // top padding for error label
+        errorLabel.setHorizontalAlignment(JLabel.CENTER);
+        errorLabel.setForeground(Color.RED); // Set the text color to red for visibility
+        leftPanel.add(errorLabel, gbc);
 
         frame.add(leftPanel, BorderLayout.WEST);
     }
@@ -141,7 +149,7 @@ public class ArtworkGUI {
         int newCanvasHeight = canvas.getHeight();
 
         resetCanvas();
-        updateCenterForPanels(newCanvasWidth, newCanvasHeight);
+        recalcCanvasCenter(newCanvasWidth, newCanvasHeight);
         recursivePanel.setVisible("Recursive Shape".equals(selected));
         circlePackingPanel.setVisible("Circle Packing".equals(selected));
         sierpinskiPanel.setVisible("Sierpinski Shape".equals(selected));
@@ -151,7 +159,7 @@ public class ArtworkGUI {
         frame.repaint();
     }
 
-    private static void updateCenterForPanels(int width, int height) {
+    private static void recalcCanvasCenter(int width, int height) {
         rp.getStartXTextField().setText(String.valueOf(width / 2));
         rp.getStartYTextField().setText(String.valueOf(height / 2));
         cpp.getStartXTextField().setText(String.valueOf(width / 2));
@@ -160,35 +168,58 @@ public class ArtworkGUI {
         sp.getStartYTextField().setText(String.valueOf(height / 2));
     }
 
+    private static void setErrorLabel(String message) {
+        if (message == null || message.isEmpty()) {
+            errorLabel.setText("");
+            errorLabel.setVisible(false);
+        } else {
+            errorLabel.setText(message);
+            errorLabel.setVisible(true);
+        }
+    }
+
     private static void generateArtwork() {
         String selected = algorithmDropdown.getSelectedItem();
         Graphics2D g2d = (Graphics2D) canvas.getGraphics();
+        String validationError;
 
         switch (selected) {
             case "Recursive Shape":
-                RecursiveShapeParameters recursiveParams = getRecursiveShapeParameters();
-                recursiveShape = new RecursiveShape(recursiveParams);
-                recursiveShape.paintComponent(g2d);
+                validationError = Validate.validateRecursiveParams(rp);
+                if (validationError.isEmpty()) {
+                    recursiveShape = new RecursiveShape(getRecursiveShapeParameters());
+                    recursiveShape.paintComponent(g2d);
+                } else {
+                    setErrorLabel(validationError);
+                }
                 break;
             case "Circle Packing":
-                if (circlePacking == null) {
+                validationError = Validate.validateCirclePackingParams(cpp);
+                if (validationError.isEmpty()) {
                     circlePacking = new CirclePacking(getCirclePackingParameters());
-                }
-                if (animationTimer != null) {
-                    animationTimer.stop();
-                }
-                animationTimer = new Timer(100, e -> {
-                    if (circlePacking != null) {
-                        circlePacking.addCircle();
-                        canvas.repaint();
+                    if (animationTimer != null) {
+                        animationTimer.stop();
                     }
-                });
-                animationTimer.start();
+                    animationTimer = new Timer(100, e -> {
+                        if (circlePacking != null) {
+                            circlePacking.addCircle();
+                            canvas.repaint();
+                        }
+                    });
+                    animationTimer.start();
+                } else {
+                    setErrorLabel(validationError);
+                }
                 break;
             case "Sierpinski Shape":
-                SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();
-                sierpinskiShape = new SierpinskiShape(sierpinskiParams);
-                sierpinskiShape.paintComponent(g2d);
+                validationError = Validate.validateSierpinskiParams(sp);
+                if (validationError.isEmpty()) {
+                    SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();
+                    sierpinskiShape = new SierpinskiShape(sierpinskiParams);
+                    sierpinskiShape.paintComponent(g2d);
+                } else {
+                    setErrorLabel(validationError);
+                }
                 break;
         }
     }
@@ -203,11 +234,11 @@ public class ArtworkGUI {
         params.setLargeShapeType(rp.getLargeShapeType().getSelectedItem().toLowerCase());
         params.setLargeShapeFillColor(rp.getLargeFillColour());
         params.setLargeShapeLineColor(rp.getLargeLineColour());
-        params.setLargeShapeLineWidth(Float.parseFloat(rp.getLargeLineWidthTextField().getText()));
+        params.setLargeShapeLineWidth(Integer.parseInt(rp.getLargeLineWidthTextField().getText()));
         params.setSmallShapeType(rp.getSmallShapeType().getSelectedItem().toLowerCase());
         params.setSmallShapeFillColor(rp.getSmallFillColour());
         params.setSmallShapeLineColor(rp.getSmallLineColour());
-        params.setSmallShapeLineWidth(Float.parseFloat(rp.getSmallLineWidthTextField().getText()));
+        params.setSmallShapeLineWidth(Integer.parseInt(rp.getSmallLineWidthTextField().getText()));
         return params;
     }
 
@@ -220,10 +251,10 @@ public class ArtworkGUI {
         params.setPolygonSize(Integer.parseInt(cpp.getBoundaryRadiusTextField().getText()));
         params.setBoundaryFillColour(cpp.getBoundaryFillColor());
         params.setBoundaryLineColour(cpp.getBoundaryLineColor());
-        params.setBoundaryLineWidth(Float.parseFloat(cpp.getBoundaryLineWidthTextField().getText()));
+        params.setBoundaryLineWidth(Integer.parseInt(cpp.getBoundaryLineWidthTextField().getText()));
         params.setCircleFillColour(cpp.getPackingFillColor());
         params.setCircleLineColour(cpp.getPackingLineColor());
-        params.setCircleLineWidth(Float.parseFloat(cpp.getPackingLineWidthTextField().getText()));
+        params.setCircleLineWidth(Integer.parseInt(cpp.getPackingLineWidthTextField().getText()));
         params.setMaxRadius(Integer.parseInt(cpp.getMaxRadiusCircleTextField().getText()));
         params.setMinRadius(Integer.parseInt(cpp.getMinRadiusCircleTextField().getText()));
         return params;
@@ -238,7 +269,7 @@ public class ArtworkGUI {
         params.setPolygonSize(Integer.parseInt(sp.getSizeTextField().getText()));
         params.setShapeFillColour(sp.getFillColour());
         params.setShapeLineColour(sp.getLineColour());
-        params.setShapeLineWidth(Float.parseFloat(sp.getLineWidthTextField().getText()));
+        params.setShapeLineWidth(Integer.parseInt(sp.getLineWidthTextField().getText()));
         return params;
     }
 
