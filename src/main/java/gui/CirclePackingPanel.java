@@ -45,13 +45,13 @@ public class CirclePackingPanel {
 
         addLabelAndChoice(gbc, boundaryShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
 
-        addColorChooserButton(gbc, "Boundary Fill Colour:", gridy++, boundaryFillColor, e -> {
+        addColorChooserButton(gbc, "Boundary Fill Colour:", gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(circlePackingPanel, "Choose Boundary Fill Color", boundaryFillColor);
             if (chosenColor != null) {
                 boundaryFillColor = chosenColor;
             }
         });
-        addColorChooserButton(gbc, "Boundary Line Colour:", gridy++, boundaryLineColor, e -> {
+        addColorChooserButton(gbc, "Boundary Line Colour:", gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(circlePackingPanel, "Choose Boundary Line Color", boundaryLineColor);
             if (chosenColor != null) {
                 boundaryLineColor = chosenColor;
@@ -67,13 +67,13 @@ public class CirclePackingPanel {
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Circle Packing Shape Inputs:", gridy++);
 
-        addColorChooserButton(gbc, "Packing Fill Colour:", gridy++, packingFillColor, e -> {
+        addColorChooserButton(gbc, "Packing Fill Colour:", gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(circlePackingPanel, "Choose Packing Fill Color", packingFillColor);
             if (chosenColor != null) {
                 packingFillColor = chosenColor;
             }
         });
-        addColorChooserButton(gbc, "Packing Line Colour:", gridy++, packingLineColor, e -> {
+        addColorChooserButton(gbc, "Packing Line Colour:", gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(circlePackingPanel, "Choose Packing Line Color", packingLineColor);
             if (chosenColor != null) {
                 packingLineColor = chosenColor;
@@ -121,7 +121,7 @@ public class CirclePackingPanel {
         circlePackingPanel.add(choice, gbc);
     }
 
-    private void addColorChooserButton(GridBagConstraints gbc, String labelText, int gridy, Color initialColor, ActionListener action) {
+    private void addColorChooserButton(GridBagConstraints gbc, String labelText, int gridy, ActionListener action) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
         gbc.gridwidth = 1;

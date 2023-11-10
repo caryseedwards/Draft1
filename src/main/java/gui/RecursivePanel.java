@@ -48,13 +48,13 @@ public class RecursivePanel {
 
         gbc.insets = new Insets(2, 5, 2, 5);
         addLabelAndChoice(gbc, largeShapeType, new String[]{"Triangle", "Square", "Circle", "Hexagon"}, gridy++);
-        addColorChooserButton(gbc, gridy++, largeFillColour, e -> {
+        addColorChooserButton(gbc, gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Boundary Fill Color", largeFillColour);
             if (chosenColor != null) {
                 largeFillColour = chosenColor;
             }
         });
-        addColorChooserButton(gbc, gridy++, largeLineColour, e -> {
+        addColorChooserButton(gbc, gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Line Fill Color", largeLineColour);
             if (chosenColor != null) {
                 largeLineColour = chosenColor;
@@ -70,13 +70,13 @@ public class RecursivePanel {
 
         gbc.insets = new Insets(2, 5, 2, 5);
         addLabelAndChoice(gbc, smallShapeType, new String[]{"Triangle", "Square", "Circle", "Hexagon"}, gridy++);
-        addColorChooserButton(gbc, gridy++, smallFillColour, e -> {
+        addColorChooserButton(gbc, gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Boundary Fill Color", smallFillColour);
             if (chosenColor != null) {
                 smallFillColour = chosenColor;
             }
         });
-        addColorChooserButton(gbc, gridy++, smallLineColour, e -> {
+        addColorChooserButton(gbc, gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(recursivePanel, "Choose Line Fill Color", smallLineColour);
             if (chosenColor != null) {
                 smallLineColour = chosenColor;
@@ -121,7 +121,7 @@ public class RecursivePanel {
         recursivePanel.add(choice, gbc);
     }
 
-    private void addColorChooserButton(GridBagConstraints gbc, int gridy, Color initialColor, ActionListener action) {
+    private void addColorChooserButton(GridBagConstraints gbc, int gridy, ActionListener action) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
         gbc.gridwidth = 1;

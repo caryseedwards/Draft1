@@ -19,7 +19,7 @@ public class ArtworkGUI {
     private static final int CANVAS_HEIGHT = 720;
     private static final RecursivePanel rp = new RecursivePanel(CANVAS_WIDTH, CANVAS_HEIGHT);
     private static final CirclePackingPanel cpp = new CirclePackingPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
-    private static final SierpinskiPanel sp = new SierpinskiPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
+    private static final SierpinskiPanel sp = new SierpinskiPanel(CANVAS_WIDTH);
     private static final JLabel errorLabel = new JLabel("");
 
     private static RecursiveShape recursiveShape;

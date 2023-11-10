@@ -15,7 +15,7 @@ public class SierpinskiPanel {
     private final TextField lineWidthTextField = new TextField("1", 5);
     private final Panel sierpinskiPanel = new Panel(new GridBagLayout());
 
-    public SierpinskiPanel(int width, int height) {
+    public SierpinskiPanel(int width) {
         this.startXTextField = new TextField(String.valueOf(width/2), 5);
         this.startYTextField= new TextField(String.valueOf(1050), 5);
         setupPanel();
@@ -36,13 +36,13 @@ public class SierpinskiPanel {
         addLabelAndField(gbc, "Depth:", depthTextField, gridy++);
 
         addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Hexagon", "Square", "Circle", "Triangle"}, gridy++);
-        addColorChooserButton(gbc, gridy++, fillColour, e -> {
+        addColorChooserButton(gbc, gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(sierpinskiPanel, "Choose Boundary Fill Color", fillColour);
             if (chosenColor != null) {
                 fillColour = chosenColor;
             }
         });
-        addColorChooserButton(gbc, gridy++, lineColour, e -> {
+        addColorChooserButton(gbc, gridy++, e -> {
             Color chosenColor = JColorChooser.showDialog(sierpinskiPanel, "Choose Line Fill Color", lineColour);
             if (chosenColor != null) {
                 lineColour = chosenColor;
@@ -87,7 +87,7 @@ public class SierpinskiPanel {
     }
 
 
-    private void addColorChooserButton(GridBagConstraints gbc, int gridy, Color initialColor, ActionListener action) {
+    private void addColorChooserButton(GridBagConstraints gbc, int gridy, ActionListener action) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
         gbc.gridwidth = 1;
