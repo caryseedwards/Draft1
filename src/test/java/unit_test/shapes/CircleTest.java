@@ -1,4 +1,4 @@
-package unit_test;
+package unit_test.shapes;
 
 import static org.junit.Assert.*;
 import org.junit.Before;

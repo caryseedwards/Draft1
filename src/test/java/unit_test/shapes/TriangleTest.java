@@ -1,4 +1,4 @@
-package unit_test;
+package unit_test.shapes;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -13,7 +13,7 @@ public class TriangleTest {
 
     @Before
     public void setUp() {
-        triangle = new Triangle(10, 10, 5);
+        triangle = new Triangle(10, 10, 15);
     }
 
     @Test
@@ -51,18 +51,30 @@ public class TriangleTest {
         Triangle triangle3 = new Triangle(5, 5, 2);
         validateTriangleVertices(triangle3, 5, 5, 2);
     }
+    @Test
+    public void testRandomPositionInside() {
+        Point point = triangle.randomPositionInside();
+        assertTrue("The point should be inside the triangle", triangle.isPointInside(point.x, point.y));
+    }
 
-//    @Test
-//    public void testRandomPositionInside() {
-//        Point point = triangle.randomPositionInside();
-//        assertTrue("The point should be inside the triangle", triangle.isPointInside(point.x, point.y));
-//    }
-//
-//    @Test
-//    public void testIsInsideTrue() {
-//        Circle circle = new Circle(5, 5, 2);
-//        assertTrue("Triangle should be inside the circle", triangle.isInside(circle));
-//    }
+    @Test
+    public void testIsInsideTrue() {
+        Circle circle = new Circle(10, 10, 5);
+        assertTrue("Triangle should be inside the circle", triangle.isInside(circle));
+    }
+
+    @Test
+    public void testUpdateVerticesAfterSetPosition() {
+        triangle.setPosition(20, 20);
+        validateTriangleVertices(triangle, 20, 20, 15);
+    }
+
+
+    @Test
+    public void testUpdateVerticesAfterSetScale() {
+        triangle.setScale(8);
+        validateTriangleVertices(triangle, 10, 10, 8);
+    }
 
     @Test
     public void testIsInsideFalse() {
@@ -85,14 +97,12 @@ public class TriangleTest {
         triangle.setPosition(15, 15);
         assertEquals("Center X should be updated", 15, triangle.centerX);
         assertEquals("Center Y should be updated", 15, triangle.centerY);
-        // Additional check to ensure vertices are updated correctly after position change
     }
 
     @Test
     public void testSetScale() {
         triangle.setScale(10);
         assertEquals("Radius should be updated", 10, triangle.radius, 0.0);
-        // Additional check to ensure vertices are updated correctly after scale change
     }
 
 }

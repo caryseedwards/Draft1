@@ -1,4 +1,4 @@
-package unit_test;
+package unit_test.shapes;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -37,10 +37,17 @@ public class HexagonTest {
 
     @Test
     public void testRandomPositionInside() {
-        Point point = hexagon.randomPositionInside();
-        // This test should verify that the point is indeed inside the hexagon
-        // Due to the complexity of hexagon geometry, this might require a more sophisticated approach
+        boolean isInside = true;
+        for (int i = 0; i < 100; i++) { // Run multiple times to reduce fluke passes
+            Point point = hexagon.randomPositionInside();
+            if (!hexagon.isPointInside(point.x, point.y)) {
+                isInside = false;
+                break;
+            }
+        }
+        assertTrue("Randomly generated point should be inside hexagon", isInside);
     }
+
 
     @Test
     public void testSetPosition() {
