@@ -6,7 +6,7 @@ import gui.SierpinskiPanel;
 
 public class Validate {
 
-    public static String validateRecursiveParams(RecursivePanel rp) {
+    public static String validateRecursiveParamsPanel(RecursivePanel rp) {
         String error;
 
         error = validateInteger(rp.getStartXTextField().getText(), "CenterX");
@@ -33,7 +33,7 @@ public class Validate {
         return "";
     }
 
-    public static String validateCirclePackingParams(CirclePackingPanel cpp) {
+    public static String validateCirclePackingParamsPanel(CirclePackingPanel cpp) {
         String error;
 
         error = validateInteger(cpp.getStartXTextField().getText(), "CentreX");
@@ -63,7 +63,7 @@ public class Validate {
         return "";
     }
 
-    public static String validateSierpinskiParams(SierpinskiPanel sp) {
+    public static String validateSierpinskiParamsPanel(SierpinskiPanel sp) {
         String error;
 
         error = validateInteger(sp.getStartXTextField().getText(), "CentreX");

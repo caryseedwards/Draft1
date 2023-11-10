@@ -184,7 +184,7 @@ public class ArtworkGUI {
 
         switch (selected) {
             case "Recursive Shape":
-                validationError = Validate.validateRecursiveParams(rp);
+                validationError = Validate.validateRecursiveParamsPanel(rp);
                 if (validationError.isEmpty()) {
                     recursiveShape = new RecursiveShape(getRecursiveShapeParameters());
                     recursiveShape.paintComponent(g2d);
@@ -193,7 +193,7 @@ public class ArtworkGUI {
                 }
                 break;
             case "Circle Packing":
-                validationError = Validate.validateCirclePackingParams(cpp);
+                validationError = Validate.validateCirclePackingParamsPanel(cpp);
                 if (validationError.isEmpty()) {
                     circlePacking = new CirclePacking(getCirclePackingParameters());
                     if (animationTimer != null) {
@@ -211,7 +211,7 @@ public class ArtworkGUI {
                 }
                 break;
             case "Sierpinski Shape":
-                validationError = Validate.validateSierpinskiParams(sp);
+                validationError = Validate.validateSierpinskiParamsPanel(sp);
                 if (validationError.isEmpty()) {
                     SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();
                     sierpinskiShape = new SierpinskiShape(sierpinskiParams);

@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 public class SierpinskiShape extends JPanel {
     private final SierpinskiShapeParameters params;
-    private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
+    private ArrayList<Shape> shapesToDraw = new ArrayList<>();
 
     public SierpinskiShape(SierpinskiShapeParameters params) {
         this.params = params;
     }
 
     public void initializeShapes() {
+        this.shapesToDraw = new ArrayList<>();
         switch (params.shapeType) {
             case "triangle":
                 addSierpinski(new Triangle(params.centreX, params.centreY, params.polygonSize), params.depth);
@@ -30,6 +31,8 @@ public class SierpinskiShape extends JPanel {
             case "hexagon":
                 addHexagon(new Hexagon(params.centreX, params.centreY, params.polygonSize), params.depth);
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid shape type: " + params.shapeType);
         }
     }
 
@@ -114,6 +117,14 @@ public class SierpinskiShape extends JPanel {
                 addCarpet(newSquare, depth - 1);
             }
         }
+    }
+
+    public SierpinskiShapeParameters getParams() {
+        return params;
+    }
+
+    public ArrayList<Shape> getShapesToDraw() {
+        return shapesToDraw;
     }
 
     public static void main(String[] args) {

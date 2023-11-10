@@ -9,9 +9,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class RecursiveShape extends JPanel {
-    public RecursiveShapeParameters params;
-    public Shape largeShape;
-    public Shape smallShape;
+    private RecursiveShapeParameters params;
+    private Shape largeShape;
+    private Shape smallShape;
     private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
 
     public RecursiveShape(RecursiveShapeParameters params) {
@@ -20,7 +20,7 @@ public class RecursiveShape extends JPanel {
         addPattern(params.centerX, params.centerY, params.initialSize, params.depth);
     }
 
-    private void addPattern(int x, int y, int size, int depth) {
+    public void addPattern(int x, int y, int size, int depth) {
         if (depth == 0) return;
 
         Shape newLargeShape = createShape(params.largeShapeType, x, y, size);
@@ -42,7 +42,7 @@ public class RecursiveShape extends JPanel {
         }
     }
 
-    private Shape createShape(String shapeType, int x, int y, int size) {
+    public Shape createShape(String shapeType, int x, int y, int size) {
         return switch (shapeType) {
             case "circle" -> new Circle(x, y, size);
             case "square" -> new Square(x, y, size);
@@ -80,6 +80,22 @@ public class RecursiveShape extends JPanel {
             case "triangle" -> smallShape = new Triangle(params.centerX, params.centerY, params.initialSize);
             case "hexagon" -> smallShape = new Hexagon(params.centerX, params.centerY, params.initialSize);
         }
+    }
+
+    public RecursiveShapeParameters getParams() {
+        return params;
+    }
+
+    public Shape getLargeShape() {
+        return largeShape;
+    }
+
+    public Shape getSmallShape() {
+        return smallShape;
+    }
+
+    public ArrayList<Shape> getShapesToDraw() {
+        return shapesToDraw;
     }
 
     public static void main(String[] args) {

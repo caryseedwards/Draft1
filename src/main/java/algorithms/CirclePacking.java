@@ -9,9 +9,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePacking extends JPanel {
-    Shape boundaryShape;
-    ArrayList<Circle> circles;
-    CirclePackingParameters params;
+    private Shape boundaryShape;
+    private ArrayList<Circle> circles;
+    private CirclePackingParameters params;
 
     public CirclePacking(CirclePackingParameters params){
 
@@ -27,6 +27,7 @@ public class CirclePacking extends JPanel {
             case "square" -> this.boundaryShape = new Square(params.centreX, params.centreY, params.polygonSize);
             case "triangle" -> this.boundaryShape = new Triangle(params.centreX, params.centreY, params.polygonSize);
             case "hexagon" -> this.boundaryShape = new Hexagon(params.centreX, params.centreY, params.polygonSize);
+            default -> throw new IllegalArgumentException("Invalid boundary type: " + type);
         }
     }
 
@@ -58,6 +59,14 @@ public class CirclePacking extends JPanel {
             circle.draw(g2d, params.circleLineColour, params.circleLineWidth, params.circleFillColour, "solid");
 
         }
+    }
+
+    public Shape getBoundaryShape() {
+        return boundaryShape;
+    }
+
+    public ArrayList<Circle> getCircles() {
+        return circles;
     }
 
     public static void main(String[] args) {
