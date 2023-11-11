@@ -10,7 +10,6 @@ public class CircleTest {
 
     @Before
     public void setUp() {
-        // Initialize a Circle object before each test
         circle = new Circle(10, 10, 5);
     }
 
@@ -39,5 +38,18 @@ public class CircleTest {
     public void testOverlapsFalse() {
         Circle otherCircle = new Circle(20, 20, 3);
         assertFalse("Testing overlaps() where circles do not overlap", circle.overlaps(otherCircle));
+    }
+
+    @Test
+    public void testSetPosition() {
+        circle.setPosition(15, 15);
+        assertEquals("Center X should be updated", 15, circle.centerX);
+        assertEquals("Center Y should be updated", 15, circle.centerY);
+    }
+
+    @Test
+    public void testSetScale() {
+        circle.setScale(10);
+        assertEquals("Radius should be updated", 10, circle.radius, 0.0);
     }
 }
