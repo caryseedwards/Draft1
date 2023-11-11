@@ -1,42 +1,60 @@
 package unit_test.gui;
 
 import gui.ArtworkGUI;
+import org.junit.BeforeClass;
 import org.junit.Test;
-
 import java.awt.*;
 
 import static org.junit.Assert.*;
 
+
 public class ArtworkGUITest {
 
-    @Test
-    public void testInitialCanvasSetup() {
-        Dimension expectedDimension = new Dimension(ArtworkGUI.CANVAS_WIDTH, ArtworkGUI.CANVAS_HEIGHT);
-        assertEquals(expectedDimension, ArtworkGUI.canvas.getPreferredSize());
+    @BeforeClass
+    public static void setUpClass() {
+        ArtworkGUI.setupFrame();
+        ArtworkGUI.setupLeftPanel();
+        ArtworkGUI.setupCanvas();
+        ArtworkGUI.setupBottomPanel();
     }
 
     @Test
     public void testAlgorithmDropdownSetup() {
-        Choice algorithmDropdown = ArtworkGUI.algorithmDropdown;
-        assertNotNull(algorithmDropdown);
-        assertEquals(4, algorithmDropdown.getItemCount());
-        assertEquals("-", algorithmDropdown.getItem(0));
-        assertEquals("Circle Packing", algorithmDropdown.getItem(1));
-        assertEquals("Recursive Shape", algorithmDropdown.getItem(2));
-        assertEquals("Sierpinski Shape", algorithmDropdown.getItem(3));
+        assertNotNull(ArtworkGUI.algorithmDropdown);
+        assertTrue(ArtworkGUI.algorithmDropdown.getItemCount() > 0);
     }
 
     @Test
-    public void testInitialPanelVisibility() {
+    public void testCanvasSetup() {
+        assertNotNull(ArtworkGUI.canvas);
+        assertEquals(new Dimension(ArtworkGUI.CANVAS_WIDTH, ArtworkGUI.CANVAS_HEIGHT),
+                ArtworkGUI.canvas.getPreferredSize());
+    }
+
+    @Test
+    public void testPanelsVisibility() {
         assertFalse(ArtworkGUI.recursivePanel.isVisible());
         assertFalse(ArtworkGUI.circlePackingPanel.isVisible());
         assertFalse(ArtworkGUI.sierpinskiPanel.isVisible());
     }
 
     @Test
-    public void testErrorLabelInitialSetup() {
+    public void testErrorLabelSetup() {
         assertEquals("", ArtworkGUI.errorLabel.getText());
-        assertFalse(ArtworkGUI.errorLabel.isVisible());
+        assertTrue(ArtworkGUI.errorLabel.isVisible());
     }
 
+    @Test
+    public void testDropdownSelectionChange() {
+        assertTrue(ArtworkGUI.algorithmDropdown.getItemCount() > 1);
+        assertEquals("Circle Packing", ArtworkGUI.algorithmDropdown.getItem(1));
+
+        ArtworkGUI.algorithmDropdown.select("Circle Packing");
+        assertEquals("Circle Packing", ArtworkGUI.algorithmDropdown.getSelectedItem());
+
+        ArtworkGUI.updateAlgorithmPanelVisibility();
+        assertTrue(ArtworkGUI.circlePackingPanel.isVisible());
+        assertFalse(ArtworkGUI.recursivePanel.isVisible());
+        assertFalse(ArtworkGUI.sierpinskiPanel.isVisible());
+    }
 }

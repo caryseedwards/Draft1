@@ -13,31 +13,33 @@ import validation.Validate;
 
 public class ArtworkGUI {
 
-    private static final int WINDOW_WIDTH = 1280;
-    private static final int WINDOW_HEIGHT = 720;
-    private static final int CANVAS_WIDTH = 1280;
-    private static final int CANVAS_HEIGHT = 720;
+    public static final int WINDOW_WIDTH = 1280;
+    public static final int WINDOW_HEIGHT = 720;
+    public static final int CANVAS_WIDTH = 1280;
+    public static final int CANVAS_HEIGHT = 720;
     private static final RecursivePanel rp = new RecursivePanel(CANVAS_WIDTH, CANVAS_HEIGHT);
     private static final CirclePackingPanel cpp = new CirclePackingPanel(CANVAS_WIDTH, CANVAS_HEIGHT);
     private static final SierpinskiPanel sp = new SierpinskiPanel(CANVAS_WIDTH);
-    private static final JLabel errorLabel = new JLabel("");
+    public static final JLabel errorLabel = new JLabel("");
 
-    private static RecursiveShape recursiveShape;
-    private static CirclePacking circlePacking;
-    private static SierpinskiShape sierpinskiShape;
+    public static RecursiveShape recursiveShape;
+    public static CirclePacking circlePacking;
+    public static SierpinskiShape sierpinskiShape;
     private static Timer animationTimer;
     private static Frame frame;
-    private static JPanel canvas;
-    private static Choice algorithmDropdown;
-    private static Panel recursivePanel, circlePackingPanel, sierpinskiPanel;
+    public static JPanel canvas;
+    public static Choice algorithmDropdown;
+    public static Panel recursivePanel;
+    public static Panel circlePackingPanel;
+    public static Panel sierpinskiPanel;
 
-    private static void setupFrame() {
+    public static void setupFrame() {
         frame = new Frame("Generative Art API");
         frame.setLayout(new BorderLayout());
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
-    private static void setupLeftPanel() {
+    public static void setupLeftPanel() {
         Panel leftPanel = new Panel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTHWEST;
@@ -96,7 +98,7 @@ public class ArtworkGUI {
         leftPanel.add(sierpinskiPanel, gbc);
     }
 
-    private static void setupCanvas() {
+    public static void setupCanvas() {
         canvas = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -127,7 +129,7 @@ public class ArtworkGUI {
         frame.add(centerPanel, BorderLayout.CENTER);
     }
 
-    private static void setupBottomPanel() {
+    public static void setupBottomPanel() {
         int bottomPanelHeight = 50;
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setPreferredSize(new Dimension(WINDOW_WIDTH, bottomPanelHeight));
@@ -142,7 +144,7 @@ public class ArtworkGUI {
         frame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private static void updateAlgorithmPanelVisibility() {
+    public static void updateAlgorithmPanelVisibility() {
         String selected = algorithmDropdown.getSelectedItem();
         int newCanvasWidth = canvas.getWidth();
         int newCanvasHeight = canvas.getHeight();
@@ -167,7 +169,7 @@ public class ArtworkGUI {
         sp.getStartYTextField().setText(String.valueOf(height / 2));
     }
 
-    private static void setErrorLabel(String message) {
+    public static void setErrorLabel(String message) {
         if (message == null || message.isEmpty()) {
             errorLabel.setText("");
             errorLabel.setVisible(false);
@@ -177,7 +179,7 @@ public class ArtworkGUI {
         }
     }
 
-    private static void generateArtwork() {
+    public static void generateArtwork() {
         String selected = algorithmDropdown.getSelectedItem();
         Graphics2D g2d = (Graphics2D) canvas.getGraphics();
         String validationError;
@@ -304,16 +306,19 @@ public class ArtworkGUI {
         }
     }
 
-    private static void resetCanvas() {
+    public static void resetCanvas() {
         Graphics g = canvas.getGraphics();
-        g.setColor(Color.white);
-        g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        g.setColor(Color.black);
-        g.drawRect(0, 0, canvas.getWidth() - 1, canvas.getHeight() - 1);
+        if (g != null) {
+            g.setColor(Color.white);
+            g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            g.setColor(Color.black);
+            g.drawRect(0, 0, canvas.getWidth() - 1, canvas.getHeight() - 1);
+        }
         recursiveShape = null;
         circlePacking = null;
         sierpinskiShape = null;
     }
+
 
     public static void main(String[] args) {
         setupFrame();
