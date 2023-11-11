@@ -26,7 +26,7 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
     protected void initialiseAlgorithm() {
         this.params = (SierpinskiShapeAlgorithmParameters) getAlgorithmParams();
         this.sierpinskiShape = getShapeParameters().get(0);
-        this.shapesToDraw = new ArrayList<Shape>();
+        this.shapesToDraw = new ArrayList<>();
     }
 
     private void addSierpinski(Triangle triangle, int depth) {

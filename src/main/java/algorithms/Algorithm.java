@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public abstract class Algorithm extends JPanel {
     private CanvasParameters canvasParams = new CanvasParameters(0,0,Color.WHITE);
-    private ArrayList<ShapeParameters> shapeParams = new ArrayList<ShapeParameters>();
+    private ArrayList<ShapeParameters> shapeParams = new ArrayList<>();
     private AlgorithmParameters algorithmParams;
     public Graphics2D pattern;
 

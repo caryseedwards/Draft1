@@ -1,11 +1,9 @@
 package unit_test.algorithms;
 
-import algorithms.CirclePacking;
 import algorithms.CirclePackingAlgorithm;
 import org.junit.Test;
 import parameters.CanvasParameters;
 import parameters.CirclePackingAlgorithmParameters;
-import parameters.CirclePackingParameters;
 import parameters.ShapeParameters;
 import shapes.Circle;
 import shapes.Hexagon;
