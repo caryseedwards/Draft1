@@ -5,7 +5,6 @@ import org.junit.Test;
 import parameters.CanvasParameters;
 import parameters.ShapeParameters;
 import parameters.SierpinskiShapeAlgorithmParameters;
-import parameters.SierpinskiShapeParameters;
 
 import java.awt.*;
 import java.util.ArrayList;

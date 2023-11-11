@@ -9,8 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Algorithm extends JPanel {
-    private CanvasParameters canvasParams;
-    private ArrayList<ShapeParameters> shapeParams;
+    private CanvasParameters canvasParams = new CanvasParameters(0,0,Color.WHITE);
+    private ArrayList<ShapeParameters> shapeParams = new ArrayList<ShapeParameters>();
     private AlgorithmParameters algorithmParams;
     public Graphics2D pattern;
 
@@ -21,14 +21,14 @@ public abstract class Algorithm extends JPanel {
     }
     protected abstract void initialiseAlgorithm();
     public void initialiseDefaults(){
-        this.canvasParams.initialiseDefaultParameters();
-        this.algorithmParams.initialiseDefaultParameters();
-        this.shapeParams.forEach(ShapeParameters::initialiseDefaultParameters);
+        canvasParams.initialiseDefaultParameters();
+        algorithmParams.initialiseDefaultParameters();
+        shapeParams.forEach(ShapeParameters::initialiseDefaultParameters);
     }
     public boolean validateParameters(){
-        return this.canvasParams.validateParameters() &&
-                this.algorithmParams.validateParameters() &&
-                this.shapeParams.stream().allMatch(ShapeParameters::validateParameters);
+        return canvasParams.validateParameters() &&
+                algorithmParams.validateParameters() &&
+                shapeParams.stream().allMatch(ShapeParameters::validateParameters);
     }
 
 
@@ -43,20 +43,23 @@ public abstract class Algorithm extends JPanel {
 
     public void setCanvasParameters(CanvasParameters canvasParams){
         this.canvasParams = canvasParams;
+        validateParameters();
     }
     public CanvasParameters getCanvasParameters(){
         return this.canvasParams;
     }
 
-    public void setShapeParameters(ArrayList<ShapeParameters> shapeParams){this.shapeParams = shapeParams;}
+    public void setShapeParameters(ArrayList<ShapeParameters> shapeParams){this.shapeParams = shapeParams;
+    validateParameters();}
     public ArrayList<ShapeParameters> getShapeParameters(){
-        return this.shapeParams;
+        return shapeParams;
     }
 
     public void setAlgorithmParams(AlgorithmParameters algorithmParams){
         this.algorithmParams = algorithmParams;
+        validateParameters();
     }
     public AlgorithmParameters getAlgorithmParams() {
-        return this.algorithmParams;
+        return algorithmParams;
     }
 }

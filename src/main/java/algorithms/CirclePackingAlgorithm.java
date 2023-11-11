@@ -25,7 +25,6 @@ public class CirclePackingAlgorithm extends Algorithm {
             System.err.println("Parameter validation failed: " + e.getMessage());
             throw e; // Rethrowing the exception to indicate constructor failure
         }
-        executeAlgorithm();
     }
 
     @Override
@@ -45,6 +44,7 @@ public class CirclePackingAlgorithm extends Algorithm {
             case "hexagon" -> boundaryShape = new Hexagon(params.centreX, params.centreY, params.polygonSize);
             default -> throw new IllegalArgumentException("Invalid boundary type: " + type);
         }
+        boundaryParameters.setShapeType(type);
     }
 
     public Shape getBoundaryShape() {
@@ -88,7 +88,9 @@ public class CirclePackingAlgorithm extends Algorithm {
         }
         this.pattern = g2d;
     }
-
+    public CirclePackingAlgorithmParameters getAlgorithmParameters(){
+        return params;
+    }
     public static void main(String[] args) {
         JFrame frame = new JFrame("Circle Packing in Shapes");
         CanvasParameters canvas = new CanvasParameters(500,500,Color.WHITE);
@@ -97,6 +99,7 @@ public class CirclePackingAlgorithm extends Algorithm {
         shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
         CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 200, 5, 50, 100, 1);
         CirclePackingAlgorithm packing = new CirclePackingAlgorithm(canvas, shapes,algorithm);
+        packing.executeAlgorithm();
         frame.add(packing);
         frame.setSize(canvas.getWidth(), canvas.getHeight());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

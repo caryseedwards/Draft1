@@ -16,7 +16,6 @@ public class RecursiveShapeAlgorithm extends Algorithm {
     public RecursiveShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, AlgorithmParameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
         initialiseAlgorithm();
-        executeAlgorithm();
     }
 
     @Override
@@ -72,6 +71,19 @@ public class RecursiveShapeAlgorithm extends Algorithm {
                     shape.getShapeParameters().getFillColour(),"solid");
         }
     }
+    public  ArrayList<Shape> getShapesToDraw(){
+        return shapesToDraw;
+    }
+    public RecursiveShapeAlgorithmParameters getParams() {
+        return params;
+    }
+    public ShapeParameters getLargeShapeParams(){
+        return largeShapeParams;
+    }
+    public ShapeParameters getSmallShapeParams(){
+        return smallShapeParams;
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Fractal Pattern");
         CanvasParameters canvas = new CanvasParameters(500,500,Color.WHITE);
@@ -80,6 +92,7 @@ public class RecursiveShapeAlgorithm extends Algorithm {
         shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.YELLOW));
         RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6);
         RecursiveShapeAlgorithm pattern = new RecursiveShapeAlgorithm(canvas, shapes, algorithm);
+        pattern.executeAlgorithm();
         frame.add(pattern);
         frame.setSize(canvas.getHeight(), canvas.getWidth());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

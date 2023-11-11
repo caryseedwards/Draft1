@@ -9,6 +9,8 @@ import parameters.CirclePackingParameters;
 import parameters.ShapeParameters;
 import shapes.Circle;
 import shapes.Hexagon;
+import shapes.Square;
+import shapes.Triangle;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,6 +33,40 @@ public class CirclePackingAlgorithmTest {
         assertNotNull("Boundary shape should be initialized", packing.getBoundaryShape());
     }
     @Test
+    public void testCirclePackingConstructor() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        assertNotNull(packing.getBoundaryShape());
+        assertTrue(packing.getCircles().isEmpty());
+    }
+
+    @Test
+    public void testSetBoundaryCircle() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        assertTrue(packing.getBoundaryShape() instanceof Circle);
+    }
+    @Test
+    public void testSetBoundarySquare() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        packing.setBoundaryShape("square");
+        assertTrue(packing.getBoundaryShape() instanceof Square);
+    }
+    @Test
+    public void testRepetitiveSetBoundaryCalls() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        packing.setBoundaryShape("triangle");
+        assertTrue(packing.getBoundaryShape() instanceof Triangle);
+
+        packing.setBoundaryShape("hexagon");
+        assertTrue(packing.getBoundaryShape() instanceof Hexagon);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidBoundaryType() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        packing.setBoundaryShape("invalidType");
+    }
+
+    @Test
     public void testAddCircle() {
         CirclePackingAlgorithm packing = createTestInstance();
         packing.addCircle();
@@ -38,6 +74,24 @@ public class CirclePackingAlgorithmTest {
         assertTrue("All circles should be inside the boundary",
                 packing.getCircles().stream().allMatch(circle -> packing.getBoundaryShape().isInside(circle)));
     }
+    @Test
+    public void testCircleCountAfterMultipleAdditions() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        int initialCount = packing.getCircles().size();
+        packing.addCircle(); // Call multiple times as needed
+        assertTrue(packing.getCircles().size() > initialCount);
+    }
+    @Test
+    public void testParameterModification() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        packing.getAlgorithmParameters().setMinRadius(10);
+        packing.getAlgorithmParameters().setMaxRadius(20);
+        packing.addCircle();
+        for (Circle circle : packing.getCircles()) {
+            assertTrue(circle.getRadius() >= 10 && circle.getRadius() <= 20);
+        }
+    }
+
     @Test
     public void testNoOverlappingCircles() {
         CirclePackingAlgorithm packing = createTestInstance();
@@ -49,11 +103,7 @@ public class CirclePackingAlgorithmTest {
             }
         }
     }
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidBoundaryType() {
-        CirclePackingAlgorithm packing = createTestInstance();
-        packing.setBoundaryShape("invalidType");
-    }
+
     @Test
     public void testCircleRadiusConstraints() {
         CirclePackingAlgorithm packing = createTestInstance();
@@ -64,4 +114,23 @@ public class CirclePackingAlgorithmTest {
                     radius >= packing.params.getMinRadius() && radius <= packing.params.getMaxRadius());
         }
     }
+    @Test
+    public void testBoundaryAndCircleIntegration() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        packing.setBoundaryShape("hexagon");
+        packing.executeAlgorithm();
+
+        assertTrue(packing.getBoundaryShape() instanceof Hexagon);
+        assertFalse(packing.getCircles().isEmpty());
+        assertTrue(packing.getCircles().stream().allMatch(circle ->
+                packing.getBoundaryShape().isInside(circle)));
+    }
+    @Test
+    public void testCirclePlacement() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        packing.addCircle();
+        Circle lastAddedCircle = packing.getCircles().get(packing.getCircles().size() - 1);
+        assertTrue(packing.getBoundaryShape().isInside(lastAddedCircle));
+    }
+
 }
