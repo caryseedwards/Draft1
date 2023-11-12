@@ -75,12 +75,12 @@ public class CirclePackingControllerTest {
         assertEquals(Color.BLUE, model.getShapesParams().get(0).getFillColour());
 
     }
-//    @Test
-//    public void testUpdateBoundaryLineColour(){
-//        viewPanel.getBoundaryLineColourButton().setBackground(Color.BLUE);
-//        cpc.updateBoundaryLineColour();
-//        assertEquals(Color.BLUE, model.getShapesParams().get(0).getLineColour());
-//    }
+    @Test
+    public void testUpdateBoundaryLineColour(){
+        viewPanel.getBoundaryLineColourButton().setBackground(Color.BLUE);
+        cpc.updateBoundaryLineColour();
+        assertEquals(Color.BLUE, model.getShapesParams().get(0).getLineColour());
+    }
 
     @Test
     public void testUpdateBoundaryLineWidth() {

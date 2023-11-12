@@ -1,13 +1,7 @@
 package gui.view;
 
-import gui.model.ParametersModel;
-import parameters.*;
-
 import java.awt.*;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 
 public class RecursivePanelView {
@@ -156,11 +150,11 @@ public class RecursivePanelView {
         return largeShapeType;
     }
 
-    public Button getLargeShapeColorButton() {
+    public Button getLargeShapeColourButton() {
         return largeShapeColorButton;
     }
 
-    public Button getLargeLineColorButton() {
+    public Button getLargeLineColourButton() {
         return largeLineColorButton;
     }
 
@@ -172,11 +166,11 @@ public class RecursivePanelView {
         return smallShapeType;
     }
 
-    public Button getSmallShapeColorButton() {
+    public Button getSmallShapeColourButton() {
         return smallShapeColorButton;
     }
 
-    public Button getSmallLineColorButton() {
+    public Button getSmallLineColourButton() {
         return smallLineColorButton;
     }
 

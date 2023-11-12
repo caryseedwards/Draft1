@@ -35,22 +35,7 @@ public class CirclePackingController {
         view.getMaxRadiusCircleTextField().addActionListener(e -> updateMaxRadius());
         updatePackingShapeType();
     }
-    public void hardUpdateParams() {
-        updateStartX();
-        updateStartY();
-        updateMaxAttempts();
-        updateBoundaryShapeType();
-        updateBoundaryFillColour();
-        updateBoundaryLineColour();
-        updateBoundaryLineWidth();
-        updateBoundaryRadius();
-        updatePackingShapeType();
-        updatePackingFillColour();
-        updatePackingLineColour();
-        updatePackingLineWidth();
-        updateMinRadius();
-        updateMaxRadius();
-    }
+
     public void updateStartX() {
         model.getPackingParams().setCentreX(Integer.parseInt(view.getStartXTextField().getText()));
     }
@@ -72,7 +57,7 @@ public class CirclePackingController {
     }
 
     public void updateBoundaryLineColour() {
-        model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getBoundaryLineColourButton()));
+        model.getShapesParams().get(0).setLineColour(view.getColorFromButton(view.getBoundaryLineColourButton()));
     }
 
     public void updateBoundaryLineWidth() {
@@ -104,21 +89,5 @@ public class CirclePackingController {
 
     public void updateMaxRadius() {
         model.getPackingParams().setMaxRadius(Integer.parseInt(view.getMaxRadiusCircleTextField().getText()));
-    }
-    public void printModelParameters() {
-        System.out.println("Circle Packing Parameters:");
-        System.out.println("Start X: " + model.getPackingParams().getCentreX());
-        System.out.println("Start Y: " + model.getPackingParams().getCentreY());
-        System.out.println("Max Attempts: " + model.getPackingParams().getMaxAttempts());
-        System.out.println("Boundary Shape Type: " + model.getShapesParams().get(0).getShapeType());
-        System.out.println("Boundary Fill Colour: " + model.getShapesParams().get(0).getFillColour());
-        System.out.println("Boundary Line Colour: " + model.getShapesParams().get(0).getLineColour());
-        System.out.println("Boundary Line Width: " + model.getShapesParams().get(0).getLineWidth());
-        System.out.println("Boundary Radius: " + model.getPackingParams().getPolygonSize());
-        System.out.println("Packing Fill Colour: " + model.getShapesParams().get(1).getFillColour());
-        System.out.println("Packing Line Colour: " + model.getShapesParams().get(1).getLineColour());
-        System.out.println("Packing Line Width: " + model.getShapesParams().get(1).getLineWidth());
-        System.out.println("Min Radius: " + model.getPackingParams().getMinRadius());
-        System.out.println("Max Radius: " + model.getPackingParams().getMaxRadius());
     }
 }

@@ -52,21 +52,18 @@ public class ArtworkGUIController {
        Graphics2D g2d = image.createGraphics();
         switch (view.getAlgorithmDropdown().getSelectedItem()) {
             case "Recursive Shape":
-                recursivePanelController.hardUpdateParams();
                 RecursiveShapeAlgorithm recursive = new RecursiveShapeAlgorithm(
                         model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
                 recursive.executeAlgorithm();
                 view.getFrame().add(recursive);
                 break;
             case "Circle Packing":
-                circlePackingPanelController.hardUpdateParams();
                 CirclePackingAlgorithm packing = new CirclePackingAlgorithm(model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
                 packing.executeAlgorithm();
                 packing.drawPattern(image.getGraphics());
                 view.getFrame().add(packing);
                 break;
             case "Sierpinski Shape":
-                sierpinskiPanelController.hardUpdateParams();
                 SierpinskiShapeAlgorithm sierpinski = new SierpinskiShapeAlgorithm(model.getCanvasParams(), model.getShapesParams(),model.getSierpinskiParams());
                 sierpinski.executeAlgorithm();
                 sierpinski.drawPattern(image.getGraphics());

@@ -27,67 +27,39 @@ public class SierpinskiController {
         view.getLineColourButton().addActionListener(e -> updateLineColour());
         view.getLineWidthTextField().addActionListener(e -> updateLineWidth());
     }
-    public void hardUpdateParams() {
-        updateStartX();
-        updateStartY();
-        updateSize();
-        updateDepth();
-        updateShapeType();
-        updateFillColour();
-        updateLineColour();
-        updateLineWidth();
+
+    public void updateStartX() {
+        model.getSierpinskiParams().setCentreX(Integer.parseInt(view.getStartXTextField().getText()));
     }
 
-    private void updateStartX() {
-        model.getSierpinskiParams().setCentreX(parseIntSafe(view.getStartXTextField().getText()));
+    public void updateStartY() {
+        model.getSierpinskiParams().setCentreY(Integer.parseInt(view.getStartYTextField().getText()));
     }
 
-    private void updateStartY() {
-        model.getSierpinskiParams().setCentreY(parseIntSafe(view.getStartYTextField().getText()));
+    public void updateSize() {
+        model.getSierpinskiParams().setPolygonSize(Integer.parseInt(view.getSizeTextField().getText()));
     }
 
-    private void updateSize() {
-        model.getSierpinskiParams().setPolygonSize(parseIntSafe(view.getSizeTextField().getText()));
+    public void updateDepth() {
+        model.getSierpinskiParams().setDepth(Integer.parseInt(view.getDepthTextField().getText()));
     }
 
-    private void updateDepth() {
-        model.getSierpinskiParams().setDepth(parseIntSafe(view.getDepthTextField().getText()));
-    }
-
-    private void updateShapeType() {
+    public void updateShapeType() {
         model.getShapesParams().get(0).setShapeType(view.getShapeTypeChoice().getSelectedItem().toLowerCase());
     }
 
-    private void updateFillColour() {
+    public void updateFillColour() {
         model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getFillColourButton()));
     }
 
-    private void updateLineColour() {
+    public void updateLineColour() {
         model.getShapesParams().get(0).setLineColour(view.getColorFromButton(view.getLineColourButton()));
     }
 
-    private void updateLineWidth() {
-        model.getShapesParams().get(0).setLineWidth(parseIntSafe(view.getLineWidthTextField().getText()));
+    public void updateLineWidth() {
+        model.getShapesParams().get(0).setLineWidth(Integer.parseInt(view.getLineWidthTextField().getText()));
     }
 
-    private int parseIntSafe(String text) {
-        try {
-            return Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            return 0; // Default value or error handling
-        }
-    }
-    public void printModelParameters() {
-        System.out.println("Sierpinski Shape Parameters:");
-        System.out.println("Start X: " + model.getSierpinskiParams().getCentreX());
-        System.out.println("Start Y: " + model.getSierpinskiParams().getCentreY());
-        System.out.println("Size: " + model.getSierpinskiParams().getPolygonSize());
-        System.out.println("Depth: " + model.getSierpinskiParams().getDepth());
-        System.out.println("Shape Type: " + model.getShapesParams().get(0).getShapeType());
-        System.out.println("Fill Color: " + model.getShapesParams().get(0).getFillColour());
-        System.out.println("Line Color: " + model.getShapesParams().get(0).getLineColour());
-        System.out.println("Line Width: " + model.getShapesParams().get(0).getLineWidth());
-    }
+
 
 }
-
