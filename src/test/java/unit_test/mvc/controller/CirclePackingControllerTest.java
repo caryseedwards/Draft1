@@ -69,7 +69,7 @@ public class CirclePackingControllerTest {
     }
 
     @Test
-    public void testUpdateBoundaryFillColourAndLineColour() {
+    public void testUpdateBoundaryFillColour() {
         viewPanel.getBoundaryFillColourButton().setBackground(Color.BLUE);
         cpc.updateBoundaryFillColour();
         assertEquals(Color.BLUE, model.getShapesParams().get(0).getFillColour());
@@ -86,32 +86,46 @@ public class CirclePackingControllerTest {
     public void testUpdateBoundaryLineWidth() {
         viewPanel.getBoundaryLineWidthTextField().setText("12");
         cpc.updateBoundaryLineWidth();
-        assertEquals(12, model.getShapesParams().get(0).getLineWidth());
+        assertEquals(12, model.getShapesParams().get(0).getLineWidth(),0);
     }
 
-//        @Test
-//        public void testUpdateBoundaryRadius() {
-//            String testRadius = "300";
-//            when(view.getBoundaryRadiusTextField().getText()).thenReturn(testRadius);
-//            controller.updateBoundaryRadius();
-//            assertEquals(Integer.parseInt(testRadius), model.getPackingParams().getPolygonSize());
-//        }
-//        controller.updateBoundaryLineColor();
-//        assertEquals(testColor, model.getShapesParams().get(0).getLineColour());
-//    }
-//    @Test
-//    public void testUpdateBoundaryLineWidth() {
-//        String testLineWidth = "2";
-//        when(view.getBoundaryLineWidthTextField().getText()).thenReturn(testLineWidth);
-//        controller.updateBoundaryLineWidth();
-//        assertEquals(Integer.parseInt(testLineWidth), model.getShapesParams().get(0).getLineWidth());
-//    }
-//    @Test
-//    public void testUpdateBoundaryRadius() {
-//        String testRadius = "300";
-//        when(view.getBoundaryRadiusTextField().getText()).thenReturn(testRadius);
-//        controller.updateBoundaryRadius();
-//        assertEquals(Integer.parseInt(testRadius), model.getPackingParams().getPolygonSize());
-//    }
+    @Test
+    public void testUpdateBoundaryRadius() {
+        viewPanel.getBoundaryRadiusTextField().setText("300");
+        cpc.updateBoundaryRadius();
+        assertEquals(300, model.getPackingParams().getPolygonSize());
+    }
+    @Test
+    public void testUpdatePackingFillColour() {
+        Button fillColourButton = viewPanel.getPackingFillColourButton();
+        fillColourButton.setBackground(Color.GREEN);
+        cpc.updatePackingFillColour();
+        assertEquals(Color.GREEN, model.getShapesParams().get(1).getFillColour());
+    }
+    @Test
+    public void testUpdatePackingLineColour() {
+        Button lineColourButton = viewPanel.getPackingLineColourButton();
+        lineColourButton.setBackground(Color.RED);
+        cpc.updatePackingLineColour();
+        assertEquals(Color.RED, model.getShapesParams().get(1).getLineColour());
+    }
+    @Test
+    public void testUpdatePackingLineWidth() {
+        viewPanel.getPackingLineWidthTextField().setText("3");
+        cpc.updatePackingLineWidth();
+        assertEquals(3, model.getShapesParams().get(1).getLineWidth(), 0);
+    }
+    @Test
+    public void testUpdateMinRadiusCircle() {
+        viewPanel.getMinRadiusCircleTextField().setText("5");
+        cpc.updateMinRadius();
+        assertEquals(5, model.getPackingParams().getMinRadius());
+    }
+    @Test
+    public void testUpdateMaxRadiusCircle() {
+        viewPanel.getMaxRadiusCircleTextField().setText("50");
+        cpc.updateMaxRadius();
+        assertEquals(50, model.getPackingParams().getMaxRadius());
+    }
 
 }

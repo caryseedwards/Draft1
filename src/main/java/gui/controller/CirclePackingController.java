@@ -86,23 +86,23 @@ public class CirclePackingController {
     public void updatePackingShapeType(){
         model.getShapesParams().get(1).setShapeType("circle");
     }
-    private void updatePackingFillColour() {
+    public void updatePackingFillColour() {
         model.getShapesParams().get(1).setFillColour(view.getColorFromButton(view.getPackingFillColourButton()));
     }
 
-    private void updatePackingLineColour() {
+    public void updatePackingLineColour() {
         model.getShapesParams().get(1).setLineColour(view.getColorFromButton(view.getPackingLineColourButton()));
     }
 
-    private void updatePackingLineWidth() {
+    public void updatePackingLineWidth() {
         model.getShapesParams().get(1).setLineWidth(Integer.parseInt(view.getPackingLineWidthTextField().getText()));
     }
 
-    private void updateMinRadius() {
+    public void updateMinRadius() {
         model.getPackingParams().setMinRadius(Integer.parseInt(view.getMinRadiusCircleTextField().getText()));
     }
 
-    private void updateMaxRadius() {
+    public void updateMaxRadius() {
         model.getPackingParams().setMaxRadius(Integer.parseInt(view.getMaxRadiusCircleTextField().getText()));
     }
     public void printModelParameters() {
