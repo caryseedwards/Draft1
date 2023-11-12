@@ -1,26 +1,32 @@
 package gui;
 
-import gui.controller.RecursiveShapeController;
-import gui.view.RecursivePanelView;
-import parameters.RecursiveShapeAlgorithmParameters;
-import parameters.ShapeParameters;
+import gui.controller.ArtworkGUIController;
+import gui.model.ParametersModel;
+import gui.view.ArtworkGUIView;
+
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 
 public class testapp {
-    public static void main(String[] args) {
-        RecursivePanelView view = new RecursivePanelView();
-        ArrayList<ShapeParameters> shapeParams = new ArrayList<>();
-        shapeParams.add(new ShapeParameters(null, 0, Color.WHITE, Color.WHITE));
-        shapeParams.add(new ShapeParameters(null, 0, Color.WHITE, Color.WHITE));
-        RecursiveShapeAlgorithmParameters algorithmParams = new RecursiveShapeAlgorithmParameters(0,0,0,0,0);
-        RecursiveShapeController controller = new RecursiveShapeController(view, algorithmParams, shapeParams);
+        public static void main (String[]args){
+        System.out.println("Hihihihi"); // Debug message
+        ParametersModel model = new ParametersModel();
+        ArtworkGUIView view = new ArtworkGUIView();
+        ArtworkGUIController artworkGUIController = new ArtworkGUIController(view, model);
+        System.out.println("main mvc's initialised"); // Debug message
+        // Setup the view Window
+        view.setupViewWindow();
 
-        // Add the view panel to your application's frame or window
-        Frame frame = new Frame("Artwork Application");
-        frame.add(view.getPanel());
-        frame.pack();
-        frame.setVisible(true);
+        // Display the main frame
+        view.getFrame().setVisible(true);
+        System.out.println("end reached"); // Debug message
+                 view.getFrame().addWindowListener(new WindowAdapter() {
+                        public void windowClosing(WindowEvent e) {
+                                view.getFrame().dispose();
+                        }
+                });
     }
 }

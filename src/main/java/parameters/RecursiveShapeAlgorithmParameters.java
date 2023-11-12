@@ -1,28 +1,28 @@
 package parameters;
 
 public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
-    private int centerX;
-    private int centerY;
-    private int initialSize;
-    private int depth;
-    private int numShapes;
+    private static int centerX;
+    private static int centerY;
+    private static int initialSize;
+    private static int depth;
+    private static int numShapes;
 
     // Constructor
     public RecursiveShapeAlgorithmParameters(int centerX, int centerY, int initialSize, int depth, int numShapes) {
         this.parameterType = "algorithm";
         this.algorithmName = "RecursiveShape";
-        this.centerX = centerX;
-        this.centerY = centerY;
-        this.initialSize = initialSize;
-        this.depth = depth;
-        this.numShapes = numShapes;
+        RecursiveShapeAlgorithmParameters.centerX = centerX;
+        RecursiveShapeAlgorithmParameters.centerY = centerY;
+        RecursiveShapeAlgorithmParameters.initialSize = initialSize;
+        RecursiveShapeAlgorithmParameters.depth = depth;
+        RecursiveShapeAlgorithmParameters.numShapes = numShapes;
     }
 
     @Override
     public void initialiseDefaultParameters() {
         // Set default values
-        centerX = 0;
-        centerY = 0;
+        centerX = 250;
+        centerY = 250;
         initialSize = 100;
         depth = 3;
         numShapes = 5;
@@ -44,11 +44,11 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
         RecursiveShapeAlgorithmParameters that = (RecursiveShapeAlgorithmParameters) other;
-        return centerX == that.centerX &&
-                centerY == that.centerY &&
-                initialSize == that.initialSize &&
-                depth == that.depth &&
-                numShapes == that.numShapes;
+        return getCenterX() == that.getCenterX() &&
+                getCenterY() == that.getCenterY() &&
+                getInitialSize() == that.getInitialSize() &&
+                getDepth() == that.getDepth() &&
+                getNumShapes() == that.getNumShapes();
     }
     // Getters
     public int getCenterX() { return centerX; }
@@ -58,11 +58,11 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
     public int getNumShapes() { return numShapes; }
 
     // Setters
-    public void setCenterX(int centerX) { this.centerX = centerX; }
-    public void setCenterY(int centerY) { this.centerY = centerY; }
-    public void setInitialSize(int initialSize) { this.initialSize = initialSize; }
-    public void setDepth(int depth) { this.depth = depth; }
-    public void setNumShapes(int numShapes) { this.numShapes = numShapes; }
+    public void setCenterX(int newX) { newX = centerX; }
+    public void setCenterY(int newY) { newY = centerY; }
+    public void setInitialSize(int newInitialSize) { newInitialSize = initialSize; }
+    public void setDepth(int newDepth) { newDepth = depth; }
+    public void setNumShapes(int newNumShapes) { newNumShapes = numShapes; }
 
 }
 

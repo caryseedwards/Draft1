@@ -43,21 +43,22 @@ public abstract class Algorithm extends JPanel {
 
     public void setCanvasParameters(CanvasParameters canvasParams){
         this.canvasParams = canvasParams;
-        validateParameters();
+        // validateParameters();
     }
     public CanvasParameters getCanvasParameters(){
         return this.canvasParams;
     }
 
     public void setShapeParameters(ArrayList<ShapeParameters> shapeParams){this.shapeParams = shapeParams;
-    validateParameters();}
+    //validateParameters();
+    }
     public ArrayList<ShapeParameters> getShapeParameters(){
         return shapeParams;
     }
 
     public void setAlgorithmParams(AlgorithmParameters algorithmParams){
         this.algorithmParams = algorithmParams;
-        validateParameters();
+        //validateParameters();
     }
     public AlgorithmParameters getAlgorithmParams() {
         return algorithmParams;
