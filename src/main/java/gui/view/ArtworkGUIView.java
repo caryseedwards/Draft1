@@ -5,11 +5,10 @@ import gui.view.panel.RecursivePanelView;
 import gui.view.panel.SierpinskiPanelView;
 
 import java.awt.*;
-import javax.swing.*;
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import javax.swing.*;
 
 public class ArtworkGUIView {
     public static int windowWidth = 1280;
@@ -77,7 +76,6 @@ public class ArtworkGUIView {
         gbc.insets = new Insets(20, 0, 0, 0);
 
         generateBtn = new Button("Generate Artwork");
-        // Add ActionListener for generateBtn if needed
         leftPanel.add(generateBtn, gbc);
 
         gbc.gridy++;
@@ -96,8 +94,6 @@ public class ArtworkGUIView {
         algorithmDropdown.add("Circle Packing");
         algorithmDropdown.add("Recursive Shape");
         algorithmDropdown.add("Sierpinski Shape");
-
-        // Add item listener for algorithmDropdown
         algorithmDropdown.addItemListener(e -> updateAlgorithmPanelVisibility());
     }
 
@@ -111,19 +107,22 @@ public class ArtworkGUIView {
         leftPanel.add(sierpinskiPanel, gbc);
     }
     public BufferedImage createBufferedImage(){
-        BufferedImage image = new BufferedImage(canvasWidth, canvasHeight,BufferedImage.TYPE_INT_ARGB);
-        return image;
+        return new BufferedImage(canvasWidth, canvasHeight,BufferedImage.TYPE_INT_ARGB);
     }
+
     public void setupCanvas() {
         canvas = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                if (artworkImage != null) {
-                    g.drawImage(artworkImage, 0, 0, this);
+                synchronized (this) {
+                    if (artworkImage != null) {
+                        g.drawImage(artworkImage, 0, 0, this);
+                    }
                 }
             }
         };
+        canvas.setDoubleBuffered(true);
         canvas.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
         canvas.setBackground(Color.WHITE);
         frame.add(canvas, BorderLayout.CENTER);
@@ -132,18 +131,13 @@ public class ArtworkGUIView {
     public void setArtworkImage(BufferedImage image) {
         artworkImage = image;
     }
-    public BufferedImage getArtworkImage() {
-        return artworkImage;
-    }
+
     public void setupBottomPanel() {
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setPreferredSize(new Dimension(windowWidth, 50));
 
         saveBtn = new Button("Save Image");
-        // Add ActionListener for saveBtn
         resetBtn = new Button("Reset");
-        // Add ActionListener for resetBtn
-
         bottomPanel.add(saveBtn);
         bottomPanel.add(resetBtn);
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -164,16 +158,14 @@ public class ArtworkGUIView {
         frame.repaint();
     }
 
-    public void resetCanvas() {
-        Graphics g = canvas.getGraphics();
-        if (g != null) {
-            g.setColor(Color.white);
-            g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            g.setColor(Color.black);
-            g.drawRect(0, 0, canvas.getWidth() - 1, canvas.getHeight() - 1);
-        }
+    public synchronized void resetCanvas() {
+        artworkImage = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics g = artworkImage.getGraphics();
+        g.setColor(Color.white);
+        g.fillRect(0, 0, artworkImage.getWidth(), artworkImage.getHeight());
+        g.dispose();
+        canvas.repaint();
     }
-
 
     public Frame getFrame() { return frame; }
     public JPanel getCanvas() { return canvas; }
@@ -197,36 +189,23 @@ public class ArtworkGUIView {
     public RecursivePanelView getRecursivePanelView() {
         return recursivePanelView;
     }
-    public  int getWindowWidth() {
-        return windowWidth;
-    }
-
-    public  void setWindowWidth(int width) {
-        windowWidth = width;
-    }
-
-    public  int getWindowHeight() {
-        return windowHeight;
-    }
-
-    public  void setWindowHeight(int height) {
-        windowHeight = height;
-    }
 
     public  int getCanvasWidth() {
         return canvasWidth;
-    }
-
-    public  void setCanvasWidth(int width) {
-        canvasWidth = width;
     }
 
     public  int getCanvasHeight() {
         return canvasHeight;
     }
 
-    public  void setCanvasHeight(int height) {
-        canvasHeight = height;
+    public void setErrorLabel(String message) {
+        if (message == null || message.isEmpty()) {
+            errorLabel.setText("");
+            errorLabel.setVisible(false);
+        } else {
+            errorLabel.setText(message);
+            errorLabel.setVisible(true);
+        }
     }
 }
 

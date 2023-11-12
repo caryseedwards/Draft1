@@ -6,9 +6,9 @@ import java.awt.*;
 import javax.swing.JColorChooser;
 
 public class SierpinskiPanelView {
-    private Panel sierpinskiPanel;
-    private int canvasWidth;
-    private int canvasHeight;
+    private final Panel sierpinskiPanel;
+    private final int canvasWidth;
+    private final int canvasHeight;
     private TextField startXTextField;
     private TextField startYTextField;
     private TextField sizeTextField;
@@ -46,7 +46,7 @@ public class SierpinskiPanelView {
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
         addLabelAndField(gbc, "Size:", sizeTextField, gridy++);
         addLabelAndField(gbc, "Depth:", depthTextField, gridy++);
-        addLabelAndChoice(gbc, "Shape Type:", shapeTypeChoice, new String[]{"Hexagon", "Square", "Circle", "Triangle"}, gridy++);
+        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Hexagon", "Square", "Circle", "Triangle"}, gridy++);
         addColorChooserButton(gbc, "Fill Colour:", fillColourButton, gridy++);
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
         addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy++);
@@ -64,10 +64,10 @@ public class SierpinskiPanelView {
         sierpinskiPanel.add(component, gbc);
     }
 
-    private void addLabelAndChoice(GridBagConstraints gbc, String labelText, Choice choice, String[] items, int gridy) {
+    private void addLabelAndChoice(GridBagConstraints gbc, Choice choice, String[] items, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
-        sierpinskiPanel.add(new Label(labelText), gbc);
+        sierpinskiPanel.add(new Label("Shape Type:"), gbc);
 
         gbc.gridx = 1;
         for (String item : items) {

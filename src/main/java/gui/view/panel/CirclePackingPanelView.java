@@ -5,9 +5,9 @@ import gui.view.utilities;
 import java.awt.*;
 
 public class CirclePackingPanelView {
-    private Panel circlePackingPanel;
-    private int canvasWidth;
-    private int canvasHeight;
+    private final Panel circlePackingPanel;
+    private final int canvasWidth;
+    private final int canvasHeight;
     private TextField startXTextField;
     private TextField startYTextField;
     private TextField maxAttemptsTextField;
@@ -61,7 +61,7 @@ public class CirclePackingPanelView {
 
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Boundary Shape Inputs:", gridy++);
-        addLabelAndChoice(gbc, "Boundary Shape Type:", boundaryShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
+        addLabelAndChoice(gbc, boundaryShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
         addColourChooserButton(gbc, "Boundary Fill Colour:", boundaryFillColourButton, gridy++);
         addColourChooserButton(gbc, "Boundary Line Colour:", boundaryLineColourButton, gridy++);
         addLabelAndField(gbc, "Boundary Line Width:", boundaryLineWidthTextField, gridy++);
@@ -105,10 +105,10 @@ public class CirclePackingPanelView {
         gbc.gridwidth = 1;
     }
 
-    private void addLabelAndChoice(GridBagConstraints gbc, String labelText, Choice choice, String[] items, int gridy) {
+    private void addLabelAndChoice(GridBagConstraints gbc, Choice choice, String[] items, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
-        circlePackingPanel.add(new Label(labelText), gbc);
+        circlePackingPanel.add(new Label("Boundary Shape Type:"), gbc);
 
         gbc.gridx = 1;
         for (String item : items) {

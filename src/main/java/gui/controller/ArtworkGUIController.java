@@ -3,8 +3,10 @@ package gui.controller;
 import algorithms.*;
 import gui.model.ParametersModel;
 import gui.view.ArtworkGUIView;
+import validate.Validate;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -14,9 +16,10 @@ import java.io.IOException;
 public class ArtworkGUIController {
     private final ArtworkGUIView view;
     private final ParametersModel model;
-    private  RecursiveShapeController recursivePanelController;
-    private  CirclePackingController circlePackingPanelController;
-    private  SierpinskiController sierpinskiPanelController;
+    private RecursiveShapeController recursivePanelController;
+    private CirclePackingController circlePackingPanelController;
+    private SierpinskiController sierpinskiPanelController;
+    private Timer animationTimer;
 
     public ArtworkGUIController(ArtworkGUIView view, ParametersModel model) {
         this.view = view;
@@ -31,9 +34,8 @@ public class ArtworkGUIController {
         view.getAlgorithmDropdown().addItemListener(this::handleAlgorithmSelection);
         view.getGenerateBtn().addActionListener(e -> generateArtwork());
         view.getSaveBtn().addActionListener(e -> saveImage());
-        view.getResetBtn().addActionListener(e -> resetCanvas());
+        view.getResetBtn().addActionListener(e -> view.resetCanvas());
     }
-
 
     public void handleAlgorithmSelection(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -43,38 +45,99 @@ public class ArtworkGUIController {
     }
 
     public void updateAlgorithmPanelVisibility(String selectedAlgorithm) {
+        if (animationTimer != null) {
+            animationTimer.stop();
+        }
+        view.getCanvas().removeAll();
+
         view.getRecursivePanel().setVisible("Recursive Shape".equals(selectedAlgorithm));
         view.getCirclePackingPanel().setVisible("Circle Packing".equals(selectedAlgorithm));
         view.getSierpinskiPanel().setVisible("Sierpinski Shape".equals(selectedAlgorithm));
+
+        view.getFrame().add(view.getCanvas(), BorderLayout.CENTER);
+        view.resetCanvas();
+        view.getFrame().invalidate();
+        view.getFrame().validate();
+        view.getFrame().repaint();
     }
+
+
     public void generateArtwork() {
-       BufferedImage image = view.createBufferedImage();
-       Graphics2D g2d = image.createGraphics();
+        BufferedImage image = view.createBufferedImage();
+        Graphics2D g2d = image.createGraphics();
+        applyRenderingHints(g2d);
+
+        String validationError;
+        view.setErrorLabel("");
+
         switch (view.getAlgorithmDropdown().getSelectedItem()) {
             case "Recursive Shape":
-                RecursiveShapeAlgorithm recursive = new RecursiveShapeAlgorithm(
-                        model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
-                recursive.executeAlgorithm();
-                view.getFrame().add(recursive);
+                validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
+                if (validationError.isEmpty()) {
+                    RecursiveShapeAlgorithm recursive = new RecursiveShapeAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
+                    recursive.executeAlgorithm();
+                    recursive.drawPattern(g2d);
+                } else {
+                    view.setErrorLabel(validationError);
+                }
                 break;
             case "Circle Packing":
-                CirclePackingAlgorithm packing = new CirclePackingAlgorithm(model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
-                packing.executeAlgorithm();
-                packing.drawPattern(image.getGraphics());
-                view.getFrame().add(packing);
+                validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
+                if (validationError.isEmpty()) {
+                    CirclePackingAlgorithm packing = new CirclePackingAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
+                    packing.executeAlgorithm();
+
+                    if (animationTimer != null) {
+                        animationTimer.stop();
+                    }
+
+                    animationTimer = new Timer(packing.params.animationSpeed, e -> {
+                        packing.addCircles();
+                        BufferedImage image1 = view.createBufferedImage();
+                        Graphics2D g2d1 = image1.createGraphics();
+                        applyRenderingHints(g2d1);
+                        packing.drawPattern(g2d1);
+                        g2d1.dispose();
+                        view.setArtworkImage(image1);
+                        view.getCanvas().repaint();
+                    });
+
+                    animationTimer.start();
+                } else {
+                    view.setErrorLabel(validationError);
+                }
                 break;
             case "Sierpinski Shape":
-                SierpinskiShapeAlgorithm sierpinski = new SierpinskiShapeAlgorithm(model.getCanvasParams(), model.getShapesParams(),model.getSierpinskiParams());
-                sierpinski.executeAlgorithm();
-                sierpinski.drawPattern(image.getGraphics());
-                view.getFrame().add(sierpinski);
+                validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
+                if (validationError.isEmpty()) {
+                    SierpinskiShapeAlgorithm sierpinski = new SierpinskiShapeAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams());
+                    sierpinski.executeAlgorithm();
+                    sierpinski.drawPattern(g2d);
+                } else {
+                    view.setErrorLabel(validationError);
+                }
                 break;
             default:
                 view.getErrorLabel().setText("Please select a valid algorithm.");
         }
+
+        g2d.dispose();
         view.setArtworkImage(image);
-        view.getFrame().setVisible(true);
+        view.getCanvas().repaint();
     }
+
+    private void applyRenderingHints(Graphics2D g2d) {
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+    }
+
+
 
     public void saveImage() {
         BufferedImage image = new BufferedImage(view.getCanvasWidth(), view.getCanvasHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -97,30 +160,25 @@ public class ArtworkGUIController {
         }
     }
 
-    public void resetCanvas() {
-        Graphics g = view.getCanvas().getGraphics();
-        if (g != null) {
-            g.clearRect(0, 0, view.getCanvasWidth(), view.getCanvasHeight());
-            view.getCanvas().repaint();
-       }
-        view.setArtworkImage(view.createBufferedImage());
-    }
-
     public void setRecursiveController(RecursiveShapeController rsc){
     recursivePanelController = rsc;
     }
+
     public RecursiveShapeController getRecursiveController(){
         return recursivePanelController;
     }
     public void setPackingController(CirclePackingController cpc){
         circlePackingPanelController = cpc;
     }
+
     public CirclePackingController getPackingController(){
         return circlePackingPanelController;
     }
+
     public void setSierpinskiPanelController(SierpinskiController sc){
         sierpinskiPanelController = sc;
     }
+
     public SierpinskiController getSierpinskiPanelController(){
         return sierpinskiPanelController;
     }

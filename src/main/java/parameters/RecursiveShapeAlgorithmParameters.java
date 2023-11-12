@@ -7,7 +7,6 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
     private  int depth;
     private  int numShapes;
 
-    // Constructor
     public RecursiveShapeAlgorithmParameters(int centerX, int centerY, int initialSize, int depth, int numShapes) {
         this.parameterType = "algorithm";
         this.centerX = centerX;

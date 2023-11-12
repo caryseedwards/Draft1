@@ -3,6 +3,7 @@ package gui.controller;
 import gui.model.ParametersModel;
 import gui.view.panel.RecursivePanelView;
 import gui.view.utilities;
+import validate.Validate;
 
 import java.awt.*;
 
@@ -17,42 +18,56 @@ public class RecursiveShapeController {
     }
 
     public void initController() {
-        // Add action listeners to the view components
         model.getCanvasParams().setWidth(view.getCanvasWidth());
         model.getCanvasParams().setHeight(view.getCanvasHeight());
-        view.getStartXTextField().addActionListener(e -> updateStartX());
-        view.getStartYTextField().addActionListener(e -> updateStartY());
-        view.getRecursiveDepthTextField().addActionListener(e -> updateRecursiveDepth());
-        view.getInitialRadiusTextField().addActionListener(e -> updateInitialRadius());
-        view.getNumShapeTextField().addActionListener(e -> updateNumShapes());
+        view.getStartXTextField().addTextListener(e -> updateStartX());
+        view.getStartYTextField().addTextListener(e -> updateStartY());
+        view.getRecursiveDepthTextField().addTextListener(e -> updateRecursiveDepth());
+        view.getInitialRadiusTextField().addTextListener(e -> updateInitialRadius());
+        view.getNumShapeTextField().addTextListener(e -> updateNumShapes());
         view.getLargeShapeType().addItemListener(e -> updateLargeShapeType());
         view.getLargeShapeColourButton().addActionListener(e -> updateLargeShapeFillColour());
         view.getLargeLineColourButton().addActionListener(e -> updateLargeShapeLineColour());
-        view.getLargeLineWidthTextField().addActionListener(e -> updateLargeLineWidth());
+        view.getLargeLineWidthTextField().addTextListener(e -> updateLargeLineWidth());
         view.getSmallShapeType().addItemListener(e -> updateSmallShapeType());
         view.getSmallShapeColourButton().addActionListener(e -> updateSmallShapeFillColour());
         view.getSmallLineColourButton().addActionListener(e -> updateSmallShapeLineColour());
-        view.getSmallLineWidthTextField().addActionListener(e -> updateSmallLineWidth());
+        view.getSmallLineWidthTextField().addTextListener(e -> updateSmallLineWidth());
     }
 
     public void updateStartX() {
-        model.getRecursiveParams().setCenterX(Integer.parseInt(view.getStartXTextField().getText()));
+        Integer startX = Validate.safelyParseInteger(view.getStartXTextField().getText());
+        if (startX != null) {
+            model.getRecursiveParams().setCenterX(startX);
+        }
     }
 
     public void updateStartY() {
-        model.getRecursiveParams().setCenterY(Integer.parseInt(view.getStartYTextField().getText()));
+        Integer startY = Validate.safelyParseInteger(view.getStartYTextField().getText());
+        if (startY != null) {
+            model.getRecursiveParams().setCenterY(startY);
+        }
     }
 
     public void updateRecursiveDepth() {
-        model.getRecursiveParams().setDepth(Integer.parseInt(view.getRecursiveDepthTextField().getText()));
+        Integer depth = Validate.safelyParseInteger(view.getRecursiveDepthTextField().getText());
+        if (depth != null) {
+            model.getRecursiveParams().setDepth(depth);
+        }
     }
 
     public void updateInitialRadius() {
-        model.getRecursiveParams().setInitialSize(Integer.parseInt(view.getInitialRadiusTextField().getText()));
+        Integer initialRadius = Validate.safelyParseInteger(view.getInitialRadiusTextField().getText());
+        if (initialRadius != null) {
+            model.getRecursiveParams().setInitialSize(initialRadius);
+        }
     }
 
     public void updateNumShapes() {
-        model.getRecursiveParams().setNumShapes(Integer.parseInt(view.getNumShapeTextField().getText()));
+        Integer numShapes = Validate.safelyParseInteger(view.getNumShapeTextField().getText());
+        if (numShapes != null) {
+            model.getRecursiveParams().setNumShapes(numShapes);
+        }
     }
 
     public void updateLargeShapeType() {
@@ -70,7 +85,10 @@ public class RecursiveShapeController {
     }
 
     public void updateLargeLineWidth() {
-        model.getShapesParams().get(0).setLineWidth(Integer.parseInt(view.getLargeLineWidthTextField().getText()));
+        Integer largeLineWidth = Validate.safelyParseInteger(view.getLargeLineWidthTextField().getText());
+        if (largeLineWidth != null) {
+            model.getShapesParams().get(0).setLineWidth(largeLineWidth);
+        }
     }
 
     public void updateSmallShapeType() {
@@ -88,8 +106,9 @@ public class RecursiveShapeController {
     }
 
     public void updateSmallLineWidth() {
-        model.getShapesParams().get(1).setLineWidth(Integer.parseInt(view.getSmallLineWidthTextField().getText()));
+        Integer smallLineWidth = Validate.safelyParseInteger(view.getSmallLineWidthTextField().getText());
+        if (smallLineWidth != null) {
+            model.getShapesParams().get(1).setLineWidth(smallLineWidth);
+        }
     }
-
-
 }

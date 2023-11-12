@@ -3,6 +3,7 @@ package gui.controller;
 import gui.model.ParametersModel;
 import gui.view.panel.SierpinskiPanelView;
 import gui.view.utilities;
+import validate.Validate;
 
 public class SierpinskiController {
     private final ParametersModel model;
@@ -17,30 +18,42 @@ public class SierpinskiController {
     }
 
     private void initController() {
-        view.getStartXTextField().addActionListener(e -> updateStartX());
-        view.getStartYTextField().addActionListener(e -> updateStartY());
-        view.getSizeTextField().addActionListener(e -> updateSize());
-        view.getDepthTextField().addActionListener(e -> updateDepth());
+        view.getStartXTextField().addTextListener(e -> updateStartX());
+        view.getStartYTextField().addTextListener(e -> updateStartY());
+        view.getSizeTextField().addTextListener(e -> updateSize());
+        view.getDepthTextField().addTextListener(e -> updateDepth());
         view.getShapeTypeChoice().addItemListener(e -> updateShapeType());
         view.getFillColourButton().addActionListener(e -> updateFillColour());
         view.getLineColourButton().addActionListener(e -> updateLineColour());
-        view.getLineWidthTextField().addActionListener(e -> updateLineWidth());
+        view.getLineWidthTextField().addTextListener(e -> updateLineWidth());
     }
 
     public void updateStartX() {
-        model.getSierpinskiParams().setCentreX(Integer.parseInt(view.getStartXTextField().getText()));
+        Integer startX = Validate.safelyParseInteger(view.getStartXTextField().getText());
+        if (startX != null) {
+            model.getSierpinskiParams().setCentreX(startX);
+        }
     }
 
     public void updateStartY() {
-        model.getSierpinskiParams().setCentreY(Integer.parseInt(view.getStartYTextField().getText()));
+        Integer startY = Validate.safelyParseInteger(view.getStartYTextField().getText());
+        if (startY != null) {
+            model.getSierpinskiParams().setCentreY(startY);
+        }
     }
 
     public void updateSize() {
-        model.getSierpinskiParams().setPolygonSize(Integer.parseInt(view.getSizeTextField().getText()));
+        Integer size = Validate.safelyParseInteger(view.getSizeTextField().getText());
+        if (size != null) {
+            model.getSierpinskiParams().setPolygonSize(size);
+        }
     }
 
     public void updateDepth() {
-        model.getSierpinskiParams().setDepth(Integer.parseInt(view.getDepthTextField().getText()));
+        Integer depth = Validate.safelyParseInteger(view.getDepthTextField().getText());
+        if (depth != null) {
+            model.getSierpinskiParams().setDepth(depth);
+        }
     }
 
     public void updateShapeType() {
@@ -56,9 +69,9 @@ public class SierpinskiController {
     }
 
     public void updateLineWidth() {
-        model.getShapesParams().get(0).setLineWidth(Integer.parseInt(view.getLineWidthTextField().getText()));
+        Integer lineWidth = Validate.safelyParseInteger(view.getLineWidthTextField().getText());
+        if (lineWidth != null) {
+            model.getShapesParams().get(0).setLineWidth(lineWidth);
+        }
     }
-
-
-
 }

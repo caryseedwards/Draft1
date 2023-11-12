@@ -45,8 +45,10 @@ public class ParametersModel {
         this.shapes = shapes;
     }
 
-    public RecursiveShapeAlgorithmParameters getRecursiveParams() {return this.rap;
+    public RecursiveShapeAlgorithmParameters getRecursiveParams() {
+        return this.rap;
     }
+
     public void setRecursiveParams(RecursiveShapeAlgorithmParameters rap) {
         if (rap.validateParameters()){
             this.rap = rap;
@@ -61,9 +63,11 @@ public class ParametersModel {
             this.cap = cap;
         }
     }
+
     public SierpinskiShapeAlgorithmParameters getSierpinskiParams() {
         return this.sap;
     }
+
     public void setSierpinskiParams(SierpinskiShapeAlgorithmParameters ssp) {
         if(ssp.validateParameters()) {
             this.sap = ssp;

@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class RecursivePanelView {
     private final Panel recursivePanel;
-    private int canvasWidth;
-    private int canvasHeight;
+    private final int canvasWidth;
+    private final int canvasHeight;
     private TextField startXTextField;
     private TextField startYTextField;
     private TextField recursiveDepthTextField;

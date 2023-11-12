@@ -84,6 +84,7 @@ public class CirclePackingAlgorithm extends Algorithm {
     public CirclePackingAlgorithmParameters getAlgorithmParameters(){
         return params;
     }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Circle Packing in Shapes");
         CanvasParameters canvas = new CanvasParameters(500,500,Color.WHITE);
