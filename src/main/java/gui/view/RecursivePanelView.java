@@ -2,8 +2,6 @@ package gui.view;
 
 import java.awt.*;
 
-import javax.swing.*;
-
 public class RecursivePanelView {
     private final Panel recursivePanel;
     private int canvasWidth;
@@ -14,12 +12,12 @@ public class RecursivePanelView {
     private TextField initialRadiusTextField;
     private TextField numShapeTextField;
     private Choice largeShapeType;
-    private Button largeShapeColorButton;
-    private Button largeLineColorButton;
+    private Button largeShapeColourButton;
+    private Button largeLineColourButton;
     private TextField largeLineWidthTextField;
     private Choice smallShapeType;
-    private Button smallShapeColorButton;
-    private Button smallLineColorButton;
+    private Button smallShapeColourButton;
+    private Button smallLineColourButton;
     private TextField smallLineWidthTextField;
 
     public RecursivePanelView(int canvasWidth, int canvasHeight) {
@@ -44,12 +42,12 @@ public class RecursivePanelView {
         initialRadiusTextField = new TextField("100",5);
         numShapeTextField = new TextField("6",5);
         largeShapeType = new Choice();
-        largeShapeColorButton = new Button("Choose Colour");
-        largeLineColorButton = new Button("Choose Colour");
+        largeShapeColourButton = new Button("Choose Colour");
+        largeLineColourButton = new Button("Choose Colour");
         largeLineWidthTextField = new TextField("1",5);
         smallShapeType = new Choice();
-        smallShapeColorButton = new Button("Choose Colour");
-        smallLineColorButton = new Button("Choose Colour");
+        smallShapeColourButton = new Button("Choose Colour");
+        smallLineColourButton = new Button("Choose Colour");
         smallLineWidthTextField = new TextField("1",5);
 
         addLabelAndField(gbc, "Initial 'x' co-ordinate:", startXTextField, gridy++);
@@ -60,20 +58,20 @@ public class RecursivePanelView {
 
         String[] shapeTypes = {"Triangle", "Square", "Circle", "Hexagon"};
         addLabelAndChoice(gbc, "Large Shape Type:", largeShapeType, shapeTypes, gridy++);
-        addColorChooserButton(gbc, "Large Shape Fill Color:", largeShapeColorButton, gridy++);
-        addColorChooserButton(gbc, "Large Shape Line Color:", largeLineColorButton, gridy++);
+        addColorChooserButton(gbc, "Large Shape Fill Color:", largeShapeColourButton, gridy++);
+        addColorChooserButton(gbc, "Large Shape Line Color:", largeLineColourButton, gridy++);
         addLabelAndField(gbc, "Large Shape Line Width:", largeLineWidthTextField, gridy++);
 
         addLabelAndChoice(gbc, "Small Shape Type:", smallShapeType, shapeTypes, gridy++);
-        addColorChooserButton(gbc, "Small Shape Fill Color:", smallShapeColorButton, gridy++);
-        addColorChooserButton(gbc, "Small Shape Line Color:", smallLineColorButton, gridy++);
+        addColorChooserButton(gbc, "Small Shape Fill Color:", smallShapeColourButton, gridy++);
+        addColorChooserButton(gbc, "Small Shape Line Color:", smallLineColourButton, gridy++);
         addLabelAndField(gbc, "Small Shape Line Width:", smallLineWidthTextField, gridy);
 
         // Configure color pickers
-        configureColorPicker(largeShapeColorButton);
-        configureColorPicker(largeLineColorButton);
-        configureColorPicker(smallShapeColorButton);
-        configureColorPicker(smallLineColorButton);
+        utilities.configureColourPicker(largeShapeColourButton);
+        utilities.configureColourPicker(largeLineColourButton);
+        utilities.configureColourPicker(smallShapeColourButton);
+        utilities.configureColourPicker(smallLineColourButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, TextField textField, int gridy) {
@@ -108,21 +106,6 @@ public class RecursivePanelView {
         recursivePanel.add(button, gbc);
     }
 
-    // Method to open color picker and update button background
-    public void configureColorPicker(Button colorButton) {
-        colorButton.addActionListener(e -> {
-            Color initialColor = colorButton.getBackground();
-            Color newColor = JColorChooser.showDialog(null, "Choose Color", initialColor);
-            if (newColor != null) {
-                colorButton.setBackground(newColor);
-            }
-        });
-    }
-
-    public Color getColorFromButton(Button button) {
-        return button.getBackground();
-    }
-
     public int getCanvasWidth(){return canvasWidth;}
     public int getCanvasHeight(){return canvasHeight;}
     // Getters for each UI component
@@ -151,11 +134,11 @@ public class RecursivePanelView {
     }
 
     public Button getLargeShapeColourButton() {
-        return largeShapeColorButton;
+        return largeShapeColourButton;
     }
 
     public Button getLargeLineColourButton() {
-        return largeLineColorButton;
+        return largeLineColourButton;
     }
 
     public TextField getLargeLineWidthTextField() {
@@ -167,11 +150,11 @@ public class RecursivePanelView {
     }
 
     public Button getSmallShapeColourButton() {
-        return smallShapeColorButton;
+        return smallShapeColourButton;
     }
 
     public Button getSmallLineColourButton() {
-        return smallLineColorButton;
+        return smallLineColourButton;
     }
 
     public TextField getSmallLineWidthTextField() {

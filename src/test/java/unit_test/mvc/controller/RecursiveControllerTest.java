@@ -124,11 +124,4 @@ public class RecursiveControllerTest {
         controller.updateSmallLineWidth();
         assertEquals(2, model.getShapesParams().get(1).getLineWidth(),0);
     }
-
-
-
-
-
-
-
 }

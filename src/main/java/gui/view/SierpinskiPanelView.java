@@ -1,9 +1,6 @@
 package gui.view;
 
-import parameters.*;
-
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.JColorChooser;
 
 public class SierpinskiPanelView {
@@ -52,8 +49,8 @@ public class SierpinskiPanelView {
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
         addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy++);
 
-        configureColorPicker(fillColourButton);
-        configureColorPicker(lineColourButton);
+        utilities.configureColourPicker(fillColourButton);
+        utilities.configureColourPicker(lineColourButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, Component component, int gridy) {
@@ -105,19 +102,6 @@ public class SierpinskiPanelView {
     public Button getLineColourButton() { return lineColourButton; }
     public TextField getLineWidthTextField() { return lineWidthTextField; }
     public Panel getPanel() { return sierpinskiPanel; }
-    // Method to open color picker and update button background
-    public void configureColorPicker(Button colorButton) {
-        colorButton.addActionListener(e -> {
-            Color initialColor = colorButton.getBackground();
-            Color newColor = JColorChooser.showDialog(null, "Choose Color", initialColor);
-            if (newColor != null) {
-                colorButton.setBackground(newColor);
-            }
-        });
-    }
 
-    public Color getColorFromButton(Button button) {
-        return button.getBackground();
-    }
 }
 

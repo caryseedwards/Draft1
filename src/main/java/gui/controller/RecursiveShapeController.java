@@ -2,6 +2,7 @@ package gui.controller;
 
 import gui.model.ParametersModel;
 import gui.view.RecursivePanelView;
+import gui.view.utilities;
 
 import java.awt.*;
 
@@ -59,12 +60,12 @@ public class RecursiveShapeController {
     }
 
     public void updateLargeShapeFillColour() {
-        Color color = view.getColorFromButton(view.getLargeShapeColourButton());
+        Color color = utilities.getColourFromButton(view.getLargeShapeColourButton());
         model.getShapesParams().get(0).setFillColour(color);
     }
 
     public void updateLargeShapeLineColour() {
-        Color color = view.getColorFromButton(view.getLargeLineColourButton());
+        Color color = utilities.getColourFromButton(view.getLargeLineColourButton());
         model.getShapesParams().get(0).setLineColour(color);
     }
 
@@ -77,12 +78,12 @@ public class RecursiveShapeController {
     }
 
     public void updateSmallShapeFillColour() {
-        Color color = view.getColorFromButton(view.getSmallShapeColourButton());
+        Color color = utilities.getColourFromButton(view.getSmallShapeColourButton());
         model.getShapesParams().get(1).setFillColour(color);
     }
 
     public void updateSmallShapeLineColour() {
-        Color color = view.getColorFromButton(view.getSmallLineColourButton());
+        Color color = utilities.getColourFromButton(view.getSmallLineColourButton());
         model.getShapesParams().get(1).setLineColour(color);
     }
 

@@ -1,10 +1,6 @@
 package gui.view;
 
-import parameters.CirclePackingAlgorithmParameters;
-
 import java.awt.*;
-import java.awt.event.ActionListener;
-import javax.swing.*;
 
 public class CirclePackingPanelView {
     private Panel circlePackingPanel;
@@ -64,8 +60,8 @@ public class CirclePackingPanelView {
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Boundary Shape Inputs:", gridy++);
         addLabelAndChoice(gbc, "Boundary Shape Type:", boundaryShapeType, new String[]{"Circle", "Square", "Triangle", "Hexagon"}, gridy++);
-        addColorChooserButton(gbc, "Boundary Fill Colour:", boundaryFillColourButton, gridy++);
-        addColorChooserButton(gbc, "Boundary Line Colour:", boundaryLineColourButton, gridy++);
+        addColourChooserButton(gbc, "Boundary Fill Colour:", boundaryFillColourButton, gridy++);
+        addColourChooserButton(gbc, "Boundary Line Colour:", boundaryLineColourButton, gridy++);
         addLabelAndField(gbc, "Boundary Line Width:", boundaryLineWidthTextField, gridy++);
         addLabelAndField(gbc, "Boundary Radius:", boundaryRadiusTextField, gridy++);
 
@@ -74,17 +70,17 @@ public class CirclePackingPanelView {
 
         gbc.insets = new Insets(10, 5, 0, 5);
         addSectionLabel(gbc, "Circle Packing Shape Inputs:", gridy++);
-        addColorChooserButton(gbc, "Packing Fill Colour:", packingFillColourButton, gridy++);
-        addColorChooserButton(gbc, "Packing Line Colour:", packingLineColourButton, gridy++);
+        addColourChooserButton(gbc, "Packing Fill Colour:", packingFillColourButton, gridy++);
+        addColourChooserButton(gbc, "Packing Line Colour:", packingLineColourButton, gridy++);
         addLabelAndField(gbc, "Packing Line Width:", packingLineWidthTextField, gridy++);
         addLabelAndField(gbc, "Minimum Circle Radius:", minRadiusCircleTextField, gridy++);
         addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy++);
         gbc.weighty = 1;
 
-        configureColorPicker(boundaryFillColourButton);
-        configureColorPicker(boundaryLineColourButton);
-        configureColorPicker(packingFillColourButton);
-        configureColorPicker(packingLineColourButton);
+        utilities.configureColourPicker(boundaryFillColourButton);
+        utilities.configureColourPicker(boundaryLineColourButton);
+        utilities.configureColourPicker(packingFillColourButton);
+        utilities.configureColourPicker(packingLineColourButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, Component component, int gridy) {
@@ -119,7 +115,7 @@ public class CirclePackingPanelView {
         circlePackingPanel.add(choice, gbc);
     }
 
-    private void addColorChooserButton(GridBagConstraints gbc, String labelText, Button button, int gridy) {
+    private void addColourChooserButton(GridBagConstraints gbc, String labelText, Button button, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
         gbc.gridwidth = 1;
@@ -187,18 +183,5 @@ public class CirclePackingPanelView {
         return circlePackingPanel;
     }
 
-    // Method to open color picker and update button background
-    public void configureColorPicker(Button colorButton) {
-        colorButton.addActionListener(e -> {
-            Color initialColor = colorButton.getBackground();
-            Color newColor = JColorChooser.showDialog(null, "Choose Color", initialColor);
-            if (newColor != null) {
-                colorButton.setBackground(newColor);
-            }
-        });
-    }
 
-    public Color getColorFromButton(Button button) {
-        return button.getBackground();
-    }
 }

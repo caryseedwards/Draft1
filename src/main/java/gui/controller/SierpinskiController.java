@@ -2,7 +2,7 @@ package gui.controller;
 
 import gui.model.ParametersModel;
 import gui.view.SierpinskiPanelView;
-
+import gui.view.utilities;
 import java.awt.*;
 
 public class SierpinskiController {
@@ -49,11 +49,11 @@ public class SierpinskiController {
     }
 
     public void updateFillColour() {
-        model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getFillColourButton()));
+        model.getShapesParams().get(0).setFillColour(utilities.getColourFromButton(view.getFillColourButton()));
     }
 
     public void updateLineColour() {
-        model.getShapesParams().get(0).setLineColour(view.getColorFromButton(view.getLineColourButton()));
+        model.getShapesParams().get(0).setLineColour(utilities.getColourFromButton(view.getLineColourButton()));
     }
 
     public void updateLineWidth() {

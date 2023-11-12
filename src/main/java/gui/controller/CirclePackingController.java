@@ -2,6 +2,7 @@ package gui.controller;
 
 import gui.model.ParametersModel;
 import gui.view.CirclePackingPanelView;
+import gui.view.utilities;
 
 import java.awt.*;
 
@@ -53,11 +54,11 @@ public class CirclePackingController {
     }
 
     public void updateBoundaryFillColour() {
-        model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getBoundaryFillColourButton()));
+        model.getShapesParams().get(0).setFillColour(utilities.getColourFromButton(view.getBoundaryFillColourButton()));
     }
 
     public void updateBoundaryLineColour() {
-        model.getShapesParams().get(0).setLineColour(view.getColorFromButton(view.getBoundaryLineColourButton()));
+        model.getShapesParams().get(0).setLineColour(utilities.getColourFromButton(view.getBoundaryLineColourButton()));
     }
 
     public void updateBoundaryLineWidth() {
@@ -72,11 +73,11 @@ public class CirclePackingController {
         model.getShapesParams().get(1).setShapeType("circle");
     }
     public void updatePackingFillColour() {
-        model.getShapesParams().get(1).setFillColour(view.getColorFromButton(view.getPackingFillColourButton()));
+        model.getShapesParams().get(1).setFillColour(utilities.getColourFromButton(view.getPackingFillColourButton()));
     }
 
     public void updatePackingLineColour() {
-        model.getShapesParams().get(1).setLineColour(view.getColorFromButton(view.getPackingLineColourButton()));
+        model.getShapesParams().get(1).setLineColour(utilities.getColourFromButton(view.getPackingLineColourButton()));
     }
 
     public void updatePackingLineWidth() {
