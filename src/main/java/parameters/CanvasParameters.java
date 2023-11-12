@@ -37,25 +37,6 @@ public class CanvasParameters extends Parameters {
         }
     }
 
-    @Override
-    public CanvasParameters copy() {
-        return new CanvasParameters(this.height, this.width, this.backgroundColour);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (other == null || getClass() != other.getClass()) {
-                return false;
-            }
-            CanvasParameters that = (CanvasParameters) other;
-            return height == that.height &&
-                    width == that.width &&
-                    Objects.equals(backgroundColour, that.backgroundColour);
-    }
-
     // Getters
     public int getHeight() {return height;}
     public int getWidth() {return width;}

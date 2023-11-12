@@ -55,28 +55,4 @@ public class SierpinskiShapeAlgorithmParametersTest {
         params = new SierpinskiShapeAlgorithmParameters(100, 150, 200, -3);
         assertFalse(params.validateParameters());
     }
-
-    @Test
-    public void testCopy() {
-        SierpinskiShapeAlgorithmParameters original = new SierpinskiShapeAlgorithmParameters(100, 150, 200, 3);
-        SierpinskiShapeAlgorithmParameters copy = original.copy();
-
-        assertNotSame(original, copy);
-        assertEquals(original.getCentreX(), copy.getCentreX());
-        assertEquals(original.getCentreY(), copy.getCentreY());
-        assertEquals(original.getPolygonSize(), copy.getPolygonSize());
-        assertEquals(original.getDepth(), copy.getDepth());
-    }
-
-    @Test
-    public void testEquals() {
-        SierpinskiShapeAlgorithmParameters params1 = new SierpinskiShapeAlgorithmParameters(100, 150, 200, 3);
-        SierpinskiShapeAlgorithmParameters params2 = new SierpinskiShapeAlgorithmParameters(100, 150, 200, 3);
-        SierpinskiShapeAlgorithmParameters params3 = new SierpinskiShapeAlgorithmParameters(200, 250, 300, 4);
-
-        assertEquals(params1, params2);
-        assertNotEquals(params1, params3);
-    }
-
-    // Additional edge cases and scenarios as needed...
 }

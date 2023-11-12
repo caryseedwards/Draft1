@@ -47,25 +47,6 @@ public class ShapeParameters extends Parameters {
         }
     }
 
-    @Override
-    public ShapeParameters copy() {
-        return new ShapeParameters(this.shapeType, this.lineWidth, this.lineColour,this.fillColour);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-        ShapeParameters that = (ShapeParameters) other;
-        return Float.compare(that.lineWidth, lineWidth) == 0 &&
-                Objects.equals(shapeType, that.shapeType) &&
-                Objects.equals(lineColour, that.lineColour) &&
-                Objects.equals(fillColour, that.fillColour);
-    }
     // Getters
     public String getShapeType() {return shapeType;}
     public float getLineWidth() {return lineWidth;}

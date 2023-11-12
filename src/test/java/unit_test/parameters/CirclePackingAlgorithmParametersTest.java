@@ -66,29 +66,4 @@ public class CirclePackingAlgorithmParametersTest {
         params = new CirclePackingAlgorithmParameters(100, 150, 200, 5, 10, 50, 0);
         assertFalse(params.validateParameters());
     }
-
-    @Test
-    public void testCopy() {
-        CirclePackingAlgorithmParameters original = new CirclePackingAlgorithmParameters(100, 150, 200, 5, 10, 50, 2);
-        CirclePackingAlgorithmParameters copy = original.copy();
-
-        assertNotSame(original, copy);
-        assertEquals(original.getCentreX(), copy.getCentreX());
-        assertEquals(original.getCentreY(), copy.getCentreY());
-        assertEquals(original.getPolygonSize(), copy.getPolygonSize());
-        assertEquals(original.getMinRadius(), copy.getMinRadius());
-        assertEquals(original.getMaxRadius(), copy.getMaxRadius());
-        assertEquals(original.getMaxAttempts(), copy.getMaxAttempts());
-        assertEquals(original.getAnimationSpeed(), copy.getAnimationSpeed());
-    }
-
-    @Test
-    public void testEquals() {
-        CirclePackingAlgorithmParameters params1 = new CirclePackingAlgorithmParameters(100, 150, 200, 5, 10, 50, 2);
-        CirclePackingAlgorithmParameters params2 = new CirclePackingAlgorithmParameters(100, 150, 200, 5, 10, 50, 2);
-        CirclePackingAlgorithmParameters params3 = new CirclePackingAlgorithmParameters(200, 250, 300, 15, 20, 100, 3);
-
-        assertEquals(params1, params2);
-        assertNotEquals(params1, params3);
-    }
 }

@@ -15,7 +15,7 @@ public class CirclePackingAlgorithm extends Algorithm {
     Shape boundaryShape;
     private ArrayList<Circle> circles;
 
-    public CirclePackingAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, AlgorithmParameters algorithmParams) {
+    public CirclePackingAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
         initialiseAlgorithm();
     }

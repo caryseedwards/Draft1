@@ -13,7 +13,7 @@ public class RecursiveShapeAlgorithm extends Algorithm {
     private ShapeParameters largeShapeParams;
     private ShapeParameters smallShapeParams;
     private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
-    public RecursiveShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, AlgorithmParameters algorithmParams) {
+    public RecursiveShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
         initialiseAlgorithm();
     }

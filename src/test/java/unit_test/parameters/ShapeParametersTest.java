@@ -55,35 +55,4 @@ public class ShapeParametersTest {
         params = new ShapeParameters("circle", 1.0f, null, Color.WHITE);
         assertFalse(params.validateParameters());
     }
-
-    @Test
-    public void testCopy() {
-        Color lineColor = new Color(0, 0, 255);
-        Color fillColor = new Color(0, 255, 0);
-        ShapeParameters original = new ShapeParameters("circle", 1.0f, lineColor, fillColor);
-        ShapeParameters copy = original.copy();
-
-        assertNotSame(original, copy);
-        assertEquals(original.getShapeType(), copy.getShapeType());
-        assertEquals(original.getLineWidth(), copy.getLineWidth(), 0.0f);
-        assertEquals(original.getLineColour(), copy.getLineColour());
-        assertEquals(original.getFillColour(), copy.getFillColour());
-    }
-
-    @Test
-    public void testEquals() {
-        Color lineColor1 = new Color(0, 0, 255);
-        Color fillColor1 = new Color(0, 255, 0);
-        Color lineColor2 = new Color(255, 0, 0);
-        Color fillColor2 = new Color(0, 255, 255);
-
-        ShapeParameters params1 = new ShapeParameters("circle", 1.0f, lineColor1, fillColor1);
-        ShapeParameters params2 = new ShapeParameters("circle", 1.0f, lineColor1, fillColor1);
-        ShapeParameters params3 = new ShapeParameters("square", 1.0f, lineColor2, fillColor2);
-        ShapeParameters params4 = new ShapeParameters("circle", 2.0f, lineColor1, fillColor1);
-
-        assertEquals(params1, params2);
-        assertNotEquals(params1, params3);
-        assertNotEquals(params1, params4);
-    }
 }

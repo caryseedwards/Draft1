@@ -1,4 +1,6 @@
-package gui.view;
+package gui.view.panel;
+
+import gui.view.utilities;
 
 import java.awt.*;
 import javax.swing.JColorChooser;

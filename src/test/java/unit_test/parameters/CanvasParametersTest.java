@@ -49,31 +49,4 @@ public class CanvasParametersTest {
         params = new CanvasParameters(100, 200, null);
         assertFalse(params.validateParameters());
     }
-
-    @Test
-    public void testCopy() {
-        Color testColor = new Color(255, 0, 0);
-        CanvasParameters original = new CanvasParameters(100, 200, testColor);
-        CanvasParameters copy = original.copy();
-
-        assertNotSame(original, copy);
-        assertEquals(original.getHeight(), copy.getHeight());
-        assertEquals(original.getWidth(), copy.getWidth());
-        assertEquals(original.getBackgroundColour(), copy.getBackgroundColour());
-    }
-
-    @Test
-    public void testEquals() {
-        Color color1 = new Color(255, 0, 0);
-        Color color2 = new Color(0, 255, 0);
-
-        CanvasParameters params1 = new CanvasParameters(100, 200, color1);
-        CanvasParameters params2 = new CanvasParameters(100, 200, color1);
-        CanvasParameters params3 = new CanvasParameters(100, 200, color2);
-        CanvasParameters params4 = new CanvasParameters(300, 400, color1);
-
-        assertEquals(params1, params2);
-        assertNotEquals(params1, params3);
-        assertNotEquals(params1, params4);
-    }
 }

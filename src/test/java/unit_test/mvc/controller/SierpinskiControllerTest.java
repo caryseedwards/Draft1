@@ -4,7 +4,7 @@ import gui.controller.ArtworkGUIController;
 import gui.controller.SierpinskiController;
 import gui.model.ParametersModel;
 import gui.view.ArtworkGUIView;
-import gui.view.SierpinskiPanelView;
+import gui.view.panel.SierpinskiPanelView;
 import org.junit.Before;
 import org.junit.Test;
 import parameters.CanvasParameters;

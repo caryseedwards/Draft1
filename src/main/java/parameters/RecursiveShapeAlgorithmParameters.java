@@ -1,6 +1,6 @@
 package parameters;
 
-public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
+public class RecursiveShapeAlgorithmParameters extends Parameters {
     private  int centerX;
     private  int centerY;
     private  int initialSize;
@@ -10,7 +10,6 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
     // Constructor
     public RecursiveShapeAlgorithmParameters(int centerX, int centerY, int initialSize, int depth, int numShapes) {
         this.parameterType = "algorithm";
-        this.algorithmName = "RecursiveShape";
         this.centerX = centerX;
         this.centerY = centerY;
         this.initialSize = initialSize;
@@ -45,22 +44,6 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
         }
     }
 
-    @Override
-    public RecursiveShapeAlgorithmParameters copy() {
-        return new RecursiveShapeAlgorithmParameters(centerX, centerY, initialSize, depth, numShapes);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
-        RecursiveShapeAlgorithmParameters that = (RecursiveShapeAlgorithmParameters) other;
-        return getCenterX() == that.getCenterX() &&
-                getCenterY() == that.getCenterY() &&
-                getInitialSize() == that.getInitialSize() &&
-                getDepth() == that.getDepth() &&
-                getNumShapes() == that.getNumShapes();
-    }
     // Getters
     public int getCenterX() { return centerX; }
     public int getCenterY() { return centerY; }

@@ -1,9 +1,8 @@
 package gui.controller;
 
 import gui.model.ParametersModel;
-import gui.view.SierpinskiPanelView;
+import gui.view.panel.SierpinskiPanelView;
 import gui.view.utilities;
-import java.awt.*;
 
 public class SierpinskiController {
     private final ParametersModel model;

@@ -1,9 +1,5 @@
 package gui.model;
 
-import algorithms.Algorithm;
-import gui.view.CirclePackingPanelView;
-import gui.view.RecursivePanelView;
-import gui.view.SierpinskiPanelView;
 import parameters.*;
 
 import javax.swing.*;

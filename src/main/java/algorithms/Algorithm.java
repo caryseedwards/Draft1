@@ -1,7 +1,7 @@
 package algorithms;
 
-import parameters.AlgorithmParameters;
 import parameters.CanvasParameters;
+import parameters.Parameters;
 import parameters.ShapeParameters;
 
 import javax.swing.*;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 public abstract class Algorithm extends JPanel {
     private CanvasParameters canvasParams = new CanvasParameters(0,0,Color.WHITE);
     private ArrayList<ShapeParameters> shapeParams = new ArrayList<>();
-    private AlgorithmParameters algorithmParams;
+    private Parameters algorithmParams;
     public Graphics2D pattern;
 
-    public Algorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, AlgorithmParameters algorithmParams) {
+    public Algorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
     setAlgorithmParams(algorithmParams);
     setCanvasParameters(canvasParams);
     setShapeParameters(shapeParams);
@@ -56,11 +56,11 @@ public abstract class Algorithm extends JPanel {
         return shapeParams;
     }
 
-    public void setAlgorithmParams(AlgorithmParameters algorithmParams){
+    public void setAlgorithmParams(Parameters algorithmParams){
         this.algorithmParams = algorithmParams;
         //validateParameters();
     }
-    public AlgorithmParameters getAlgorithmParams() {
+    public Parameters getAlgorithmParams() {
         return algorithmParams;
     }
 }

@@ -4,11 +4,10 @@ import gui.controller.ArtworkGUIController;
 import gui.controller.RecursiveShapeController;
 import gui.model.ParametersModel;
 import gui.view.ArtworkGUIView;
-import gui.view.RecursivePanelView;
+import gui.view.panel.RecursivePanelView;
 import org.junit.Before;
 import org.junit.Test;
 import parameters.CanvasParameters;
-import parameters.CirclePackingAlgorithmParameters;
 import parameters.RecursiveShapeAlgorithmParameters;
 import parameters.ShapeParameters;
 

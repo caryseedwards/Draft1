@@ -1,12 +1,14 @@
 package parameters;
 
-public class SierpinskiShapeAlgorithmParameters extends AlgorithmParameters {
-    private int centreX, centreY, polygonSize, depth;
+public class SierpinskiShapeAlgorithmParameters extends Parameters {
+    private int centreX;
+    private int centreY;
+    private int polygonSize;
+    private int depth;
 
     // Constructor
     public SierpinskiShapeAlgorithmParameters(int centreX, int centreY, int polygonSize, int depth) {
         this.parameterType = "algorithm";
-        this.algorithmName = "SierpinskiShape";
         this.centreX = centreX;
         this.centreY = centreY;
         this.polygonSize = polygonSize;
@@ -41,22 +43,6 @@ public class SierpinskiShapeAlgorithmParameters extends AlgorithmParameters {
         } catch (IllegalArgumentException e) {
             return false;
         }
-    }
-
-    @Override
-    public SierpinskiShapeAlgorithmParameters copy() {
-        return new SierpinskiShapeAlgorithmParameters(centreX, centreY, polygonSize, depth);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
-        SierpinskiShapeAlgorithmParameters that = (SierpinskiShapeAlgorithmParameters) other;
-        return centreX == that.centreX &&
-                centreY == that.centreY &&
-                polygonSize == that.polygonSize &&
-                depth == that.depth;
     }
 
     // Getters

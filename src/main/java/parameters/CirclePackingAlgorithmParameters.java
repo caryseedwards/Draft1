@@ -1,6 +1,6 @@
 package parameters;
 
-public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
+public class CirclePackingAlgorithmParameters extends Parameters {
     public int centreX;
     public int centreY;
     public int polygonSize;
@@ -10,7 +10,6 @@ public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
     // Constructor
     public CirclePackingAlgorithmParameters(int centreX, int centreY, int polygonSize, int minRadius, int maxRadius, int maxAttempts, int animationSpeed) {
         this.parameterType = "algorithm";
-        this.algorithmName = "CirclePacking";
         this.centreX = centreX;
         this.centreY = centreY;
         this.polygonSize = polygonSize;
@@ -50,25 +49,6 @@ public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
         } catch (IllegalArgumentException e) {
             return false;
         }
-    }
-
-    @Override
-    public CirclePackingAlgorithmParameters copy() {
-        return new CirclePackingAlgorithmParameters(centreX, centreY, polygonSize, minRadius, maxRadius, maxAttempts, animationSpeed);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
-        CirclePackingAlgorithmParameters that = (CirclePackingAlgorithmParameters) other;
-        return centreX == that.centreX &&
-                centreY == that.centreY &&
-                polygonSize == that.polygonSize &&
-                minRadius == that.minRadius &&
-                maxRadius == that.maxRadius &&
-                maxAttempts == that.maxAttempts &&
-                animationSpeed == that.animationSpeed;
     }
 
     public int getCentreX() { return centreX; }

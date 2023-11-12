@@ -51,6 +51,7 @@ public class TriangleTest {
         Triangle triangle3 = new Triangle(5, 5, 2);
         validateTriangleVertices(triangle3, 5, 5, 2);
     }
+
     @Test
     public void testRandomPositionInside() {
         Point point = triangle.randomPositionInside();
@@ -68,7 +69,6 @@ public class TriangleTest {
         triangle.setPosition(20, 20);
         validateTriangleVertices(triangle, 20, 20, 15);
     }
-
 
     @Test
     public void testUpdateVerticesAfterSetScale() {

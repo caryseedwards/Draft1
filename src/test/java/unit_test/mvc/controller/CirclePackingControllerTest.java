@@ -4,7 +4,7 @@ import gui.controller.ArtworkGUIController;
 import gui.controller.CirclePackingController;
 import gui.model.ParametersModel;
 import gui.view.ArtworkGUIView;
-import gui.view.CirclePackingPanelView;
+import gui.view.panel.CirclePackingPanelView;
 import org.junit.Before;
 import org.junit.Test;
 import parameters.CanvasParameters;

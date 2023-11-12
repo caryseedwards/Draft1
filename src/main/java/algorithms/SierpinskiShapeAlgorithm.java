@@ -16,7 +16,7 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
     private ShapeParameters sierpinskiShape;
     private ArrayList<Shape> shapesToDraw = new ArrayList<>();
 
-    public SierpinskiShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, AlgorithmParameters algorithmParams) {
+    public SierpinskiShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
         initialiseAlgorithm();
         executeAlgorithm();

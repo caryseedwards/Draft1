@@ -1,7 +1,7 @@
 package gui.controller;
 
 import gui.model.ParametersModel;
-import gui.view.CirclePackingPanelView;
+import gui.view.panel.CirclePackingPanelView;
 import gui.view.utilities;
 
 import java.awt.*;

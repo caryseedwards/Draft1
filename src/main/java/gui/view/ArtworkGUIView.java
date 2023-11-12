@@ -1,5 +1,9 @@
 package gui.view;
 
+import gui.view.panel.CirclePackingPanelView;
+import gui.view.panel.RecursivePanelView;
+import gui.view.panel.SierpinskiPanelView;
+
 import java.awt.*;
 import javax.swing.*;
 

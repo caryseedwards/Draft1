@@ -1,7 +1,7 @@
 package gui.controller;
 
 import gui.model.ParametersModel;
-import gui.view.RecursivePanelView;
+import gui.view.panel.RecursivePanelView;
 import gui.view.utilities;
 
 import java.awt.*;
