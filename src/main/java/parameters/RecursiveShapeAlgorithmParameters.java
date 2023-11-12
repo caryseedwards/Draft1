@@ -1,26 +1,25 @@
 package parameters;
 
 public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
-    private static int centerX;
-    private static int centerY;
-    private static int initialSize;
-    private static int depth;
-    private static int numShapes;
+    private  int centerX;
+    private  int centerY;
+    private  int initialSize;
+    private  int depth;
+    private  int numShapes;
 
     // Constructor
     public RecursiveShapeAlgorithmParameters(int centerX, int centerY, int initialSize, int depth, int numShapes) {
         this.parameterType = "algorithm";
         this.algorithmName = "RecursiveShape";
-        RecursiveShapeAlgorithmParameters.centerX = centerX;
-        RecursiveShapeAlgorithmParameters.centerY = centerY;
-        RecursiveShapeAlgorithmParameters.initialSize = initialSize;
-        RecursiveShapeAlgorithmParameters.depth = depth;
-        RecursiveShapeAlgorithmParameters.numShapes = numShapes;
+        this.centerX = centerX;
+        this.centerY = centerY;
+        this.initialSize = initialSize;
+        this.depth = depth;
+        this.numShapes = numShapes;
     }
 
     @Override
     public void initialiseDefaultParameters() {
-        // Set default values
         centerX = 250;
         centerY = 250;
         initialSize = 100;
@@ -30,8 +29,24 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
 
     @Override
     public boolean validateParameters() {
-        // Validation logic
-        return initialSize > 0 && depth >= 0 && numShapes > 0;
+        try {
+            if (initialSize <= 0) {
+                throw new IllegalArgumentException("Initial size must be greater than 0");
+            }
+            if (depth < 0) {
+                throw new IllegalArgumentException("Depth cannot be negative");
+            }
+            if (numShapes <= 0) {
+                throw new IllegalArgumentException("Number of shapes must be greater than 0");
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.err.println("Validation Error: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.err.println("Unexpected error during validation: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
@@ -58,11 +73,11 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
     public int getNumShapes() { return numShapes; }
 
     // Setters
-    public void setCenterX(int newX) { newX = centerX; }
-    public void setCenterY(int newY) { newY = centerY; }
-    public void setInitialSize(int newInitialSize) { newInitialSize = initialSize; }
-    public void setDepth(int newDepth) { newDepth = depth; }
-    public void setNumShapes(int newNumShapes) { newNumShapes = numShapes; }
+    public void setCenterX(int newX) {centerX = newX; }
+    public void setCenterY(int newY) { centerY = newY; }
+    public void setInitialSize(int newInitialSize) { initialSize = newInitialSize; }
+    public void setDepth(int newDepth) { depth = newDepth; }
+    public void setNumShapes(int newNumShapes) { numShapes = newNumShapes; }
 
 }
 

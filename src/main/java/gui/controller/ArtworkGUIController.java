@@ -12,30 +12,30 @@ import java.io.File;
 import java.io.IOException;
 
 public class ArtworkGUIController {
-    private static ArtworkGUIView view;
-    private static ParametersModel model; // This model should be the one holding the parameters for each algorithm
+    private  ArtworkGUIView view;
+    private  ParametersModel model;
     private static RecursiveShapeController recursivePanelController;
     private static CirclePackingController circlePackingPanelController;
     private static SierpinskiController sierpinskiPanelController;
 
     public ArtworkGUIController(ArtworkGUIView view, ParametersModel model) {
-        ArtworkGUIController.view = view;
-        ArtworkGUIController.model = model;
-        initController();
+        this.view = view;
+        this.model = model;
+        initialiseControllers();
     }
 
-    private void initController() {
+    private void initialiseControllers() {
         recursivePanelController = new RecursiveShapeController(model, view.getRecursivePanelView());
         circlePackingPanelController = new CirclePackingController(model, view.getCirclePackingPanelView());
         sierpinskiPanelController = new SierpinskiController(model, view.getSierpinskiPanelView());
         view.getAlgorithmDropdown().addItemListener(this::handleAlgorithmSelection);
         view.getGenerateBtn().addActionListener(e -> generateArtwork());
         view.getSaveBtn().addActionListener(e -> saveImage());
-      //  view.getResetBtn().addActionListener(e -> resetCanvas());
+        view.getResetBtn().addActionListener(e -> resetCanvas());
     }
 
 
-    private void handleAlgorithmSelection(ItemEvent e) {
+    public void handleAlgorithmSelection(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             String selectedAlgorithm = e.getItem().toString();
             updateAlgorithmPanelVisibility(selectedAlgorithm);
@@ -43,18 +43,13 @@ public class ArtworkGUIController {
     }
 
     private void updateAlgorithmPanelVisibility(String selectedAlgorithm) {
-        // Update visibility of panels based on the selected algorithm
         view.getRecursivePanel().setVisible("Recursive Shape".equals(selectedAlgorithm));
         view.getCirclePackingPanel().setVisible("Circle Packing".equals(selectedAlgorithm));
         view.getSierpinskiPanel().setVisible("Sierpinski Shape".equals(selectedAlgorithm));
     }
-    private void generateArtwork() {
-        System.out.println("Generating Artwork with "+ view.getAlgorithmDropdown().getSelectedItem());
-        BufferedImage image = new BufferedImage(
-                view.getCanvas().getWidth(),
-                view.getCanvas().getHeight(),
-                BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = image.createGraphics();
+    public void generateArtwork() {
+       BufferedImage image = view.createBufferedImage();
+       Graphics2D g2d = image.createGraphics();
         switch (view.getAlgorithmDropdown().getSelectedItem()) {
             case "Recursive Shape":
                 recursivePanelController.hardUpdateParams();
@@ -62,7 +57,6 @@ public class ArtworkGUIController {
                         model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
                 recursive.executeAlgorithm();
                 view.getFrame().add(recursive);
-
                 break;
             case "Circle Packing":
                 circlePackingPanelController.printModelParameters();
@@ -87,12 +81,10 @@ public class ArtworkGUIController {
         }
         view.setArtworkImage(image);
         view.getFrame().setVisible(true);
-
-       // view.getCanvas().repaint();
     }
 
-    private void saveImage() {
-        BufferedImage image = new BufferedImage(view.getCanvas().getWidth(), view.getCanvas().getHeight(), BufferedImage.TYPE_INT_ARGB);
+    public void saveImage() {
+        BufferedImage image = new BufferedImage(view.getCanvasWidth(), view.getCanvasHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
         view.getCanvas().paint(g2d);
 
@@ -112,27 +104,28 @@ public class ArtworkGUIController {
         }
     }
 
-//    private void resetCanvas() {
-//        Graphics g = view.getCanvas().getGraphics(); // Again, be cautious with getGraphics
-//        if (g != null) {
-//            g.clearRect(0, 0, view.getCanvas().getWidth(), view.getCanvas().getHeight());
-//            view.getCanvas().repaint();
-//        }
-//    }
+    public void resetCanvas() {
+        Graphics g = view.getCanvas().getGraphics();
+        if (g != null) {
+            g.clearRect(0, 0, view.getCanvasWidth(), view.getCanvasHeight());
+            view.getCanvas().repaint();
+       }
+        view.setArtworkImage(view.createBufferedImage());
+    }
 
-    private void setRecursiveController(RecursiveShapeController rsc){
+    public void setRecursiveController(RecursiveShapeController rsc){
     recursivePanelController = rsc;
     }
     private RecursiveShapeController getRecursiveController(){
         return recursivePanelController;
     }
-    private void setPackingController(CirclePackingController cpc){
+    public void setPackingController(CirclePackingController cpc){
         circlePackingPanelController = cpc;
     }
     private CirclePackingController getPackingController(){
         return circlePackingPanelController;
     }
-    private void setSierpinskiPanelController(SierpinskiController sc){
+    public void setSierpinskiPanelController(SierpinskiController sc){
         sierpinskiPanelController = sc;
     }
     private SierpinskiController getSierpinskiPanelController(){

@@ -24,7 +24,27 @@ public class SierpinskiShapeAlgorithmParameters extends AlgorithmParameters {
 
     @Override
     public boolean validateParameters() {
-        return centreX > 0 && centreY > 0 && polygonSize > 0 && depth >= 0;
+        try {
+            if (centreX <= 0) {
+                throw new IllegalArgumentException("Centre X coordinate must be greater than 0");
+            }
+            if (centreY <= 0) {
+                throw new IllegalArgumentException("Centre Y coordinate must be greater than 0");
+            }
+            if (polygonSize <= 0) {
+                throw new IllegalArgumentException("Polygon size must be greater than 0");
+            }
+            if (depth < 0) {
+                throw new IllegalArgumentException("Depth cannot be negative");
+            }
+            return true; // All validations passed
+        } catch (IllegalArgumentException e) {
+            System.err.println("Validation Error: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.err.println("Unexpected error during validation: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override

@@ -22,7 +22,6 @@ public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
 
     @Override
     public void initialiseDefaultParameters() {
-        // Set default values
         centreX = 250;
         centreY = 250;
         polygonSize = 111;
@@ -34,8 +33,27 @@ public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
 
     @Override
     public boolean validateParameters() {
-        // Validation logic
-        return minRadius > 0 && maxRadius >= minRadius && maxAttempts > 0 && animationSpeed > 0;
+        try {
+            if (minRadius <= 0) {
+                throw new IllegalArgumentException("Minimum radius must be greater than 0");
+            }
+            if (maxRadius < minRadius) {
+                throw new IllegalArgumentException("Maximum radius must be greater than or equal to minimum radius");
+            }
+            if (maxAttempts <= 0) {
+                throw new IllegalArgumentException("Maximum attempts must be greater than 0");
+            }
+            if (animationSpeed <= 0) {
+                throw new IllegalArgumentException("Animation speed must be greater than 0");
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.err.println("Validation Error: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.err.println("Unexpected error during validation: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
@@ -56,7 +74,7 @@ public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
                 maxAttempts == that.maxAttempts &&
                 animationSpeed == that.animationSpeed;
     }
-    // Getters
+
     public int getCentreX() { return centreX; }
     public int getCentreY() { return centreY; }
     public int getPolygonSize() { return polygonSize; }
@@ -65,7 +83,6 @@ public class CirclePackingAlgorithmParameters extends AlgorithmParameters {
     public int getMaxAttempts() { return maxAttempts; }
     public int getAnimationSpeed() { return animationSpeed; }
 
-    // Setters
     public void setCentreX(int centreX) { this.centreX = centreX; }
     public void setCentreY(int centreY) { this.centreY = centreY; }
     public void setPolygonSize(int polygonSize) { this.polygonSize = polygonSize; }

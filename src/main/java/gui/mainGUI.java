@@ -5,12 +5,11 @@ import gui.model.ParametersModel;
 import gui.view.ArtworkGUIView;
 
 
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-public class testapp {
+public class mainGUI {
         public static void main (String[]args){
         System.out.println("Hihihihi"); // Debug message
         ParametersModel model = new ParametersModel();

@@ -20,7 +20,6 @@ public class CirclePackingController {
     }
 
     private void initController() {
-        // Initialize the controller with action listeners for all relevant view components
         view.getStartXTextField().addActionListener(e -> updateStartX());
         view.getStartYTextField().addActionListener(e -> updateStartY());
         view.getMaxAttemptsTextField().addActionListener(e -> updateMaxAttempts());
@@ -123,5 +122,4 @@ public class CirclePackingController {
         System.out.println("Min Radius: " + model.getPackingParams().getMinRadius());
         System.out.println("Max Radius: " + model.getPackingParams().getMaxRadius());
     }
-
 }

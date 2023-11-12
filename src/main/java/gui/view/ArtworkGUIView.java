@@ -33,6 +33,7 @@ public class ArtworkGUIView {
         setupLeftPanel();
         setupCanvas();
         setupBottomPanel();
+        artworkImage = createBufferedImage();
     }
     public void setupViewWindow(){
         frame.setVisible(true);
@@ -105,7 +106,10 @@ public class ArtworkGUIView {
         leftPanel.add(circlePackingPanel, gbc);
         leftPanel.add(sierpinskiPanel, gbc);
     }
-
+    public BufferedImage createBufferedImage(){
+        BufferedImage image = new BufferedImage(canvasWidth, canvasHeight,BufferedImage.TYPE_INT_ARGB);
+        return image;
+    }
     public void setupCanvas() {
         canvas = new JPanel() {
             @Override
@@ -153,7 +157,7 @@ public class ArtworkGUIView {
 
         frame.invalidate();
         frame.validate();
-       // frame.repaint();
+        frame.repaint();
     }
 
     private void resetCanvas() {
@@ -167,7 +171,6 @@ public class ArtworkGUIView {
     }
 
 
-    // Getters for UI components
     public Frame getFrame() { return frame; }
     public JPanel getCanvas() { return canvas; }
     public Choice getAlgorithmDropdown() { return algorithmDropdown; }
@@ -175,12 +178,9 @@ public class ArtworkGUIView {
     public Panel getRecursivePanel() { return recursivePanel; }
     public Panel getCirclePackingPanel() { return circlePackingPanel; }
     public Panel getSierpinskiPanel() { return sierpinskiPanel; }
-    public Button getGenerateBtn() {
-        System.out.println("get generate button");
-        return generateBtn; }
+    public Button getGenerateBtn() {return generateBtn; }
     public Button getSaveBtn() { return saveBtn; }
     public Button getResetBtn() { return resetBtn; }
-
 
     public SierpinskiPanelView getSierpinskiPanelView() {
         return sierpinskiPanelView;
@@ -193,35 +193,35 @@ public class ArtworkGUIView {
     public RecursivePanelView getRecursivePanelView() {
         return recursivePanelView;
     }
-    public static int getWindowWidth() {
+    public  int getWindowWidth() {
         return windowWidth;
     }
 
-    public static void setWindowWidth(int width) {
+    public  void setWindowWidth(int width) {
         windowWidth = width;
     }
 
-    public static int getWindowHeight() {
+    public  int getWindowHeight() {
         return windowHeight;
     }
 
-    public static void setWindowHeight(int height) {
+    public  void setWindowHeight(int height) {
         windowHeight = height;
     }
 
-    public static int getCanvasWidth() {
+    public  int getCanvasWidth() {
         return canvasWidth;
     }
 
-    public static void setCanvasWidth(int width) {
+    public  void setCanvasWidth(int width) {
         canvasWidth = width;
     }
 
-    public static int getCanvasHeight() {
+    public  int getCanvasHeight() {
         return canvasHeight;
     }
 
-    public static void setCanvasHeight(int height) {
+    public  void setCanvasHeight(int height) {
         canvasHeight = height;
     }
 }
