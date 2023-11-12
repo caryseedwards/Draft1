@@ -17,14 +17,7 @@ public class CirclePackingAlgorithm extends Algorithm {
 
     public CirclePackingAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, AlgorithmParameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
-        try {
-            validateParameters();
-            initialiseAlgorithm(); // Initialize only if parameters are valid
-        } catch (IllegalArgumentException e) {
-            // Handle the exception, could be logging or throwing it further
-            System.err.println("Parameter validation failed: " + e.getMessage());
-            throw e; // Rethrowing the exception to indicate constructor failure
-        }
+        initialiseAlgorithm();
     }
 
     @Override

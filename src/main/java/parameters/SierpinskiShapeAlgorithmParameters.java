@@ -39,10 +39,6 @@ public class SierpinskiShapeAlgorithmParameters extends AlgorithmParameters {
             }
             return true; // All validations passed
         } catch (IllegalArgumentException e) {
-            System.err.println("Validation Error: " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("Unexpected error during validation: " + e.getMessage());
             return false;
         }
     }

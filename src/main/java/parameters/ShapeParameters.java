@@ -33,22 +33,16 @@ public class ShapeParameters extends Parameters {
             if (shapeType == null || shapeType.isEmpty()) {
                 throw new IllegalArgumentException("Shape type is null or empty");
             }
-
             // Check if lineWidth is positive
             if (lineWidth <= 0.0f) {
                 throw new IllegalArgumentException("Line width must be positive");
             }
-
             // Check if both lineColour and fillColour are not null
             if (lineColour == null || fillColour == null) {
                 throw new IllegalArgumentException("Line or Fill colour is null");
             }
             return true;
         } catch (IllegalArgumentException e) {
-            System.err.println("Validation Error: " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("Unexpected error during validation: " + e.getMessage());
             return false;
         }
     }

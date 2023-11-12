@@ -23,13 +23,18 @@ public class CanvasParameters extends Parameters {
 
     @Override
     public boolean validateParameters() {
+        try {
         // Check if height and width are positive
         if (height <= 0 || width <= 0) {
+            throw new IllegalArgumentException("Canvas height and width needs to be higher than 0");
+        }
+        if (backgroundColour == null){
+            throw new IllegalArgumentException("Canvas background colour is not initialised");
+        }
+            return true;
+        } catch (IllegalArgumentException e) {
             return false;
         }
-
-        // Check if background color is not null
-        return backgroundColour != null;
     }
 
     @Override

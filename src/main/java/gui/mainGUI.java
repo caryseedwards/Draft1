@@ -19,7 +19,6 @@ public class mainGUI {
 
         // Display the main frame
         view.getFrame().setVisible(true);
-        System.out.println("end reached"); // Debug message
                  view.getFrame().addWindowListener(new WindowAdapter() {
                         public void windowClosing(WindowEvent e) {
                                 view.getFrame().dispose();

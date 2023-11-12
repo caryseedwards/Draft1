@@ -41,10 +41,6 @@ public class RecursiveShapeAlgorithmParameters extends AlgorithmParameters {
             }
             return true;
         } catch (IllegalArgumentException e) {
-            System.err.println("Validation Error: " + e.getMessage());
-            return false;
-        } catch (Exception e) {
-            System.err.println("Unexpected error during validation: " + e.getMessage());
             return false;
         }
     }
