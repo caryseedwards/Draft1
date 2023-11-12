@@ -86,7 +86,7 @@ public class ArtworkGUIView {
         frame.add(leftPanel, BorderLayout.WEST);
     }
 
-    private void setupAlgorithmDropdown() {
+    public void setupAlgorithmDropdown() {
         algorithmDropdown = new Choice();
         algorithmDropdown.add("-");
         algorithmDropdown.add("Circle Packing");
@@ -97,7 +97,7 @@ public class ArtworkGUIView {
         algorithmDropdown.addItemListener(e -> updateAlgorithmPanelVisibility());
     }
 
-    private void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
+    public void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
         recursivePanel.setVisible(false);
         circlePackingPanel.setVisible(false);
         sierpinskiPanel.setVisible(false);
@@ -145,7 +145,7 @@ public class ArtworkGUIView {
         frame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private void updateAlgorithmPanelVisibility() {
+    public void updateAlgorithmPanelVisibility() {
         String selected = algorithmDropdown.getSelectedItem();
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
@@ -160,7 +160,7 @@ public class ArtworkGUIView {
         frame.repaint();
     }
 
-    private void resetCanvas() {
+    public void resetCanvas() {
         Graphics g = canvas.getGraphics();
         if (g != null) {
             g.setColor(Color.white);

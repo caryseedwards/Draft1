@@ -40,7 +40,6 @@ public class CirclePackingPanelView {
         gbc.insets = new Insets(2, 5, 2, 5);
 
         int gridy = 0;
-
         startXTextField = new TextField(String.valueOf(canvasWidth/2),5);
         startYTextField = new TextField(String.valueOf(canvasHeight/2),5);
         maxAttemptsTextField = new TextField("100", 5);
@@ -81,6 +80,7 @@ public class CirclePackingPanelView {
         addLabelAndField(gbc, "Minimum Circle Radius:", minRadiusCircleTextField, gridy++);
         addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy++);
         gbc.weighty = 1;
+
         configureColorPicker(boundaryFillColourButton);
         configureColorPicker(boundaryLineColourButton);
         configureColorPicker(packingFillColourButton);

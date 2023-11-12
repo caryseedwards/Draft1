@@ -12,11 +12,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class ArtworkGUIController {
-    private  ArtworkGUIView view;
-    private  ParametersModel model;
-    private static RecursiveShapeController recursivePanelController;
-    private static CirclePackingController circlePackingPanelController;
-    private static SierpinskiController sierpinskiPanelController;
+    private final ArtworkGUIView view;
+    private final ParametersModel model;
+    private  RecursiveShapeController recursivePanelController;
+    private  CirclePackingController circlePackingPanelController;
+    private  SierpinskiController sierpinskiPanelController;
 
     public ArtworkGUIController(ArtworkGUIView view, ParametersModel model) {
         this.view = view;
@@ -42,7 +42,7 @@ public class ArtworkGUIController {
         }
     }
 
-    private void updateAlgorithmPanelVisibility(String selectedAlgorithm) {
+    public void updateAlgorithmPanelVisibility(String selectedAlgorithm) {
         view.getRecursivePanel().setVisible("Recursive Shape".equals(selectedAlgorithm));
         view.getCirclePackingPanel().setVisible("Circle Packing".equals(selectedAlgorithm));
         view.getSierpinskiPanel().setVisible("Sierpinski Shape".equals(selectedAlgorithm));
@@ -59,18 +59,14 @@ public class ArtworkGUIController {
                 view.getFrame().add(recursive);
                 break;
             case "Circle Packing":
-                circlePackingPanelController.printModelParameters();
                 circlePackingPanelController.hardUpdateParams();
-                circlePackingPanelController.printModelParameters();
                 CirclePackingAlgorithm packing = new CirclePackingAlgorithm(model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
                 packing.executeAlgorithm();
                 packing.drawPattern(image.getGraphics());
                 view.getFrame().add(packing);
                 break;
             case "Sierpinski Shape":
-                sierpinskiPanelController.printModelParameters();
                 sierpinskiPanelController.hardUpdateParams();
-                sierpinskiPanelController.printModelParameters();
                 SierpinskiShapeAlgorithm sierpinski = new SierpinskiShapeAlgorithm(model.getCanvasParams(), model.getShapesParams(),model.getSierpinskiParams());
                 sierpinski.executeAlgorithm();
                 sierpinski.drawPattern(image.getGraphics());
@@ -116,19 +112,19 @@ public class ArtworkGUIController {
     public void setRecursiveController(RecursiveShapeController rsc){
     recursivePanelController = rsc;
     }
-    private RecursiveShapeController getRecursiveController(){
+    public RecursiveShapeController getRecursiveController(){
         return recursivePanelController;
     }
     public void setPackingController(CirclePackingController cpc){
         circlePackingPanelController = cpc;
     }
-    private CirclePackingController getPackingController(){
+    public CirclePackingController getPackingController(){
         return circlePackingPanelController;
     }
     public void setSierpinskiPanelController(SierpinskiController sc){
         sierpinskiPanelController = sc;
     }
-    private SierpinskiController getSierpinskiPanelController(){
+    public SierpinskiController getSierpinskiPanelController(){
         return sierpinskiPanelController;
     }
 }

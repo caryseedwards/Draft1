@@ -4,7 +4,6 @@ import gui.model.ParametersModel;
 import gui.view.CirclePackingPanelView;
 
 import java.awt.*;
-import javax.swing.JColorChooser;
 
 public class CirclePackingController {
     private ParametersModel model;
@@ -24,13 +23,13 @@ public class CirclePackingController {
         view.getStartYTextField().addActionListener(e -> updateStartY());
         view.getMaxAttemptsTextField().addActionListener(e -> updateMaxAttempts());
         view.getBoundaryShapeType().addItemListener(e -> updateBoundaryShapeType());
-        view.getBoundaryFillColourButton().addActionListener(e -> updateBoundaryFillColor());
-        view.getBoundaryLineColourButton().addActionListener(e -> updateBoundaryLineColor());
+        view.getBoundaryFillColourButton().addActionListener(e -> updateBoundaryFillColour());
+        view.getBoundaryLineColourButton().addActionListener(e -> updateBoundaryLineColour());
         view.getBoundaryLineWidthTextField().addActionListener(e -> updateBoundaryLineWidth());
         view.getBoundaryRadiusTextField().addActionListener(e -> updateBoundaryRadius());
         model.getShapesParams().get(1).setShapeType("circle");
-        view.getPackingFillColourButton().addActionListener(e -> updatePackingFillColor());
-        view.getPackingLineColourButton().addActionListener(e -> updatePackingLineColor());
+        view.getPackingFillColourButton().addActionListener(e -> updatePackingFillColour());
+        view.getPackingLineColourButton().addActionListener(e -> updatePackingLineColour());
         view.getPackingLineWidthTextField().addActionListener(e -> updatePackingLineWidth());
         view.getMinRadiusCircleTextField().addActionListener(e -> updateMinRadius());
         view.getMaxRadiusCircleTextField().addActionListener(e -> updateMaxRadius());
@@ -41,57 +40,57 @@ public class CirclePackingController {
         updateStartY();
         updateMaxAttempts();
         updateBoundaryShapeType();
-        updateBoundaryFillColor();
-        updateBoundaryLineColor();
+        updateBoundaryFillColour();
+        updateBoundaryLineColour();
         updateBoundaryLineWidth();
         updateBoundaryRadius();
         updatePackingShapeType();
-        updatePackingFillColor();
-        updatePackingLineColor();
+        updatePackingFillColour();
+        updatePackingLineColour();
         updatePackingLineWidth();
         updateMinRadius();
         updateMaxRadius();
     }
-    private void updateStartX() {
+    public void updateStartX() {
         model.getPackingParams().setCentreX(Integer.parseInt(view.getStartXTextField().getText()));
     }
 
-    private void updateStartY() {
+    public void updateStartY() {
         model.getPackingParams().setCentreY(Integer.parseInt(view.getStartYTextField().getText()));
     }
 
-    private void updateMaxAttempts() {
+    public void updateMaxAttempts() {
         model.getPackingParams().setMaxAttempts(Integer.parseInt(view.getMaxAttemptsTextField().getText()));
     }
 
-    private void updateBoundaryShapeType() {
+    public void updateBoundaryShapeType() {
         model.getShapesParams().get(0).setShapeType(view.getBoundaryShapeType().getSelectedItem().toLowerCase());
     }
 
-    private void updateBoundaryFillColor() {
+    public void updateBoundaryFillColour() {
         model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getBoundaryFillColourButton()));
     }
 
-    private void updateBoundaryLineColor() {
+    public void updateBoundaryLineColour() {
         model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getBoundaryLineColourButton()));
     }
 
-    private void updateBoundaryLineWidth() {
+    public void updateBoundaryLineWidth() {
         model.getShapesParams().get(0).setLineWidth(Integer.parseInt(view.getBoundaryLineWidthTextField().getText()));
     }
 
-    private void updateBoundaryRadius() {
+    public void updateBoundaryRadius() {
         model.getPackingParams().setPolygonSize(Integer.parseInt(view.getBoundaryRadiusTextField().getText()));
     }
 
     public void updatePackingShapeType(){
         model.getShapesParams().get(1).setShapeType("circle");
     }
-    private void updatePackingFillColor() {
+    private void updatePackingFillColour() {
         model.getShapesParams().get(1).setFillColour(view.getColorFromButton(view.getPackingFillColourButton()));
     }
 
-    private void updatePackingLineColor() {
+    private void updatePackingLineColour() {
         model.getShapesParams().get(1).setLineColour(view.getColorFromButton(view.getPackingLineColourButton()));
     }
 
@@ -112,12 +111,12 @@ public class CirclePackingController {
         System.out.println("Start Y: " + model.getPackingParams().getCentreY());
         System.out.println("Max Attempts: " + model.getPackingParams().getMaxAttempts());
         System.out.println("Boundary Shape Type: " + model.getShapesParams().get(0).getShapeType());
-        System.out.println("Boundary Fill Color: " + model.getShapesParams().get(0).getFillColour());
-        System.out.println("Boundary Line Color: " + model.getShapesParams().get(0).getLineColour());
+        System.out.println("Boundary Fill Colour: " + model.getShapesParams().get(0).getFillColour());
+        System.out.println("Boundary Line Colour: " + model.getShapesParams().get(0).getLineColour());
         System.out.println("Boundary Line Width: " + model.getShapesParams().get(0).getLineWidth());
         System.out.println("Boundary Radius: " + model.getPackingParams().getPolygonSize());
-        System.out.println("Packing Fill Color: " + model.getShapesParams().get(1).getFillColour());
-        System.out.println("Packing Line Color: " + model.getShapesParams().get(1).getLineColour());
+        System.out.println("Packing Fill Colour: " + model.getShapesParams().get(1).getFillColour());
+        System.out.println("Packing Line Colour: " + model.getShapesParams().get(1).getLineColour());
         System.out.println("Packing Line Width: " + model.getShapesParams().get(1).getLineWidth());
         System.out.println("Min Radius: " + model.getPackingParams().getMinRadius());
         System.out.println("Max Radius: " + model.getPackingParams().getMaxRadius());
