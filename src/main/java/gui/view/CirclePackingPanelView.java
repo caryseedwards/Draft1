@@ -1,5 +1,7 @@
 package gui.view;
 
+import parameters.CirclePackingAlgorithmParameters;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -39,19 +41,19 @@ public class CirclePackingPanelView {
 
         int gridy = 0;
 
-        startXTextField = new TextField(5);
-        startYTextField = new TextField(5);
-        maxAttemptsTextField = new TextField("500", 5);
+        startXTextField = new TextField(String.valueOf(canvasWidth/2),5);
+        startYTextField = new TextField(String.valueOf(canvasHeight/2),5);
+        maxAttemptsTextField = new TextField("100", 5);
         boundaryShapeType = new Choice();
         boundaryFillColourButton = new Button("Choose Colour");
         boundaryLineColourButton = new Button("Choose Colour");
         boundaryLineWidthTextField = new TextField("1", 5);
-        boundaryRadiusTextField = new TextField("250", 5);
+        boundaryRadiusTextField = new TextField("100", 5);
         packingFillColourButton = new Button("Choose Colour");
         packingLineColourButton = new Button("Choose Colour");
         packingLineWidthTextField = new TextField("1", 5);
-        minRadiusCircleTextField = new TextField("6", 5);
-        maxRadiusCircleTextField = new TextField("3", 5);
+        minRadiusCircleTextField = new TextField("5", 5);
+        maxRadiusCircleTextField = new TextField("50", 5);
 
         addLabelAndField(gbc, "Initial 'x' co-ordinate:", startXTextField, gridy++);
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
@@ -79,6 +81,10 @@ public class CirclePackingPanelView {
         addLabelAndField(gbc, "Minimum Circle Radius:", minRadiusCircleTextField, gridy++);
         addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy++);
         gbc.weighty = 1;
+        configureColorPicker(boundaryFillColourButton);
+        configureColorPicker(boundaryLineColourButton);
+        configureColorPicker(packingFillColourButton);
+        configureColorPicker(packingLineColourButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, Component component, int gridy) {
@@ -181,8 +187,18 @@ public class CirclePackingPanelView {
         return circlePackingPanel;
     }
 
-    // Method to add action listeners to buttons
-    public void addColorChooserActionListener(Button button, ActionListener actionListener) {
-        button.addActionListener(actionListener);
+    // Method to open color picker and update button background
+    public void configureColorPicker(Button colorButton) {
+        colorButton.addActionListener(e -> {
+            Color initialColor = colorButton.getBackground();
+            Color newColor = JColorChooser.showDialog(null, "Choose Color", initialColor);
+            if (newColor != null) {
+                colorButton.setBackground(newColor);
+            }
+        });
+    }
+
+    public Color getColorFromButton(Button button) {
+        return button.getBackground();
     }
 }

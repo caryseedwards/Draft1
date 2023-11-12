@@ -14,6 +14,8 @@ public class CirclePackingController {
         this.model = model;
         model.getCanvasParams().setWidth(view.getCanvasWidth());
         model.getCanvasParams().setHeight(view.getCanvasHeight());
+        model.getCanvasParams().setBackgroundColour(Color.WHITE);
+        model.getShapesParams().get(1).setShapeType("circle");
         initController();
     }
 
@@ -27,6 +29,7 @@ public class CirclePackingController {
         view.getBoundaryLineColourButton().addActionListener(e -> updateBoundaryLineColor());
         view.getBoundaryLineWidthTextField().addActionListener(e -> updateBoundaryLineWidth());
         view.getBoundaryRadiusTextField().addActionListener(e -> updateBoundaryRadius());
+        model.getShapesParams().get(1).setShapeType("circle");
         view.getPackingFillColourButton().addActionListener(e -> updatePackingFillColor());
         view.getPackingLineColourButton().addActionListener(e -> updatePackingLineColor());
         view.getPackingLineWidthTextField().addActionListener(e -> updatePackingLineWidth());
@@ -34,7 +37,22 @@ public class CirclePackingController {
         view.getMaxRadiusCircleTextField().addActionListener(e -> updateMaxRadius());
         updatePackingShapeType();
     }
-
+    public void hardUpdateParams() {
+        updateStartX();
+        updateStartY();
+        updateMaxAttempts();
+        updateBoundaryShapeType();
+        updateBoundaryFillColor();
+        updateBoundaryLineColor();
+        updateBoundaryLineWidth();
+        updateBoundaryRadius();
+        updatePackingShapeType();
+        updatePackingFillColor();
+        updatePackingLineColor();
+        updatePackingLineWidth();
+        updateMinRadius();
+        updateMaxRadius();
+    }
     private void updateStartX() {
         model.getPackingParams().setCentreX(Integer.parseInt(view.getStartXTextField().getText()));
     }
@@ -52,17 +70,11 @@ public class CirclePackingController {
     }
 
     private void updateBoundaryFillColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Boundary Shape Fill Colour", model.getShapesParams().get(0).getFillColour());
-        if (color != null) {
-            model.getShapesParams().get(0).setFillColour(color);
-        }
+        model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getBoundaryFillColourButton()));
     }
 
     private void updateBoundaryLineColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Large Shape Line Color", model.getShapesParams().get(0).getLineColour());
-        if (color != null) {
-            model.getShapesParams().get(0).setLineColour(color);
-        }
+        model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getBoundaryLineColourButton()));
     }
 
     private void updateBoundaryLineWidth() {
@@ -77,17 +89,11 @@ public class CirclePackingController {
         model.getShapesParams().get(1).setShapeType("circle");
     }
     private void updatePackingFillColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Packing Shape Fill Color", model.getShapesParams().get(1).getFillColour());
-        if (color != null) {
-            model.getShapesParams().get(1).setFillColour(color);
-        }
+        model.getShapesParams().get(1).setFillColour(view.getColorFromButton(view.getPackingFillColourButton()));
     }
 
     private void updatePackingLineColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Packing Shape Line Color", model.getShapesParams().get(1).getLineColour());
-        if (color != null) {
-            model.getShapesParams().get(1).setLineColour(color);
-        }
+        model.getShapesParams().get(1).setLineColour(view.getColorFromButton(view.getPackingLineColourButton()));
     }
 
     private void updatePackingLineWidth() {
@@ -101,4 +107,21 @@ public class CirclePackingController {
     private void updateMaxRadius() {
         model.getPackingParams().setMaxRadius(Integer.parseInt(view.getMaxRadiusCircleTextField().getText()));
     }
+    public void printModelParameters() {
+        System.out.println("Circle Packing Parameters:");
+        System.out.println("Start X: " + model.getPackingParams().getCentreX());
+        System.out.println("Start Y: " + model.getPackingParams().getCentreY());
+        System.out.println("Max Attempts: " + model.getPackingParams().getMaxAttempts());
+        System.out.println("Boundary Shape Type: " + model.getShapesParams().get(0).getShapeType());
+        System.out.println("Boundary Fill Color: " + model.getShapesParams().get(0).getFillColour());
+        System.out.println("Boundary Line Color: " + model.getShapesParams().get(0).getLineColour());
+        System.out.println("Boundary Line Width: " + model.getShapesParams().get(0).getLineWidth());
+        System.out.println("Boundary Radius: " + model.getPackingParams().getPolygonSize());
+        System.out.println("Packing Fill Color: " + model.getShapesParams().get(1).getFillColour());
+        System.out.println("Packing Line Color: " + model.getShapesParams().get(1).getLineColour());
+        System.out.println("Packing Line Width: " + model.getShapesParams().get(1).getLineWidth());
+        System.out.println("Min Radius: " + model.getPackingParams().getMinRadius());
+        System.out.println("Max Radius: " + model.getPackingParams().getMaxRadius());
+    }
+
 }

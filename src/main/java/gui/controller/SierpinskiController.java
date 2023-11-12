@@ -3,6 +3,8 @@ package gui.controller;
 import gui.model.ParametersModel;
 import gui.view.SierpinskiPanelView;
 
+import java.awt.*;
+
 public class SierpinskiController {
     private final ParametersModel model;
     private final SierpinskiPanelView view;
@@ -24,6 +26,16 @@ public class SierpinskiController {
         view.getFillColourButton().addActionListener(e -> updateFillColour());
         view.getLineColourButton().addActionListener(e -> updateLineColour());
         view.getLineWidthTextField().addActionListener(e -> updateLineWidth());
+    }
+    public void hardUpdateParams() {
+        updateStartX();
+        updateStartY();
+        updateSize();
+        updateDepth();
+        updateShapeType();
+        updateFillColour();
+        updateLineColour();
+        updateLineWidth();
     }
 
     private void updateStartX() {
@@ -47,11 +59,11 @@ public class SierpinskiController {
     }
 
     private void updateFillColour() {
-        model.getShapesParams().get(0).setFillColour(view.getFillColourButton().getBackground());
+        model.getShapesParams().get(0).setFillColour(view.getColorFromButton(view.getFillColourButton()));
     }
 
     private void updateLineColour() {
-        model.getShapesParams().get(0).setLineColour(view.getLineColourButton().getBackground());
+        model.getShapesParams().get(0).setLineColour(view.getColorFromButton(view.getLineColourButton()));
     }
 
     private void updateLineWidth() {
@@ -65,5 +77,17 @@ public class SierpinskiController {
             return 0; // Default value or error handling
         }
     }
+    public void printModelParameters() {
+        System.out.println("Sierpinski Shape Parameters:");
+        System.out.println("Start X: " + model.getSierpinskiParams().getCentreX());
+        System.out.println("Start Y: " + model.getSierpinskiParams().getCentreY());
+        System.out.println("Size: " + model.getSierpinskiParams().getPolygonSize());
+        System.out.println("Depth: " + model.getSierpinskiParams().getDepth());
+        System.out.println("Shape Type: " + model.getShapesParams().get(0).getShapeType());
+        System.out.println("Fill Color: " + model.getShapesParams().get(0).getFillColour());
+        System.out.println("Line Color: " + model.getShapesParams().get(0).getLineColour());
+        System.out.println("Line Width: " + model.getShapesParams().get(0).getLineWidth());
+    }
+
 }
 

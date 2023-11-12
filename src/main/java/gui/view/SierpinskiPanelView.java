@@ -1,6 +1,9 @@
 package gui.view;
 
+import parameters.*;
+
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.JColorChooser;
 
 public class SierpinskiPanelView {
@@ -18,7 +21,7 @@ public class SierpinskiPanelView {
 
     public SierpinskiPanelView(int canvasWidth, int canvasHeight) {
         this.startXTextField = new TextField(String.valueOf(canvasWidth/2), 5);
-        this.startYTextField= new TextField(String.valueOf(canvasWidth/2), 5);
+        this.startYTextField= new TextField(String.valueOf(canvasHeight/2), 5);
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         sierpinskiPanel = new Panel(new GridBagLayout());
@@ -26,10 +29,10 @@ public class SierpinskiPanelView {
     }
 
     private void setupPanel() {
-        startXTextField = new TextField( 5);
-        startYTextField = new TextField(5);
-        sizeTextField = new TextField("300", 5);
-        depthTextField = new TextField("5", 5);
+        startXTextField = new TextField(String.valueOf(canvasWidth/2), 5);
+        startYTextField = new TextField(String.valueOf(canvasWidth/2),5);
+        sizeTextField = new TextField("100", 5);
+        depthTextField = new TextField("4", 5);
         shapeTypeChoice = new Choice();
         fillColourButton = new Button("Choose Colour");
         lineColourButton = new Button("Choose Colour");
@@ -48,6 +51,9 @@ public class SierpinskiPanelView {
         addColorChooserButton(gbc, "Fill Colour:", fillColourButton, gridy++);
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
         addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy++);
+
+        configureColorPicker(fillColourButton);
+        configureColorPicker(lineColourButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, Component component, int gridy) {
@@ -99,5 +105,19 @@ public class SierpinskiPanelView {
     public Button getLineColourButton() { return lineColourButton; }
     public TextField getLineWidthTextField() { return lineWidthTextField; }
     public Panel getPanel() { return sierpinskiPanel; }
+    // Method to open color picker and update button background
+    public void configureColorPicker(Button colorButton) {
+        colorButton.addActionListener(e -> {
+            Color initialColor = colorButton.getBackground();
+            Color newColor = JColorChooser.showDialog(null, "Choose Color", initialColor);
+            if (newColor != null) {
+                colorButton.setBackground(newColor);
+            }
+        });
+    }
+
+    public Color getColorFromButton(Button button) {
+        return button.getBackground();
+    }
 }
 

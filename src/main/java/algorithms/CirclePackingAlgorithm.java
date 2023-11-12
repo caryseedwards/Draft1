@@ -51,7 +51,7 @@ public class CirclePackingAlgorithm extends Algorithm {
         return boundaryShape;
     }
 
-    public void addCircle() {
+    public void addCircles() {
         for (int i = 0; i < params.maxAttempts; i++) {
             Point randomPosition = boundaryShape.randomPositionInside();
             int randomRadius = params.minRadius + (int) (Math.random() * (params.maxRadius - params.minRadius));
@@ -73,7 +73,7 @@ public class CirclePackingAlgorithm extends Algorithm {
 
     @Override
     public void executeAlgorithm() {
-        addCircle();
+        addCircles();
     }
 
     @Override
@@ -105,7 +105,7 @@ public class CirclePackingAlgorithm extends Algorithm {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         Timer timer = new Timer(packing.params.animationSpeed, e -> {
-            packing.addCircle();
+            packing.addCircles();
             packing.repaint();
         });
         timer.start();

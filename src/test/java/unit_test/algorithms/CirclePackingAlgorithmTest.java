@@ -67,7 +67,7 @@ public class CirclePackingAlgorithmTest {
     @Test
     public void testAddCircle() {
         CirclePackingAlgorithm packing = createTestInstance();
-        packing.addCircle();
+        packing.addCircles();
         assertFalse("Circles list should not be empty after adding circles", packing.getCircles().isEmpty());
         assertTrue("All circles should be inside the boundary",
                 packing.getCircles().stream().allMatch(circle -> packing.getBoundaryShape().isInside(circle)));
@@ -76,7 +76,7 @@ public class CirclePackingAlgorithmTest {
     public void testCircleCountAfterMultipleAdditions() {
         CirclePackingAlgorithm packing = createTestInstance();
         int initialCount = packing.getCircles().size();
-        packing.addCircle(); // Call multiple times as needed
+        packing.addCircles(); // Call multiple times as needed
         assertTrue(packing.getCircles().size() > initialCount);
     }
     @Test
@@ -84,7 +84,7 @@ public class CirclePackingAlgorithmTest {
         CirclePackingAlgorithm packing = createTestInstance();
         packing.getAlgorithmParameters().setMinRadius(10);
         packing.getAlgorithmParameters().setMaxRadius(20);
-        packing.addCircle();
+        packing.addCircles();
         for (Circle circle : packing.getCircles()) {
             assertTrue(circle.getRadius() >= 10 && circle.getRadius() <= 20);
         }
@@ -93,7 +93,7 @@ public class CirclePackingAlgorithmTest {
     @Test
     public void testNoOverlappingCircles() {
         CirclePackingAlgorithm packing = createTestInstance();
-        packing.addCircle();
+        packing.addCircles();
         ArrayList<Circle> circles = packing.getCircles();
         for (int i = 0; i < circles.size(); i++) {
             for (int j = i + 1; j < circles.size(); j++) {
@@ -105,7 +105,7 @@ public class CirclePackingAlgorithmTest {
     @Test
     public void testCircleRadiusConstraints() {
         CirclePackingAlgorithm packing = createTestInstance();
-        packing.addCircle();
+        packing.addCircles();
         for (Circle circle : packing.getCircles()) {
             double radius = circle.getRadius();
             assertTrue("Circle radius should be within constraints",
@@ -126,7 +126,7 @@ public class CirclePackingAlgorithmTest {
     @Test
     public void testCirclePlacement() {
         CirclePackingAlgorithm packing = createTestInstance();
-        packing.addCircle();
+        packing.addCircles();
         Circle lastAddedCircle = packing.getCircles().get(packing.getCircles().size() - 1);
         assertTrue(packing.getBoundaryShape().isInside(lastAddedCircle));
     }

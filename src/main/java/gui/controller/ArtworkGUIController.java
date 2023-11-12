@@ -49,44 +49,45 @@ public class ArtworkGUIController {
         view.getSierpinskiPanel().setVisible("Sierpinski Shape".equals(selectedAlgorithm));
     }
     private void generateArtwork() {
-        System.out.println("Generating Artwork"); // Debug message
-        String selectedAlgorithm = view.getAlgorithmDropdown().getSelectedItem();
-        System.out.println("Selected " +selectedAlgorithm +" Shape Artwork"); // Debug message
-        switch (selectedAlgorithm) {
+        System.out.println("Generating Artwork with "+ view.getAlgorithmDropdown().getSelectedItem());
+        BufferedImage image = new BufferedImage(
+                view.getCanvas().getWidth(),
+                view.getCanvas().getHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        switch (view.getAlgorithmDropdown().getSelectedItem()) {
             case "Recursive Shape":
-                // Assuming RecursiveShapeAlgorithm correctly draws the pattern on a BufferedImage
-                recursivePanelController.printModelParameters();
                 recursivePanelController.hardUpdateParams();
-                recursivePanelController.printModelParameters();
-                RecursiveShapeAlgorithm recursiveShape = new RecursiveShapeAlgorithm(
+                RecursiveShapeAlgorithm recursive = new RecursiveShapeAlgorithm(
                         model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
+                recursive.executeAlgorithm();
+                view.getFrame().add(recursive);
 
-                recursiveShape.executeAlgorithm();
-                BufferedImage image = new BufferedImage(
-                        view.getCanvas().getWidth(),
-                        view.getCanvas().getHeight(),
-                        BufferedImage.TYPE_INT_ARGB);
-
-                Graphics2D g2d = image.createGraphics();
-                System.out.println("Graphics2d initialised Recursive Shape Artwork"); // Debug message
-
-                view.getFrame().add(recursiveShape);
-                view.getFrame().setVisible(true);
-                System.out.println("Add  Recursive Shape Pattern to Frame"); // Debug message
-                //g2d.dispose();
-                //System.out.println("Dispose? Recursive Shape Artwork"); // Debug message
-                view.setArtworkImage(image);
-                System.out.println("View Image Recursive Shape Artwork"); // Debug message
                 break;
             case "Circle Packing":
-                // Similar logic for CirclePackingAlgorithm
+                circlePackingPanelController.printModelParameters();
+                circlePackingPanelController.hardUpdateParams();
+                circlePackingPanelController.printModelParameters();
+                CirclePackingAlgorithm packing = new CirclePackingAlgorithm(model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
+                packing.executeAlgorithm();
+                packing.drawPattern(image.getGraphics());
+                view.getFrame().add(packing);
                 break;
             case "Sierpinski Shape":
-                // Similar logic for SierpinskiShapeAlgorithm
+                sierpinskiPanelController.printModelParameters();
+                sierpinskiPanelController.hardUpdateParams();
+                sierpinskiPanelController.printModelParameters();
+                SierpinskiShapeAlgorithm sierpinski = new SierpinskiShapeAlgorithm(model.getCanvasParams(), model.getShapesParams(),model.getSierpinskiParams());
+                sierpinski.executeAlgorithm();
+                sierpinski.drawPattern(image.getGraphics());
+                view.getFrame().add(sierpinski);
                 break;
             default:
                 view.getErrorLabel().setText("Please select a valid algorithm.");
         }
+        view.setArtworkImage(image);
+        view.getFrame().setVisible(true);
+
        // view.getCanvas().repaint();
     }
 

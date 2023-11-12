@@ -97,10 +97,6 @@ public class ArtworkGUIView {
     }
 
     private void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
-//        recursivePanel = recursivePanelView.getPanel();
-//        circlePackingPanel = circlePackingPanelView.getPanel();
-//        sierpinskiPanel = sierpinskiPanelView.getPanel();
-
         recursivePanel.setVisible(false);
         circlePackingPanel.setVisible(false);
         sierpinskiPanel.setVisible(false);
@@ -128,7 +124,9 @@ public class ArtworkGUIView {
     public void setArtworkImage(BufferedImage image) {
         artworkImage = image;
     }
-
+    public BufferedImage getArtworkImage() {
+        return artworkImage;
+    }
     public void setupBottomPanel() {
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setPreferredSize(new Dimension(windowWidth, 50));
