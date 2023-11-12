@@ -37,6 +37,7 @@ public class ArtworkGUI {
         frame = new Frame("Generative Art API");
         frame.setLayout(new BorderLayout());
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
     }
 
     public static void setupLeftPanel() {

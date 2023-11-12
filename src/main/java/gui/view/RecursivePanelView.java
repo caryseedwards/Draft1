@@ -1,9 +1,13 @@
 package gui.view;
 
+import gui.model.ParametersModel;
+import parameters.*;
+
 import java.awt.*;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class RecursivePanelView {
@@ -70,6 +74,12 @@ public class RecursivePanelView {
         addColorChooserButton(gbc, "Small Shape Fill Color:", smallShapeColorButton, gridy++);
         addColorChooserButton(gbc, "Small Shape Line Color:", smallLineColorButton, gridy++);
         addLabelAndField(gbc, "Small Shape Line Width:", smallLineWidthTextField, gridy);
+
+        // Configure color pickers
+        configureColorPicker(largeShapeColorButton);
+        configureColorPicker(largeLineColorButton);
+        configureColorPicker(smallShapeColorButton);
+        configureColorPicker(smallLineColorButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, TextField textField, int gridy) {
@@ -104,9 +114,21 @@ public class RecursivePanelView {
         recursivePanel.add(button, gbc);
     }
 
-    public void addColorChooserActionListener(Button button, ActionListener actionListener) {
-        button.addActionListener(actionListener);
+    // Method to open color picker and update button background
+    public void configureColorPicker(Button colorButton) {
+        colorButton.addActionListener(e -> {
+            Color initialColor = colorButton.getBackground();
+            Color newColor = JColorChooser.showDialog(null, "Choose Color", initialColor);
+            if (newColor != null) {
+                colorButton.setBackground(newColor);
+            }
+        });
     }
+
+    public Color getColorFromButton(Button button) {
+        return button.getBackground();
+    }
+
     public int getCanvasWidth(){return canvasWidth;}
     public int getCanvasHeight(){return canvasHeight;}
     // Getters for each UI component

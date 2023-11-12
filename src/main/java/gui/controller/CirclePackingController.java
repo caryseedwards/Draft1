@@ -32,6 +32,7 @@ public class CirclePackingController {
         view.getPackingLineWidthTextField().addActionListener(e -> updatePackingLineWidth());
         view.getMinRadiusCircleTextField().addActionListener(e -> updateMinRadius());
         view.getMaxRadiusCircleTextField().addActionListener(e -> updateMaxRadius());
+        updatePackingShapeType();
     }
 
     private void updateStartX() {
@@ -47,7 +48,7 @@ public class CirclePackingController {
     }
 
     private void updateBoundaryShapeType() {
-        model.getShapesParams().get(0).setShapeType(view.getBoundaryShapeType().getSelectedItem());
+        model.getShapesParams().get(0).setShapeType(view.getBoundaryShapeType().getSelectedItem().toLowerCase());
     }
 
     private void updateBoundaryFillColor() {
@@ -72,6 +73,9 @@ public class CirclePackingController {
         model.getPackingParams().setPolygonSize(Integer.parseInt(view.getBoundaryRadiusTextField().getText()));
     }
 
+    public void updatePackingShapeType(){
+        model.getShapesParams().get(1).setShapeType("circle");
+    }
     private void updatePackingFillColor() {
         Color color = JColorChooser.showDialog(null, "Choose Packing Shape Fill Color", model.getShapesParams().get(1).getFillColour());
         if (color != null) {

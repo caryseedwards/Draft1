@@ -43,7 +43,7 @@ public class SierpinskiController {
     }
 
     private void updateShapeType() {
-        model.getShapesParams().get(0).setShapeType(view.getShapeTypeChoice().getSelectedItem());
+        model.getShapesParams().get(0).setShapeType(view.getShapeTypeChoice().getSelectedItem().toLowerCase());
     }
 
     private void updateFillColour() {

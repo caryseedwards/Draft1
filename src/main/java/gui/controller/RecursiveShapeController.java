@@ -13,11 +13,12 @@ import javax.swing.*;
 
 public class RecursiveShapeController {
     ParametersModel model;
-    private RecursivePanelView view;
+    private final RecursivePanelView view;
 
     public RecursiveShapeController(ParametersModel model, RecursivePanelView view) {
         this.view = view;
         this.model = model;
+        hardUpdateParams();
         initController();
     }
 
@@ -75,21 +76,17 @@ public class RecursiveShapeController {
     }
 
     private void updateLargeShapeType() {
-        model.getShapesParams().get(0).setShapeType(view.getLargeShapeType().getSelectedItem());
+        model.getShapesParams().get(0).setShapeType(view.getLargeShapeType().getSelectedItem().toLowerCase());
     }
 
     private void updateLargeShapeFillColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Large Shape Fill Color", model.getShapesParams().get(0).getFillColour());
-        if (color != null) {
-            model.getShapesParams().get(0).setFillColour(color);
-        }
+        Color color = view.getColorFromButton(view.getLargeShapeColorButton());
+        model.getShapesParams().get(0).setFillColour(color);
     }
 
     private void updateLargeShapeLineColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Large Shape Line Color", model.getShapesParams().get(0).getLineColour());
-        if (color != null) {
-            model.getShapesParams().get(0).setLineColour(color);
-        }
+        Color color = view.getColorFromButton(view.getLargeLineColorButton());
+        model.getShapesParams().get(0).setLineColour(color);
     }
 
     private void updateLargeLineWidth() {
@@ -97,21 +94,17 @@ public class RecursiveShapeController {
     }
 
     private void updateSmallShapeType() {
-        model.getShapesParams().get(1).setShapeType(view.getSmallShapeType().getSelectedItem());
+        model.getShapesParams().get(1).setShapeType(view.getSmallShapeType().getSelectedItem().toLowerCase());
     }
 
     private void updateSmallShapeFillColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Small Shape Fill Color", model.getShapesParams().get(1).getFillColour());
-        if (color != null) {
-            model.getShapesParams().get(1).setFillColour(color);
-        }
+        Color color = view.getColorFromButton(view.getSmallShapeColorButton());
+        model.getShapesParams().get(1).setFillColour(color);
     }
 
     private void updateSmallShapeLineColor() {
-        Color color = JColorChooser.showDialog(null, "Choose Small Shape Line Color", model.getShapesParams().get(1).getLineColour());
-        if (color != null) {
-            model.getShapesParams().get(1).setLineColour(color);
-        }
+        Color color = view.getColorFromButton(view.getSmallLineColorButton());
+        model.getShapesParams().get(1).setLineColour(color);
     }
 
     private void updateSmallLineWidth() {
@@ -123,7 +116,7 @@ public class RecursiveShapeController {
         System.out.println("Canvas Parameters:");
         System.out.println("Width: " + model.getCanvasParams().getWidth());
         System.out.println("Height: " + model.getCanvasParams().getHeight());
-
+        System.out.println("BackgroundColour: " + model.getCanvasParams().getBackgroundColour());
         System.out.println("Recursive Shape Parameters:");
         System.out.println("Center X: " + model.getRecursiveParams().getCenterX());
         System.out.println("Center Y: " + model.getRecursiveParams().getCenterY());
