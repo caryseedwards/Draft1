@@ -2,44 +2,59 @@ package withgof.algorithms;
 
 import withgof.shapes.*;
 import withgof.parameters.CanvasParameters;
-import withgof.parameters.Parameters;
 import withgof.parameters.ShapeParameters;
 import withgof.parameters.SierpinskiShapeAlgorithmParameters;
 import withgof.shapes.Shape;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class SierpinskiShapeAlgorithm extends Algorithm {
-    private SierpinskiShapeAlgorithmParameters params;
-    private ShapeParameters sierpinskiShape;
-    private ArrayList<Shape> shapesToDraw = new ArrayList<>();
+public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
+    private final CanvasParameters canvasParameters;
+    private final ShapeParameters shapeParameters;
+    private final SierpinskiShapeAlgorithmParameters algorithmParameters;
+    private final ArrayList<Shape> shapesToDraw;
 
-    public SierpinskiShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
-        super(canvasParams, shapeParams, algorithmParams);
-        initialiseAlgorithm();
-        executeAlgorithm();
+    public SierpinskiShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, SierpinskiShapeAlgorithmParameters algorithmParameters) {
+        this.canvasParameters = canvasParameters;
+        this.shapeParameters = shapeParameters.get(0);
+        this.algorithmParameters = algorithmParameters;
+        this.shapesToDraw = new ArrayList<>();
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Sierpinski Shape");
-        CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("triangle", 0.1f, Color.BLACK, Color.WHITE));
-        SierpinskiShapeAlgorithmParameters algorithm = new SierpinskiShapeAlgorithmParameters(400, 1200, 400, 5);
-        SierpinskiShapeAlgorithm sierpinskiShape = new SierpinskiShapeAlgorithm(canvas, shapes, algorithm);
-        frame.add(sierpinskiShape);
-        frame.setSize(canvas.getWidth(), canvas.getHeight());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public boolean validateParameters() {
+        return false;
     }
 
     @Override
-    protected void initialiseAlgorithm() {
-        this.params = (SierpinskiShapeAlgorithmParameters) getAlgorithmParams();
-        this.sierpinskiShape = getShapeParameters().get(0);
-        this.shapesToDraw = new ArrayList<>();
+    public void executeAlgorithm() {
+        switch (shapeParameters.getShapeType()) {
+            case "triangle":
+                addSierpinski(new Triangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                break;
+            case "circle":
+                addGasket(new Circle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                break;
+            case "square":
+                addCarpet(new Square(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                break;
+            case "hexagon":
+                addHexagon(new Hexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid shape type: " + shapeParameters.      getShapeType());
+        }
+    }
+
+    @Override
+    public void drawPattern(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(canvasParameters.getBackgroundColour());
+        g2d.fillRect(0, 0, canvasParameters.getWidth(), canvasParameters.getHeight());
+
+        for (Shape shape : shapesToDraw) {
+            shape.draw(g2d, shapeParameters.getLineColour(), shapeParameters.getLineWidth(), shapeParameters.getFillColour(), null);
+        }
     }
 
     private void addSierpinski(Triangle triangle, int depth) {
@@ -110,37 +125,6 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
                 Square newSquare = new Square(newX, newY, newRadius);
                 addCarpet(newSquare, depth - 1);
             }
-        }
-    }
-
-    @Override
-    public void executeAlgorithm() {
-        switch (getShapeParameters().get(0).getShapeType()) {
-            case "triangle":
-                addSierpinski(new Triangle(params.getCentreX(), params.getCentreY(), params.getPolygonSize()), params.getDepth());
-                break;
-            case "circle":
-                addGasket(new Circle(params.getCentreX(), params.getCentreY(), params.getPolygonSize()), params.getDepth());
-                break;
-            case "square":
-                addCarpet(new Square(params.getCentreX(), params.getCentreY(), params.getPolygonSize()), params.getDepth());
-                break;
-            case "hexagon":
-                addHexagon(new Hexagon(params.getCentreX(), params.getCentreY(), params.getPolygonSize()), params.getDepth());
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid shape type: " + getShapeParameters().get(0).getShapeType());
-        }
-    }
-
-    @Override
-    public void drawPattern(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(getCanvasParameters().getBackgroundColour());
-        g2d.fillRect(0, 0, getCanvasParameters().getWidth(), getCanvasParameters().getHeight());
-
-        for (Shape shape : shapesToDraw) {
-            shape.draw(g2d, sierpinskiShape.getLineColour(), sierpinskiShape.getLineWidth(), sierpinskiShape.getFillColour(), null);
         }
     }
 }

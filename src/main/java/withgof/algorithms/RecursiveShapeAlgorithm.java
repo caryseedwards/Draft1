@@ -1,52 +1,47 @@
 package withgof.algorithms;
 
 import withgof.parameters.CanvasParameters;
-import withgof.parameters.Parameters;
 import withgof.parameters.RecursiveShapeAlgorithmParameters;
 import withgof.parameters.ShapeParameters;
 import withgof.shapes.*;
 import withgof.shapes.Shape;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class RecursiveShapeAlgorithm extends Algorithm {
-    private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
-    private RecursiveShapeAlgorithmParameters params;
-    private ShapeParameters largeShapeParams;
-    private ShapeParameters smallShapeParams;
+public class RecursiveShapeAlgorithm implements AlgorithmStrategy{
+    private final ArrayList<Shape> shapesToDraw;
+    private final CanvasParameters canvasParameters;
+    private final ShapeParameters largeShapeParameters;
+    private final ShapeParameters smallShapeParameters;
+    private final RecursiveShapeAlgorithmParameters algorithmParameters;
 
-    public RecursiveShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
-        super(canvasParams, shapeParams, algorithmParams);
-        initialiseAlgorithm();
+    public RecursiveShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, RecursiveShapeAlgorithmParameters  algorithmParameters) {
+        this.canvasParameters = canvasParameters;
+        this.algorithmParameters = algorithmParameters;
+        this.largeShapeParameters = shapeParameters.get(0);
+        this.smallShapeParameters = shapeParameters.get(1);
+        this.shapesToDraw = new ArrayList<Shape>();
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Fractal Pattern");
-        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.BLACK));
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.YELLOW));
-        RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6);
-        RecursiveShapeAlgorithm pattern = new RecursiveShapeAlgorithm(canvas, shapes, algorithm);
-        pattern.executeAlgorithm();
-        frame.add(pattern);
-        frame.setSize(canvas.getHeight(), canvas.getWidth());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-
     @Override
-    protected void initialiseAlgorithm() {
-        this.params = (RecursiveShapeAlgorithmParameters) getAlgorithmParams();
-        this.largeShapeParams = getShapeParameters().get(0);
-        this.smallShapeParams = getShapeParameters().get(1);
+    public boolean validateParameters() {
+        return false;
     }
 
     @Override
     public void executeAlgorithm() {
-        addPattern(params.getCenterX(), params.getCenterY(), params.getInitialSize(), params.getDepth());
+        addPattern(algorithmParameters.getCenterX(), algorithmParameters.getCenterY(), algorithmParameters.getInitialSize(), algorithmParameters.getDepth());
+    }
+
+    @Override
+    public void drawPattern(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(canvasParameters.getBackgroundColour());
+        g2d.fillRect(0, 0, canvasParameters.getWidth(), canvasParameters.getHeight());
+        for (Shape shape : shapesToDraw) {
+            shape.draw(g2d, shape.getShapeParameters().getLineColour(), shape.getShapeParameters().getLineWidth(),
+                    shape.getShapeParameters().getFillColour(), "solid");
+        }
     }
 
     public Shape createShape(String shapeType, int x, int y, int size) {
@@ -62,11 +57,11 @@ public class RecursiveShapeAlgorithm extends Algorithm {
     public void addPattern(int x, int y, int size, int depth) {
         if (depth == 0) return;
 
-        Shape newLargeShape = createShape(largeShapeParams.getShapeType(), x, y, size);
-        newLargeShape.setShapeParameters(largeShapeParams);
+        Shape newLargeShape = createShape(largeShapeParameters.getShapeType(), x, y, size);
+        newLargeShape.setShapeParameters(largeShapeParameters);
         shapesToDraw.add(newLargeShape);
 
-        int numShapes = params.getNumShapes();
+        int numShapes = algorithmParameters.getNumShapes();
         double angleStep = Math.PI * 2 / numShapes;
         int smallerSize = (int) (size * Math.sin(angleStep / 2));
 
@@ -75,21 +70,10 @@ public class RecursiveShapeAlgorithm extends Algorithm {
             int newX = (int) (x + size * Math.cos(angle));
             int newY = (int) (y + size * Math.sin(angle));
 
-            Shape newSmallShape = createShape(smallShapeParams.getShapeType(), newX, newY, smallerSize);
-            newSmallShape.setShapeParameters(smallShapeParams);
+            Shape newSmallShape = createShape(smallShapeParameters.getShapeType(), newX, newY, smallerSize);
+            newSmallShape.setShapeParameters(smallShapeParameters);
             shapesToDraw.add(newSmallShape);
             addPattern(newX, newY, smallerSize, depth - 1);
-        }
-    }
-
-    @Override
-    public void drawPattern(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(getCanvasParameters().getBackgroundColour());
-        g2d.fillRect(0, 0, getCanvasParameters().getWidth(), getCanvasParameters().getHeight());
-        for (Shape shape : shapesToDraw) {
-            shape.draw(g2d, shape.getShapeParameters().getLineColour(), shape.getShapeParameters().getLineWidth(),
-                    shape.getShapeParameters().getFillColour(), "solid");
         }
     }
 
@@ -97,15 +81,14 @@ public class RecursiveShapeAlgorithm extends Algorithm {
         return shapesToDraw;
     }
 
-    public RecursiveShapeAlgorithmParameters getParams() {
-        return params;
+    public ShapeParameters getLargeShapeParameters() {
+        return largeShapeParameters;
     }
 
-    public ShapeParameters getLargeShapeParams() {
-        return largeShapeParams;
+    public ShapeParameters getSmallShapeParameters() {
+        return smallShapeParameters;
     }
 
-    public ShapeParameters getSmallShapeParams() {
-        return smallShapeParams;
-    }
+
+
 }
