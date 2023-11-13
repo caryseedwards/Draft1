@@ -25,8 +25,8 @@ public class CirclePackingPanelView {
     public CirclePackingPanelView(int canvasWidth, int canvasHeight) {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.startXTextField = new TextField(String.valueOf(canvasWidth/2), 5);
-        this.startYTextField= new TextField(String.valueOf(canvasHeight/2), 5);
+        this.startXTextField = new TextField(String.valueOf(canvasWidth / 2), 5);
+        this.startYTextField = new TextField(String.valueOf(canvasHeight / 2), 5);
         circlePackingPanel = new Panel(new GridBagLayout());
         setupPanel();
     }
@@ -38,8 +38,8 @@ public class CirclePackingPanelView {
         gbc.insets = new Insets(2, 5, 2, 5);
 
         int gridy = 0;
-        startXTextField = new TextField(String.valueOf(canvasWidth/2),5);
-        startYTextField = new TextField(String.valueOf(canvasHeight/2),5);
+        startXTextField = new TextField(String.valueOf(canvasWidth / 2), 5);
+        startYTextField = new TextField(String.valueOf(canvasHeight / 2), 5);
         maxAttemptsTextField = new TextField("100", 5);
         boundaryShapeType = new Choice();
         boundaryFillColourButton = new Button("Choose Colour");
@@ -127,8 +127,14 @@ public class CirclePackingPanelView {
         circlePackingPanel.add(button, gbc);
     }
 
-    public int getCanvasWidth(){return canvasWidth;}
-    public int getCanvasHeight(){return canvasHeight;}
+    public int getCanvasWidth() {
+        return canvasWidth;
+    }
+
+    public int getCanvasHeight() {
+        return canvasHeight;
+    }
+
     public TextField getStartXTextField() {
         return startXTextField;
     }

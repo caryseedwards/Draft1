@@ -1,6 +1,8 @@
 package gui.controller;
 
-import algorithms.*;
+import algorithms.CirclePackingAlgorithm;
+import algorithms.RecursiveShapeAlgorithm;
+import algorithms.SierpinskiShapeAlgorithm;
 import gui.model.ParametersModel;
 import gui.view.ArtworkGUIView;
 import validate.Validate;
@@ -8,7 +10,7 @@ import validate.Validate;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ItemEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -138,7 +140,6 @@ public class ArtworkGUIController {
     }
 
 
-
     public void saveImage() {
         BufferedImage image = new BufferedImage(view.getCanvasWidth(), view.getCanvasHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
@@ -160,27 +161,28 @@ public class ArtworkGUIController {
         }
     }
 
-    public void setRecursiveController(RecursiveShapeController rsc){
-    recursivePanelController = rsc;
-    }
-
-    public RecursiveShapeController getRecursiveController(){
+    public RecursiveShapeController getRecursiveController() {
         return recursivePanelController;
     }
-    public void setPackingController(CirclePackingController cpc){
-        circlePackingPanelController = cpc;
+
+    public void setRecursiveController(RecursiveShapeController rsc) {
+        recursivePanelController = rsc;
     }
 
-    public CirclePackingController getPackingController(){
+    public CirclePackingController getPackingController() {
         return circlePackingPanelController;
     }
 
-    public void setSierpinskiPanelController(SierpinskiController sc){
-        sierpinskiPanelController = sc;
+    public void setPackingController(CirclePackingController cpc) {
+        circlePackingPanelController = cpc;
     }
 
-    public SierpinskiController getSierpinskiPanelController(){
+    public SierpinskiController getSierpinskiPanelController() {
         return sierpinskiPanelController;
+    }
+
+    public void setSierpinskiPanelController(SierpinskiController sc) {
+        sierpinskiPanelController = sc;
     }
 }
 

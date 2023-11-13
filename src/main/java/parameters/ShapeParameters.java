@@ -1,7 +1,6 @@
 package parameters;
 
 import java.awt.*;
-import java.util.Objects;
 
 public class ShapeParameters extends Parameters {
     private String shapeType;
@@ -48,14 +47,36 @@ public class ShapeParameters extends Parameters {
     }
 
     // Getters
-    public String getShapeType() {return shapeType;}
-    public float getLineWidth() {return lineWidth;}
-    public Color getLineColour() {return lineColour;}
-    public Color getFillColour() {return fillColour;}
+    public String getShapeType() {
+        return shapeType;
+    }
 
     // Setters
-    public void setShapeType(String shapeType) {this.shapeType = shapeType;}
-    public void setLineWidth(float lineWidth) {this.lineWidth = lineWidth;}
-    public void setLineColour(Color lineColour) {this.lineColour = lineColour;}
-    public void setFillColour(Color fillColour) {this.fillColour = fillColour;}
+    public void setShapeType(String shapeType) {
+        this.shapeType = shapeType;
+    }
+
+    public float getLineWidth() {
+        return lineWidth;
+    }
+
+    public void setLineWidth(float lineWidth) {
+        this.lineWidth = lineWidth;
+    }
+
+    public Color getLineColour() {
+        return lineColour;
+    }
+
+    public void setLineColour(Color lineColour) {
+        this.lineColour = lineColour;
+    }
+
+    public Color getFillColour() {
+        return fillColour;
+    }
+
+    public void setFillColour(Color fillColour) {
+        this.fillColour = fillColour;
+    }
 }

@@ -26,8 +26,8 @@ public class RecursivePanelView {
         recursivePanel = new Panel(new GridBagLayout());
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
-        this.startXTextField = new TextField(String.valueOf(canvasWidth/2), 5);
-        this.startYTextField= new TextField(String.valueOf(canvasHeight/2), 5);
+        this.startXTextField = new TextField(String.valueOf(canvasWidth / 2), 5);
+        this.startYTextField = new TextField(String.valueOf(canvasHeight / 2), 5);
         setupPanel();
     }
 
@@ -38,19 +38,19 @@ public class RecursivePanelView {
 
         int gridy = 0;
 
-        startXTextField = new TextField("250",5);
-        startYTextField = new TextField("250",5);
-        recursiveDepthTextField = new TextField("4",5);
-        initialRadiusTextField = new TextField("100",5);
-        numShapeTextField = new TextField("6",5);
+        startXTextField = new TextField("250", 5);
+        startYTextField = new TextField("250", 5);
+        recursiveDepthTextField = new TextField("4", 5);
+        initialRadiusTextField = new TextField("100", 5);
+        numShapeTextField = new TextField("6", 5);
         largeShapeType = new Choice();
         largeShapeColourButton = new Button("Choose Colour");
         largeLineColourButton = new Button("Choose Colour");
-        largeLineWidthTextField = new TextField("1",5);
+        largeLineWidthTextField = new TextField("1", 5);
         smallShapeType = new Choice();
         smallShapeColourButton = new Button("Choose Colour");
         smallLineColourButton = new Button("Choose Colour");
-        smallLineWidthTextField = new TextField("1",5);
+        smallLineWidthTextField = new TextField("1", 5);
 
         addLabelAndField(gbc, "Initial 'x' co-ordinate:", startXTextField, gridy++);
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
@@ -108,8 +108,14 @@ public class RecursivePanelView {
         recursivePanel.add(button, gbc);
     }
 
-    public int getCanvasWidth(){return canvasWidth;}
-    public int getCanvasHeight(){return canvasHeight;}
+    public int getCanvasWidth() {
+        return canvasWidth;
+    }
+
+    public int getCanvasHeight() {
+        return canvasHeight;
+    }
+
     // Getters for each UI component
     public TextField getStartXTextField() {
         return startXTextField;

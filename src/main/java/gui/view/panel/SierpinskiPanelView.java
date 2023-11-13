@@ -2,8 +2,8 @@ package gui.view.panel;
 
 import gui.view.utilities;
 
+import javax.swing.*;
 import java.awt.*;
-import javax.swing.JColorChooser;
 
 public class SierpinskiPanelView {
     private final Panel sierpinskiPanel;
@@ -19,8 +19,8 @@ public class SierpinskiPanelView {
     private TextField lineWidthTextField;
 
     public SierpinskiPanelView(int canvasWidth, int canvasHeight) {
-        this.startXTextField = new TextField(String.valueOf(canvasWidth/2), 5);
-        this.startYTextField= new TextField(String.valueOf(canvasHeight/2), 5);
+        this.startXTextField = new TextField(String.valueOf(canvasWidth / 2), 5);
+        this.startYTextField = new TextField(String.valueOf(canvasHeight / 2), 5);
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         sierpinskiPanel = new Panel(new GridBagLayout());
@@ -28,8 +28,8 @@ public class SierpinskiPanelView {
     }
 
     private void setupPanel() {
-        startXTextField = new TextField(String.valueOf(canvasWidth/2), 5);
-        startYTextField = new TextField(String.valueOf(canvasWidth/2),5);
+        startXTextField = new TextField(String.valueOf(canvasWidth / 2), 5);
+        startYTextField = new TextField(String.valueOf(canvasWidth / 2), 5);
         sizeTextField = new TextField("100", 5);
         depthTextField = new TextField("4", 5);
         shapeTypeChoice = new Choice();
@@ -93,17 +93,49 @@ public class SierpinskiPanelView {
     }
 
     // Getters for UI components
-    public int getCanvasWidth(){return canvasWidth;}
-    public int getCanvasHeight(){return canvasHeight;}
-    public TextField getStartXTextField() { return startXTextField; }
-    public TextField getStartYTextField() { return startYTextField; }
-    public TextField getSizeTextField() { return sizeTextField; }
-    public TextField getDepthTextField() { return depthTextField; }
-    public Choice getShapeTypeChoice() { return shapeTypeChoice; }
-    public Button getFillColourButton() { return fillColourButton; }
-    public Button getLineColourButton() { return lineColourButton; }
-    public TextField getLineWidthTextField() { return lineWidthTextField; }
-    public Panel getPanel() { return sierpinskiPanel; }
+    public int getCanvasWidth() {
+        return canvasWidth;
+    }
+
+    public int getCanvasHeight() {
+        return canvasHeight;
+    }
+
+    public TextField getStartXTextField() {
+        return startXTextField;
+    }
+
+    public TextField getStartYTextField() {
+        return startYTextField;
+    }
+
+    public TextField getSizeTextField() {
+        return sizeTextField;
+    }
+
+    public TextField getDepthTextField() {
+        return depthTextField;
+    }
+
+    public Choice getShapeTypeChoice() {
+        return shapeTypeChoice;
+    }
+
+    public Button getFillColourButton() {
+        return fillColourButton;
+    }
+
+    public Button getLineColourButton() {
+        return lineColourButton;
+    }
+
+    public TextField getLineWidthTextField() {
+        return lineWidthTextField;
+    }
+
+    public Panel getPanel() {
+        return sierpinskiPanel;
+    }
 
 }
 

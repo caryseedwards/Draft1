@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class ValidateTest {
 
-    private RecursivePanelView createMockRecursivePanel(String startX, String startY, String depth, String initialRadius, String numShapes, String largeLineWidth, String smallLineWidth) {
+    private RecursivePanelView createMockRecursivePanel(String startX, String depth, String initialRadius) {
         RecursivePanelView mockPanel = Mockito.mock(RecursivePanelView.class);
         TextField mockStartXTextField = Mockito.mock(TextField.class);
         TextField mockStartYTextField = Mockito.mock(TextField.class);
@@ -30,12 +30,12 @@ public class ValidateTest {
         when(mockPanel.getLargeLineWidthTextField()).thenReturn(mockLargeLineWidthTextField);
         when(mockPanel.getSmallLineWidthTextField()).thenReturn(mockSmallLineWidthTextField);
         when(mockStartXTextField.getText()).thenReturn(startX);
-        when(mockStartYTextField.getText()).thenReturn(startY);
+        when(mockStartYTextField.getText()).thenReturn("100");
         when(mockRecursiveDepthTextField.getText()).thenReturn(depth);
         when(mockInitialRadiusTextField.getText()).thenReturn(initialRadius);
-        when(mockNumShapeTextField.getText()).thenReturn(numShapes);
-        when(mockLargeLineWidthTextField.getText()).thenReturn(largeLineWidth);
-        when(mockSmallLineWidthTextField.getText()).thenReturn(smallLineWidth);
+        when(mockNumShapeTextField.getText()).thenReturn("3");
+        when(mockLargeLineWidthTextField.getText()).thenReturn("2");
+        when(mockSmallLineWidthTextField.getText()).thenReturn("1");
         return mockPanel;
     }
 
@@ -120,25 +120,25 @@ public class ValidateTest {
 
     @Test
     public void testValidateRecursiveParamsPanelWithValidInputs() {
-        RecursivePanelView mockPanel = createMockRecursivePanel("100", "100", "5", "50", "3", "2", "1");
+        RecursivePanelView mockPanel = createMockRecursivePanel("100", "5", "50");
         assertEquals("", Validate.validateRecursivePanelView(mockPanel));
     }
 
     @Test
     public void testValidateRecursiveParamsPanelWithNegativeDepth() {
-        RecursivePanelView mockPanel = createMockRecursivePanel("100", "100", "-1", "50", "3", "2", "1");
+        RecursivePanelView mockPanel = createMockRecursivePanel("100", "-1", "50");
         assertEquals("Recursive depth must be a positive integer.", Validate.validateRecursivePanelView(mockPanel));
     }
 
     @Test
     public void testValidateRecursiveParamsPanelWithEmptyStartX() {
-        RecursivePanelView mockPanel = createMockRecursivePanel("", "100", "5", "50", "3", "2", "1");
+        RecursivePanelView mockPanel = createMockRecursivePanel("", "5", "50");
         assertEquals("CenterX must be an integer.", Validate.validateRecursivePanelView(mockPanel));
     }
 
     @Test
     public void testValidateRecursiveParamsPanelWithNonIntegerRadius() {
-        RecursivePanelView mockPanel = createMockRecursivePanel("100", "100", "5", "abc", "3", "2", "1");
+        RecursivePanelView mockPanel = createMockRecursivePanel("100", "5", "abc");
         assertEquals("Initial radius must be an integer.", Validate.validateRecursivePanelView(mockPanel));
     }
 

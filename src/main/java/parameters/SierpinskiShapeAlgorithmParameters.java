@@ -39,22 +39,44 @@ public class SierpinskiShapeAlgorithmParameters extends Parameters {
             if (depth < 0) {
                 throw new IllegalArgumentException("Depth cannot be negative");
             }
-            return true; // All validations passed
+            return true;
         } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
     // Getters
-    public int getCentreX() { return centreX; }
-    public int getCentreY() { return centreY; }
-    public int getPolygonSize() { return polygonSize; }
-    public int getDepth() { return depth; }
+    public int getCentreX() {
+        return centreX;
+    }
 
     // Setters
-    public void setCentreX(int centreX) { this.centreX = centreX; }
-    public void setCentreY(int centreY) { this.centreY = centreY; }
-    public void setPolygonSize(int polygonSize) { this.polygonSize = polygonSize; }
-    public void setDepth(int depth) { this.depth = depth; }
+    public void setCentreX(int centreX) {
+        this.centreX = centreX;
+    }
+
+    public int getCentreY() {
+        return centreY;
+    }
+
+    public void setCentreY(int centreY) {
+        this.centreY = centreY;
+    }
+
+    public int getPolygonSize() {
+        return polygonSize;
+    }
+
+    public void setPolygonSize(int polygonSize) {
+        this.polygonSize = polygonSize;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
 }
 

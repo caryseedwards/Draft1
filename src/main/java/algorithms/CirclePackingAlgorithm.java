@@ -1,8 +1,11 @@
 package algorithms;
 
-import parameters.*;
-import shapes.*;
+import parameters.CanvasParameters;
+import parameters.CirclePackingAlgorithmParameters;
+import parameters.Parameters;
+import parameters.ShapeParameters;
 import shapes.Shape;
+import shapes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +23,26 @@ public class CirclePackingAlgorithm extends Algorithm {
         initialiseAlgorithm();
     }
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Circle Packing in Shapes");
+        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
+        ArrayList<ShapeParameters> shapes = new ArrayList<>();
+        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
+        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
+        CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 200, 5, 50, 100, 1);
+        CirclePackingAlgorithm packing = new CirclePackingAlgorithm(canvas, shapes, algorithm);
+        packing.executeAlgorithm();
+        frame.add(packing);
+        frame.setSize(canvas.getWidth(), canvas.getHeight());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        Timer timer = new Timer(packing.params.animationSpeed, e -> {
+            packing.addCircles();
+            packing.repaint();
+        });
+        timer.start();
+    }
+
     @Override
     protected void initialiseAlgorithm() {
         this.params = (CirclePackingAlgorithmParameters) getAlgorithmParams();
@@ -29,19 +52,20 @@ public class CirclePackingAlgorithm extends Algorithm {
         this.circles = new ArrayList<>();
     }
 
+    public Shape getBoundaryShape() {
+        return boundaryShape;
+    }
+
     public void setBoundaryShape(String type) {
         switch (type) {
-            case "circle" -> boundaryShape = new Circle(params.getCentreX(), params.getCentreY(), params.getPolygonSize());
+            case "circle" ->
+                    boundaryShape = new Circle(params.getCentreX(), params.getCentreY(), params.getPolygonSize());
             case "square" -> boundaryShape = new Square(params.centreX, params.centreY, params.polygonSize);
             case "triangle" -> boundaryShape = new Triangle(params.centreX, params.centreY, params.polygonSize);
             case "hexagon" -> boundaryShape = new Hexagon(params.centreX, params.centreY, params.polygonSize);
             default -> throw new IllegalArgumentException("Invalid boundary type: " + type);
         }
         boundaryParameters.setShapeType(type);
-    }
-
-    public Shape getBoundaryShape() {
-        return boundaryShape;
     }
 
     public void addCircles() {
@@ -81,27 +105,8 @@ public class CirclePackingAlgorithm extends Algorithm {
         }
         this.pattern = g2d;
     }
-    public CirclePackingAlgorithmParameters getAlgorithmParameters(){
-        return params;
-    }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Circle Packing in Shapes");
-        CanvasParameters canvas = new CanvasParameters(500,500,Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
-        CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 200, 5, 50, 100, 1);
-        CirclePackingAlgorithm packing = new CirclePackingAlgorithm(canvas, shapes,algorithm);
-        packing.executeAlgorithm();
-        frame.add(packing);
-        frame.setSize(canvas.getWidth(), canvas.getHeight());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        Timer timer = new Timer(packing.params.animationSpeed, e -> {
-            packing.addCircles();
-            packing.repaint();
-        });
-        timer.start();
+    public CirclePackingAlgorithmParameters getAlgorithmParameters() {
+        return params;
     }
 }

@@ -8,8 +8,8 @@ import validate.Validate;
 import java.awt.*;
 
 public class RecursiveShapeController {
-    ParametersModel model;
     private final RecursivePanelView view;
+    ParametersModel model;
 
     public RecursiveShapeController(ParametersModel model, RecursivePanelView view) {
         this.view = view;

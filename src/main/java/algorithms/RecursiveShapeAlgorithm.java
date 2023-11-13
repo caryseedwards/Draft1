@@ -1,21 +1,40 @@
 package algorithms;
 
-import parameters.*;
-import shapes.*;
+import parameters.CanvasParameters;
+import parameters.Parameters;
+import parameters.RecursiveShapeAlgorithmParameters;
+import parameters.ShapeParameters;
 import shapes.Shape;
+import shapes.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class RecursiveShapeAlgorithm extends Algorithm {
+    private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
     private RecursiveShapeAlgorithmParameters params;
     private ShapeParameters largeShapeParams;
     private ShapeParameters smallShapeParams;
-    private final ArrayList<Shape> shapesToDraw = new ArrayList<>();
+
     public RecursiveShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
         initialiseAlgorithm();
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Fractal Pattern");
+        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
+        ArrayList<ShapeParameters> shapes = new ArrayList<>();
+        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.BLACK));
+        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.YELLOW));
+        RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6);
+        RecursiveShapeAlgorithm pattern = new RecursiveShapeAlgorithm(canvas, shapes, algorithm);
+        pattern.executeAlgorithm();
+        frame.add(pattern);
+        frame.setSize(canvas.getHeight(), canvas.getWidth());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 
     @Override
@@ -39,6 +58,7 @@ public class RecursiveShapeAlgorithm extends Algorithm {
             default -> throw new IllegalArgumentException("Unknown shape type: " + shapeType);
         };
     }
+
     public void addPattern(int x, int y, int size, int depth) {
         if (depth == 0) return;
 
@@ -61,6 +81,7 @@ public class RecursiveShapeAlgorithm extends Algorithm {
             addPattern(newX, newY, smallerSize, depth - 1);
         }
     }
+
     @Override
     public void drawPattern(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -68,34 +89,23 @@ public class RecursiveShapeAlgorithm extends Algorithm {
         g2d.fillRect(0, 0, getCanvasParameters().getWidth(), getCanvasParameters().getHeight());
         for (Shape shape : shapesToDraw) {
             shape.draw(g2d, shape.getShapeParameters().getLineColour(), shape.getShapeParameters().getLineWidth(),
-                    shape.getShapeParameters().getFillColour(),"solid");
+                    shape.getShapeParameters().getFillColour(), "solid");
         }
     }
-    public  ArrayList<Shape> getShapesToDraw(){
+
+    public ArrayList<Shape> getShapesToDraw() {
         return shapesToDraw;
     }
+
     public RecursiveShapeAlgorithmParameters getParams() {
         return params;
     }
-    public ShapeParameters getLargeShapeParams(){
+
+    public ShapeParameters getLargeShapeParams() {
         return largeShapeParams;
     }
-    public ShapeParameters getSmallShapeParams(){
-        return smallShapeParams;
-    }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Fractal Pattern");
-        CanvasParameters canvas = new CanvasParameters(500,500,Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.BLACK));
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.YELLOW));
-        RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6);
-        RecursiveShapeAlgorithm pattern = new RecursiveShapeAlgorithm(canvas, shapes, algorithm);
-        pattern.executeAlgorithm();
-        frame.add(pattern);
-        frame.setSize(canvas.getHeight(), canvas.getWidth());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public ShapeParameters getSmallShapeParams() {
+        return smallShapeParams;
     }
 }

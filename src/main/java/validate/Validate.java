@@ -1,6 +1,8 @@
 package validate;
 
-import gui.view.panel.*;
+import gui.view.panel.CirclePackingPanelView;
+import gui.view.panel.RecursivePanelView;
+import gui.view.panel.SierpinskiPanelView;
 
 public class Validate {
 

@@ -8,9 +8,10 @@ import validate.Validate;
 import java.awt.*;
 
 public class CirclePackingController {
-    private ParametersModel model;
-    private CirclePackingPanelView view;
-    public CirclePackingController(ParametersModel model,CirclePackingPanelView view) {
+    private final ParametersModel model;
+    private final CirclePackingPanelView view;
+
+    public CirclePackingController(ParametersModel model, CirclePackingPanelView view) {
         this.view = view;
         this.model = model;
         model.getCanvasParams().setWidth(view.getCanvasWidth());
@@ -58,6 +59,7 @@ public class CirclePackingController {
             model.getPackingParams().setMaxAttempts(maxAttempts);
         }
     }
+
     public void updateBoundaryShapeType() {
         model.getShapesParams().get(0).setShapeType(view.getBoundaryShapeType().getSelectedItem().toLowerCase());
     }
@@ -84,7 +86,7 @@ public class CirclePackingController {
         }
     }
 
-    public void updatePackingShapeType(){
+    public void updatePackingShapeType() {
         model.getShapesParams().get(1).setShapeType("circle");
     }
 

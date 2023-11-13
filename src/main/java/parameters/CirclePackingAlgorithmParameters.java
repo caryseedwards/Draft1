@@ -51,20 +51,60 @@ public class CirclePackingAlgorithmParameters extends Parameters {
         }
     }
 
-    public int getCentreX() { return centreX; }
-    public int getCentreY() { return centreY; }
-    public int getPolygonSize() { return polygonSize; }
-    public int getMinRadius() { return minRadius; }
-    public int getMaxRadius() { return maxRadius; }
-    public int getMaxAttempts() { return maxAttempts; }
-    public int getAnimationSpeed() { return animationSpeed; }
+    public int getCentreX() {
+        return centreX;
+    }
 
-    public void setCentreX(int centreX) { this.centreX = centreX; }
-    public void setCentreY(int centreY) { this.centreY = centreY; }
-    public void setPolygonSize(int polygonSize) { this.polygonSize = polygonSize; }
-    public void setMinRadius(int minRadius) { this.minRadius = minRadius; }
-    public void setMaxRadius(int maxRadius) { this.maxRadius = maxRadius; }
-    public void setMaxAttempts(int maxAttempts) { this.maxAttempts = maxAttempts; }
-    public void setAnimationSpeed(int animationSpeed) { this.animationSpeed = animationSpeed; }
+    public void setCentreX(int centreX) {
+        this.centreX = centreX;
+    }
+
+    public int getCentreY() {
+        return centreY;
+    }
+
+    public void setCentreY(int centreY) {
+        this.centreY = centreY;
+    }
+
+    public int getPolygonSize() {
+        return polygonSize;
+    }
+
+    public void setPolygonSize(int polygonSize) {
+        this.polygonSize = polygonSize;
+    }
+
+    public int getMinRadius() {
+        return minRadius;
+    }
+
+    public void setMinRadius(int minRadius) {
+        this.minRadius = minRadius;
+    }
+
+    public int getMaxRadius() {
+        return maxRadius;
+    }
+
+    public void setMaxRadius(int maxRadius) {
+        this.maxRadius = maxRadius;
+    }
+
+    public int getMaxAttempts() {
+        return maxAttempts;
+    }
+
+    public void setMaxAttempts(int maxAttempts) {
+        this.maxAttempts = maxAttempts;
+    }
+
+    public int getAnimationSpeed() {
+        return animationSpeed;
+    }
+
+    public void setAnimationSpeed(int animationSpeed) {
+        this.animationSpeed = animationSpeed;
+    }
 
 }

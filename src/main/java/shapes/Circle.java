@@ -11,6 +11,7 @@ public class Circle extends Shape {
         this.centerY = y;
         this.radius = radius;
     }
+
     public int getX() {
         return centerX;
     }

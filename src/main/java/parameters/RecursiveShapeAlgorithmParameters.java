@@ -1,11 +1,11 @@
 package parameters;
 
 public class RecursiveShapeAlgorithmParameters extends Parameters {
-    private  int centerX;
-    private  int centerY;
-    private  int initialSize;
-    private  int depth;
-    private  int numShapes;
+    private int centerX;
+    private int centerY;
+    private int initialSize;
+    private int depth;
+    private int numShapes;
 
     public RecursiveShapeAlgorithmParameters(int centerX, int centerY, int initialSize, int depth, int numShapes) {
         this.parameterType = "algorithm";
@@ -44,18 +44,46 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
     }
 
     // Getters
-    public int getCenterX() { return centerX; }
-    public int getCenterY() { return centerY; }
-    public int getInitialSize() { return initialSize; }
-    public int getDepth() { return depth; }
-    public int getNumShapes() { return numShapes; }
+    public int getCenterX() {
+        return centerX;
+    }
 
     // Setters
-    public void setCenterX(int newX) {centerX = newX; }
-    public void setCenterY(int newY) { centerY = newY; }
-    public void setInitialSize(int newInitialSize) { initialSize = newInitialSize; }
-    public void setDepth(int newDepth) { depth = newDepth; }
-    public void setNumShapes(int newNumShapes) { numShapes = newNumShapes; }
+    public void setCenterX(int newX) {
+        centerX = newX;
+    }
+
+    public int getCenterY() {
+        return centerY;
+    }
+
+    public void setCenterY(int newY) {
+        centerY = newY;
+    }
+
+    public int getInitialSize() {
+        return initialSize;
+    }
+
+    public void setInitialSize(int newInitialSize) {
+        initialSize = newInitialSize;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int newDepth) {
+        depth = newDepth;
+    }
+
+    public int getNumShapes() {
+        return numShapes;
+    }
+
+    public void setNumShapes(int newNumShapes) {
+        numShapes = newNumShapes;
+    }
 
 }
 

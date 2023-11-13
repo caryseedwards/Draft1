@@ -4,11 +4,11 @@ import gui.view.panel.CirclePackingPanelView;
 import gui.view.panel.RecursivePanelView;
 import gui.view.panel.SierpinskiPanelView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import javax.swing.*;
 
 public class ArtworkGUIView {
     public static int windowWidth = 1280;
@@ -17,17 +17,15 @@ public class ArtworkGUIView {
     public static int canvasHeight = 720;
 
     private static final RecursivePanelView recursivePanelView = new RecursivePanelView(canvasWidth, canvasHeight);
+    private static final Panel recursivePanel = recursivePanelView.getPanel();
     private static final CirclePackingPanelView circlePackingPanelView = new CirclePackingPanelView(canvasWidth, canvasHeight);
+    private static final Panel circlePackingPanel = circlePackingPanelView.getPanel();
     private static final SierpinskiPanelView sierpinskiPanelView = new SierpinskiPanelView(canvasWidth, canvasHeight);
-
+    private static final Panel sierpinskiPanel = sierpinskiPanelView.getPanel();
     private static Frame frame;
     private static JPanel canvas;
     private static Choice algorithmDropdown;
     private static JLabel errorLabel;
-
-    private static final Panel sierpinskiPanel = sierpinskiPanelView.getPanel();
-    private static final Panel recursivePanel = recursivePanelView.getPanel();
-    private static final Panel circlePackingPanel = circlePackingPanelView.getPanel();
     private static Button generateBtn, saveBtn, resetBtn;
     private static BufferedImage artworkImage;
 
@@ -38,14 +36,16 @@ public class ArtworkGUIView {
         setupBottomPanel();
         artworkImage = createBufferedImage();
     }
-    public void setupViewWindow(){
+
+    public void setupViewWindow() {
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
-        public void windowClosing(WindowEvent e) {
-            frame.dispose();
-        }
-    });
+            public void windowClosing(WindowEvent e) {
+                frame.dispose();
+            }
+        });
     }
+
     public void setupFrame() {
         frame = new Frame("Generative Art API");
         frame.setLayout(new BorderLayout());
@@ -106,8 +106,9 @@ public class ArtworkGUIView {
         leftPanel.add(circlePackingPanel, gbc);
         leftPanel.add(sierpinskiPanel, gbc);
     }
-    public BufferedImage createBufferedImage(){
-        return new BufferedImage(canvasWidth, canvasHeight,BufferedImage.TYPE_INT_ARGB);
+
+    public BufferedImage createBufferedImage() {
+        return new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_ARGB);
     }
 
     public void setupCanvas() {
@@ -167,16 +168,55 @@ public class ArtworkGUIView {
         canvas.repaint();
     }
 
-    public Frame getFrame() { return frame; }
-    public JPanel getCanvas() { return canvas; }
-    public Choice getAlgorithmDropdown() { return algorithmDropdown; }
-    public JLabel getErrorLabel() { return errorLabel; }
-    public Panel getRecursivePanel() { return recursivePanel; }
-    public Panel getCirclePackingPanel() { return circlePackingPanel; }
-    public Panel getSierpinskiPanel() { return sierpinskiPanel; }
-    public Button getGenerateBtn() {return generateBtn; }
-    public Button getSaveBtn() { return saveBtn; }
-    public Button getResetBtn() { return resetBtn; }
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public JPanel getCanvas() {
+        return canvas;
+    }
+
+    public Choice getAlgorithmDropdown() {
+        return algorithmDropdown;
+    }
+
+    public JLabel getErrorLabel() {
+        return errorLabel;
+    }
+
+    public void setErrorLabel(String message) {
+        if (message == null || message.isEmpty()) {
+            errorLabel.setText("");
+            errorLabel.setVisible(false);
+        } else {
+            errorLabel.setText(message);
+            errorLabel.setVisible(true);
+        }
+    }
+
+    public Panel getRecursivePanel() {
+        return recursivePanel;
+    }
+
+    public Panel getCirclePackingPanel() {
+        return circlePackingPanel;
+    }
+
+    public Panel getSierpinskiPanel() {
+        return sierpinskiPanel;
+    }
+
+    public Button getGenerateBtn() {
+        return generateBtn;
+    }
+
+    public Button getSaveBtn() {
+        return saveBtn;
+    }
+
+    public Button getResetBtn() {
+        return resetBtn;
+    }
 
     public SierpinskiPanelView getSierpinskiPanelView() {
         return sierpinskiPanelView;
@@ -190,22 +230,12 @@ public class ArtworkGUIView {
         return recursivePanelView;
     }
 
-    public  int getCanvasWidth() {
+    public int getCanvasWidth() {
         return canvasWidth;
     }
 
-    public  int getCanvasHeight() {
+    public int getCanvasHeight() {
         return canvasHeight;
-    }
-
-    public void setErrorLabel(String message) {
-        if (message == null || message.isEmpty()) {
-            errorLabel.setText("");
-            errorLabel.setVisible(false);
-        } else {
-            errorLabel.setText(message);
-            errorLabel.setVisible(true);
-        }
     }
 }
 
