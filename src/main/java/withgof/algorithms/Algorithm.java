@@ -22,18 +22,11 @@ public abstract class Algorithm extends JPanel {
 
     protected abstract void initialiseAlgorithm();
 
-    public void initialiseDefaults() {
-        canvasParams.initialiseDefaultParameters();
-        algorithmParams.initialiseDefaultParameters();
-        shapeParams.forEach(ShapeParameters::initialiseDefaultParameters);
-    }
-
     public boolean validateParameters() {
         return canvasParams.validateParameters() &&
                 algorithmParams.validateParameters() &&
                 shapeParams.stream().allMatch(ShapeParameters::validateParameters);
     }
-
 
     public abstract void executeAlgorithm();
 
@@ -51,7 +44,7 @@ public abstract class Algorithm extends JPanel {
 
     public void setCanvasParameters(CanvasParameters canvasParams) {
         this.canvasParams = canvasParams;
-        // validateParameters();
+        validateParameters();
     }
 
     public ArrayList<ShapeParameters> getShapeParameters() {
@@ -60,7 +53,7 @@ public abstract class Algorithm extends JPanel {
 
     public void setShapeParameters(ArrayList<ShapeParameters> shapeParams) {
         this.shapeParams = shapeParams;
-        //validateParameters();
+        validateParameters();
     }
 
     public Parameters getAlgorithmParams() {
@@ -69,6 +62,6 @@ public abstract class Algorithm extends JPanel {
 
     public void setAlgorithmParams(Parameters algorithmParams) {
         this.algorithmParams = algorithmParams;
-        //validateParameters();
+        validateParameters();
     }
 }
