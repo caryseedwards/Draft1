@@ -105,14 +105,15 @@ public class ArtworkGUIController {
 
         String validationError;
         view.setErrorLabel("");
-
         AlgorithmStrategy strategy = null;
+        CirclePackingAlgorithm cp = null;
         switch (view.getAlgorithmDropdown().getSelectedItem()) {
             case "Recursive Shape":
                 validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
                 if (validationError.isEmpty()) {
                     strategy = new RecursiveShapeAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
+
                 } else {
                     view.setErrorLabel(validationError);
                 }
@@ -120,55 +121,51 @@ public class ArtworkGUIController {
             case "Circle Packing":
                 validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
                 if (validationError.isEmpty()) {
-                    strategy = new CirclePackingAlgorithm(
+                    cp = new CirclePackingAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
-//                    packing.executeAlgorithm();
-//                    if (animationTimer != null) {
-//                        animationTimer.stop();
-//                    }}
-//
-//                animationTimer = new Timer(packing.params.animationSpeed, e -> {
-//                    packing.addCircles();
-//                    BufferedImage image1 = view.createBufferedImage();
-//                    Graphics2D g2d1 = image1.createGraphics();
-//                    applyRenderingHints(g2d1);
-//                    packing.drawPattern(g2d1);
-//                    g2d1.dispose();
-//                    view.setArtworkImage(image1);
-//                    view.getCanvas().repaint();
-//                });
-//
-//                animationTimer.start();
-            } else {
-            view.setErrorLabel(validationError);
-            }
+                    cp.executeAlgorithm();
+                    if (animationTimer != null) {
+                        animationTimer.stop();
+                    }
+
+                    CirclePackingAlgorithm finalCp = cp;
+                    animationTimer = new Timer(model.getPackingParams().animationSpeed, e -> {
+                        finalCp.addCircles();
+                        BufferedImage image1 = view.createBufferedImage();
+                        Graphics2D g2d1 = image1.createGraphics();
+                        applyRenderingHints(g2d1);
+                        finalCp.drawPattern(g2d1);
+                        g2d1.dispose();
+                        view.setArtworkImage(image1);
+                        view.getCanvas().repaint();
+                    });
+                    animationTimer.start();
+                } else {
+                    view.setErrorLabel(validationError);
+                }
                 break;
-        case "Sierpinski Shape":
-        validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
-        if (validationError.isEmpty()) {
-            strategy = new SierpinskiShapeAlgorithm(
-                    model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams());
-        } else {
-            view.setErrorLabel(validationError);
+            case "Sierpinski Shape":
+                validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
+                if (validationError.isEmpty()) {
+                    strategy = new SierpinskiShapeAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams());
+                } else {
+                    view.setErrorLabel(validationError);
+                }
+                break;
+            default:
+                view.getErrorLabel().setText("Please select a valid algorithm.");
         }
-        break;
-        default:
-        view.getErrorLabel().setText("Please select a valid algorithm.");
+        if (strategy != null) {
+            if (context == null) {
+                context = new AlgorithmContext(strategy);
+            } else {
+                context.setStrategy(strategy);
+            }
+            strategy.executeAlgorithm();
+            strategy.drawPattern(g2d);
+        }
     }
-    if(strategy != null){
-        if(context == null) {
-            context = new AlgorithmContext(strategy);
-        }
-        else {
-            context.setStrategy(strategy);
-        }
-        strategy.executeAlgorithm();
-        strategy.drawPattern(g2d);
-    }
-        g2d.dispose();
-        view.setArtworkImage(image);
-        view.getCanvas().repaint();
-}
     private void applyRenderingHints(Graphics2D g2d) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);

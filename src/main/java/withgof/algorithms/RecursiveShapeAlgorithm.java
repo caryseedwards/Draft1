@@ -25,12 +25,14 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy{
     }
     @Override
     public boolean validateParameters() {
-        return false;
+        return canvasParameters.validateParameters() && largeShapeParameters.validateParameters() && smallShapeParameters.validateParameters() && algorithmParameters.validateParameters();
     }
 
     @Override
     public void executeAlgorithm() {
-        addPattern(algorithmParameters.getCenterX(), algorithmParameters.getCenterY(), algorithmParameters.getInitialSize(), algorithmParameters.getDepth());
+        if (validateParameters()) {
+            addPattern(algorithmParameters.getCenterX(), algorithmParameters.getCenterY(), algorithmParameters.getInitialSize(), algorithmParameters.getDepth());
+        }
     }
 
     @Override
@@ -88,7 +90,4 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy{
     public ShapeParameters getSmallShapeParameters() {
         return smallShapeParameters;
     }
-
-
-
 }

@@ -5,7 +5,7 @@ import withgof.parameters.RecursiveShapeAlgorithmParameters;
 
 import static org.junit.Assert.*;
 
-public class RecursiveShapeAlgorithmParametersTest {
+public class RecursiveShapeAlgorithmParametersTestStrategy {
 
     @Test
     public void testConstructorAndGetters() {

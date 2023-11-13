@@ -22,7 +22,6 @@ public class AlgorithmContext extends JPanel {
     public void executeAlgorithm() {
         strategy.executeAlgorithm();
     }
-
     public void drawPattern(Graphics g) {
         strategy.drawPattern(g);
     }
@@ -42,15 +41,12 @@ public class AlgorithmContext extends JPanel {
             case "recursive":
                 frame.setTitle("Recursive Shape Example");
                 strategy = recursiveShapeStrategy();
-                break;
             case "packing":
                 frame.setTitle("Circle Packing in Shapes Example");
                 strategy = circlePackingStrategy();
-                break;
             case "sierpinski":
                 frame.setTitle("Sierpinski Shape Example");
                 strategy = sierpinskiShapeStrategy();
-                break;
             default:
                 System.out.println("Unauthorised input: "+example+ "\"");
                 System.exit(1);
@@ -78,7 +74,6 @@ public class AlgorithmContext extends JPanel {
     }
 
     public static AlgorithmStrategy circlePackingStrategy(){
-
         CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
         ArrayList<ShapeParameters> shapes = new ArrayList<>();
         shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
@@ -88,7 +83,6 @@ public class AlgorithmContext extends JPanel {
     }
 
     public static AlgorithmStrategy sierpinskiShapeStrategy(){
-
         CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
         ArrayList<ShapeParameters> shapes = new ArrayList<>();
         shapes.add(new ShapeParameters("triangle", 0.1f, Color.BLACK, Color.WHITE));

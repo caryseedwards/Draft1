@@ -26,11 +26,13 @@ public class CirclePackingAlgorithm  implements AlgorithmStrategy {
     }
     @Override
     public boolean validateParameters() {
-        return false;
+        return canvasParameters.validateParameters() && boundaryParameters.validateParameters() && circleParameters.validateParameters() && algorithmParameters.validateParameters();
     }
     @Override
     public void executeAlgorithm() {
-        addCircles();
+        if (validateParameters()) {
+            addCircles();
+        }
     }
 
     @Override

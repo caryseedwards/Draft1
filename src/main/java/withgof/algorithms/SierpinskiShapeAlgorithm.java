@@ -23,26 +23,28 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
     }
 
     public boolean validateParameters() {
-        return false;
+        return canvasParameters.validateParameters() && shapeParameters.validateParameters() && algorithmParameters.validateParameters();
     }
 
     @Override
     public void executeAlgorithm() {
-        switch (shapeParameters.getShapeType()) {
-            case "triangle":
-                addSierpinski(new Triangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
-                break;
-            case "circle":
-                addGasket(new Circle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
-                break;
-            case "square":
-                addCarpet(new Square(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
-                break;
-            case "hexagon":
-                addHexagon(new Hexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid shape type: " + shapeParameters.      getShapeType());
+        if (validateParameters()) {
+            switch (shapeParameters.getShapeType()) {
+                case "triangle":
+                    addSierpinski(new Triangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    break;
+                case "circle":
+                    addGasket(new Circle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    break;
+                case "square":
+                    addCarpet(new Square(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    break;
+                case "hexagon":
+                    addHexagon(new Hexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid shape type: " + shapeParameters.getShapeType());
+            }
         }
     }
 

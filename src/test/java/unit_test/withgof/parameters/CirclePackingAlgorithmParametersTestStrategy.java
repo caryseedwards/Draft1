@@ -5,7 +5,7 @@ import withgof.parameters.CirclePackingAlgorithmParameters;
 
 import static org.junit.Assert.*;
 
-public class CirclePackingAlgorithmParametersTest {
+public class CirclePackingAlgorithmParametersTestStrategy {
 
     @Test
     public void testConstructorAndGetters() {

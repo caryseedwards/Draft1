@@ -15,13 +15,17 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class CirclePackingAlgorithmTest {
+public class CirclePackingAlgorithmTestStrategy {
+    CanvasParameters canvas;
+    ArrayList<ShapeParameters> shapes;
+    CirclePackingAlgorithmParameters algorithm;
+
     private CirclePackingAlgorithm createTestInstance() {
-        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
+        canvas = new CanvasParameters(500, 500, Color.WHITE);
+        shapes = new ArrayList<>();
         shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
         shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
-        CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 200, 5, 50, 100, 1);
+        algorithm = new CirclePackingAlgorithmParameters(250, 250, 200, 5, 50, 100, 1);
 
         return new CirclePackingAlgorithm(canvas, shapes, algorithm);
     }
@@ -109,7 +113,7 @@ public class CirclePackingAlgorithmTest {
         for (Circle circle : packing.getCircles()) {
             double radius = circle.getRadius();
             assertTrue("Circle radius should be within constraints",
-                    radius >= packing.params.getMinRadius() && radius <= packing.params.getMaxRadius());
+                    radius >= algorithm.getMinRadius() && radius <=  algorithm.getMaxRadius());
         }
     }
     @Test

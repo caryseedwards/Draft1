@@ -5,7 +5,7 @@ import withgof.parameters.SierpinskiShapeAlgorithmParameters;
 
 import static org.junit.Assert.*;
 
-public class SierpinskiShapeAlgorithmParametersTest {
+public class SierpinskiShapeAlgorithmParametersTestStrategy {
 
     @Test
     public void testConstructorAndGetters() {
