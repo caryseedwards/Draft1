@@ -1,11 +1,12 @@
-package withoutgof.algorithms;
+package withgof.algorithms;
 
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.Parameters;
-import withoutgof.parameters.ShapeParameters;
-import withoutgof.parameters.SierpinskiShapeAlgorithmParameters;
-import withoutgof.shapes.*;
-import withoutgof.shapes.Shape;
+import withgof.shapes.*;
+import withgof.parameters.CanvasParameters;
+import withgof.parameters.Parameters;
+import withgof.parameters.ShapeParameters;
+import withgof.parameters.SierpinskiShapeAlgorithmParameters;
+import withgof.shapes.Shape;
+import withgof.withoutgof.shapes.*;
 
 import javax.swing.*;
 import java.awt.*;

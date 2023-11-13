@@ -1,11 +1,12 @@
-package withoutgof.algorithms;
+package withgof.algorithms;
 
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.CirclePackingAlgorithmParameters;
-import withoutgof.parameters.Parameters;
-import withoutgof.parameters.ShapeParameters;
-import withoutgof.shapes.*;
-import withoutgof.shapes.Shape;
+import withgof.parameters.CanvasParameters;
+import withgof.parameters.CirclePackingAlgorithmParameters;
+import withgof.parameters.Parameters;
+import withgof.parameters.ShapeParameters;
+import withgof.shapes.*;
+import withgof.shapes.Shape;
+import withgof.withoutgof.shapes.*;
 
 import javax.swing.*;
 import java.awt.*;

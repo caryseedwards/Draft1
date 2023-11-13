@@ -1,5 +1,7 @@
-package withoutgof.gui.model;
-import withoutgof.parameters.*;
+package withgof.gui.model;
+
+import withgof.parameters.*;
+import withgof.withoutgof.parameters.*;
 
 import javax.swing.*;
 import java.awt.*;
