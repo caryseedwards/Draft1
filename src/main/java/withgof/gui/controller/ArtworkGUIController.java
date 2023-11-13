@@ -1,6 +1,9 @@
 package withgof.gui.controller;
 
-import withgof.algorithms.*;
+import withgof.algorithms.AlgorithmContext;
+import withgof.algorithms.CirclePackingAlgorithm;
+import withgof.algorithms.RecursiveShapeAlgorithm;
+import withgof.algorithms.SierpinskiShapeAlgorithm;
 import withgof.gui.model.ParametersModel;
 import withgof.gui.view.ArtworkGUIView;
 import withgof.validate.Validate;
@@ -20,7 +23,7 @@ public class ArtworkGUIController {
     private CirclePackingController circlePackingPanelController;
     private SierpinskiController sierpinskiPanelController;
     private Timer animationTimer;
-    AlgorithmContext context = null;
+    private AlgorithmContext context = new AlgorithmContext();
 
     public ArtworkGUIController(ArtworkGUIView view, ParametersModel model) {
         this.view = view;
@@ -61,42 +64,7 @@ public class ArtworkGUIController {
         view.getFrame().validate();
         view.getFrame().repaint();
     }
-    public boolean setupContext(){
-        AlgorithmStrategy strategy = null;
-        String validationError = "";
-        String selectedAlgorithm = (String) view.getAlgorithmDropdown().getSelectedItem();
-        switch (selectedAlgorithm) {
-            case "Recursive Shape":
-                validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
-                if (validationError.isEmpty()) {
-                    strategy = new RecursiveShapeAlgorithm(
-                            model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
-                }
-                break;
-            case "Circle Packing":
-                validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
-                if (validationError.isEmpty()) {
-                    strategy = new CirclePackingAlgorithm(
-                            model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
-                }
-                break;
-            case "Sierpinski Shape":
-                validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
-                if (validationError.isEmpty()) {
-                    strategy = new SierpinskiShapeAlgorithm(
-                            model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams());
-                }
-                break;
-            default:
-                view.setErrorLabel("Please select a valid algorithm.");
-        }
-        if (!validationError.isEmpty() || strategy == null) {
-            view.setErrorLabel(validationError);
-            return false;
-        }
-        this.context.setStrategy(strategy);
-        return true;
-    }
+
 
     public void generateArtwork() {
         BufferedImage image = view.createBufferedImage();
@@ -105,15 +73,13 @@ public class ArtworkGUIController {
 
         String validationError;
         view.setErrorLabel("");
-        AlgorithmStrategy strategy = null;
-        CirclePackingAlgorithm cp = null;
+
         switch (view.getAlgorithmDropdown().getSelectedItem()) {
             case "Recursive Shape":
                 validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
                 if (validationError.isEmpty()) {
-                    strategy = new RecursiveShapeAlgorithm(
-                            model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
-
+                        this.context.setStrategy(new RecursiveShapeAlgorithm(
+                                model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams()));
                 } else {
                     view.setErrorLabel(validationError);
                 }
@@ -121,25 +87,8 @@ public class ArtworkGUIController {
             case "Circle Packing":
                 validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
                 if (validationError.isEmpty()) {
-                    cp = new CirclePackingAlgorithm(
-                            model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
-                    cp.executeAlgorithm();
-                    if (animationTimer != null) {
-                        animationTimer.stop();
-                    }
-
-                    CirclePackingAlgorithm finalCp = cp;
-                    animationTimer = new Timer(model.getPackingParams().animationSpeed, e -> {
-                        finalCp.addCircles();
-                        BufferedImage image1 = view.createBufferedImage();
-                        Graphics2D g2d1 = image1.createGraphics();
-                        applyRenderingHints(g2d1);
-                        finalCp.drawPattern(g2d1);
-                        g2d1.dispose();
-                        view.setArtworkImage(image1);
-                        view.getCanvas().repaint();
-                    });
-                    animationTimer.start();
+                    this.context.setStrategy(new CirclePackingAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getPackingParams()));
                 } else {
                     view.setErrorLabel(validationError);
                 }
@@ -147,8 +96,8 @@ public class ArtworkGUIController {
             case "Sierpinski Shape":
                 validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
                 if (validationError.isEmpty()) {
-                    strategy = new SierpinskiShapeAlgorithm(
-                            model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams());
+                    this.context.setStrategy(new SierpinskiShapeAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams()));
                 } else {
                     view.setErrorLabel(validationError);
                 }
@@ -156,16 +105,35 @@ public class ArtworkGUIController {
             default:
                 view.getErrorLabel().setText("Please select a valid algorithm.");
         }
-        if (strategy != null) {
-            if (context == null) {
-                context = new AlgorithmContext(strategy);
-            } else {
-                context.setStrategy(strategy);
-            }
-            strategy.executeAlgorithm();
-            strategy.drawPattern(g2d);
+
+        this.context.executeAlgorithm();
+        this.context.drawPattern(g2d);
+        if (this.context.getStrategy() instanceof CirclePackingAlgorithm){
+            startCirclePackingAnimation((CirclePackingAlgorithm) this.context.getStrategy());
         }
+        g2d.dispose();
+        view.setArtworkImage(image);
+        view.getCanvas().repaint();
     }
+
+    private void startCirclePackingAnimation(CirclePackingAlgorithm cpa) {
+        if (animationTimer != null) {
+            animationTimer.stop();
+        }
+
+        animationTimer = new Timer(cpa.getAlgorithmParameters().animationSpeed, e -> {
+            cpa.addCircles();
+            BufferedImage image1 = view.createBufferedImage();
+            Graphics2D g2d1 = image1.createGraphics();
+            applyRenderingHints(g2d1);
+            cpa.drawPattern(g2d1);
+            g2d1.dispose();
+            view.setArtworkImage(image1);
+            view.getCanvas().repaint();
+        });
+        animationTimer.start();
+    }
+
     private void applyRenderingHints(Graphics2D g2d) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
@@ -173,7 +141,6 @@ public class ArtworkGUIController {
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
     }
-
 
     public void saveImage() {
         BufferedImage image = new BufferedImage(view.getCanvasWidth(), view.getCanvasHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -220,4 +187,3 @@ public class ArtworkGUIController {
         sierpinskiPanelController = sc;
     }
 }
-

@@ -4,7 +4,7 @@ import withgof.gui.view.utilities;
 
 import java.awt.*;
 
-public class CirclePackingPanelView {
+public class CirclePackingPanelView{
     private final Panel circlePackingPanel;
     private final int canvasWidth;
     private final int canvasHeight;
@@ -30,7 +30,6 @@ public class CirclePackingPanelView {
         circlePackingPanel = new Panel(new GridBagLayout());
         setupPanel();
     }
-
 
     private void setupPanel() {
         GridBagConstraints gbc = new GridBagConstraints();

@@ -5,7 +5,7 @@ import withgof.gui.view.utilities;
 import javax.swing.*;
 import java.awt.*;
 
-public class SierpinskiPanelView {
+public class SierpinskiPanelView{
     private final Panel sierpinskiPanel;
     private final int canvasWidth;
     private final int canvasHeight;
@@ -83,12 +83,6 @@ public class SierpinskiPanelView {
         sierpinskiPanel.add(new Label(labelText), gbc);
 
         gbc.gridx = 1;
-        button.addActionListener(e -> {
-            Color chosenColor = JColorChooser.showDialog(sierpinskiPanel, "Choose Color", button.getBackground());
-            if (chosenColor != null) {
-                button.setBackground(chosenColor);
-            }
-        });
         sierpinskiPanel.add(button, gbc);
     }
 

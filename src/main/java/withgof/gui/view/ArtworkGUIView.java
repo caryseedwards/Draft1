@@ -148,7 +148,6 @@ public class ArtworkGUIView {
         String selected = algorithmDropdown.getSelectedItem();
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
-
         resetCanvas();
         recursivePanel.setVisible("Recursive Shape".equals(selected));
         circlePackingPanel.setVisible("Circle Packing".equals(selected));

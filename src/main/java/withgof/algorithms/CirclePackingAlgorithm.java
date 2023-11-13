@@ -34,7 +34,6 @@ public class CirclePackingAlgorithm  implements AlgorithmStrategy {
             addCircles();
         }
     }
-
     @Override
     public void drawPattern(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
