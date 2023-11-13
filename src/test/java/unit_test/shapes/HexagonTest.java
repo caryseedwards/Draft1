@@ -3,8 +3,8 @@ package unit_test.shapes;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import shapes.Circle;
-import shapes.Hexagon;
+import withoutgof.shapes.Circle;
+import withoutgof.shapes.Hexagon;
 
 import java.awt.*;
 

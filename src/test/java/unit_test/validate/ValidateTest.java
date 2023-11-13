@@ -2,12 +2,14 @@ package unit_test.validate;
 
 import static org.junit.Assert.*;
 
-import gui.view.panel.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
-import validate.Validate;
+import withoutgof.gui.view.panel.CirclePackingPanelView;
+import withoutgof.gui.view.panel.RecursivePanelView;
+import withoutgof.gui.view.panel.SierpinskiPanelView;
+import withoutgof.validate.Validate;
 
 import java.awt.*;
 

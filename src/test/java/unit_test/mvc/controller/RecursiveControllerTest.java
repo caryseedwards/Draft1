@@ -1,15 +1,15 @@
 package unit_test.mvc.controller;
 
-import gui.controller.ArtworkGUIController;
-import gui.controller.RecursiveShapeController;
-import gui.model.ParametersModel;
-import gui.view.ArtworkGUIView;
-import gui.view.panel.RecursivePanelView;
+import withoutgof.gui.controller.ArtworkGUIController;
+import withoutgof.gui.controller.RecursiveShapeController;
+import withoutgof.gui.model.ParametersModel;
+import withoutgof.gui.view.ArtworkGUIView;
+import withoutgof.gui.view.panel.RecursivePanelView;
 import org.junit.Before;
 import org.junit.Test;
-import parameters.CanvasParameters;
-import parameters.RecursiveShapeAlgorithmParameters;
-import parameters.ShapeParameters;
+import withoutgof.parameters.CanvasParameters;
+import withoutgof.parameters.RecursiveShapeAlgorithmParameters;
+import withoutgof.parameters.ShapeParameters;
 
 import java.awt.*;
 import java.util.ArrayList;

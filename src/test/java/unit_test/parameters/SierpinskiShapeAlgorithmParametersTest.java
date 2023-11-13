@@ -1,7 +1,7 @@
 package unit_test.parameters;
 
 import org.junit.Test;
-import parameters.SierpinskiShapeAlgorithmParameters;
+import withoutgof.parameters.SierpinskiShapeAlgorithmParameters;
 
 import static org.junit.Assert.*;
 

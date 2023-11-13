@@ -1,11 +1,11 @@
 package unit_test.mvc.controller;
 
-import gui.controller.ArtworkGUIController;
-import gui.controller.CirclePackingController;
-import gui.controller.RecursiveShapeController;
-import gui.controller.SierpinskiController;
-import gui.model.ParametersModel;
-import gui.view.ArtworkGUIView;
+import withoutgof.gui.controller.ArtworkGUIController;
+import withoutgof.gui.controller.CirclePackingController;
+import withoutgof.gui.controller.RecursiveShapeController;
+import withoutgof.gui.controller.SierpinskiController;
+import withoutgof.gui.model.ParametersModel;
+import withoutgof.gui.view.ArtworkGUIView;
 import org.junit.Before;
 import org.junit.Test;
 

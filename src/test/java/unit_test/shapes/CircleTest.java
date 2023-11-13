@@ -3,7 +3,7 @@ package unit_test.shapes;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import shapes.Circle;
+import withoutgof.shapes.Circle;
 
 public class CircleTest {
     private Circle circle;

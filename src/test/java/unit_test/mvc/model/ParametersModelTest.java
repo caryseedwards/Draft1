@@ -3,10 +3,11 @@ package unit_test.mvc.model;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
-import gui.model.ParametersModel;
+import withoutgof.gui.model.ParametersModel;
 import org.junit.Before;
 import org.junit.Test;
 import parameters.*;
+import withoutgof.parameters.*;
 
 import java.awt.Color;
 import java.util.ArrayList;

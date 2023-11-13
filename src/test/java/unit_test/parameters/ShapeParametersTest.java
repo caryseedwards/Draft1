@@ -1,7 +1,7 @@
 package unit_test.parameters;
 
 import org.junit.Test;
-import parameters.ShapeParameters;
+import withoutgof.parameters.ShapeParameters;
 import static org.junit.Assert.*;
 import java.awt.*;
 

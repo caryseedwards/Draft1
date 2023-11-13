@@ -1,13 +1,9 @@
 package unit_test.mvc.view;
 
-import gui.view.utilities;
+import withoutgof.gui.view.utilities;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static org.junit.Assert.assertEquals;
 

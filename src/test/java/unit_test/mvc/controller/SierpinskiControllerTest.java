@@ -1,15 +1,15 @@
 package unit_test.mvc.controller;
 
-import gui.controller.ArtworkGUIController;
-import gui.controller.SierpinskiController;
-import gui.model.ParametersModel;
-import gui.view.ArtworkGUIView;
-import gui.view.panel.SierpinskiPanelView;
+import withoutgof.gui.controller.ArtworkGUIController;
+import withoutgof.gui.controller.SierpinskiController;
+import withoutgof.gui.model.ParametersModel;
+import withoutgof.gui.view.ArtworkGUIView;
+import withoutgof.gui.view.panel.SierpinskiPanelView;
 import org.junit.Before;
 import org.junit.Test;
-import parameters.CanvasParameters;
-import parameters.ShapeParameters;
-import parameters.SierpinskiShapeAlgorithmParameters;
+import withoutgof.parameters.CanvasParameters;
+import withoutgof.parameters.ShapeParameters;
+import withoutgof.parameters.SierpinskiShapeAlgorithmParameters;
 
 import java.awt.*;
 import java.util.ArrayList;
