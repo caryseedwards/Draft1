@@ -3,19 +3,19 @@ package withgof.algorithms;
 import withgof.parameters.CanvasParameters;
 import withgof.parameters.CirclePackingAlgorithmParameters;
 import withgof.parameters.ShapeParameters;
-import withgof.shapes.*;
 import withgof.shapes.Shape;
+import withgof.shapes.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CirclePackingAlgorithm  implements AlgorithmStrategy {
-    private ArrayList<Circle> circles = new ArrayList<>();
-    private Shape boundaryShape;
+public class CirclePackingAlgorithm implements AlgorithmStrategy {
     private final CanvasParameters canvasParameters;
     private final ShapeParameters boundaryParameters;
     private final ShapeParameters circleParameters;
     private final CirclePackingAlgorithmParameters algorithmParameters;
+    private final ArrayList<Circle> circles = new ArrayList<>();
+    private Shape boundaryShape;
 
     public CirclePackingAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, CirclePackingAlgorithmParameters algorithmParameters) {
         this.canvasParameters = canvasParameters;
@@ -24,16 +24,19 @@ public class CirclePackingAlgorithm  implements AlgorithmStrategy {
         this.algorithmParameters = algorithmParameters;
         setBoundaryShape(boundaryParameters.getShapeType());
     }
+
     @Override
     public boolean validateParameters() {
         return canvasParameters.validateParameters() && boundaryParameters.validateParameters() && circleParameters.validateParameters() && algorithmParameters.validateParameters();
     }
+
     @Override
     public void executeAlgorithm() {
         if (validateParameters()) {
             addCircles();
         }
     }
+
     @Override
     public void drawPattern(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -61,23 +64,30 @@ public class CirclePackingAlgorithm  implements AlgorithmStrategy {
             }
         }
     }
+
+    public CirclePackingAlgorithmParameters getAlgorithmParameters() {
+        return this.algorithmParameters;
+    }
+
+    public Shape getBoundaryShape() {
+        return boundaryShape;
+    }
+
     public void setBoundaryShape(String type) {
         switch (type) {
             case "circle" ->
                     boundaryShape = new Circle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            case "square" -> boundaryShape = new Square(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            case "triangle" -> boundaryShape = new Triangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            case "hexagon" -> boundaryShape = new Hexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
+            case "square" ->
+                    boundaryShape = new Square(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
+            case "triangle" ->
+                    boundaryShape = new Triangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
+            case "hexagon" ->
+                    boundaryShape = new Hexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
             default -> throw new IllegalArgumentException("Invalid boundary type: " + type);
         }
         boundaryParameters.setShapeType(type);
     }
-    public CirclePackingAlgorithmParameters getAlgorithmParameters() {
-        return this.algorithmParameters;
-    }
-    public Shape getBoundaryShape() {
-        return boundaryShape;
-    }
+
     public ArrayList<Circle> getCircles() {
         return circles;
     }

@@ -1,10 +1,10 @@
 package withgof.algorithms;
 
-import withgof.shapes.*;
 import withgof.parameters.CanvasParameters;
 import withgof.parameters.ShapeParameters;
 import withgof.parameters.SierpinskiShapeAlgorithmParameters;
 import withgof.shapes.Shape;
+import withgof.shapes.*;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -16,14 +16,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static withgof.algorithms.AlgorithmContext.getAlgorithmContext;
+
 public class ArtworkGUIController {
     private final ArtworkGUIView view;
     private final ParametersModel model;
+    private final AlgorithmContext context = getAlgorithmContext();
     private RecursiveShapeController recursivePanelController;
     private CirclePackingController circlePackingPanelController;
     private SierpinskiController sierpinskiPanelController;
     private Timer animationTimer;
-    private AlgorithmContext context = new AlgorithmContext();
 
     public ArtworkGUIController(ArtworkGUIView view, ParametersModel model) {
         this.view = view;
@@ -65,7 +67,6 @@ public class ArtworkGUIController {
         view.getFrame().repaint();
     }
 
-
     public void generateArtwork() {
         BufferedImage image = view.createBufferedImage();
         Graphics2D g2d = image.createGraphics();
@@ -78,8 +79,8 @@ public class ArtworkGUIController {
             case "Recursive Shape":
                 validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
                 if (validationError.isEmpty()) {
-                        this.context.setStrategy(new RecursiveShapeAlgorithm(
-                                model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams()));
+                    context.setStrategy(new RecursiveShapeAlgorithm(
+                            model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams()));
                 } else {
                     view.setErrorLabel(validationError);
                 }
@@ -87,7 +88,7 @@ public class ArtworkGUIController {
             case "Circle Packing":
                 validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
                 if (validationError.isEmpty()) {
-                    this.context.setStrategy(new CirclePackingAlgorithm(
+                    context.setStrategy(new CirclePackingAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getPackingParams()));
                 } else {
                     view.setErrorLabel(validationError);
@@ -96,7 +97,7 @@ public class ArtworkGUIController {
             case "Sierpinski Shape":
                 validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
                 if (validationError.isEmpty()) {
-                    this.context.setStrategy(new SierpinskiShapeAlgorithm(
+                    context.setStrategy(new SierpinskiShapeAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams()));
                 } else {
                     view.setErrorLabel(validationError);
@@ -106,9 +107,9 @@ public class ArtworkGUIController {
                 view.getErrorLabel().setText("Please select a valid algorithm.");
         }
 
-        this.context.executeAlgorithm();
-        this.context.drawPattern(g2d);
-        if (this.context.getStrategy() instanceof CirclePackingAlgorithm){
+        context.executeAlgorithm();
+        context.drawPattern(g2d);
+        if (context.getStrategy() instanceof CirclePackingAlgorithm) {
             startCirclePackingAnimation((CirclePackingAlgorithm) this.context.getStrategy());
         }
         g2d.dispose();

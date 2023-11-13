@@ -1,9 +1,9 @@
 package withgof.gui.controller;
 
-import withgof.gui.view.panel.RecursivePanelView;
-import withgof.validate.Validate;
 import withgof.gui.model.ParametersModel;
+import withgof.gui.view.panel.RecursivePanelView;
 import withgof.gui.view.utilities;
+import withgof.validate.Validate;
 
 import java.awt.*;
 

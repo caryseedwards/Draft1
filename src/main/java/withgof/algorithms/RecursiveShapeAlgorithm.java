@@ -3,26 +3,27 @@ package withgof.algorithms;
 import withgof.parameters.CanvasParameters;
 import withgof.parameters.RecursiveShapeAlgorithmParameters;
 import withgof.parameters.ShapeParameters;
-import withgof.shapes.*;
 import withgof.shapes.Shape;
+import withgof.shapes.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class RecursiveShapeAlgorithm implements AlgorithmStrategy{
+public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
     private final ArrayList<Shape> shapesToDraw;
     private final CanvasParameters canvasParameters;
     private final ShapeParameters largeShapeParameters;
     private final ShapeParameters smallShapeParameters;
     private final RecursiveShapeAlgorithmParameters algorithmParameters;
 
-    public RecursiveShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, RecursiveShapeAlgorithmParameters  algorithmParameters) {
+    public RecursiveShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, RecursiveShapeAlgorithmParameters algorithmParameters) {
         this.canvasParameters = canvasParameters;
         this.algorithmParameters = algorithmParameters;
         this.largeShapeParameters = shapeParameters.get(0);
         this.smallShapeParameters = shapeParameters.get(1);
-        this.shapesToDraw = new ArrayList<Shape>();
+        this.shapesToDraw = new ArrayList<>();
     }
+
     @Override
     public boolean validateParameters() {
         return canvasParameters.validateParameters() && largeShapeParameters.validateParameters() && smallShapeParameters.validateParameters() && algorithmParameters.validateParameters();

@@ -2,10 +2,9 @@ package withgof.gui.view.panel;
 
 import withgof.gui.view.utilities;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class SierpinskiPanelView{
+public class SierpinskiPanelView {
     private final Panel sierpinskiPanel;
     private final int canvasWidth;
     private final int canvasHeight;
@@ -49,7 +48,7 @@ public class SierpinskiPanelView{
         addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Hexagon", "Square", "Circle", "Triangle"}, gridy++);
         addColorChooserButton(gbc, "Fill Colour:", fillColourButton, gridy++);
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
-        addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy++);
+        addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy);
 
         utilities.configureColourPicker(fillColourButton);
         utilities.configureColourPicker(lineColourButton);

@@ -4,9 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AlgorithmContext extends JPanel {
+    private static AlgorithmContext context;
     private AlgorithmStrategy strategy;
 
-    public AlgorithmContext() {
+    private AlgorithmContext() {
+    }
+
+    public static AlgorithmContext getAlgorithmContext() {
+        if (context == null) {
+            context = new AlgorithmContext();
+        }
+        return context;
     }
 
     public void executeAlgorithm() {

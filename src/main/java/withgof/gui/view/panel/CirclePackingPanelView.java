@@ -4,7 +4,7 @@ import withgof.gui.view.utilities;
 
 import java.awt.*;
 
-public class CirclePackingPanelView{
+public class CirclePackingPanelView {
     private final Panel circlePackingPanel;
     private final int canvasWidth;
     private final int canvasHeight;
@@ -75,7 +75,7 @@ public class CirclePackingPanelView{
         addColourChooserButton(gbc, "Packing Line Colour:", packingLineColourButton, gridy++);
         addLabelAndField(gbc, "Packing Line Width:", packingLineWidthTextField, gridy++);
         addLabelAndField(gbc, "Minimum Circle Radius:", minRadiusCircleTextField, gridy++);
-        addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy++);
+        addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy);
         gbc.weighty = 1;
 
         utilities.configureColourPicker(boundaryFillColourButton);

@@ -1,8 +1,8 @@
 package withgof.gui;
 
+import withgof.gui.controller.ArtworkGUIController;
 import withgof.gui.model.ParametersModel;
 import withgof.gui.view.ArtworkGUIView;
-import withgof.gui.controller.ArtworkGUIController;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
