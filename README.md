@@ -4,4 +4,5 @@ Checkstyle (Google) `java -jar checkstyle-*-all.jar -c /google_checks.xml src/ -
 
 Jacoco coverage: `mvn clena verify`
 
-PMD metrics: `mvn clena verify` generates in `target/site/pmd.html`
+PMD metrics: `mvn clean verify` generates in `target/site/pmd.html`
+https://github.com/pmd/pmd/tree/master/pmd-java/src/main/resources/rulesets/java
