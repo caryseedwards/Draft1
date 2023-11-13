@@ -1,7 +1,7 @@
 package unit_test.withgof.mvc.view;
 
 import org.junit.Test;
-import withoutgof.gui.view.utilities;
+import withgof.gui.view.utilities;
 
 import java.awt.*;
 

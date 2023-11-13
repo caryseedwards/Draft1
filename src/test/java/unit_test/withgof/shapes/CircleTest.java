@@ -2,7 +2,7 @@ package unit_test.withgof.shapes;
 
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.shapes.Circle;
+import withgof.shapes.Circle;
 
 import static org.junit.Assert.*;
 

@@ -2,8 +2,8 @@ package unit_test.withgof.shapes;
 
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.shapes.Circle;
-import withoutgof.shapes.Triangle;
+import withgof.shapes.Circle;
+import withgof.shapes.Triangle;
 
 import java.awt.*;
 

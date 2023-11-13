@@ -1,14 +1,14 @@
 package unit_test.withgof.algorithms;
 
 import org.junit.Test;
-import withoutgof.algorithms.CirclePackingAlgorithm;
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.CirclePackingAlgorithmParameters;
-import withoutgof.parameters.ShapeParameters;
-import withoutgof.shapes.Circle;
-import withoutgof.shapes.Hexagon;
-import withoutgof.shapes.Square;
-import withoutgof.shapes.Triangle;
+import withgof.algorithms.CirclePackingAlgorithm;
+import withgof.parameters.CanvasParameters;
+import withgof.parameters.CirclePackingAlgorithmParameters;
+import withgof.parameters.ShapeParameters;
+import withgof.shapes.Circle;
+import withgof.shapes.Hexagon;
+import withgof.shapes.Square;
+import withgof.shapes.Triangle;
 
 import java.awt.*;
 import java.util.ArrayList;

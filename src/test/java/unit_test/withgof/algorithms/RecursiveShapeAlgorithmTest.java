@@ -1,12 +1,12 @@
 package unit_test.withgof.algorithms;
 
 import org.junit.Test;
-import withoutgof.algorithms.RecursiveShapeAlgorithm;
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.RecursiveShapeAlgorithmParameters;
-import withoutgof.parameters.ShapeParameters;
-import withoutgof.shapes.Shape;
-import withoutgof.shapes.*;
+import withgof.algorithms.RecursiveShapeAlgorithm;
+import withgof.parameters.CanvasParameters;
+import withgof.parameters.RecursiveShapeAlgorithmParameters;
+import withgof.parameters.ShapeParameters;
+import withgof.shapes.Shape;
+import withgof.shapes.*;
 
 import java.awt.*;
 import java.util.ArrayList;

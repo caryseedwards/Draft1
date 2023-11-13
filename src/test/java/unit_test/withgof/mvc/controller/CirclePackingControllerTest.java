@@ -2,14 +2,14 @@ package unit_test.withgof.mvc.controller;
 
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.gui.controller.ArtworkGUIController;
-import withoutgof.gui.controller.CirclePackingController;
-import withoutgof.gui.model.ParametersModel;
-import withoutgof.gui.view.ArtworkGUIView;
-import withoutgof.gui.view.panel.CirclePackingPanelView;
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.CirclePackingAlgorithmParameters;
-import withoutgof.parameters.ShapeParameters;
+import withgof.gui.controller.ArtworkGUIController;
+import withgof.gui.controller.CirclePackingController;
+import withgof.gui.model.ParametersModel;
+import withgof.gui.view.ArtworkGUIView;
+import withgof.gui.view.panel.CirclePackingPanelView;
+import withgof.parameters.CanvasParameters;
+import withgof.parameters.CirclePackingAlgorithmParameters;
+import withgof.parameters.ShapeParameters;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -2,8 +2,8 @@ package unit_test.withgof.mvc.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.gui.model.ParametersModel;
-import withoutgof.parameters.*;
+import withgof.gui.model.ParametersModel;
+import withgof.parameters.*;
 
 import java.awt.*;
 import java.util.ArrayList;

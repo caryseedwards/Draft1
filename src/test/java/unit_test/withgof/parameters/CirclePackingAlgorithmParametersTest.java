@@ -1,7 +1,7 @@
 package unit_test.withgof.parameters;
 
 import org.junit.Test;
-import withoutgof.parameters.CirclePackingAlgorithmParameters;
+import withgof.parameters.CirclePackingAlgorithmParameters;
 
 import static org.junit.Assert.*;
 

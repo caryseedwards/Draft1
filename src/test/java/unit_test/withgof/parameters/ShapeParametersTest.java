@@ -1,7 +1,7 @@
 package unit_test.withgof.parameters;
 
 import org.junit.Test;
-import withoutgof.parameters.ShapeParameters;
+import withgof.parameters.ShapeParameters;
 
 import java.awt.*;
 

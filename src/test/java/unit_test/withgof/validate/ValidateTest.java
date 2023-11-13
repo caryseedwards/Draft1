@@ -2,10 +2,10 @@ package unit_test.withgof.validate;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import withoutgof.gui.view.panel.CirclePackingPanelView;
-import withoutgof.gui.view.panel.RecursivePanelView;
-import withoutgof.gui.view.panel.SierpinskiPanelView;
-import withoutgof.validate.Validate;
+import withgof.gui.view.panel.CirclePackingPanelView;
+import withgof.gui.view.panel.RecursivePanelView;
+import withgof.gui.view.panel.SierpinskiPanelView;
+import withgof.validate.Validate;
 
 import java.awt.*;
 
