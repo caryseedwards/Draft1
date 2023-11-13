@@ -5,7 +5,6 @@ import org.junit.Test;
 import withoutgof.parameters.CanvasParameters;
 import withoutgof.parameters.RecursiveShapeAlgorithmParameters;
 import withoutgof.parameters.ShapeParameters;
-import shapes.*;
 import withoutgof.shapes.*;
 import withoutgof.shapes.Shape;
 

@@ -6,7 +6,6 @@ import withgof.parameters.Parameters;
 import withgof.parameters.ShapeParameters;
 import withgof.shapes.*;
 import withgof.shapes.Shape;
-import withgof.withoutgof.shapes.*;
 
 import javax.swing.*;
 import java.awt.*;
