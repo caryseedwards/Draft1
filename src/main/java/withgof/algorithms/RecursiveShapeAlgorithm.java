@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
-    private ShapeFactory shapeFactory;
+    private final ShapeFactory shapeFactory;
     private final ArrayList<Shape> shapesToDraw;
     private final CanvasParameters canvasParameters;
     private final ShapeParameters largeShapeParameters;

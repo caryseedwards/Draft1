@@ -45,7 +45,7 @@ public class SierpinskiPanelView {
         addLabelAndField(gbc, "Initial 'y' co-ordinate:", startYTextField, gridy++);
         addLabelAndField(gbc, "Size:", sizeTextField, gridy++);
         addLabelAndField(gbc, "Depth:", depthTextField, gridy++);
-        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Hexagon", "Square", "Circle", "Triangle"}, gridy++);
+        addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Circle", "Square", "Hexagon", "Triangle"}, gridy++);
         addColorChooserButton(gbc, "Fill Colour:", fillColourButton, gridy++);
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
         addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy);

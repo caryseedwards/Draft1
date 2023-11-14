@@ -18,10 +18,7 @@ public class CirclePackingAlgorithmParameters extends Parameters {
         this.maxAttempts = maxAttempts;
         this.animationSpeed = animationSpeed;
     }
-    @Override
-    public String getName() {
-        return this.parameterType;
-    }
+
     @Override
     public void initialiseDefaultParameters() {
         centreX = 250;

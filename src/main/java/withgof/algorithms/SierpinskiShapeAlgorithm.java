@@ -15,14 +15,14 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
     private final SierpinskiShapeAlgorithmParameters algorithmParameters;
     private Shape sierpinskiShape;
     private final ArrayList<Shape> shapesToDraw;
-    private ShapeFactory shapeFactory;
+    private final ShapeFactory shapeFactory;
 
     public SierpinskiShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, SierpinskiShapeAlgorithmParameters algorithmParameters) {
         this.canvasParameters = canvasParameters;
         this.shapeParameters = shapeParameters.get(0);
         this.algorithmParameters = algorithmParameters;
         this.shapesToDraw = new ArrayList<>();
-        this.shapeFactory = new ShapeFactory(); // Initialize ShapeFactory
+        this.shapeFactory = new ShapeFactory();
     }
 
     public boolean validateParameters() {
@@ -34,16 +34,16 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         if (validateParameters()) {
             switch (shapeParameters.getShapeType()) {
                 case "triangle":
-                    addSierpinski(shapeFactory.createTriangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    addSierpinski((Triangle) shapeFactory.createShape(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize(), shapeParameters), algorithmParameters.getDepth());
                     break;
                 case "circle":
-                    addGasket(shapeFactory.createCircle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    addGasket((Circle) shapeFactory.createShape(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize(), shapeParameters), algorithmParameters.getDepth());
                     break;
                 case "square":
-                    addCarpet(shapeFactory.createSquare(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    addCarpet((Square) shapeFactory.createShape(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize(), shapeParameters), algorithmParameters.getDepth());
                     break;
                 case "hexagon":
-                    addHexagon(shapeFactory.createHexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize()), algorithmParameters.getDepth());
+                    addHexagon((Hexagon) shapeFactory.createShape(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize(), shapeParameters), algorithmParameters.getDepth());
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid shape type: " + shapeParameters.getShapeType());
@@ -74,9 +74,9 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         int midX3 = (triangle.x1 + triangle.x3) / 2;
         int midY3 = (triangle.y1 + triangle.y3) / 2;
 
-        addSierpinski(shapeFactory.createTriangle(triangle.x1, triangle.y1 - (int) newRadius, newRadius), depth - 1);
-        addSierpinski(shapeFactory.createTriangle(midX1, midY1 - (int) newRadius, newRadius), depth - 1);
-        addSierpinski(shapeFactory.createTriangle(midX3, midY3 - (int) newRadius, newRadius), depth - 1);
+        addSierpinski((Triangle) shapeFactory.createShape(triangle.x1, triangle.y1 - (int) newRadius, newRadius, shapeParameters), depth - 1);
+        addSierpinski((Triangle) shapeFactory.createShape(midX1, midY1 - (int) newRadius, newRadius, shapeParameters), depth - 1);
+        addSierpinski((Triangle) shapeFactory.createShape(midX3, midY3 - (int) newRadius, newRadius, shapeParameters), depth - 1);
     }
 
     private void addGasket(Circle circle, int depth) {
@@ -88,9 +88,9 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         int dx = (int) (newRadius * Math.cos(Math.PI / 6));
         int dy = (int) (newRadius * Math.sin(Math.PI / 6));
 
-        addGasket(shapeFactory.createCircle(circle.centerX, circle.centerY - newRadius, newRadius), depth - 1);
-        addGasket(shapeFactory.createCircle(circle.centerX - dx, circle.centerY + dy, newRadius), depth - 1);
-        addGasket(shapeFactory.createCircle(circle.centerX + dx, circle.centerY + dy, newRadius), depth - 1);
+        addGasket((Circle) shapeFactory.createShape(circle.centerX, circle.centerY - newRadius, newRadius, shapeParameters), depth - 1);
+        addGasket((Circle) shapeFactory.createShape(circle.centerX - dx, circle.centerY + dy, newRadius, shapeParameters), depth - 1);
+        addGasket((Circle) shapeFactory.createShape(circle.centerX + dx, circle.centerY + dy, newRadius, shapeParameters), depth - 1);
     }
 
     public void addHexagon(Hexagon hexagon, int depth) {
@@ -104,9 +104,9 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         for (int i = 0; i < 6; i++) {
             int newX = hexagon.centerX + (int) (newRadius * 2 * Math.cos(i * Math.PI / 3));
             int newY = hexagon.centerY + (int) (newRadius * 2 * Math.sin(i * Math.PI / 3));
-            addHexagon(shapeFactory.createHexagon(newX, newY, newRadius), depth - 1);
+            addHexagon((Hexagon) shapeFactory.createShape(newX, newY, newRadius, shapeParameters), depth - 1);
         }
-        addHexagon(shapeFactory.createHexagon(hexagon.centerX, hexagon.centerY, newRadius), depth - 1);
+        addHexagon((Hexagon) shapeFactory.createShape(hexagon.centerX, hexagon.centerY, newRadius, shapeParameters), depth - 1);
     }
 
     private void addCarpet(Square square, int depth) {
@@ -124,7 +124,7 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
                 int newX = (int) (square.centerX + (col - 1) * offsetX);
                 int newY = (int) (square.centerY + (row - 1) * offsetX);
 
-                Square newSquare = shapeFactory.createSquare(newX, newY, newRadius);
+                Square newSquare = (Square) shapeFactory.createShape(newX, newY, newRadius, shapeParameters);
                 addCarpet(newSquare, depth - 1);
             }
         }

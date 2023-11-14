@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePackingAlgorithm implements AlgorithmStrategy {
-    private ShapeFactory shapeFactory;
+    private final ShapeFactory shapeFactory;
     private final CanvasParameters canvasParameters;
     private final ShapeParameters boundaryParameters;
     private final ShapeParameters circleParameters;

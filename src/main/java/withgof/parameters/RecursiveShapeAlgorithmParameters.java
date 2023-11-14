@@ -17,11 +17,6 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
     }
 
     @Override
-    public String getName() {
-        return this.parameterType;
-    }
-
-    @Override
     public void initialiseDefaultParameters() {
         centerX = 250;
         centerY = 250;

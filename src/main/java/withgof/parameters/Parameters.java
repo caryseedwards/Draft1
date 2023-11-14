@@ -2,8 +2,9 @@ package withgof.parameters;
 
 public abstract class Parameters {
     protected String parameterType;
-    public abstract String getName();
+
     public abstract void initialiseDefaultParameters();
+
     public abstract boolean validateParameters();
 
 }

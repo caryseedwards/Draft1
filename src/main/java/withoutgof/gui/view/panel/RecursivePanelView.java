@@ -58,7 +58,7 @@ public class RecursivePanelView {
         addLabelAndField(gbc, "Initial radius length:", initialRadiusTextField, gridy++);
         addLabelAndField(gbc, "Number of shapes:", numShapeTextField, gridy++);
 
-        String[] shapeTypes = {"Triangle", "Square", "Circle", "Hexagon"};
+        String[] shapeTypes = {"Circle", "Square", "Triangle", "Hexagon"};
         addLabelAndChoice(gbc, "Large Shape Type:", largeShapeType, shapeTypes, gridy++);
         addColorChooserButton(gbc, "Large Shape Fill Color:", largeShapeColourButton, gridy++);
         addColorChooserButton(gbc, "Large Shape Line Color:", largeLineColourButton, gridy++);

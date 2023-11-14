@@ -14,10 +14,7 @@ public class SierpinskiShapeAlgorithmParameters extends Parameters {
         this.polygonSize = polygonSize;
         this.depth = depth;
     }
-    @Override
-    public String getName() {
-        return this.parameterType;
-    }
+
     @Override
     public void initialiseDefaultParameters() {
         // Set default values
