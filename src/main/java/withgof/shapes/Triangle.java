@@ -2,7 +2,7 @@ package withgof.shapes;
 
 import java.awt.*;
 
-public class Triangle extends Shape {
+public class Triangle extends  Shape  {
     public int centerX, centerY;
     public double radius;
     public int x1, y1, x2, y2, x3, y3;

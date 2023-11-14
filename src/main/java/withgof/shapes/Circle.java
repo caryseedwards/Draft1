@@ -6,7 +6,7 @@ public class Circle extends Shape {
     public int centerX, centerY;
     public double radius;
 
-    public Circle(int x, int y, int radius) {
+    public Circle(int x, int y, double radius) {
         this.centerX = x;
         this.centerY = y;
         this.radius = radius;

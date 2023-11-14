@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePackingAlgorithm implements AlgorithmStrategy {
+    private ShapeFactory shapeFactory;
     private final CanvasParameters canvasParameters;
     private final ShapeParameters boundaryParameters;
     private final ShapeParameters circleParameters;
@@ -22,6 +23,7 @@ public class CirclePackingAlgorithm implements AlgorithmStrategy {
         this.boundaryParameters = shapeParameters.get(0);
         this.circleParameters = shapeParameters.get(1);
         this.algorithmParameters = algorithmParameters;
+        shapeFactory = new ShapeFactory();
         setBoundaryShape(boundaryParameters.getShapeType());
     }
 
@@ -74,20 +76,9 @@ public class CirclePackingAlgorithm implements AlgorithmStrategy {
     }
 
     public void setBoundaryShape(String type) {
-        switch (type) {
-            case "circle" ->
-                    boundaryShape = new Circle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            case "square" ->
-                    boundaryShape = new Square(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            case "triangle" ->
-                    boundaryShape = new Triangle(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            case "hexagon" ->
-                    boundaryShape = new Hexagon(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize());
-            default -> throw new IllegalArgumentException("Invalid boundary type: " + type);
-        }
         boundaryParameters.setShapeType(type);
+        boundaryShape = shapeFactory.createShape(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize(), boundaryParameters);
     }
-
     public ArrayList<Circle> getCircles() {
         return circles;
     }

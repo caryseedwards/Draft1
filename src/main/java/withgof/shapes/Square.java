@@ -1,8 +1,10 @@
 package withgof.shapes;
 
+import withgof.parameters.ShapeParameters;
+
 import java.awt.*;
 
-public class Square extends Shape {
+public class Square  extends Shape {
     public int centerX, centerY;
     public double radius;
 
@@ -53,4 +55,5 @@ public class Square extends Shape {
     public void setScale(double scale) {
         this.radius = scale;
     }
+
 }

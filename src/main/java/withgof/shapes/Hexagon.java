@@ -1,9 +1,9 @@
 package withgof.shapes;
-
 import java.awt.*;
 
 public class Hexagon extends Shape {
-    public int centerX, centerY;
+    public int centerX;
+    public int centerY;
     public double radius;
 
     public Hexagon(int x, int y, double radius) {
@@ -23,7 +23,6 @@ public class Hexagon extends Shape {
         } while (!isPointInside(x, y));
         return new Point(x, y);
     }
-
     public boolean isPointInside(int x, int y) {
         int[] xPoints = new int[6];
         int[] yPoints = new int[6];
@@ -47,8 +46,6 @@ public class Hexagon extends Shape {
         }
         return true;
     }
-
-
     @Override
     public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType) {
         int[] xPoints = new int[6];
@@ -76,4 +73,5 @@ public class Hexagon extends Shape {
     public void setScale(double scale) {
         this.radius = scale;
     }
+
 }

@@ -17,11 +17,10 @@ public abstract class Shape {
 
     public abstract void setScale(double scale);
 
-    public ShapeParameters getShapeParameters() {
+    public ShapeParameters getParameters() {
         return this.params;
     }
-
-    public void setShapeParameters(ShapeParameters params) {
+    public void setParameters(ShapeParameters params) {
         this.params = params;
     }
 }
