@@ -3,8 +3,9 @@ package withgof.algorithms;
 import withgof.parameters.CanvasParameters;
 import withgof.parameters.CirclePackingAlgorithmParameters;
 import withgof.parameters.ShapeParameters;
+import withgof.shapes.Circle;
 import withgof.shapes.Shape;
-import withgof.shapes.*;
+import withgof.shapes.ShapeFactory;
 
 import java.awt.*;
 import java.util.ArrayList;

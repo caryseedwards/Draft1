@@ -4,7 +4,7 @@ import withgof.parameters.CanvasParameters;
 import withgof.parameters.RecursiveShapeAlgorithmParameters;
 import withgof.parameters.ShapeParameters;
 import withgof.shapes.Shape;
-import withgof.shapes.*;
+import withgof.shapes.ShapeFactory;
 
 import java.awt.*;
 import java.util.ArrayList;

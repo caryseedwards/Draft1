@@ -4,23 +4,13 @@ import withgof.parameters.ShapeParameters;
 
 public class ShapeFactory {
     public Shape createShape(int x, int y, double radius, ShapeParameters parameters) {
-        Shape newShape;
-        switch (parameters.getShapeType()) {
-            case "circle":
-                newShape = new Circle(x, y, radius);
-                break;
-            case "square":
-                newShape = new Square(x, y, radius);
-                break;
-            case "triangle":
-                newShape = new Triangle(x, y, radius);
-                break;
-            case "hexagon":
-                newShape = new Hexagon(x, y, radius);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid shape type: " + parameters.getShapeType());
-        }
+        Shape newShape = switch (parameters.getShapeType()) {
+            case "circle" -> new Circle(x, y, radius);
+            case "square" -> new Square(x, y, radius);
+            case "triangle" -> new Triangle(x, y, radius);
+            case "hexagon" -> new Hexagon(x, y, radius);
+            default -> throw new IllegalArgumentException("Invalid shape type: " + parameters.getShapeType());
+        };
         newShape.setParameters(parameters);
         return newShape;
     }

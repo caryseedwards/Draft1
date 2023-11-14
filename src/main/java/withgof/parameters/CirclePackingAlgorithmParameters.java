@@ -9,7 +9,7 @@ public class CirclePackingAlgorithmParameters extends Parameters {
 
     // Constructor
     public CirclePackingAlgorithmParameters(int centreX, int centreY, int polygonSize, int minRadius, int maxRadius, int maxAttempts, int animationSpeed) {
-        this.parameterType = "algorithm";
+        this.parameterType = "packing";
         this.centreX = centreX;
         this.centreY = centreY;
         this.polygonSize = polygonSize;
@@ -18,7 +18,10 @@ public class CirclePackingAlgorithmParameters extends Parameters {
         this.maxAttempts = maxAttempts;
         this.animationSpeed = animationSpeed;
     }
-
+    @Override
+    public String getName() {
+        return this.parameterType;
+    }
     @Override
     public void initialiseDefaultParameters() {
         centreX = 250;

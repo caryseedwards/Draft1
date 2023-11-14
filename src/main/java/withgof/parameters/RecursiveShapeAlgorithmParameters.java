@@ -8,12 +8,17 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
     private int numShapes;
 
     public RecursiveShapeAlgorithmParameters(int centerX, int centerY, int initialSize, int depth, int numShapes) {
-        this.parameterType = "algorithm";
+        this.parameterType = "recursive";
         this.centerX = centerX;
         this.centerY = centerY;
         this.initialSize = initialSize;
         this.depth = depth;
         this.numShapes = numShapes;
+    }
+
+    @Override
+    public String getName() {
+        return this.parameterType;
     }
 
     @Override

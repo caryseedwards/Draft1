@@ -1,7 +1,5 @@
 package withgof.shapes;
 
-import withgof.parameters.ShapeParameters;
-
 import java.awt.*;
 
 public class Square  extends Shape {
