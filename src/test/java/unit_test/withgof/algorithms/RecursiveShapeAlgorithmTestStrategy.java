@@ -70,18 +70,6 @@ public class RecursiveShapeAlgorithmTestStrategy {
         assertFalse(test.getShapesToDraw().isEmpty());
     }
 
-//    @Test
-//    public void testCreateShape() {
-//        Shape testShape = test.createShape("triangle", 100, 100, 50);
-//        assertTrue(testShape instanceof Triangle);
-//        testShape = test.createShape("circle", 100, 100, 50);
-//        assertTrue(testShape instanceof Circle);
-//        testShape = test.createShape("hexagon", 100, 100, 50);
-//        assertTrue(testShape instanceof Hexagon);
-//        testShape = test.createShape("square", 100, 100, 50);
-//        assertTrue(testShape instanceof Square);
-//    }
-
     @Test
     public void testInitialiseShapes() {
         RecursiveShapeAlgorithm recursiveShape = refreshTestInstanceWithShapeType("square", "circle");
