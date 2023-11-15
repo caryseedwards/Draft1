@@ -22,19 +22,6 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         executeAlgorithm();
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Sierpinski Shape");
-        CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("triangle", 0.1f, Color.BLACK, Color.WHITE));
-        SierpinskiShapeAlgorithmParameters algorithm = new SierpinskiShapeAlgorithmParameters(400, 1200, 400, 5);
-        SierpinskiShapeAlgorithm sierpinskiShape = new SierpinskiShapeAlgorithm(canvas, shapes, algorithm);
-        frame.add(sierpinskiShape);
-        frame.setSize(canvas.getWidth(), canvas.getHeight());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-
     @Override
     protected void initialiseAlgorithm() {
         this.params = (SierpinskiShapeAlgorithmParameters) getAlgorithmParams();

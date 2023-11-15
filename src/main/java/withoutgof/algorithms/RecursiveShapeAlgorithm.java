@@ -22,21 +22,6 @@ public class RecursiveShapeAlgorithm extends Algorithm {
         initialiseAlgorithm();
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Fractal Pattern");
-        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.BLACK));
-        shapes.add(new ShapeParameters("circle", 1, Color.BLACK, Color.YELLOW));
-        RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6);
-        RecursiveShapeAlgorithm pattern = new RecursiveShapeAlgorithm(canvas, shapes, algorithm);
-        pattern.executeAlgorithm();
-        frame.add(pattern);
-        frame.setSize(canvas.getHeight(), canvas.getWidth());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-
     @Override
     protected void initialiseAlgorithm() {
         this.params = (RecursiveShapeAlgorithmParameters) getAlgorithmParams();
