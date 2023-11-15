@@ -18,24 +18,23 @@ public class CirclePackingController {
         model.getCanvasParams().setHeight(view.getCanvasHeight());
         model.getCanvasParams().setBackgroundColour(Color.WHITE);
         model.getShapesParams().get(1).setShapeType("circle");
-        initController();
+        updateModelWithPanelSettings();
     }
 
-    private void initController() {
-        view.getStartXTextField().addTextListener(e -> updateStartX());
-        view.getStartYTextField().addTextListener(e -> updateStartY());
-        view.getMaxAttemptsTextField().addTextListener(e -> updateMaxAttempts());
-        view.getBoundaryShapeType().addItemListener(e -> updateBoundaryShapeType());
-        view.getBoundaryFillColourButton().addActionListener(e -> updateBoundaryFillColour());
-        view.getBoundaryLineColourButton().addActionListener(e -> updateBoundaryLineColour());
-        view.getBoundaryLineWidthTextField().addTextListener(e -> updateBoundaryLineWidth());
-        view.getBoundaryRadiusTextField().addTextListener(e -> updateBoundaryRadius());
-        model.getShapesParams().get(1).setShapeType("circle");
-        view.getPackingFillColourButton().addActionListener(e -> updatePackingFillColour());
-        view.getPackingLineColourButton().addActionListener(e -> updatePackingLineColour());
-        view.getPackingLineWidthTextField().addTextListener(e -> updatePackingLineWidth());
-        view.getMinRadiusCircleTextField().addTextListener(e -> updateMinRadius());
-        view.getMaxRadiusCircleTextField().addTextListener(e -> updateMaxRadius());
+    public void updateModelWithPanelSettings() {
+        updateStartX();
+        updateStartY();
+        updateMaxAttempts();
+        updateBoundaryShapeType();
+        updateBoundaryFillColour();
+        updateBoundaryLineColour();
+        updateBoundaryLineWidth();
+        updateBoundaryRadius();
+        updatePackingFillColour();
+        updatePackingLineColour();
+        updatePackingLineWidth();
+        updateMinRadius();
+        updateMaxRadius();
         updatePackingShapeType();
     }
 

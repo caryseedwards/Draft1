@@ -76,6 +76,7 @@ public class ArtworkGUIController {
             case "Recursive Shape":
                 validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
                 if (validationError.isEmpty()) {
+                    recursivePanelController.updateModelWithPanelSettings();
                     RecursiveShapeAlgorithm recursive = new RecursiveShapeAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams());
                     recursive.executeAlgorithm();
@@ -87,6 +88,7 @@ public class ArtworkGUIController {
             case "Circle Packing":
                 validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
                 if (validationError.isEmpty()) {
+                    circlePackingPanelController.updateModelWithPanelSettings();
                     CirclePackingAlgorithm packing = new CirclePackingAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getPackingParams());
                     packing.executeAlgorithm();
@@ -114,6 +116,7 @@ public class ArtworkGUIController {
             case "Sierpinski Shape":
                 validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
                 if (validationError.isEmpty()) {
+                    sierpinskiPanelController.updateModelWithPanelSettings();
                     SierpinskiShapeAlgorithm sierpinski = new SierpinskiShapeAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams());
                     sierpinski.executeAlgorithm();
@@ -138,7 +141,6 @@ public class ArtworkGUIController {
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
     }
-
 
     public void saveImage() {
         BufferedImage image = new BufferedImage(view.getCanvasWidth(), view.getCanvasHeight(), BufferedImage.TYPE_INT_ARGB);
