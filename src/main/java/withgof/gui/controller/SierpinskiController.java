@@ -14,18 +14,18 @@ public class SierpinskiController {
         this.view = view;
         model.getCanvasParams().setWidth(view.getCanvasWidth());
         model.getCanvasParams().setHeight(view.getCanvasHeight());
-        initController();
+        updateModelWithPanelSettings();
     }
 
-    private void initController() {
-        view.getStartXTextField().addTextListener(e -> updateStartX());
-        view.getStartYTextField().addTextListener(e -> updateStartY());
-        view.getSizeTextField().addTextListener(e -> updateSize());
-        view.getDepthTextField().addTextListener(e -> updateDepth());
-        view.getShapeTypeChoice().addItemListener(e -> updateShapeType());
-        view.getFillColourButton().addActionListener(e -> updateFillColour());
-        view.getLineColourButton().addActionListener(e -> updateLineColour());
-        view.getLineWidthTextField().addTextListener(e -> updateLineWidth());
+    public void updateModelWithPanelSettings() {
+        updateStartX();
+        updateStartY();
+        updateSize();
+        updateDepth();
+        updateShapeType();
+        updateFillColour();
+        updateLineColour();
+        updateLineWidth();
     }
 
     public void updateStartX() {

@@ -20,28 +20,6 @@ public class AlgorithmContext extends JPanel {
         return context;
     }
 
-    public void executeAlgorithm() {
-        strategy.executeAlgorithm();
-    }
-
-    public void drawPattern(Graphics g) {
-        strategy.drawPattern(g);
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        drawPattern(g);
-    }
-
-    public AlgorithmStrategy getStrategy() {
-        return this.strategy;
-    }
-
-    public void setStrategy(AlgorithmStrategy strategy) {
-        this.strategy = strategy;
-    }
-
     public static void main(String[] args) {
         AlgorithmStrategy strategy = null;
         JFrame frame = new JFrame();
@@ -70,7 +48,7 @@ public class AlgorithmContext extends JPanel {
         frame.setVisible(true);
     }
 
-    public static AlgorithmStrategy recursiveShapeStrategy(){
+    public static AlgorithmStrategy recursiveShapeStrategy() {
         CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
         ArrayList<ShapeParameters> shapes = new ArrayList<>();
         shapes.add(new ShapeParameters("triangle", 1, Color.BLACK, Color.BLACK));
@@ -78,7 +56,8 @@ public class AlgorithmContext extends JPanel {
         RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6);
         return new RecursiveShapeAlgorithm(canvas, shapes, algorithm);
     }
-    public static AlgorithmStrategy circlePackingStrategy(){
+
+    public static AlgorithmStrategy circlePackingStrategy() {
         CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
         ArrayList<ShapeParameters> shapes = new ArrayList<>();
         shapes.add(new ShapeParameters("hexagon", 1, Color.BLACK, Color.WHITE));
@@ -86,11 +65,34 @@ public class AlgorithmContext extends JPanel {
         CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 200, 5, 50, 100, 1);
         return new CirclePackingAlgorithm(canvas, shapes, algorithm);
     }
-    public static AlgorithmStrategy sierpinskiShapeStrategy(){
+
+    public static AlgorithmStrategy sierpinskiShapeStrategy() {
         CanvasParameters canvas = new CanvasParameters(1200, 1200, Color.WHITE);
         ArrayList<ShapeParameters> shapes = new ArrayList<>();
         shapes.add(new ShapeParameters("circle", 0.1f, Color.BLACK, Color.WHITE));
         SierpinskiShapeAlgorithmParameters algorithm = new SierpinskiShapeAlgorithmParameters(400, 400, 100, 4);
         return new SierpinskiShapeAlgorithm(canvas, shapes, algorithm);
+    }
+
+    public void executeAlgorithm() {
+        strategy.executeAlgorithm();
+    }
+
+    public void drawPattern(Graphics g) {
+        strategy.drawPattern(g);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        drawPattern(g);
+    }
+
+    public AlgorithmStrategy getStrategy() {
+        return this.strategy;
+    }
+
+    public void setStrategy(AlgorithmStrategy strategy) {
+        this.strategy = strategy;
     }
 }

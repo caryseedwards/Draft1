@@ -1,10 +1,11 @@
 package withgof.shapes;
+
 import java.awt.*;
 
 public class Hexagon extends Shape {
+    public double radius;
     private int centerX;
     private int centerY;
-    public double radius;
 
     public Hexagon(int x, int y, double radius) {
         this.centerX = x;

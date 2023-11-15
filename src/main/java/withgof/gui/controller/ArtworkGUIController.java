@@ -79,6 +79,7 @@ public class ArtworkGUIController {
             case "Recursive Shape":
                 validationError = Validate.validateRecursivePanelView(view.getRecursivePanelView());
                 if (validationError.isEmpty()) {
+                    recursivePanelController.updateModelWithPanelSettings();
                     context.setStrategy(new RecursiveShapeAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getRecursiveParams()));
                 } else {
@@ -88,6 +89,7 @@ public class ArtworkGUIController {
             case "Circle Packing":
                 validationError = Validate.validateCirclePackingPanelView(view.getCirclePackingPanelView());
                 if (validationError.isEmpty()) {
+                    circlePackingPanelController.updateModelWithPanelSettings();
                     context.setStrategy(new CirclePackingAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getPackingParams()));
                 } else {
@@ -97,6 +99,7 @@ public class ArtworkGUIController {
             case "Sierpinski Shape":
                 validationError = Validate.validateSierpinskiPanelView(view.getSierpinskiPanelView());
                 if (validationError.isEmpty()) {
+                    sierpinskiPanelController.updateModelWithPanelSettings();
                     context.setStrategy(new SierpinskiShapeAlgorithm(
                             model.getCanvasParams(), model.getShapesParams(), model.getSierpinskiParams()));
                 } else {

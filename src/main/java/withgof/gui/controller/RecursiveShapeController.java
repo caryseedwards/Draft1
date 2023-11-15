@@ -14,25 +14,25 @@ public class RecursiveShapeController {
     public RecursiveShapeController(ParametersModel model, RecursivePanelView view) {
         this.view = view;
         this.model = model;
-        initController();
+        updateModelWithPanelSettings();
     }
 
-    public void initController() {
+    public void updateModelWithPanelSettings() {
         model.getCanvasParams().setWidth(view.getCanvasWidth());
         model.getCanvasParams().setHeight(view.getCanvasHeight());
-        view.getStartXTextField().addTextListener(e -> updateStartX());
-        view.getStartYTextField().addTextListener(e -> updateStartY());
-        view.getRecursiveDepthTextField().addTextListener(e -> updateRecursiveDepth());
-        view.getInitialRadiusTextField().addTextListener(e -> updateInitialRadius());
-        view.getNumShapeTextField().addTextListener(e -> updateNumShapes());
-        view.getLargeShapeType().addItemListener(e -> updateLargeShapeType());
-        view.getLargeShapeColourButton().addActionListener(e -> updateLargeShapeFillColour());
-        view.getLargeLineColourButton().addActionListener(e -> updateLargeShapeLineColour());
-        view.getLargeLineWidthTextField().addTextListener(e -> updateLargeLineWidth());
-        view.getSmallShapeType().addItemListener(e -> updateSmallShapeType());
-        view.getSmallShapeColourButton().addActionListener(e -> updateSmallShapeFillColour());
-        view.getSmallLineColourButton().addActionListener(e -> updateSmallShapeLineColour());
-        view.getSmallLineWidthTextField().addTextListener(e -> updateSmallLineWidth());
+        updateStartX();
+        updateStartY();
+        updateRecursiveDepth();
+        updateInitialRadius();
+        updateNumShapes();
+        updateLargeShapeType();
+        updateLargeShapeFillColour();
+        updateLargeShapeLineColour();
+        updateLargeLineWidth();
+        updateSmallShapeType();
+        updateSmallShapeFillColour();
+        updateSmallShapeLineColour();
+        updateSmallLineWidth();
     }
 
     public void updateStartX() {

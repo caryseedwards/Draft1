@@ -2,7 +2,7 @@ package withgof.shapes;
 
 import java.awt.*;
 
-public class Square  extends Shape {
+public class Square extends Shape {
     private int centerX;
     private int centerY;
     private double radius;

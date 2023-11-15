@@ -15,16 +15,19 @@ public class ShapeFactory {
         return newShape;
     }
 
-    private Circle createCircle(int x, int y, double radius){
+    private Circle createCircle(int x, int y, double radius) {
         return new Circle(x, y, radius);
     }
-    private Square createSquare(int x, int y, double radius){
+
+    private Square createSquare(int x, int y, double radius) {
         return new Square(x, y, radius);
     }
-    private Triangle createTriangle(int x, int y, double radius){
+
+    private Triangle createTriangle(int x, int y, double radius) {
         return new Triangle(x, y, radius);
     }
-    private Hexagon createHexagon(int x, int y, double radius){
+
+    private Hexagon createHexagon(int x, int y, double radius) {
         return new Hexagon(x, y, radius);
     }
 }
