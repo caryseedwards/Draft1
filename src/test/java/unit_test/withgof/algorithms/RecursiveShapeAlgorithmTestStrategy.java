@@ -39,15 +39,12 @@ public class RecursiveShapeAlgorithmTestStrategy {
     }
     private int calculateTotalNumberOfShapes(int depth, int numSmallShapes) {
         if (depth == 0) return 1;
-        // Each level of depth adds numSmallShapes per each shape of the previous level
         return calculateTotalNumberOfShapes(depth - 1, numSmallShapes) * (1 + numSmallShapes);
     }
     private int calculateNumberOfLargeShapes(int depth) {
-        // One large shape per level of depth
         return depth;
     }
     private int calculateNumberOfSmallShapes(int depth, int numSmallShapes) {
-        // One large shape per level of depth
         return calculateTotalNumberOfShapes(depth, numSmallShapes) - calculateNumberOfLargeShapes(depth);
     }
     @Test
@@ -73,7 +70,6 @@ public class RecursiveShapeAlgorithmTestStrategy {
     @Test
     public void testInitialiseShapes() {
         RecursiveShapeAlgorithm recursiveShape = refreshTestInstanceWithShapeType("square", "circle");
-
         assertSame("square", recursiveShape.getLargeShapeParameters().getShapeType());
         assertSame( "circle",recursiveShape.getSmallShapeParameters().getShapeType());
     }

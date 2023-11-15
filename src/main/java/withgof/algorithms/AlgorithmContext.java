@@ -45,25 +45,22 @@ public class AlgorithmContext extends JPanel {
     public static void main(String[] args) {
         AlgorithmStrategy strategy = null;
         JFrame frame = new JFrame();
-       // String example = Arrays.toString(args);
         String example = "sierpinski";
-        switch(example){
-            case "recursive":
+        strategy = switch (example) {
+            case "recursive" -> {
                 frame.setTitle("Recursive Shape Example");
-                strategy = recursiveShapeStrategy();
-                break;
-            case "packing":
+                yield recursiveShapeStrategy();
+            }
+            case "packing" -> {
                 frame.setTitle("Circle Packing in Shapes Example");
-                strategy = circlePackingStrategy();
-                break;
-            case "sierpinski":
+                yield circlePackingStrategy();
+            }
+            case "sierpinski" -> {
                 frame.setTitle("Sierpinski Shape Example");
-                strategy = sierpinskiShapeStrategy();
-                break;
-            default:
-                System.out.println("Unauthorised input: "+example+ "\"");
-                System.exit(1);
-        }
+                yield sierpinskiShapeStrategy();
+            }
+            default -> strategy;
+        };
         AlgorithmContext context = new AlgorithmContext();
         context.setStrategy(strategy);
         context.executeAlgorithm();
@@ -71,13 +68,8 @@ public class AlgorithmContext extends JPanel {
         frame.setSize(1000, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        //        Timer timer = new Timer(packing.params.animationSpeed, e -> {
-        //            packing.addCircles();
-        //            packing.repaint();
-        //        });
-        //        timer.start();
     }
-    //helpers for the main methods:
+
     public static AlgorithmStrategy recursiveShapeStrategy(){
         CanvasParameters canvas = new CanvasParameters(800, 800, Color.WHITE);
         ArrayList<ShapeParameters> shapes = new ArrayList<>();

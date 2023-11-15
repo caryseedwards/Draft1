@@ -3,8 +3,9 @@ package withgof.shapes;
 import java.awt.*;
 
 public class Square  extends Shape {
-    public int centerX, centerY;
-    public double radius;
+    private int centerX;
+    private int centerY;
+    private double radius;
 
     public Square(int x, int y, double radius) {
         this.centerX = x;
@@ -15,10 +16,10 @@ public class Square  extends Shape {
     @Override
     public boolean isInside(Circle circle) {
         double sideLength = 2 * radius;
-        return circle.centerX - circle.getRadius() >= this.centerX - sideLength / 2 &&
-                circle.centerX + circle.getRadius() <= this.centerX + sideLength / 2 &&
-                circle.centerY - circle.getRadius() >= this.centerY - sideLength / 2 &&
-                circle.centerY + circle.getRadius() <= this.centerY + sideLength / 2;
+        return circle.getCenterX() - circle.getRadius() >= this.centerX - sideLength / 2 &&
+                circle.getCenterX() + circle.getRadius() <= this.centerX + sideLength / 2 &&
+                circle.getCenterY() - circle.getRadius() >= this.centerY - sideLength / 2 &&
+                circle.getCenterY() + circle.getRadius() <= this.centerY + sideLength / 2;
     }
 
     @Override
@@ -54,4 +55,15 @@ public class Square  extends Shape {
         this.radius = scale;
     }
 
+    public int getCenterX() {
+        return centerX;
+    }
+
+    public int getCenterY() {
+        return centerY;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
 }

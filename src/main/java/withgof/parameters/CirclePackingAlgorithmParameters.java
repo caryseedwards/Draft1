@@ -7,7 +7,6 @@ public class CirclePackingAlgorithmParameters extends Parameters {
     public int minRadius, maxRadius, maxAttempts;
     public int animationSpeed;
 
-    // Constructor
     public CirclePackingAlgorithmParameters(int centreX, int centreY, int polygonSize, int minRadius, int maxRadius, int maxAttempts, int animationSpeed) {
         this.parameterType = "packing";
         this.centreX = centreX;
@@ -17,17 +16,6 @@ public class CirclePackingAlgorithmParameters extends Parameters {
         this.maxRadius = maxRadius;
         this.maxAttempts = maxAttempts;
         this.animationSpeed = animationSpeed;
-    }
-
-    @Override
-    public void initialiseDefaultParameters() {
-        centreX = 250;
-        centreY = 250;
-        polygonSize = 111;
-        minRadius = 5;
-        maxRadius = 22;
-        maxAttempts = 100;
-        animationSpeed = 1;
     }
 
     @Override

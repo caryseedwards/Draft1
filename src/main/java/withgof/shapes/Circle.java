@@ -3,8 +3,9 @@ package withgof.shapes;
 import java.awt.*;
 
 public class Circle extends Shape {
-    public int centerX, centerY;
-    public double radius;
+    private int centerX;
+    private int centerY;
+    private double radius;
 
     public Circle(int x, int y, double radius) {
         this.centerX = x;
@@ -71,6 +72,14 @@ public class Circle extends Shape {
     @Override
     public void setScale(double size) {
         this.radius = size;
+    }
+
+    public int getCenterX() {
+        return centerX;
+    }
+
+    public int getCenterY() {
+        return centerY;
     }
 
 }

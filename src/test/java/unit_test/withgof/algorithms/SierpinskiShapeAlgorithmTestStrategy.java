@@ -56,8 +56,6 @@ public class SierpinskiShapeAlgorithmTestStrategy {
         algorithm  = new SierpinskiShapeAlgorithmParameters(20,20,20,3);
         refreshTestInstanceWithUpdatedParameters();
         assertTrue("Valid parameters should pass validation", test.validateParameters());
-
-        // Test with invalid parameters
         algorithm.setDepth(-1);
         assertFalse(test.validateParameters());
     }

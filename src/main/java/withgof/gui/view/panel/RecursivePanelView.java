@@ -69,7 +69,6 @@ public class RecursivePanelView {
         addColorChooserButton(gbc, "Small Shape Line Color:", smallLineColourButton, gridy++);
         addLabelAndField(gbc, "Small Shape Line Width:", smallLineWidthTextField, gridy);
 
-        // Configure color pickers
         utilities.configureColourPicker(largeShapeColourButton);
         utilities.configureColourPicker(largeLineColourButton);
         utilities.configureColourPicker(smallShapeColourButton);
@@ -116,7 +115,6 @@ public class RecursivePanelView {
         return canvasHeight;
     }
 
-    // Getters for each UI component
     public TextField getStartXTextField() {
         return startXTextField;
     }

@@ -6,22 +6,12 @@ public class SierpinskiShapeAlgorithmParameters extends Parameters {
     private int polygonSize;
     private int depth;
 
-    // Constructor
     public SierpinskiShapeAlgorithmParameters(int centreX, int centreY, int polygonSize, int depth) {
         this.parameterType = "algorithm";
         this.centreX = centreX;
         this.centreY = centreY;
         this.polygonSize = polygonSize;
         this.depth = depth;
-    }
-
-    @Override
-    public void initialiseDefaultParameters() {
-        // Set default values
-        centreX = 0;
-        centreY = 0;
-        polygonSize = 100;
-        depth = 3;
     }
 
     @Override
@@ -45,12 +35,10 @@ public class SierpinskiShapeAlgorithmParameters extends Parameters {
         }
     }
 
-    // Getters
     public int getCentreX() {
         return centreX;
     }
 
-    // Setters
     public void setCentreX(int centreX) {
         this.centreX = centreX;
     }

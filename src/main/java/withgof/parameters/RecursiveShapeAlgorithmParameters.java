@@ -16,14 +16,6 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
         this.numShapes = numShapes;
     }
 
-    @Override
-    public void initialiseDefaultParameters() {
-        centerX = 250;
-        centerY = 250;
-        initialSize = 100;
-        depth = 3;
-        numShapes = 5;
-    }
 
     @Override
     public boolean validateParameters() {
@@ -43,12 +35,10 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
         }
     }
 
-    // Getters
     public int getCenterX() {
         return centerX;
     }
 
-    // Setters
     public void setCenterX(int newX) {
         centerX = newX;
     }

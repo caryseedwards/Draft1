@@ -14,6 +14,7 @@ public class ShapeFactory {
         newShape.setParameters(parameters);
         return newShape;
     }
+
     private Circle createCircle(int x, int y, double radius){
         return new Circle(x, y, radius);
     }

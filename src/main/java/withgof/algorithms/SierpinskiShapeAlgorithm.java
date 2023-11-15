@@ -13,7 +13,6 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
     private final CanvasParameters canvasParameters;
     private final ShapeParameters shapeParameters;
     private final SierpinskiShapeAlgorithmParameters algorithmParameters;
-    private Shape sierpinskiShape;
     private final ArrayList<Shape> shapesToDraw;
     private final ShapeFactory shapeFactory;
 
@@ -67,14 +66,14 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
             shapesToDraw.add(triangle);
             return;
         }
-        double newRadius = triangle.radius / 2;
+        double newRadius = triangle.getRadius() / 2;
 
-        int midX1 = (triangle.x1 + triangle.x2) / 2;
-        int midY1 = (triangle.y1 + triangle.y2) / 2;
-        int midX3 = (triangle.x1 + triangle.x3) / 2;
-        int midY3 = (triangle.y1 + triangle.y3) / 2;
+        int midX1 = (triangle.getX1() + triangle.getX2()) / 2;
+        int midY1 = (triangle.getY1() + triangle.getY2()) / 2;
+        int midX3 = (triangle.getX1() + triangle.getX3()) / 2;
+        int midY3 = (triangle.getY1() + triangle.getY3()) / 2;
 
-        addSierpinski((Triangle) shapeFactory.createShape(triangle.x1, triangle.y1 - (int) newRadius, newRadius, shapeParameters), depth - 1);
+        addSierpinski((Triangle) shapeFactory.createShape(triangle.getX1(), triangle.getY1() - (int) newRadius, newRadius, shapeParameters), depth - 1);
         addSierpinski((Triangle) shapeFactory.createShape(midX1, midY1 - (int) newRadius, newRadius, shapeParameters), depth - 1);
         addSierpinski((Triangle) shapeFactory.createShape(midX3, midY3 - (int) newRadius, newRadius, shapeParameters), depth - 1);
     }
@@ -84,13 +83,13 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
 
         shapesToDraw.add(circle);
 
-        int newRadius = (int) circle.radius / 2;
+        int newRadius = (int) circle.getRadius() / 2;
         int dx = (int) (newRadius * Math.cos(Math.PI / 6));
         int dy = (int) (newRadius * Math.sin(Math.PI / 6));
 
-        addGasket((Circle) shapeFactory.createShape(circle.centerX, circle.centerY - newRadius, newRadius, shapeParameters), depth - 1);
-        addGasket((Circle) shapeFactory.createShape(circle.centerX - dx, circle.centerY + dy, newRadius, shapeParameters), depth - 1);
-        addGasket((Circle) shapeFactory.createShape(circle.centerX + dx, circle.centerY + dy, newRadius, shapeParameters), depth - 1);
+        addGasket((Circle) shapeFactory.createShape(circle.getCenterX(), circle.getCenterY() - newRadius, newRadius, shapeParameters), depth - 1);
+        addGasket((Circle) shapeFactory.createShape(circle.getCenterX() - dx, circle.getCenterY() + dy, newRadius, shapeParameters), depth - 1);
+        addGasket((Circle) shapeFactory.createShape(circle.getCenterX() + dx, circle.getCenterY() + dy, newRadius, shapeParameters), depth - 1);
     }
 
     public void addHexagon(Hexagon hexagon, int depth) {
@@ -102,11 +101,11 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         double newRadius = hexagon.radius / 3;
 
         for (int i = 0; i < 6; i++) {
-            int newX = hexagon.centerX + (int) (newRadius * 2 * Math.cos(i * Math.PI / 3));
-            int newY = hexagon.centerY + (int) (newRadius * 2 * Math.sin(i * Math.PI / 3));
+            int newX = hexagon.getCenterX() + (int) (newRadius * 2 * Math.cos(i * Math.PI / 3));
+            int newY = hexagon.getCenterY() + (int) (newRadius * 2 * Math.sin(i * Math.PI / 3));
             addHexagon((Hexagon) shapeFactory.createShape(newX, newY, newRadius, shapeParameters), depth - 1);
         }
-        addHexagon((Hexagon) shapeFactory.createShape(hexagon.centerX, hexagon.centerY, newRadius, shapeParameters), depth - 1);
+        addHexagon((Hexagon) shapeFactory.createShape(hexagon.getCenterX(), hexagon.getCenterY(), newRadius, shapeParameters), depth - 1);
     }
 
     private void addCarpet(Square square, int depth) {
@@ -114,15 +113,15 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
             shapesToDraw.add(square);
             return;
         }
-        double newRadius = square.radius / 3;
+        double newRadius = square.getRadius() / 3;
         double offsetX = newRadius * 2;
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 if (row == 1 && col == 1) continue;
 
-                int newX = (int) (square.centerX + (col - 1) * offsetX);
-                int newY = (int) (square.centerY + (row - 1) * offsetX);
+                int newX = (int) (square.getCenterX() + (col - 1) * offsetX);
+                int newY = (int) (square.getCenterY() + (row - 1) * offsetX);
 
                 Square newSquare = (Square) shapeFactory.createShape(newX, newY, newRadius, shapeParameters);
                 addCarpet(newSquare, depth - 1);

@@ -20,6 +20,7 @@ public abstract class Shape {
     public ShapeParameters getParameters() {
         return this.params;
     }
+
     public void setParameters(ShapeParameters params) {
         this.params = params;
     }

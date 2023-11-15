@@ -71,7 +71,6 @@ public class AlgorithmContextTest {
 
 }
 
-// Helper mock class for testing algorithm context
 class MockAlgorithmStrategy implements AlgorithmStrategy {
     private boolean executeCalled = false;
     private boolean drawCalled = false;

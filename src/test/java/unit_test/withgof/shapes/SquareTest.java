@@ -19,9 +19,9 @@ public class SquareTest {
 
     @Test
     public void testSquareInitialization() {
-        assertEquals("Center X should be initialized correctly", 10, square.centerX);
-        assertEquals("Center Y should be initialized correctly", 10, square.centerY);
-        assertEquals("Radius should be initialized correctly", 5, square.radius, 0.0);
+        assertEquals("Center X should be initialized correctly", 10, square.getCenterX());
+        assertEquals("Center Y should be initialized correctly", 10, square.getCenterY());
+        assertEquals("Radius should be initialized correctly", 5, square.getRadius(), 0.0);
     }
 
     @Test
@@ -40,23 +40,23 @@ public class SquareTest {
     public void testRandomPositionInside() {
         Point point = square.randomPositionInside();
         assertTrue("Point should be inside square",
-                point.x >= square.centerX - square.radius &&
-                        point.x <= square.centerX + square.radius &&
-                        point.y >= square.centerY - square.radius &&
-                        point.y <= square.centerY + square.radius);
+                point.x >= square.getCenterX() - square.getRadius() &&
+                        point.x <= square.getCenterX() + square.getRadius() &&
+                        point.y >= square.getCenterY() - square.getRadius() &&
+                        point.y <= square.getCenterY() + square.getRadius());
     }
 
     @Test
     public void testSetPosition() {
         square.setPosition(15, 15);
-        assertEquals("Center X should be updated", 15, square.centerX);
-        assertEquals("Center Y should be updated", 15, square.centerY);
+        assertEquals("Center X should be updated", 15, square.getCenterX());
+        assertEquals("Center Y should be updated", 15, square.getCenterY());
     }
 
     @Test
     public void testSetScale() {
         square.setScale(10);
-        assertEquals("Radius should be updated", 10, square.radius, 0.0);
+        assertEquals("Radius should be updated", 10, square.getRadius(), 0.0);
     }
 
 }

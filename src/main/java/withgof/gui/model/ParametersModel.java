@@ -2,7 +2,6 @@ package withgof.gui.model;
 
 import withgof.parameters.*;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -23,7 +22,6 @@ public class ParametersModel {
         setPackingParams(new CirclePackingAlgorithmParameters(250, 250, 100, 5, 50, 1000, 2));
         setSierpinskiParams(new SierpinskiShapeAlgorithmParameters(250, 250, 100, 4));
     }
-
 
     public CanvasParameters getCanvasParams() {
         return this.canvas;
@@ -74,5 +72,4 @@ public class ParametersModel {
             this.sap = ssp;
         }
     }
-
 }

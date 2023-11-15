@@ -28,7 +28,6 @@ public class RecursiveControllerTest {
         view = v.getRecursivePanelView();
         controller = c.getRecursiveController();
 
-        // Create default instances for model fields
         CanvasParameters canvasParams = new CanvasParameters(500, 500, Color.WHITE);
         RecursiveShapeAlgorithmParameters rapParams = new RecursiveShapeAlgorithmParameters(250, 250, 100, 5, 6);
         ArrayList<ShapeParameters> shapeParamsList = new ArrayList<>();

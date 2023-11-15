@@ -80,7 +80,7 @@ public class CirclePackingAlgorithmTestStrategy {
     public void testCircleCountAfterMultipleAdditions() {
         CirclePackingAlgorithm packing = createTestInstance();
         int initialCount = packing.getCircles().size();
-        packing.addCircles(); // Call multiple times as needed
+        packing.addCircles();
         assertTrue(packing.getCircles().size() > initialCount);
     }
     @Test

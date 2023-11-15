@@ -85,7 +85,6 @@ public class SierpinskiPanelView {
         sierpinskiPanel.add(button, gbc);
     }
 
-    // Getters for UI components
     public int getCanvasWidth() {
         return canvasWidth;
     }

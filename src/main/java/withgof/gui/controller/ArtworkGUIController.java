@@ -157,7 +157,6 @@ public class ArtworkGUIController {
                 ImageIO.write(image, "PNG", file);
             }
         } catch (IOException ex) {
-            ex.printStackTrace();
             view.getErrorLabel().setText("Error saving image: " + ex.getMessage());
         } finally {
             g2d.dispose();

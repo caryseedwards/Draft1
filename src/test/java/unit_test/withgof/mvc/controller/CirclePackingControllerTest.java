@@ -28,7 +28,6 @@ public class CirclePackingControllerTest {
         viewPanel = view.getCirclePackingPanelView();
         cpc = controller.getPackingController();
 
-        // Create default instances for model fields
         CanvasParameters canvasParams = new CanvasParameters(500, 500, Color.WHITE);
         CirclePackingAlgorithmParameters capParams = new CirclePackingAlgorithmParameters(250, 250, 100, 5, 50, 1000, 2);
         ArrayList<ShapeParameters> shapeParamsList = new ArrayList<>();

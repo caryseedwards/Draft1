@@ -28,7 +28,6 @@ public class SierpinskiControllerTest {
         view = v.getSierpinskiPanelView();
         controller = c.getSierpinskiPanelController();
 
-        // Create default instances for model fields
         CanvasParameters canvasParams = new CanvasParameters(500, 500, Color.WHITE);
         SierpinskiShapeAlgorithmParameters sapParams = new SierpinskiShapeAlgorithmParameters(250, 250, 100, 5);
         ArrayList<ShapeParameters> shapeParamsList = new ArrayList<>();
@@ -39,36 +38,42 @@ public class SierpinskiControllerTest {
         model.setCanvasParams(canvasParams);
         c.updateAlgorithmPanelVisibility("Sierpinski Shapes");
     }
+
     @Test
     public void testUpdateStartX() {
         view.getStartXTextField().setText("250");
         controller.updateStartX();
         assertEquals(250, model.getSierpinskiParams().getCentreX());
     }
+
     @Test
     public void testUpdateStartY() {
         view.getStartYTextField().setText("200");
         controller.updateStartY();
         assertEquals(200, model.getSierpinskiParams().getCentreY());
     }
+
     @Test
     public void testUpdateSize() {
         view.getSizeTextField().setText("300");
         controller.updateSize();
         assertEquals(300, model.getSierpinskiParams().getPolygonSize());
     }
+
     @Test
     public void testUpdateDepth() {
         view.getDepthTextField().setText("4");
         controller.updateDepth();
         assertEquals(4, model.getSierpinskiParams().getDepth());
     }
+
     @Test
     public void testUpdateShapeType() {
         view.getShapeTypeChoice().select("Triangle");
         controller.updateShapeType();
         assertEquals("triangle", model.getShapesParams().get(0).getShapeType());
     }
+
     @Test
     public void testUpdateFillColour() {
         Button fillColourButton = view.getFillColourButton();
@@ -76,6 +81,7 @@ public class SierpinskiControllerTest {
         controller.updateFillColour();
         assertEquals(Color.GREEN, model.getShapesParams().get(0).getFillColour());
     }
+
     @Test
     public void testUpdateLineColour() {
         Button lineColourButton = view.getLineColourButton();
@@ -83,6 +89,7 @@ public class SierpinskiControllerTest {
         controller.updateLineColour();
         assertEquals(Color.RED, model.getShapesParams().get(0).getLineColour());
     }
+
     @Test
     public void testUpdateLineWidth() {
         view.getLineWidthTextField().setText("2");

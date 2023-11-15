@@ -44,13 +44,13 @@ public class CircleTest {
     @Test
     public void testSetPosition() {
         circle.setPosition(15, 15);
-        assertEquals("Center X should be updated", 15, circle.centerX);
-        assertEquals("Center Y should be updated", 15, circle.centerY);
+        assertEquals("Center X should be updated", 15, circle.getCenterX());
+        assertEquals("Center Y should be updated", 15, circle.getCenterY());
     }
 
     @Test
     public void testSetScale() {
         circle.setScale(10);
-        assertEquals("Radius should be updated", 10, circle.radius, 0.0);
+        assertEquals("Radius should be updated", 10, circle.getRadius(), 0.0);
     }
 }

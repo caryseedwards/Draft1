@@ -80,6 +80,7 @@ public class CirclePackingAlgorithm implements AlgorithmStrategy {
         boundaryParameters.setShapeType(type);
         boundaryShape = shapeFactory.createShape(algorithmParameters.getCentreX(), algorithmParameters.getCentreY(), algorithmParameters.getPolygonSize(), boundaryParameters);
     }
+
     public ArrayList<Circle> getCircles() {
         return circles;
     }

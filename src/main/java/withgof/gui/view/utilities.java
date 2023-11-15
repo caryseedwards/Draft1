@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class utilities {
-    // Methods to open colour picker and update button background
     public static void configureColourPicker(Button colourButton) {
         colourButton.addActionListener(e -> {
             Color newColor = chooseColour(colourButton);
@@ -23,7 +22,6 @@ public class utilities {
         }
     }
 
-    // Method to retrieve colour from colour picker
     public static Color getColourFromButton(Button button) {
         return button.getBackground();
     }

@@ -20,9 +20,9 @@ public class TriangleTest {
     @Test
     public void testSetVerticesNull() {
         triangle.setVertices();
-        assertNotNull("Vertex 1 should not be null", new Point(triangle.x1, triangle.y1));
-        assertNotNull("Vertex 2 should not be null", new Point(triangle.x2, triangle.y2));
-        assertNotNull("Vertex 3 should not be null", new Point(triangle.x3, triangle.y3));
+        assertNotNull("Vertex 1 should not be null", new Point(triangle.getX1(), triangle.getY1()));
+        assertNotNull("Vertex 2 should not be null", new Point(triangle.getX2(), triangle.getY2()));
+        assertNotNull("Vertex 3 should not be null", new Point(triangle.getX3(), triangle.getY3()));
     }
 
     private void validateTriangleVertices(Triangle triangle, int centerX, int centerY, double radius) {
@@ -33,12 +33,12 @@ public class TriangleTest {
         int expectedX3 = (int)(centerX + radius * Math.cos(Math.toRadians(30)));
         int expectedY3 = (int)(centerY + radius * Math.sin(Math.toRadians(30)));
 
-        assertEquals("Vertex x1 should be set correctly", expectedX1, triangle.x1);
-        assertEquals("Vertex y1 should be set correctly", expectedY1, triangle.y1);
-        assertEquals("Vertex x2 should be set correctly", expectedX2, triangle.x2);
-        assertEquals("Vertex y2 should be set correctly", expectedY2, triangle.y2);
-        assertEquals("Vertex x3 should be set correctly", expectedX3, triangle.x3);
-        assertEquals("Vertex y3 should be set correctly", expectedY3, triangle.y3);
+        assertEquals("Vertex x1 should be set correctly", expectedX1, triangle.getX1());
+        assertEquals("Vertex y1 should be set correctly", expectedY1, triangle.getY1());
+        assertEquals("Vertex x2 should be set correctly", expectedX2, triangle.getX2());
+        assertEquals("Vertex y2 should be set correctly", expectedY2, triangle.getY2());
+        assertEquals("Vertex x3 should be set correctly", expectedX3, triangle.getX3());
+        assertEquals("Vertex y3 should be set correctly", expectedY3, triangle.getY3());
     }
 
     @Test
@@ -96,14 +96,14 @@ public class TriangleTest {
     @Test
     public void testSetPosition() {
         triangle.setPosition(15, 15);
-        assertEquals("Center X should be updated", 15, triangle.centerX);
-        assertEquals("Center Y should be updated", 15, triangle.centerY);
+        assertEquals("Center X should be updated", 15, triangle.getCenterX());
+        assertEquals("Center Y should be updated", 15, triangle.getCenterY());
     }
 
     @Test
     public void testSetScale() {
         triangle.setScale(10);
-        assertEquals("Radius should be updated", 10, triangle.radius, 0.0);
+        assertEquals("Radius should be updated", 10, triangle.getRadius(), 0.0);
     }
 
 }

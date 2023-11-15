@@ -19,8 +19,8 @@ public class HexagonTest {
 
     @Test
     public void testHexagonInitialization() {
-        assertEquals("Center X should be initialized correctly", 10, hexagon.centerX);
-        assertEquals("Center Y should be initialized correctly", 10, hexagon.centerY);
+        assertEquals("Center X should be initialized correctly", 10, hexagon.getCenterX());
+        assertEquals("Center Y should be initialized correctly", 10, hexagon.getCenterY());
         assertEquals("Radius should be initialized correctly", 5, hexagon.radius, 0.0);
     }
 
@@ -39,7 +39,7 @@ public class HexagonTest {
     @Test
     public void testRandomPositionInside() {
         boolean isInside = true;
-        for (int i = 0; i < 100; i++) { // Run multiple times to reduce fluke passes
+        for (int i = 0; i < 100; i++) {
             Point point = hexagon.randomPositionInside();
             if (!hexagon.isPointInside(point.x, point.y)) {
                 isInside = false;
@@ -53,8 +53,8 @@ public class HexagonTest {
     @Test
     public void testSetPosition() {
         hexagon.setPosition(15, 15);
-        assertEquals("Center X should be updated", 15, hexagon.centerX);
-        assertEquals("Center Y should be updated", 15, hexagon.centerY);
+        assertEquals("Center X should be updated", 15, hexagon.getCenterX());
+        assertEquals("Center Y should be updated", 15, hexagon.getCenterY());
     }
 
     @Test

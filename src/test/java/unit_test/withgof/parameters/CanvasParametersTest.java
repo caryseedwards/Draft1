@@ -10,7 +10,7 @@ public class CanvasParametersTest {
 
     @Test
     public void testConstructorAndGetters() {
-        Color testColor = new Color(255, 0, 0); // Example color
+        Color testColor = new Color(255, 0, 0);
         CanvasParameters params = new CanvasParameters(100, 200, testColor);
         assertEquals(100, params.getHeight());
         assertEquals(200, params.getWidth());

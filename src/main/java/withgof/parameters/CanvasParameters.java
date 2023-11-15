@@ -15,16 +15,8 @@ public class CanvasParameters extends Parameters {
     }
 
     @Override
-    public void initialiseDefaultParameters() {
-        this.height = 500;
-        this.width = 500;
-        this.backgroundColour = Color.WHITE;
-    }
-
-    @Override
     public boolean validateParameters() {
         try {
-            // Check if height and width are positive
             if (height <= 0 || width <= 0) {
                 throw new IllegalArgumentException("Canvas height and width needs to be higher than 0");
             }
@@ -37,12 +29,10 @@ public class CanvasParameters extends Parameters {
         }
     }
 
-    // Getters
     public int getHeight() {
         return height;
     }
 
-    // Setters
     public void setHeight(int height) {
         this.height = height;
     }

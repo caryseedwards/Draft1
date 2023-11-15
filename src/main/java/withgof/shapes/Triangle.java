@@ -3,9 +3,15 @@ package withgof.shapes;
 import java.awt.*;
 
 public class Triangle extends  Shape  {
-    public int centerX, centerY;
-    public double radius;
-    public int x1, y1, x2, y2, x3, y3;
+    private int centerX;
+    private int centerY;
+    private double radius;
+    private int x1;
+    private int x2;
+    private int x3;
+    private int y1;
+    private int y2;
+    private int y3;
 
     public Triangle(int x, int y, double radius) {
         this.centerX = x;
@@ -40,8 +46,8 @@ public class Triangle extends  Shape  {
     public boolean isInside(Circle circle) {
         for (int angle = 0; angle < 360; angle += 5) {
             double rad = Math.toRadians(angle);
-            int pointX = (int) (circle.centerX + circle.radius * Math.cos(rad));
-            int pointY = (int) (circle.centerY + circle.radius * Math.sin(rad));
+            int pointX = (int) (circle.getCenterX() + circle.getRadius() * Math.cos(rad));
+            int pointY = (int) (circle.getCenterY() + circle.getRadius() * Math.sin(rad));
             if (!isPointInside(pointX, pointY)) {
                 return false;
             }
@@ -75,5 +81,40 @@ public class Triangle extends  Shape  {
     public void setScale(double scale) {
         this.radius = scale;
         setVertices();
+    }
+
+    public int getCenterX() {
+        return centerX;
+    }
+
+    public int getCenterY() {
+        return centerY;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+    public int getX1() {
+        return x1;
+    }
+
+    public int getX2() {
+        return x2;
+    }
+
+    public int getX3() {
+        return x3;
+    }
+
+    public int getY1() {
+        return y1;
+    }
+
+    public int getY2() {
+        return y2;
+    }
+
+    public int getY3() {
+        return y3;
     }
 }
