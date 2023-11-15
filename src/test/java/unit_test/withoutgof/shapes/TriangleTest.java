@@ -54,8 +54,10 @@ public class TriangleTest {
 
     @Test
     public void testRandomPositionInside() {
-        Point point = triangle.randomPositionInside();
-        assertTrue("The point should be inside the triangle", triangle.isPointInside(point.x, point.y));
+        for (int i = 0; i < 100; i++) {
+            Point point = triangle.randomPositionInside();
+            assertTrue("Point " + i + " should be inside the triangle: " + point, triangle.isPointInside(point.x, point.y));
+        }
     }
 
     @Test

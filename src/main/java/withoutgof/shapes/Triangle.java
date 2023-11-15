@@ -25,15 +25,21 @@ public class Triangle extends Shape {
 
     @Override
     public Point randomPositionInside() {
-        double r1 = Math.random();
-        double r2 = Math.random();
-        if (r1 + r2 > 1) {
-            r1 = 1 - r1;
-            r2 = 1 - r2;
+        int minX = Math.min(x1, Math.min(x2, x3));
+        int maxX = Math.max(x1, Math.max(x2, x3));
+        int minY = Math.min(y1, Math.min(y2, y3));
+        int maxY = Math.max(y1, Math.max(y2, y3));
+
+        Polygon triangle = new Polygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
+
+        while (true) {
+            int x = minX + (int) (Math.random() * (maxX - minX + 1));
+            int y = minY + (int) (Math.random() * (maxY - minY + 1));
+
+            if (triangle.contains(x, y)) {
+                return new Point(x, y);
+            }
         }
-        int x = (int) ((1 - r1 - r2) * x1 + r1 * x2 + r2 * x3);
-        int y = (int) ((1 - r1 - r2) * y1 + r1 * y2 + r2 * y3);
-        return new Point(x, y);
     }
 
     @Override
