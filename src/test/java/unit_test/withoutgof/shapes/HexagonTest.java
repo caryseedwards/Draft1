@@ -38,7 +38,7 @@ public class HexagonTest {
     @Test
     public void testRandomPositionInside() {
         boolean isInside = true;
-        for (int i = 0; i < 100; i++) { // Run multiple times to reduce fluke passes
+        for (int i = 0; i < 100; i++) {
             Point point = hexagon.randomPositionInside();
             if (!hexagon.isPointInside(point.x, point.y)) {
                 isInside = false;
@@ -61,5 +61,4 @@ public class HexagonTest {
         hexagon.setScale(10);
         assertEquals("Radius should be updated", 10, hexagon.radius, 0.0);
     }
-
-    }
+}

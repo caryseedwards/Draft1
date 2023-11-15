@@ -6,8 +6,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ParametersModel {
-    public static final JLabel errorLabel = new JLabel("");
-
     private CanvasParameters canvas;
     private ArrayList<ShapeParameters> shapes;
     private RecursiveShapeAlgorithmParameters rap;
@@ -75,6 +73,4 @@ public class ParametersModel {
             this.sap = ssp;
         }
     }
-
-
 }

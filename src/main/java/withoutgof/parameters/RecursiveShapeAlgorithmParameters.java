@@ -43,12 +43,10 @@ public class RecursiveShapeAlgorithmParameters extends Parameters {
         }
     }
 
-    // Getters
     public int getCenterX() {
         return centerX;
     }
 
-    // Setters
     public void setCenterX(int newX) {
         centerX = newX;
     }

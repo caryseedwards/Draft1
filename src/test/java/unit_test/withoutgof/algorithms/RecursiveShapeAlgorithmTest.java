@@ -34,15 +34,12 @@ public class RecursiveShapeAlgorithmTest {
     }
     private int calculateTotalNumberOfShapes(int depth, int numSmallShapes) {
         if (depth == 0) return 1;
-        // Each level of depth adds numSmallShapes per each shape of the previous level
         return calculateTotalNumberOfShapes(depth - 1, numSmallShapes) * (1 + numSmallShapes);
     }
     private int calculateNumberOfLargeShapes(int depth) {
-        // One large shape per level of depth
         return depth;
     }
     private int calculateNumberOfSmallShapes(int depth, int numSmallShapes) {
-        // One large shape per level of depth
         return calculateTotalNumberOfShapes(depth, numSmallShapes) - calculateNumberOfLargeShapes(depth);
     }
     @Test
@@ -144,13 +141,4 @@ public class RecursiveShapeAlgorithmTest {
                 .count();
         assertEquals("Expected "+ expectedNumberOfSmallShapes +"number of small shapes, but have " + actualNumberOfSmallShapes+" instead.",expectedNumberOfSmallShapes, actualNumberOfSmallShapes);
     }
-
-//    @Test(expected = StackOverflowError.class)
-//    public void testInvalidDepthHandling() {
-//        RecursiveShapeAlgorithm pattern = createTestInstance();
-//        pattern.setAlgorithmParams(new RecursiveShapeAlgorithmParameters(1, 2, 3, -1, 5));
-//        pattern.getParams().setDepth(-1);
-//        pattern.validateParameters();
-//    }
-
 }

@@ -49,7 +49,7 @@ public class SierpinskiPanelView {
         addLabelAndChoice(gbc, shapeTypeChoice, new String[]{"Circle", "Square", "Hexagon", "Triangle"}, gridy++);
         addColorChooserButton(gbc, "Fill Colour:", fillColourButton, gridy++);
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
-        addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy++);
+        addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy);
 
         utilities.configureColourPicker(fillColourButton);
         utilities.configureColourPicker(lineColourButton);
@@ -92,7 +92,6 @@ public class SierpinskiPanelView {
         sierpinskiPanel.add(button, gbc);
     }
 
-    // Getters for UI components
     public int getCanvasWidth() {
         return canvasWidth;
     }

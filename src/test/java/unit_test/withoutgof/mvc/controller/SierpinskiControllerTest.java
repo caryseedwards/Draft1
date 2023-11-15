@@ -28,7 +28,6 @@ public class SierpinskiControllerTest {
         view = v.getSierpinskiPanelView();
         controller = c.getSierpinskiPanelController();
 
-        // Create default instances for model fields
         CanvasParameters canvasParams = new CanvasParameters(500, 500, Color.WHITE);
         SierpinskiShapeAlgorithmParameters sapParams = new SierpinskiShapeAlgorithmParameters(250, 250, 100, 5);
         ArrayList<ShapeParameters> shapeParamsList = new ArrayList<>();

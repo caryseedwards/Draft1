@@ -76,7 +76,7 @@ public class CirclePackingAlgorithmTest {
     public void testCircleCountAfterMultipleAdditions() {
         CirclePackingAlgorithm packing = createTestInstance();
         int initialCount = packing.getCircles().size();
-        packing.addCircles(); // Call multiple times as needed
+        packing.addCircles();
         assertTrue(packing.getCircles().size() > initialCount);
     }
     @Test
@@ -109,7 +109,7 @@ public class CirclePackingAlgorithmTest {
         for (Circle circle : packing.getCircles()) {
             double radius = circle.getRadius();
             assertTrue("Circle radius should be within constraints",
-                    radius >= packing.params.getMinRadius() && radius <= packing.params.getMaxRadius());
+                    radius >= packing.getAlgorithmParameters().getMinRadius() && radius <= packing.getAlgorithmParameters().getMaxRadius());
         }
     }
     @Test

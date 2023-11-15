@@ -190,6 +190,4 @@ public class CirclePackingPanelView {
     public Panel getPanel() {
         return circlePackingPanel;
     }
-
-
 }

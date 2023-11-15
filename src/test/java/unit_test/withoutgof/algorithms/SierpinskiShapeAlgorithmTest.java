@@ -53,7 +53,6 @@ public class SierpinskiShapeAlgorithmTest {
         sierpinski.setAlgorithmParams(testParams);
         assertTrue("Valid parameters should pass validation", sierpinski.validateParameters());
 
-        // Test with invalid parameters
         testParams.setDepth(-1);
         assertFalse("Invalid parameters should fail validation", sierpinski.validateParameters());
     }

@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class RecursiveShapeController {
     private final RecursivePanelView view;
-    ParametersModel model;
+    private final ParametersModel model;
 
     public RecursiveShapeController(ParametersModel model, RecursivePanelView view) {
         this.view = view;

@@ -28,15 +28,12 @@ public class ShapeParameters extends Parameters {
     @Override
     public boolean validateParameters() {
         try {
-            // Check if shapeType is not null and not empty
             if (shapeType == null || shapeType.isEmpty()) {
                 throw new IllegalArgumentException("Shape type is null or empty");
             }
-            // Check if lineWidth is positive
             if (lineWidth <= 0.0f) {
                 throw new IllegalArgumentException("Line width must be positive");
             }
-            // Check if both lineColour and fillColour are not null
             if (lineColour == null || fillColour == null) {
                 throw new IllegalArgumentException("Line or Fill colour is null");
             }
@@ -46,12 +43,10 @@ public class ShapeParameters extends Parameters {
         }
     }
 
-    // Getters
     public String getShapeType() {
         return shapeType;
     }
 
-    // Setters
     public void setShapeType(String shapeType) {
         this.shapeType = shapeType;
     }

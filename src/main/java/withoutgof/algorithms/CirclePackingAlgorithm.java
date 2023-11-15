@@ -12,10 +12,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePackingAlgorithm extends Algorithm {
-    public CirclePackingAlgorithmParameters params;
-    ShapeParameters boundaryParameters;
-    ShapeParameters circleParameters;
-    Shape boundaryShape;
+    private CirclePackingAlgorithmParameters params;
+    private ShapeParameters boundaryParameters;
+    private ShapeParameters circleParameters;
+    private Shape boundaryShape;
     private ArrayList<Circle> circles;
 
     public CirclePackingAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {

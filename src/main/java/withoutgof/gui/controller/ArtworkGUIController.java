@@ -95,7 +95,7 @@ public class ArtworkGUIController {
                         animationTimer.stop();
                     }
 
-                    animationTimer = new Timer(packing.params.animationSpeed, e -> {
+                    animationTimer = new Timer(packing.getAlgorithmParameters().animationSpeed, e -> {
                         packing.addCircles();
                         BufferedImage image1 = view.createBufferedImage();
                         Graphics2D g2d1 = image1.createGraphics();
@@ -154,7 +154,6 @@ public class ArtworkGUIController {
                 ImageIO.write(image, "PNG", file);
             }
         } catch (IOException ex) {
-            ex.printStackTrace();
             view.getErrorLabel().setText("Error saving image: " + ex.getMessage());
         } finally {
             g2d.dispose();
