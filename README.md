@@ -102,8 +102,8 @@ public static void main(String[] args) {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
     Timer timer = new Timer(packing.params.animationSpeed, e -> {
-    packing.addCircles();
-    packing.repaint();
+        packing.addCircles();
+        packing.repaint();
     });
     timer.start();
 }
