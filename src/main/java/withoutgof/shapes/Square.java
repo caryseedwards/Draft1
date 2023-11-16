@@ -2,7 +2,7 @@ package withoutgof.shapes;
 
 import java.awt.*;
 
-public class Square extends Shape {
+public class Square implements PatternShape {
     public int centerX, centerY;
     public double radius;
 
@@ -30,7 +30,7 @@ public class Square extends Shape {
     }
 
     @Override
-    public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType) {
+    public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType){
         double sideLength = 2 * radius;
         double x = centerX - (sideLength / 2);
         double y = centerY - (sideLength / 2);

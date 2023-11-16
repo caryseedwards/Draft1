@@ -1,12 +1,12 @@
-package withoutgof.validate;
+package withoutgof.validation;
 
-import withoutgof.gui.view.panel.CirclePackingPanelView;
-import withoutgof.gui.view.panel.RecursivePanelView;
-import withoutgof.gui.view.panel.SierpinskiPanelView;
+import withoutgof.gui.CirclePackingPanel;
+import withoutgof.gui.RecursivePanel;
+import withoutgof.gui.SierpinskiPanel;
 
 public class Validate {
 
-    public static String validateRecursivePanelView(RecursivePanelView rp) {
+    public static String validateRecursiveParams(RecursivePanel rp) {
         String error;
 
         error = validateInteger(rp.getStartXTextField().getText(), "CenterX");
@@ -33,7 +33,7 @@ public class Validate {
         return "";
     }
 
-    public static String validateCirclePackingPanelView(CirclePackingPanelView cpp) {
+    public static String validateCirclePackingParams(CirclePackingPanel cpp) {
         String error;
 
         error = validateInteger(cpp.getStartXTextField().getText(), "CentreX");
@@ -63,7 +63,7 @@ public class Validate {
         return "";
     }
 
-    public static String validateSierpinskiPanelView(SierpinskiPanelView sp) {
+    public static String validateSierpinskiParams(SierpinskiPanel sp) {
         String error;
 
         error = validateInteger(sp.getStartXTextField().getText(), "CentreX");
@@ -84,15 +84,7 @@ public class Validate {
         return "";
     }
 
-    public static Integer safelyParseInteger(String text) {
-        try {
-            return Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
-
-    public static String validateInteger(String input, String parameterName) {
+    private static String validateInteger(String input, String parameterName) {
         try {
             int value = Integer.parseInt(input);
             if (value <= 0) {

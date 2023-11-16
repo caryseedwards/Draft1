@@ -2,7 +2,7 @@ package withoutgof.shapes;
 
 import java.awt.*;
 
-public class Hexagon extends Shape {
+public class Hexagon implements PatternShape {
     public int centerX, centerY;
     public double radius;
 
@@ -47,7 +47,6 @@ public class Hexagon extends Shape {
         }
         return true;
     }
-
 
     @Override
     public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType) {

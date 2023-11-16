@@ -2,7 +2,7 @@ package withoutgof.shapes;
 
 import java.awt.*;
 
-public class Circle extends Shape {
+public class Circle implements PatternShape {
     public int centerX, centerY;
     public double radius;
 
@@ -11,7 +11,6 @@ public class Circle extends Shape {
         this.centerY = y;
         this.radius = radius;
     }
-
     public int getX() {
         return centerX;
     }
@@ -23,7 +22,6 @@ public class Circle extends Shape {
     public double getRadius() {
         return radius;
     }
-
     public boolean overlaps(Circle other) {
         int dx = this.centerX - other.centerX;
         int dy = this.centerY - other.centerY;
