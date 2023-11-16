@@ -26,9 +26,6 @@ public class RecursiveShapeParameters {
     public int depth;
     public int numShapes;
 
-
-    // Setters
-
     public void setCenterX(int centerX) {
         this.centerX = centerX;
     }
@@ -104,6 +101,5 @@ public class RecursiveShapeParameters {
         depth = 4;
         numShapes = 6;
     }
-
 }
 

@@ -7,22 +7,22 @@ import java.awt.event.ActionListener;
 public class RecursivePanel {
     private final TextField startXTextField;
     private final TextField startYTextField;
-    private final TextField recursiveDepthTextField = new TextField("4",5);
-    private final TextField initialRadiusTextField = new TextField("150",5);
-    private final TextField numShapeTextField = new TextField("6",5);
+    private final TextField recursiveDepthTextField = new TextField("4", 5);
+    private final TextField initialRadiusTextField = new TextField("150", 5);
+    private final TextField numShapeTextField = new TextField("6", 5);
     private final Choice largeShapeType = new Choice();
-    private Color largeFillColour = new Color(0, 0, 0, 0);
-    private Color largeLineColour = Color.BLACK;
     private final TextField largeLineWidthTextField = new TextField("1", 5);
     private final Choice smallShapeType = new Choice();
+    private final TextField smallLineWidthTextField = new TextField("1", 5);
+    private final Panel recursivePanel = new Panel(new GridBagLayout());
+    private Color largeFillColour = new Color(0, 0, 0, 0);
+    private Color largeLineColour = Color.BLACK;
     private Color smallFillColour = new Color(0, 0, 0, 0);
     private Color smallLineColour = Color.BLACK;
-    private final TextField smallLineWidthTextField = new TextField("1",5);
-    private final Panel recursivePanel = new Panel(new GridBagLayout());
 
     public RecursivePanel(int width, int height) {
-        this.startXTextField = new TextField(String.valueOf(width/2), 5);
-        this.startYTextField= new TextField(String.valueOf(height/2), 5);
+        this.startXTextField = new TextField(String.valueOf(width / 2), 5);
+        this.startYTextField = new TextField(String.valueOf(height / 2), 5);
         setupPanel();
     }
 

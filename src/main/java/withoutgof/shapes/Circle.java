@@ -11,6 +11,7 @@ public class Circle implements PatternShape {
         this.centerY = y;
         this.radius = radius;
     }
+
     public int getX() {
         return centerX;
     }
@@ -22,6 +23,7 @@ public class Circle implements PatternShape {
     public double getRadius() {
         return radius;
     }
+
     public boolean overlaps(Circle other) {
         int dx = this.centerX - other.centerX;
         int dy = this.centerY - other.centerY;

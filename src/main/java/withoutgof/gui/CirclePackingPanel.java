@@ -9,20 +9,20 @@ public class CirclePackingPanel {
     private final TextField startYTextField;
     private final TextField maxAttemptsTextField = new TextField("500", 5);
     private final Choice boundaryShapeType = new Choice();
-    private Color boundaryFillColor = new Color(255, 255, 255, 255);
-    private Color boundaryLineColor = new Color(0, 0, 0, 255);
     private final TextField boundaryLineWidthTextField = new TextField("1", 5);
     private final TextField boundaryRadiusTextField = new TextField("250", 5);
-    private Color packingFillColor = new Color(255, 255, 255, 255);
-    private Color packingLineColor = new Color(0, 0, 0, 255);
     private final TextField packingLineWidthTextField = new TextField("1", 5);
     private final TextField minRadiusCircleTextField = new TextField("6", 5);
     private final TextField maxRadiusCircleTextField = new TextField("3", 5);
     private final Panel circlePackingPanel = new Panel(new GridBagLayout());
+    private Color boundaryFillColor = new Color(255, 255, 255, 255);
+    private Color boundaryLineColor = new Color(0, 0, 0, 255);
+    private Color packingFillColor = new Color(255, 255, 255, 255);
+    private Color packingLineColor = new Color(0, 0, 0, 255);
 
-    public CirclePackingPanel(int width, int height){
-        this.startXTextField = new TextField(String.valueOf(width/2), 5);
-        this.startYTextField= new TextField(String.valueOf(height/2), 5);
+    public CirclePackingPanel(int width, int height) {
+        this.startXTextField = new TextField(String.valueOf(width / 2), 5);
+        this.startYTextField = new TextField(String.valueOf(height / 2), 5);
         setupPanel();
     }
 

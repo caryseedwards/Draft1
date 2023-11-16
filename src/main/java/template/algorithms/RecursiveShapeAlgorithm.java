@@ -4,8 +4,8 @@ import template.parameters.CanvasParameters;
 import template.parameters.Parameters;
 import template.parameters.RecursiveShapeAlgorithmParameters;
 import template.parameters.ShapeParameters;
-import template.shapes.*;
 import template.shapes.Shape;
+import template.shapes.*;
 
 import java.awt.*;
 import java.util.ArrayList;

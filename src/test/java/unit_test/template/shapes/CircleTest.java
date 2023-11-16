@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import template.shapes.Circle;
 
+import java.awt.*;
+
 public class CircleTest {
     private Circle circle;
 
@@ -51,5 +53,24 @@ public class CircleTest {
     public void testSetScale() {
         circle.setScale(10);
         assertEquals("Radius should be updated", 10, circle.radius, 0.0);
+    }
+
+    @Test
+    public void testRandomPositionInside() {
+        Point randomPoint = circle.randomPositionInside();
+        assertNotNull(randomPoint);
+        assertTrue(Math.pow(randomPoint.x - circle.centerX, 2) + Math.pow(randomPoint.y - circle.centerY, 2) <= Math.pow(circle.radius, 2));
+    }
+
+    @Test
+    public void testIsInsideTrue() {
+        Circle boundary = new Circle(10, 10, 10);
+        assertTrue(circle.isInside(boundary));
+    }
+
+    @Test
+    public void testIsInsideEdgeCase() {
+        Circle boundary = new Circle(10, 10, 5);
+        assertTrue(circle.isInside(boundary));
     }
 }

@@ -1,4 +1,4 @@
-package withoutgof.patterns;
+package withoutgof.algorithms;
 
 import withoutgof.parameters.RecursiveShapeParameters;
 import withoutgof.shapes.*;
@@ -7,9 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RecursiveShape extends JPanel {
-    public RecursiveShapeParameters params;
-    public PatternShape largeShape;
-    public PatternShape smallShape;
+    private final RecursiveShapeParameters params;
+    private PatternShape largeShape;
+    private PatternShape smallShape;
 
     public RecursiveShape(RecursiveShapeParameters params) {
         this.params = params;
@@ -53,7 +53,7 @@ public class RecursiveShape extends JPanel {
         drawPattern(g2d, params.centerX, params.centerY, params.initialSize, params.depth);
     }
 
-    private void initialiseShapes(){
+    private void initialiseShapes() {
         switch (params.largeShapeType) {
             case "circle" -> largeShape = new Circle(params.centerX, params.centerY, params.initialSize);
             case "square" -> largeShape = new Square(params.centerX, params.centerY, params.initialSize);
@@ -69,16 +69,16 @@ public class RecursiveShape extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Fractal Pattern");
+    public RecursiveShapeParameters getParams() {
+        return params;
+    }
 
-        RecursiveShapeParameters params = new RecursiveShapeParameters();
-        params.initialiseUserParameters();
-        RecursiveShape pattern = new RecursiveShape(params);
-        frame.add(pattern);
-        frame.setSize(params.canvasSizeX, params.canvasSizeY);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public PatternShape getLargeShape() {
+        return largeShape;
+    }
+
+    public PatternShape getSmallShape() {
+        return smallShape;
     }
 }
 

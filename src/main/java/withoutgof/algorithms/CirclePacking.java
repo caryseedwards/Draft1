@@ -1,4 +1,4 @@
-package withoutgof.patterns;
+package withoutgof.algorithms;
 
 import withoutgof.parameters.CirclePackingParameters;
 import withoutgof.shapes.*;
@@ -8,11 +8,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePacking extends JPanel {
-    PatternShape boundaryShape;
-    ArrayList<Circle> circles;
-    CirclePackingParameters params;
+    private PatternShape boundaryShape;
+    private final ArrayList<Circle> circles;
+    private final CirclePackingParameters params;
 
-    public CirclePacking(CirclePackingParameters params){
+    public CirclePacking(CirclePackingParameters params) {
 
         this.params = params;
         setBoundary(this.params.boundaryType);
@@ -59,19 +59,15 @@ public class CirclePacking extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Circle Packing in Shapes");
-        CirclePackingParameters paramTest = new CirclePackingParameters();
-        CirclePacking packing = new CirclePacking(paramTest);
+    public PatternShape getBoundaryShape() {
+        return boundaryShape;
+    }
 
-        frame.add(packing);
-        frame.setSize(packing.params.canvasWidth, packing.params.canvasHeight);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        Timer timer = new Timer(packing.params.animationSpeed, e -> {
-            packing.addCircle();
-            packing.repaint();
-        });
-        timer.start();
+    public ArrayList<Circle> getCircles() {
+        return circles;
+    }
+
+    public CirclePackingParameters getParams() {
+        return params;
     }
 }

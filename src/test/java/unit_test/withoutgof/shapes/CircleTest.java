@@ -1,12 +1,11 @@
-package unit_test.strategyandfactory.shapes;
-
-import org.junit.Before;
-import org.junit.Test;
-import strategyandfactory.shapes.Circle;
-
-import java.awt.*;
+package unit_test.withoutgof.shapes;
 
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import withoutgof.shapes.Circle;
+
+import java.awt.*;
 
 public class CircleTest {
     private Circle circle;
@@ -46,21 +45,21 @@ public class CircleTest {
     @Test
     public void testSetPosition() {
         circle.setPosition(15, 15);
-        assertEquals("Center X should be updated", 15, circle.getCenterX());
-        assertEquals("Center Y should be updated", 15, circle.getCenterY());
+        assertEquals("Center X should be updated", 15, circle.centerX);
+        assertEquals("Center Y should be updated", 15, circle.centerY);
     }
 
     @Test
     public void testSetScale() {
         circle.setScale(10);
-        assertEquals("Radius should be updated", 10, circle.getRadius(), 0.0);
+        assertEquals("Radius should be updated", 10, circle.radius, 0.0);
     }
 
     @Test
     public void testRandomPositionInside() {
         Point randomPoint = circle.randomPositionInside();
         assertNotNull(randomPoint);
-        assertTrue(Math.pow(randomPoint.x - circle.getCenterX(), 2) + Math.pow(randomPoint.y - circle.getCenterY(), 2) <= Math.pow(circle.getRadius(), 2));
+        assertTrue(Math.pow(randomPoint.x - circle.centerX, 2) + Math.pow(randomPoint.y - circle.centerY, 2) <= Math.pow(circle.radius, 2));
     }
 
     @Test

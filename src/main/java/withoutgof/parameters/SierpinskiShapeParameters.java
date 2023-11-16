@@ -20,9 +20,13 @@ public class SierpinskiShapeParameters {
         this.polygonSize = polygonSize;
     }
 
-    public void setDepth(int depth){this.depth = depth;}
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
 
-    public void setShapeType(String shapeType){ this.shapeType = shapeType;}
+    public void setShapeType(String shapeType) {
+        this.shapeType = shapeType;
+    }
 
     public void setShapeFillColour(Color shapeFillColour) {
         this.shapeFillColour = shapeFillColour;

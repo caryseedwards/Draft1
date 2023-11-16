@@ -84,7 +84,7 @@ public class Validate {
         return "";
     }
 
-    private static String validateInteger(String input, String parameterName) {
+    public static String validateInteger(String input, String parameterName) {
         try {
             int value = Integer.parseInt(input);
             if (value <= 0) {

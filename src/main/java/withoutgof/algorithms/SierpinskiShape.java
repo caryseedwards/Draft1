@@ -1,7 +1,10 @@
-package withoutgof.patterns;
+package withoutgof.algorithms;
 
 import withoutgof.parameters.SierpinskiShapeParameters;
-import withoutgof.shapes.*;
+import withoutgof.shapes.Circle;
+import withoutgof.shapes.Hexagon;
+import withoutgof.shapes.Square;
+import withoutgof.shapes.Triangle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,6 +38,7 @@ public class SierpinskiShape extends JPanel {
                 break;
         }
     }
+
     public void drawSierpinski(Graphics2D g, Triangle triangle, int depth) {
         if (depth == 0) {
             triangle.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, null);
@@ -52,6 +56,7 @@ public class SierpinskiShape extends JPanel {
         drawSierpinski(g, new Triangle(midX1, midY1 - (int) newRadius, newRadius), depth - 1);
         drawSierpinski(g, new Triangle(midX3, midY3 - (int) newRadius, newRadius), depth - 1);
     }
+
     private void drawGasket(Graphics2D g, Circle circle, int depth) {
         if (depth <= 0) return;
 
@@ -61,7 +66,7 @@ public class SierpinskiShape extends JPanel {
         int dx = (int) (newRadius * Math.cos(Math.PI / 6));
         int dy = (int) (newRadius * Math.sin(Math.PI / 6));
 
-        drawGasket(g, new Circle(circle.centerX, circle.centerY - (int) newRadius, newRadius), depth - 1);
+        drawGasket(g, new Circle(circle.centerX, circle.centerY - newRadius, newRadius), depth - 1);
         drawGasket(g, new Circle(circle.centerX - dx, circle.centerY + dy, newRadius), depth - 1);
         drawGasket(g, new Circle(circle.centerX + dx, circle.centerY + dy, newRadius), depth - 1);
     }
@@ -82,9 +87,10 @@ public class SierpinskiShape extends JPanel {
 
         drawHexagon(g, new Hexagon(hexagon.centerX, hexagon.centerY, newRadius), depth - 1);
     }
+
     public void drawCarpet(Graphics2D g, Square square, int depth) {
         if (depth == 0) {
-            square.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour,null);
+            square.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, null);
             return;
         }
 
@@ -104,22 +110,7 @@ public class SierpinskiShape extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Sierpinski Shape");
-        SierpinskiShapeParameters params = new SierpinskiShapeParameters();
-        params.setCentreX(400);
-        params.setCentreY(400);
-        params.setPolygonSize(300);
-        params.setDepth(3);
-        params.setShapeType("hexagon");
-        params.setShapeLineColour(Color.BLACK);
-        params.setShapeFillColour(Color.WHITE);
-        params.setShapeLineWidth(1);
-
-        SierpinskiShape sierpinskiShape = new SierpinskiShape(params);
-        frame.add(sierpinskiShape);
-        frame.setSize(params.centreX*2, params.centreY*2);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public SierpinskiShapeParameters getParams() {
+        return params;
     }
 }

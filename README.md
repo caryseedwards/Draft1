@@ -29,7 +29,7 @@ Checkstyle (Google) `java -jar checkstyle-*-all.jar -c /google_checks.xml src/ -
 
 ## Generate Artwork API Usage 
 
-### Example 1: With GoF strategy pattern 
+### Example 1: Strategy and Factory pattern 
 ```java
 public static void main(String[] args) {
     AlgorithmStrategy strategy = new ...ShapeStrategy();
@@ -70,7 +70,7 @@ public static AlgorithmStrategy sierpinskiShapeStrategy() {
 }
 ```
 
-### Example 2: Sierpinski without GoF: 
+### Example 2: Sierpinski using template: 
 ```java
 public static void main(String[] args) {
     JFrame frame = new JFrame("Sierpinski Shape");
@@ -86,7 +86,7 @@ public static void main(String[] args) {
 }
 ```
 
-### Example 3: CirclePacking without GoF:
+### Example 3: CirclePacking using template:
 ```java
 public static void main(String[] args) {
     JFrame frame = new JFrame("Circle Packing in Shapes");
@@ -109,7 +109,7 @@ public static void main(String[] args) {
 }
 ```
 
-### Example 4: Recursive without GoF:
+### Example 4: Recursive using template:
 ```java
 public static void main(String[] args) {
     JFrame frame = new JFrame("Recursive Pattern");
@@ -122,6 +122,63 @@ public static void main(String[] args) {
     pattern.executeAlgorithm();
     frame.add(pattern);
     frame.setSize(canvas.getHeight(), canvas.getWidth());
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+}
+```
+
+
+### Example 5: Circle Packing no design patterns:
+```java
+public static void main(String[] args) {
+    JFrame frame = new JFrame("Circle Packing Pattern");
+    CirclePackingParameters paramTest = new CirclePackingParameters();
+    CirclePacking packing = new CirclePacking(paramTest);
+
+    frame.add(packing);
+    frame.setSize(packing.params.canvasWidth, packing.params.canvasHeight);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+    Timer timer = new Timer(packing.params.animationSpeed, e -> {
+        packing.addCircle();
+        packing.repaint();
+    });
+    timer.start();
+}
+```
+
+### Example 6: Recursive no design patterns:
+```java
+public static void main(String[] args) {
+    JFrame frame = new JFrame("Recusrsive Pattern");
+
+    RecursiveShapeParameters params = new RecursiveShapeParameters();
+    params.initialiseUserParameters();
+    RecursiveShape pattern = new RecursiveShape(params);
+    frame.add(pattern);
+    frame.setSize(params.canvasSizeX, params.canvasSizeY);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+}
+```
+
+### Example 7: Sierpinski no design patterns:
+```java
+public static void main(String[] args) {
+    JFrame frame = new JFrame("Sierpinski Shape");
+    SierpinskiShapeParameters params = new SierpinskiShapeParameters();
+    params.setCentreX(400);
+    params.setCentreY(400);
+    params.setPolygonSize(300);
+    params.setDepth(3);
+    params.setShapeType("hexagon");
+    params.setShapeLineColour(Color.BLACK);
+    params.setShapeFillColour(Color.WHITE);
+    params.setShapeLineWidth(1);
+
+    SierpinskiShape sierpinskiShape = new SierpinskiShape(params);
+    frame.add(sierpinskiShape);
+    frame.setSize(params.centreX*2, params.centreY*2);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
 }

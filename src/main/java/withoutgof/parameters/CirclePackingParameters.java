@@ -2,7 +2,7 @@ package withoutgof.parameters;
 
 import java.awt.*;
 
-public class CirclePackingParameters{
+public class CirclePackingParameters {
     public int canvasWidth = 500;
     public int canvasHeight = 500;
     public Color backgroundColor = Color.WHITE;
