@@ -1,14 +1,13 @@
 package unit_test.withoutgof.mvc.controller;
 
-import withoutgof.gui.controller.ArtworkGUIController;
-import withoutgof.gui.controller.CirclePackingController;
-import withoutgof.gui.controller.RecursiveShapeController;
-import withoutgof.gui.controller.SierpinskiController;
-import withoutgof.gui.model.ParametersModel;
-import withoutgof.gui.view.ArtworkGUIView;
 import org.junit.Before;
 import org.junit.Test;
-
+import template.gui.controller.ArtworkGUIController;
+import template.gui.controller.CirclePackingController;
+import template.gui.controller.RecursiveShapeController;
+import template.gui.controller.SierpinskiController;
+import template.gui.model.ParametersModel;
+import template.gui.view.ArtworkGUIView;
 
 import static org.junit.Assert.*;
 

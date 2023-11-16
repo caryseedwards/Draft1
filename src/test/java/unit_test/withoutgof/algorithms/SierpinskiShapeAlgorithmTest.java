@@ -1,10 +1,10 @@
 package unit_test.withoutgof.algorithms;
 
-import withoutgof.algorithms.SierpinskiShapeAlgorithm;
 import org.junit.Test;
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.ShapeParameters;
-import withoutgof.parameters.SierpinskiShapeAlgorithmParameters;
+import template.algorithms.SierpinskiShapeAlgorithm;
+import template.parameters.CanvasParameters;
+import template.parameters.ShapeParameters;
+import template.parameters.SierpinskiShapeAlgorithmParameters;
 
 import java.awt.*;
 import java.util.ArrayList;

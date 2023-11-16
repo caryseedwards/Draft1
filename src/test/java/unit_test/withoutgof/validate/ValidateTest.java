@@ -1,17 +1,16 @@
 package unit_test.withoutgof.validate;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
-
-import withoutgof.gui.view.panel.CirclePackingPanelView;
-import withoutgof.gui.view.panel.RecursivePanelView;
-import withoutgof.gui.view.panel.SierpinskiPanelView;
-import withoutgof.validate.Validate;
+import template.gui.view.panel.CirclePackingPanelView;
+import template.gui.view.panel.RecursivePanelView;
+import template.gui.view.panel.SierpinskiPanelView;
+import template.validate.Validate;
 
 import java.awt.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class ValidateTest {
 

@@ -1,8 +1,9 @@
 package unit_test.withoutgof.parameters;
 
 import org.junit.Test;
+import template.parameters.CirclePackingAlgorithmParameters;
+
 import static org.junit.Assert.*;
-import withoutgof.parameters.CirclePackingAlgorithmParameters;
 
 public class CirclePackingAlgorithmParametersTest {
 

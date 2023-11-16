@@ -4,10 +4,9 @@ import withoutgof.parameters.CanvasParameters;
 import withoutgof.parameters.Parameters;
 import withoutgof.parameters.ShapeParameters;
 import withoutgof.parameters.SierpinskiShapeAlgorithmParameters;
-import withoutgof.shapes.*;
 import withoutgof.shapes.Shape;
+import withoutgof.shapes.*;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 

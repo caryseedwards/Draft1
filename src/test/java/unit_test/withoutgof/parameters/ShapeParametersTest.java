@@ -1,9 +1,11 @@
 package unit_test.withoutgof.parameters;
 
 import org.junit.Test;
-import withoutgof.parameters.ShapeParameters;
-import static org.junit.Assert.*;
+import template.parameters.ShapeParameters;
+
 import java.awt.*;
+
+import static org.junit.Assert.*;
 
 public class ShapeParametersTest {
 

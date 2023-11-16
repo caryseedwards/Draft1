@@ -1,7 +1,6 @@
 package withoutgof.gui.model;
 import withoutgof.parameters.*;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 

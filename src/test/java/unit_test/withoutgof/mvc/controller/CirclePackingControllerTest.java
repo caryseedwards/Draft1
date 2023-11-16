@@ -1,20 +1,20 @@
 package unit_test.withoutgof.mvc.controller;
 
-import withoutgof.gui.controller.ArtworkGUIController;
-import withoutgof.gui.controller.CirclePackingController;
-import withoutgof.gui.model.ParametersModel;
-import withoutgof.gui.view.ArtworkGUIView;
-import withoutgof.gui.view.panel.CirclePackingPanelView;
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.CirclePackingAlgorithmParameters;
-import withoutgof.parameters.ShapeParameters;
-
-import static org.junit.Assert.*;
+import template.gui.controller.ArtworkGUIController;
+import template.gui.controller.CirclePackingController;
+import template.gui.model.ParametersModel;
+import template.gui.view.ArtworkGUIView;
+import template.gui.view.panel.CirclePackingPanelView;
+import template.parameters.CanvasParameters;
+import template.parameters.CirclePackingAlgorithmParameters;
+import template.parameters.ShapeParameters;
 
 import java.awt.*;
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class CirclePackingControllerTest {
     private ParametersModel model  = new ParametersModel();

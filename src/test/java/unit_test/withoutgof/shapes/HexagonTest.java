@@ -1,12 +1,13 @@
 package unit_test.withoutgof.shapes;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.shapes.Circle;
-import withoutgof.shapes.Hexagon;
+import template.shapes.Circle;
+import template.shapes.Hexagon;
 
 import java.awt.*;
+
+import static org.junit.Assert.*;
 
 public class HexagonTest {
     private Hexagon hexagon;

@@ -1,6 +1,6 @@
 package unit_test.withoutgof.parameters;
 import org.junit.Test;
-import withoutgof.parameters.CanvasParameters;
+import template.parameters.CanvasParameters;
 
 import java.awt.*;
 

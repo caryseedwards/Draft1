@@ -1,14 +1,15 @@
 package unit_test.withoutgof.mvc.model;
 
-import static org.junit.Assert.*;
-
-import withoutgof.gui.model.ParametersModel;
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.parameters.*;
+import template.gui.model.ParametersModel;
+import template.parameters.*;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ParametersModelTest {
 

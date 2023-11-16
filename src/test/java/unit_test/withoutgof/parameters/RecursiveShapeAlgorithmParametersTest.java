@@ -1,7 +1,7 @@
 package unit_test.withoutgof.parameters;
 
 import org.junit.Test;
-import withoutgof.parameters.RecursiveShapeAlgorithmParameters;
+import template.parameters.RecursiveShapeAlgorithmParameters;
 
 import static org.junit.Assert.*;
 

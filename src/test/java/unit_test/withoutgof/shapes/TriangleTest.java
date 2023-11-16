@@ -1,12 +1,13 @@
 package unit_test.withoutgof.shapes;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import withoutgof.shapes.Circle;
-import withoutgof.shapes.Triangle;
+import template.shapes.Circle;
+import template.shapes.Triangle;
 
 import java.awt.*;
+
+import static org.junit.Assert.*;
 
 public class TriangleTest {
     private Triangle triangle;

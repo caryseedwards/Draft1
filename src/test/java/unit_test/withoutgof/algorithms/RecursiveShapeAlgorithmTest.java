@@ -1,12 +1,12 @@
 package unit_test.withoutgof.algorithms;
 
-import withoutgof.algorithms.RecursiveShapeAlgorithm;
 import org.junit.Test;
-import withoutgof.parameters.CanvasParameters;
-import withoutgof.parameters.RecursiveShapeAlgorithmParameters;
-import withoutgof.parameters.ShapeParameters;
-import withoutgof.shapes.*;
-import withoutgof.shapes.Shape;
+import template.algorithms.RecursiveShapeAlgorithm;
+import template.parameters.CanvasParameters;
+import template.parameters.RecursiveShapeAlgorithmParameters;
+import template.parameters.ShapeParameters;
+import template.shapes.Shape;
+import template.shapes.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -103,7 +103,7 @@ public class RecursiveShapeAlgorithmTest {
         RecursiveShapeAlgorithm pattern = createTestInstanceWithShapeType("hexagon", "triangle");
         pattern.getParams().setDepth(0);
         pattern.executeAlgorithm();
-        assertTrue("No shapes should be drawn at zero depth, but has drawn"+pattern.getShapesToDraw().size()+ "withoutgof/shapes", pattern.getShapesToDraw().isEmpty());
+        assertTrue("No shapes should be drawn at zero depth, but has drawn"+pattern.getShapesToDraw().size()+ "template/shapes", pattern.getShapesToDraw().isEmpty());
     }
 
     @Test
