@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Shape</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">strategyandfactory.shapes</a>
+</div>
+
+<h1>Coverage Summary for Class: Shape (strategyandfactory.shapes)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Shape</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package strategyandfactory.shapes;
+&nbsp;
+&nbsp;import strategyandfactory.parameters.ShapeParameters;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;
+<b class="fc">&nbsp;public abstract class Shape {</b>
+&nbsp;    public ShapeParameters params;
+&nbsp;
+&nbsp;    public abstract Point randomPositionInside();
+&nbsp;
+&nbsp;    public abstract boolean isInside(Circle circle);
+&nbsp;
+&nbsp;    public abstract void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType);
+&nbsp;
+&nbsp;    public abstract void setPosition(int x, int y);
+&nbsp;
+&nbsp;    public abstract void setScale(double scale);
+&nbsp;
+&nbsp;    public ShapeParameters getParameters() {
+<b class="fc">&nbsp;        return this.params;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setParameters(ShapeParameters params) {
+<b class="fc">&nbsp;        this.params = params;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

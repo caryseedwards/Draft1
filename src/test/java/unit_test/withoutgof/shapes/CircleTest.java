@@ -57,9 +57,14 @@ public class CircleTest {
 
     @Test
     public void testRandomPositionInside() {
-        Point randomPoint = circle.randomPositionInside();
-        assertNotNull(randomPoint);
-        assertTrue(Math.pow(randomPoint.x - circle.centerX, 2) + Math.pow(randomPoint.y - circle.centerY, 2) <= Math.pow(circle.radius, 2));
+        for (int i = 0; i < 100; i++) {
+            Point randomPoint = circle.randomPositionInside();
+            assertNotNull(randomPoint);
+            double distanceSquared = Math.pow(randomPoint.x - circle.centerX, 2) + Math.pow(randomPoint.y - circle.centerY, 2);
+            if (distanceSquared > Math.pow(circle.radius, 2)) {
+                fail("Random point [" + randomPoint.x + ", " + randomPoint.y + "] is outside the circle. Distance squared: " + distanceSquared);
+            }
+        }
     }
 
     @Test

@@ -34,10 +34,13 @@ public class Circle extends Shape {
     @Override
     public Point randomPositionInside() {
         double angle = 2 * Math.PI * Math.random();
-        double radiusScale = Math.sqrt(Math.random());
-        int newX = (int) (centerX + radius * radiusScale * Math.cos(angle));
-        int newY = (int) (centerY + radius * radiusScale * Math.sin(angle));
-        return new Point(newX, newY);
+        double radiusScale = Math.random();
+        double scaledRadius = radius * Math.sqrt(radiusScale);
+        double newX = centerX + scaledRadius * Math.cos(angle);
+        double newY = centerY + scaledRadius * Math.sin(angle);
+        int finalX = (int) (newX >= centerX ? Math.floor(newX) : Math.ceil(newX));
+        int finalY = (int) (newY >= centerY ? Math.floor(newY) : Math.ceil(newY));
+        return new Point(finalX, finalY);
     }
 
     @Override

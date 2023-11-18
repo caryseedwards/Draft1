@@ -1,0 +1,220 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SierpinskiShape</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">withoutgof.algorithms</a>
+</div>
+
+<h1>Coverage Summary for Class: SierpinskiShape (withoutgof.algorithms)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SierpinskiShape</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    28.6%
+  </span>
+  <span class="absValue">
+    (2/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    5.8%
+  </span>
+  <span class="absValue">
+    (3/52)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package withoutgof.algorithms;
+&nbsp;
+&nbsp;import withoutgof.parameters.SierpinskiShapeParameters;
+&nbsp;import withoutgof.shapes.Circle;
+&nbsp;import withoutgof.shapes.Hexagon;
+&nbsp;import withoutgof.shapes.Square;
+&nbsp;import withoutgof.shapes.Triangle;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.*;
+&nbsp;
+&nbsp;public class SierpinskiShape extends JPanel {
+&nbsp;    private final SierpinskiShapeParameters params;
+&nbsp;
+<b class="fc">&nbsp;    public SierpinskiShape(SierpinskiShapeParameters params) {</b>
+<b class="fc">&nbsp;        this.params = params;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void paintComponent(Graphics g) {
+<b class="nc">&nbsp;        super.paintComponent(g);</b>
+<b class="nc">&nbsp;        Graphics2D g2d = (Graphics2D) g;</b>
+<b class="nc">&nbsp;        g2d.setColor(Color.WHITE);</b>
+<b class="nc">&nbsp;        g2d.fillRect(0, 0, getWidth(), getHeight());</b>
+&nbsp;
+<b class="nc">&nbsp;        switch (params.shapeType) {</b>
+&nbsp;            case &quot;triangle&quot;:
+<b class="nc">&nbsp;                drawSierpinski(g2d, new Triangle(params.centreX, params.centreY, params.polygonSize), params.depth);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;circle&quot;:
+<b class="nc">&nbsp;                drawGasket(g2d, new Circle(params.centreX, params.centreY, params.polygonSize), params.depth);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;square&quot;:
+<b class="nc">&nbsp;                drawCarpet(g2d, new Square(params.centreX, params.centreY, params.polygonSize), params.depth);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;hexagon&quot;:
+<b class="nc">&nbsp;                drawHexagon(g2d, new Hexagon(params.centreX, params.centreY, params.polygonSize), params.depth);</b>
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void drawSierpinski(Graphics2D g, Triangle triangle, int depth) {
+<b class="nc">&nbsp;        if (depth == 0) {</b>
+<b class="nc">&nbsp;            triangle.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, null);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        double newRadius = triangle.radius / 2;</b>
+&nbsp;
+<b class="nc">&nbsp;        int midX1 = (triangle.x1 + triangle.x2) / 2;</b>
+<b class="nc">&nbsp;        int midY1 = (triangle.y1 + triangle.y2) / 2;</b>
+<b class="nc">&nbsp;        int midX3 = (triangle.x1 + triangle.x3) / 2;</b>
+<b class="nc">&nbsp;        int midY3 = (triangle.y1 + triangle.y3) / 2;</b>
+&nbsp;
+<b class="nc">&nbsp;        drawSierpinski(g, new Triangle(triangle.x1, triangle.y1 - (int) newRadius, newRadius), depth - 1);</b>
+<b class="nc">&nbsp;        drawSierpinski(g, new Triangle(midX1, midY1 - (int) newRadius, newRadius), depth - 1);</b>
+<b class="nc">&nbsp;        drawSierpinski(g, new Triangle(midX3, midY3 - (int) newRadius, newRadius), depth - 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawGasket(Graphics2D g, Circle circle, int depth) {
+<b class="nc">&nbsp;        if (depth &lt;= 0) return;</b>
+&nbsp;
+<b class="nc">&nbsp;        circle.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, &quot;&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        int newRadius = (int) circle.radius / 2;</b>
+<b class="nc">&nbsp;        int dx = (int) (newRadius * Math.cos(Math.PI / 6));</b>
+<b class="nc">&nbsp;        int dy = (int) (newRadius * Math.sin(Math.PI / 6));</b>
+&nbsp;
+<b class="nc">&nbsp;        drawGasket(g, new Circle(circle.centerX, circle.centerY - newRadius, newRadius), depth - 1);</b>
+<b class="nc">&nbsp;        drawGasket(g, new Circle(circle.centerX - dx, circle.centerY + dy, newRadius), depth - 1);</b>
+<b class="nc">&nbsp;        drawGasket(g, new Circle(circle.centerX + dx, circle.centerY + dy, newRadius), depth - 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void drawHexagon(Graphics2D g, Hexagon hexagon, int depth) {
+<b class="nc">&nbsp;        if (depth == 0) {</b>
+<b class="nc">&nbsp;            hexagon.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, &quot;&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        double newRadius = hexagon.radius / 3;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int i = 0; i &lt; 6; i++) {</b>
+<b class="nc">&nbsp;            int newX = hexagon.centerX + (int) (newRadius * 2 * Math.cos(i * Math.PI / 3));</b>
+<b class="nc">&nbsp;            int newY = hexagon.centerY + (int) (newRadius * 2 * Math.sin(i * Math.PI / 3));</b>
+<b class="nc">&nbsp;            drawHexagon(g, new Hexagon(newX, newY, newRadius), depth - 1);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        drawHexagon(g, new Hexagon(hexagon.centerX, hexagon.centerY, newRadius), depth - 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void drawCarpet(Graphics2D g, Square square, int depth) {
+<b class="nc">&nbsp;        if (depth == 0) {</b>
+<b class="nc">&nbsp;            square.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, null);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        double newRadius = square.radius / 3;</b>
+<b class="nc">&nbsp;        double offsetX = newRadius * 2;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int row = 0; row &lt; 3; row++) {</b>
+<b class="nc">&nbsp;            for (int col = 0; col &lt; 3; col++) {</b>
+<b class="nc">&nbsp;                if (row == 1 &amp;&amp; col == 1) continue;</b>
+&nbsp;
+<b class="nc">&nbsp;                int newX = (int) (square.centerX + (col - 1) * offsetX);</b>
+<b class="nc">&nbsp;                int newY = (int) (square.centerY + (row - 1) * offsetX);</b>
+&nbsp;
+<b class="nc">&nbsp;                Square newSquare = new Square(newX, newY, newRadius);</b>
+<b class="nc">&nbsp;                drawCarpet(g, newSquare, depth - 1);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public SierpinskiShapeParameters getParams() {
+<b class="fc">&nbsp;        return params;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

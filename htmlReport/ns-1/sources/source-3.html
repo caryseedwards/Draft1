@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > RecursiveShapeAlgorithm</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">strategyandfactory.algorithms</a>
+</div>
+
+<h1>Coverage Summary for Class: RecursiveShapeAlgorithm (strategyandfactory.algorithms)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RecursiveShapeAlgorithm</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78.1%
+  </span>
+  <span class="absValue">
+    (25/32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package strategyandfactory.algorithms;
+&nbsp;
+&nbsp;import strategyandfactory.parameters.CanvasParameters;
+&nbsp;import strategyandfactory.parameters.RecursiveShapeAlgorithmParameters;
+&nbsp;import strategyandfactory.parameters.ShapeParameters;
+&nbsp;import strategyandfactory.shapes.Shape;
+&nbsp;import strategyandfactory.shapes.ShapeFactory;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
+&nbsp;    private final ShapeFactory shapeFactory;
+&nbsp;    private final ArrayList&lt;Shape&gt; shapesToDraw;
+&nbsp;    private final CanvasParameters canvasParameters;
+&nbsp;    private final ShapeParameters largeShapeParameters;
+&nbsp;    private final ShapeParameters smallShapeParameters;
+&nbsp;    private final RecursiveShapeAlgorithmParameters algorithmParameters;
+&nbsp;
+<b class="fc">&nbsp;    public RecursiveShapeAlgorithm(CanvasParameters canvasParameters, ArrayList&lt;ShapeParameters&gt; shapeParameters, RecursiveShapeAlgorithmParameters algorithmParameters) {</b>
+<b class="fc">&nbsp;        this.canvasParameters = canvasParameters;</b>
+<b class="fc">&nbsp;        this.algorithmParameters = algorithmParameters;</b>
+<b class="fc">&nbsp;        this.largeShapeParameters = shapeParameters.get(0);</b>
+<b class="fc">&nbsp;        this.smallShapeParameters = shapeParameters.get(1);</b>
+<b class="fc">&nbsp;        this.shapesToDraw = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.shapeFactory = new ShapeFactory();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean validateParameters() {
+<b class="fc">&nbsp;        return canvasParameters.validateParameters() &amp;&amp; largeShapeParameters.validateParameters() &amp;&amp; smallShapeParameters.validateParameters() &amp;&amp; algorithmParameters.validateParameters();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void executeAlgorithm() {
+<b class="fc">&nbsp;        if (validateParameters()) {</b>
+<b class="fc">&nbsp;            addPattern(algorithmParameters.getCenterX(), algorithmParameters.getCenterY(), algorithmParameters.getInitialSize(), algorithmParameters.getDepth());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawPattern(Graphics g) {
+<b class="nc">&nbsp;        Graphics2D g2d = (Graphics2D) g;</b>
+<b class="nc">&nbsp;        g2d.setColor(canvasParameters.getBackgroundColour());</b>
+<b class="nc">&nbsp;        g2d.fillRect(0, 0, canvasParameters.getWidth(), canvasParameters.getHeight());</b>
+<b class="nc">&nbsp;        for (Shape shape : shapesToDraw) {</b>
+<b class="nc">&nbsp;            shape.draw(g2d, shape.getParameters().getLineColour(), shape.getParameters().getLineWidth(),</b>
+<b class="nc">&nbsp;                    shape.getParameters().getFillColour(), &quot;solid&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addPattern(int x, int y, int size, int depth) {
+<b class="fc">&nbsp;        if (depth == 0) return;</b>
+<b class="fc">&nbsp;        Shape newLargeShape = shapeFactory.createShape(x, y, size, largeShapeParameters);</b>
+<b class="fc">&nbsp;        shapesToDraw.add(newLargeShape);</b>
+<b class="fc">&nbsp;        double angleStep = Math.PI * 2 / algorithmParameters.getNumShapes();</b>
+<b class="fc">&nbsp;        int smallerSize = (int) (size * Math.sin(angleStep / 2));</b>
+&nbsp;
+<b class="fc">&nbsp;        for (int i = 0; i &lt; algorithmParameters.getNumShapes(); i++) {</b>
+<b class="fc">&nbsp;            double angle = i * angleStep;</b>
+<b class="fc">&nbsp;            int newX = (int) (x + size * Math.cos(angle));</b>
+<b class="fc">&nbsp;            int newY = (int) (y + size * Math.sin(angle));</b>
+&nbsp;
+<b class="fc">&nbsp;            Shape newSmallShape = shapeFactory.createShape(newX, newY, smallerSize, smallShapeParameters);</b>
+<b class="fc">&nbsp;            shapesToDraw.add(newSmallShape);</b>
+<b class="fc">&nbsp;            addPattern(newX, newY, smallerSize, depth - 1);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArrayList&lt;Shape&gt; getShapesToDraw() {
+<b class="fc">&nbsp;        return shapesToDraw;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ShapeParameters getLargeShapeParameters() {
+<b class="fc">&nbsp;        return largeShapeParameters;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ShapeParameters getSmallShapeParameters() {
+<b class="fc">&nbsp;        return smallShapeParameters;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

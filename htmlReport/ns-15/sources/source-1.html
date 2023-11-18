@@ -1,0 +1,522 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ArtworkGUI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">withoutgof.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: ArtworkGUI (withoutgof.gui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArtworkGUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    36.8%
+  </span>
+  <span class="absValue">
+    (7/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.5%
+  </span>
+  <span class="absValue">
+    (65/194)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ArtworkGUI$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (1/8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ArtworkGUI$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ArtworkGUI$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ArtworkGUI$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (10/25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.7%
+  </span>
+  <span class="absValue">
+    (70/208)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package withoutgof.gui;
+&nbsp;
+&nbsp;import withoutgof.algorithms.CirclePacking;
+&nbsp;import withoutgof.algorithms.RecursiveShape;
+&nbsp;import withoutgof.algorithms.SierpinskiShape;
+&nbsp;import withoutgof.parameters.CirclePackingParameters;
+&nbsp;import withoutgof.parameters.RecursiveShapeParameters;
+&nbsp;import withoutgof.parameters.SierpinskiShapeParameters;
+&nbsp;import withoutgof.validation.Validate;
+&nbsp;
+&nbsp;import javax.imageio.ImageIO;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.*;
+&nbsp;import java.awt.event.WindowAdapter;
+&nbsp;import java.awt.event.WindowEvent;
+&nbsp;import java.awt.image.BufferedImage;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;public class ArtworkGUI {</b>
+&nbsp;
+&nbsp;    public static final int WINDOW_WIDTH = 1280;
+&nbsp;    public static final int WINDOW_HEIGHT = 720;
+&nbsp;    public static final int CANVAS_WIDTH = 1280;
+&nbsp;    public static final int CANVAS_HEIGHT = 720;
+<b class="fc">&nbsp;    public static final JLabel errorLabel = new JLabel(&quot;&quot;);</b>
+<b class="fc">&nbsp;    private static final RecursivePanel rp = new RecursivePanel(CANVAS_WIDTH, CANVAS_HEIGHT);</b>
+<b class="fc">&nbsp;    private static final CirclePackingPanel cpp = new CirclePackingPanel(CANVAS_WIDTH, CANVAS_HEIGHT);</b>
+<b class="fc">&nbsp;    private static final SierpinskiPanel sp = new SierpinskiPanel(CANVAS_WIDTH, CANVAS_HEIGHT);</b>
+&nbsp;    public static JPanel canvas;
+&nbsp;    public static Choice algorithmDropdown;
+&nbsp;    public static Panel recursivePanel, circlePackingPanel, sierpinskiPanel;
+&nbsp;    private static RecursiveShape recursiveShape;
+&nbsp;    private static CirclePacking circlePacking;
+&nbsp;    private static SierpinskiShape sierpinskiShape;
+&nbsp;    private static Timer animationTimer;
+&nbsp;    private static Frame frame;
+&nbsp;
+&nbsp;    public static void setupFrame() {
+<b class="fc">&nbsp;        frame = new Frame(&quot;Generative Art API&quot;);</b>
+<b class="fc">&nbsp;        frame.setLayout(new BorderLayout());</b>
+<b class="fc">&nbsp;        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void setupLeftPanel() {
+<b class="fc">&nbsp;        Panel leftPanel = new Panel(new GridBagLayout());</b>
+<b class="fc">&nbsp;        GridBagConstraints gbc = new GridBagConstraints();</b>
+<b class="fc">&nbsp;        gbc.anchor = GridBagConstraints.NORTHWEST;</b>
+<b class="fc">&nbsp;        gbc.insets = new Insets(4, 4, 4, 4);</b>
+<b class="fc">&nbsp;        gbc.gridx = gbc.gridy = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;        leftPanel.add(new Label(&quot;Please select an algorithm:&quot;), gbc);</b>
+&nbsp;
+<b class="fc">&nbsp;        gbc.gridx++;</b>
+<b class="fc">&nbsp;        setupAlgorithmDropdown();</b>
+<b class="fc">&nbsp;        leftPanel.add(algorithmDropdown, gbc);</b>
+&nbsp;
+<b class="fc">&nbsp;        gbc.gridx = 0;</b>
+<b class="fc">&nbsp;        gbc.gridy++;</b>
+&nbsp;
+<b class="fc">&nbsp;        setupAlgorithmPanels(gbc, leftPanel);</b>
+&nbsp;
+<b class="fc">&nbsp;        gbc.gridy++;</b>
+<b class="fc">&nbsp;        gbc.gridwidth = GridBagConstraints.REMAINDER;</b>
+<b class="fc">&nbsp;        gbc.anchor = GridBagConstraints.CENTER;</b>
+<b class="fc">&nbsp;        gbc.insets = new Insets(20, 0, 0, 0);</b>
+&nbsp;
+<b class="fc">&nbsp;        Button generateBtn = new Button(&quot;Generate Artwork&quot;);</b>
+<b class="fc">&nbsp;        generateBtn.addActionListener(e -&gt; generateArtwork());</b>
+<b class="fc">&nbsp;        leftPanel.add(generateBtn, gbc);</b>
+&nbsp;
+<b class="fc">&nbsp;        gbc.gridy++;</b>
+<b class="fc">&nbsp;        gbc.insets = new Insets(10, 0, 0, 0);</b>
+<b class="fc">&nbsp;        errorLabel.setHorizontalAlignment(JLabel.CENTER);</b>
+<b class="fc">&nbsp;        errorLabel.setForeground(Color.RED);</b>
+<b class="fc">&nbsp;        leftPanel.add(errorLabel, gbc);</b>
+&nbsp;
+<b class="fc">&nbsp;        frame.add(leftPanel, BorderLayout.WEST);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void setupAlgorithmDropdown() {
+<b class="fc">&nbsp;        algorithmDropdown = new Choice();</b>
+<b class="fc">&nbsp;        algorithmDropdown.add(&quot;-&quot;);</b>
+<b class="fc">&nbsp;        algorithmDropdown.add(&quot;Circle Packing&quot;);</b>
+<b class="fc">&nbsp;        algorithmDropdown.add(&quot;Recursive Shape&quot;);</b>
+<b class="fc">&nbsp;        algorithmDropdown.add(&quot;Sierpinski Shape&quot;);</b>
+<b class="fc">&nbsp;        algorithmDropdown.addItemListener(e -&gt; updateAlgorithmPanelVisibility());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
+<b class="fc">&nbsp;        recursivePanel = rp.getPanel();</b>
+<b class="fc">&nbsp;        circlePackingPanel = cpp.getPanel();</b>
+<b class="fc">&nbsp;        sierpinskiPanel = sp.getPanel();</b>
+&nbsp;
+<b class="fc">&nbsp;        recursivePanel.setVisible(false);</b>
+<b class="fc">&nbsp;        circlePackingPanel.setVisible(false);</b>
+<b class="fc">&nbsp;        sierpinskiPanel.setVisible(false);</b>
+&nbsp;
+<b class="fc">&nbsp;        leftPanel.add(recursivePanel, gbc);</b>
+<b class="fc">&nbsp;        leftPanel.add(circlePackingPanel, gbc);</b>
+<b class="fc">&nbsp;        leftPanel.add(sierpinskiPanel, gbc);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void setupCanvas() {
+<b class="fc">&nbsp;        canvas = new JPanel() {</b>
+&nbsp;            @Override
+&nbsp;            protected void paintComponent(Graphics g) {
+<b class="nc">&nbsp;                super.paintComponent(g);</b>
+<b class="nc">&nbsp;                g.setColor(Color.WHITE);</b>
+<b class="nc">&nbsp;                g.fillRect(0, 0, getWidth(), getHeight());</b>
+<b class="nc">&nbsp;                g.setColor(Color.BLACK);</b>
+<b class="nc">&nbsp;                g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);</b>
+<b class="nc">&nbsp;                if (circlePacking != null) {</b>
+<b class="nc">&nbsp;                    circlePacking.paintComponent(g);</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        };
+<b class="fc">&nbsp;        canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));</b>
+<b class="fc">&nbsp;        canvas.setBackground(Color.WHITE);</b>
+&nbsp;
+<b class="fc">&nbsp;        Panel centerPanel = new Panel(new BorderLayout());</b>
+<b class="fc">&nbsp;        centerPanel.add(canvas, BorderLayout.CENTER);</b>
+&nbsp;
+<b class="fc">&nbsp;        centerPanel.add(new Panel() {{</b>
+<b class="fc">&nbsp;            setPreferredSize(new Dimension(0, 30));</b>
+&nbsp;        }}, BorderLayout.NORTH);
+&nbsp;
+<b class="fc">&nbsp;        centerPanel.add(new Panel() {{</b>
+<b class="fc">&nbsp;            setPreferredSize(new Dimension(30, 0));</b>
+&nbsp;        }}, BorderLayout.EAST);
+&nbsp;
+<b class="fc">&nbsp;        frame.add(centerPanel, BorderLayout.CENTER);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void setupBottomPanel() {
+<b class="fc">&nbsp;        int bottomPanelHeight = 50;</b>
+<b class="fc">&nbsp;        Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));</b>
+<b class="fc">&nbsp;        bottomPanel.setPreferredSize(new Dimension(WINDOW_WIDTH, bottomPanelHeight));</b>
+&nbsp;
+<b class="fc">&nbsp;        Button saveBtn = new Button(&quot;Save Image&quot;);</b>
+<b class="fc">&nbsp;        saveBtn.addActionListener(e -&gt; saveImage());</b>
+<b class="fc">&nbsp;        Button resetBtn = new Button(&quot;Reset&quot;);</b>
+<b class="fc">&nbsp;        resetBtn.addActionListener(e -&gt; resetCanvas());</b>
+&nbsp;
+<b class="fc">&nbsp;        bottomPanel.add(saveBtn);</b>
+<b class="fc">&nbsp;        bottomPanel.add(resetBtn);</b>
+<b class="fc">&nbsp;        frame.add(bottomPanel, BorderLayout.SOUTH);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void updateAlgorithmPanelVisibility() {
+<b class="nc">&nbsp;        String selected = algorithmDropdown.getSelectedItem();</b>
+<b class="nc">&nbsp;        int newCanvasWidth = canvas.getWidth();</b>
+<b class="nc">&nbsp;        int newCanvasHeight = canvas.getHeight();</b>
+&nbsp;
+<b class="nc">&nbsp;        resetCanvas();</b>
+<b class="nc">&nbsp;        recalcCanvasCenter(newCanvasWidth, newCanvasHeight);</b>
+<b class="nc">&nbsp;        recursivePanel.setVisible(&quot;Recursive Shape&quot;.equals(selected));</b>
+<b class="nc">&nbsp;        circlePackingPanel.setVisible(&quot;Circle Packing&quot;.equals(selected));</b>
+<b class="nc">&nbsp;        sierpinskiPanel.setVisible(&quot;Sierpinski Shape&quot;.equals(selected));</b>
+&nbsp;
+<b class="nc">&nbsp;        frame.invalidate();</b>
+<b class="nc">&nbsp;        frame.validate();</b>
+<b class="nc">&nbsp;        frame.repaint();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void recalcCanvasCenter(int width, int height) {
+<b class="nc">&nbsp;        rp.getStartXTextField().setText(String.valueOf(width / 2));</b>
+<b class="nc">&nbsp;        rp.getStartYTextField().setText(String.valueOf(height / 2));</b>
+<b class="nc">&nbsp;        cpp.getStartXTextField().setText(String.valueOf(width / 2));</b>
+<b class="nc">&nbsp;        cpp.getStartYTextField().setText(String.valueOf(height / 2));</b>
+<b class="nc">&nbsp;        sp.getStartXTextField().setText(String.valueOf(width / 2));</b>
+<b class="nc">&nbsp;        sp.getStartYTextField().setText(String.valueOf(height / 2));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void setErrorLabel(String message) {
+<b class="nc">&nbsp;        if (message == null || message.isEmpty()) {</b>
+<b class="nc">&nbsp;            errorLabel.setText(&quot;&quot;);</b>
+<b class="nc">&nbsp;            errorLabel.setVisible(false);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            errorLabel.setText(message);</b>
+<b class="nc">&nbsp;            errorLabel.setVisible(true);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void generateArtwork() {
+<b class="nc">&nbsp;        String selected = algorithmDropdown.getSelectedItem();</b>
+<b class="nc">&nbsp;        Graphics2D g2d = (Graphics2D) canvas.getGraphics();</b>
+&nbsp;        String validationError;
+&nbsp;
+<b class="nc">&nbsp;        switch (selected) {</b>
+&nbsp;            case &quot;Recursive Shape&quot;:
+<b class="nc">&nbsp;                validationError = Validate.validateRecursiveParams(rp);</b>
+<b class="nc">&nbsp;                if (validationError.isEmpty()) {</b>
+<b class="nc">&nbsp;                    recursiveShape = new RecursiveShape(getRecursiveShapeParameters());</b>
+<b class="nc">&nbsp;                    recursiveShape.paintComponent(g2d);</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    setErrorLabel(validationError);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;Circle Packing&quot;:
+<b class="nc">&nbsp;                validationError = Validate.validateCirclePackingParams(cpp);</b>
+<b class="nc">&nbsp;                if (validationError.isEmpty()) {</b>
+<b class="nc">&nbsp;                    circlePacking = new CirclePacking(getCirclePackingParameters());</b>
+<b class="nc">&nbsp;                    if (animationTimer != null) {</b>
+<b class="nc">&nbsp;                        animationTimer.stop();</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    animationTimer = new Timer(100, e -&gt; {</b>
+<b class="nc">&nbsp;                        if (circlePacking != null) {</b>
+<b class="nc">&nbsp;                            circlePacking.addCircle();</b>
+<b class="nc">&nbsp;                            canvas.repaint();</b>
+&nbsp;                        }
+&nbsp;                    });
+<b class="nc">&nbsp;                    animationTimer.start();</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    setErrorLabel(validationError);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;Sierpinski Shape&quot;:
+<b class="nc">&nbsp;                validationError = Validate.validateSierpinskiParams(sp);</b>
+<b class="nc">&nbsp;                if (validationError.isEmpty()) {</b>
+<b class="nc">&nbsp;                    SierpinskiShapeParameters sierpinskiParams = getSierpinskiShapeParameters();</b>
+<b class="nc">&nbsp;                    sierpinskiShape = new SierpinskiShape(sierpinskiParams);</b>
+<b class="nc">&nbsp;                    sierpinskiShape.paintComponent(g2d);</b>
+<b class="nc">&nbsp;                } else {</b>
+<b class="nc">&nbsp;                    setErrorLabel(validationError);</b>
+&nbsp;                }
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private static RecursiveShapeParameters getRecursiveShapeParameters() {
+<b class="nc">&nbsp;        RecursiveShapeParameters params = new RecursiveShapeParameters();</b>
+<b class="nc">&nbsp;        params.setCenterX(Integer.parseInt(rp.getStartXTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setCenterY(Integer.parseInt(rp.getStartYTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setDepth(Integer.parseInt(rp.getRecursiveDepthTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setInitialRadius(Integer.parseInt(rp.getInitialRadiusTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setNumShapes(Integer.parseInt(rp.getNumShapeTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setLargeShapeType(rp.getLargeShapeType().getSelectedItem().toLowerCase());</b>
+<b class="nc">&nbsp;        params.setLargeShapeFillColor(rp.getLargeFillColour());</b>
+<b class="nc">&nbsp;        params.setLargeShapeLineColor(rp.getLargeLineColour());</b>
+<b class="nc">&nbsp;        params.setLargeShapeLineWidth(Integer.parseInt(rp.getLargeLineWidthTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setSmallShapeType(rp.getSmallShapeType().getSelectedItem().toLowerCase());</b>
+<b class="nc">&nbsp;        params.setSmallShapeFillColor(rp.getSmallFillColour());</b>
+<b class="nc">&nbsp;        params.setSmallShapeLineColor(rp.getSmallLineColour());</b>
+<b class="nc">&nbsp;        params.setSmallShapeLineWidth(Integer.parseInt(rp.getSmallLineWidthTextField().getText()));</b>
+<b class="nc">&nbsp;        return params;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static CirclePackingParameters getCirclePackingParameters() {
+<b class="nc">&nbsp;        CirclePackingParameters params = new CirclePackingParameters();</b>
+<b class="nc">&nbsp;        params.setCentreX(Integer.parseInt(cpp.getStartXTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setCentreY(Integer.parseInt(cpp.getStartYTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setMaxAttempts(Integer.parseInt(cpp.getMaxAttemptsTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setBoundaryType(cpp.getBoundaryShapeType().getSelectedItem().toLowerCase());</b>
+<b class="nc">&nbsp;        params.setPolygonSize(Integer.parseInt(cpp.getBoundaryRadiusTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setBoundaryFillColour(cpp.getBoundaryFillColor());</b>
+<b class="nc">&nbsp;        params.setBoundaryLineColour(cpp.getBoundaryLineColor());</b>
+<b class="nc">&nbsp;        params.setBoundaryLineWidth(Integer.parseInt(cpp.getBoundaryLineWidthTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setCircleFillColour(cpp.getPackingFillColor());</b>
+<b class="nc">&nbsp;        params.setCircleLineColour(cpp.getPackingLineColor());</b>
+<b class="nc">&nbsp;        params.setCircleLineWidth(Integer.parseInt(cpp.getPackingLineWidthTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setMaxRadius(Integer.parseInt(cpp.getMaxRadiusCircleTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setMinRadius(Integer.parseInt(cpp.getMinRadiusCircleTextField().getText()));</b>
+<b class="nc">&nbsp;        return params;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static SierpinskiShapeParameters getSierpinskiShapeParameters() {
+<b class="nc">&nbsp;        SierpinskiShapeParameters params = new SierpinskiShapeParameters();</b>
+<b class="nc">&nbsp;        params.setCentreX(Integer.parseInt(sp.getStartXTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setCentreY(Integer.parseInt(sp.getStartYTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setDepth(Integer.parseInt(sp.getDepthTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setShapeType(sp.getShapeTypeChoice().getSelectedItem().toLowerCase());</b>
+<b class="nc">&nbsp;        params.setPolygonSize(Integer.parseInt(sp.getSizeTextField().getText()));</b>
+<b class="nc">&nbsp;        params.setShapeFillColour(sp.getFillColour());</b>
+<b class="nc">&nbsp;        params.setShapeLineColour(sp.getLineColour());</b>
+<b class="nc">&nbsp;        params.setShapeLineWidth(Integer.parseInt(sp.getLineWidthTextField().getText()));</b>
+<b class="nc">&nbsp;        return params;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void saveImage() {
+<b class="nc">&nbsp;        Dimension size = canvas.getSize();</b>
+<b class="nc">&nbsp;        BufferedImage image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);</b>
+<b class="nc">&nbsp;        Graphics2D g2d = image.createGraphics();</b>
+<b class="nc">&nbsp;        g2d.setColor(canvas.getBackground());</b>
+<b class="nc">&nbsp;        g2d.fillRect(0, 0, size.width, size.height);</b>
+<b class="nc">&nbsp;        if (recursiveShape != null) {</b>
+<b class="nc">&nbsp;            recursiveShape.paintComponent(g2d);</b>
+<b class="nc">&nbsp;        } else if (circlePacking != null) {</b>
+<b class="nc">&nbsp;            circlePacking.paintComponent(g2d);</b>
+<b class="nc">&nbsp;        } else if (sierpinskiShape != null) {</b>
+<b class="nc">&nbsp;            sierpinskiShape.paintComponent(g2d);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        g2d.dispose();</b>
+&nbsp;
+<b class="nc">&nbsp;        FileDialog fd = new FileDialog(frame, &quot;Save Image&quot;, FileDialog.SAVE);</b>
+<b class="nc">&nbsp;        fd.setVisible(true);</b>
+<b class="nc">&nbsp;        String filename = fd.getFile();</b>
+<b class="nc">&nbsp;        if (filename != null) {</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                if (!filename.contains(&quot;.&quot;)) filename += &quot;.png&quot;;</b>
+<b class="nc">&nbsp;                File file = new File(fd.getDirectory() + filename);</b>
+<b class="nc">&nbsp;                ImageIO.write(image, &quot;PNG&quot;, file);</b>
+<b class="nc">&nbsp;                JOptionPane.showMessageDialog(frame, &quot;Image saved!&quot;, &quot;Image Save&quot;, JOptionPane.INFORMATION_MESSAGE);</b>
+<b class="nc">&nbsp;            } catch (IOException ex) {</b>
+<b class="nc">&nbsp;                ex.printStackTrace();</b>
+<b class="nc">&nbsp;                JOptionPane.showMessageDialog(frame, &quot;Error saving image: &quot; + ex.getMessage(), &quot;Image Save Error&quot;, JOptionPane.ERROR_MESSAGE);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private static void resetCanvas() {
+<b class="nc">&nbsp;        Graphics g = canvas.getGraphics();</b>
+<b class="nc">&nbsp;        g.setColor(Color.white);</b>
+<b class="nc">&nbsp;        g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());</b>
+<b class="nc">&nbsp;        g.setColor(Color.black);</b>
+<b class="nc">&nbsp;        g.drawRect(0, 0, canvas.getWidth() - 1, canvas.getHeight() - 1);</b>
+<b class="nc">&nbsp;        recursiveShape = null;</b>
+<b class="nc">&nbsp;        circlePacking = null;</b>
+<b class="nc">&nbsp;        sierpinskiShape = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void main(String[] args) {
+<b class="nc">&nbsp;        setupFrame();</b>
+<b class="nc">&nbsp;        setupLeftPanel();</b>
+<b class="nc">&nbsp;        setupCanvas();</b>
+<b class="nc">&nbsp;        setupBottomPanel();</b>
+<b class="nc">&nbsp;        frame.setVisible(true);</b>
+<b class="nc">&nbsp;        frame.addWindowListener(new WindowAdapter() {</b>
+&nbsp;            public void windowClosing(WindowEvent e) {
+<b class="nc">&nbsp;                frame.dispose();</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

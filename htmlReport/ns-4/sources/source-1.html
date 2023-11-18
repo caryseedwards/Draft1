@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ParametersModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">strategyandfactory.gui.model</a>
+</div>
+
+<h1>Coverage Summary for Class: ParametersModel (strategyandfactory.gui.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ParametersModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (26/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package strategyandfactory.gui.model;
+&nbsp;
+&nbsp;import strategyandfactory.parameters.*;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;public class ParametersModel {
+&nbsp;    private CanvasParameters canvas;
+&nbsp;    private ArrayList&lt;ShapeParameters&gt; shapes;
+&nbsp;    private RecursiveShapeAlgorithmParameters rap;
+&nbsp;    private CirclePackingAlgorithmParameters cap;
+&nbsp;    private SierpinskiShapeAlgorithmParameters sap;
+&nbsp;
+<b class="fc">&nbsp;    public ParametersModel() {</b>
+<b class="fc">&nbsp;        setCanvasParams(new CanvasParameters(500, 500, Color.WHITE));</b>
+<b class="fc">&nbsp;        ArrayList&lt;ShapeParameters&gt; shapesDefault = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        shapesDefault.add(new ShapeParameters(&quot;circle&quot;, 1, Color.BLACK, Color.WHITE));</b>
+<b class="fc">&nbsp;        shapesDefault.add(new ShapeParameters(&quot;circle&quot;, 1, Color.BLACK, Color.WHITE));</b>
+<b class="fc">&nbsp;        setShapesParams(shapesDefault);</b>
+<b class="fc">&nbsp;        setRecursiveParams(new RecursiveShapeAlgorithmParameters(250, 250, 100, 4, 6));</b>
+<b class="fc">&nbsp;        setPackingParams(new CirclePackingAlgorithmParameters(250, 250, 100, 5, 50, 1000, 2));</b>
+<b class="fc">&nbsp;        setSierpinskiParams(new SierpinskiShapeAlgorithmParameters(250, 250, 100, 4));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public CanvasParameters getCanvasParams() {
+<b class="fc">&nbsp;        return this.canvas;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setCanvasParams(CanvasParameters canvas) {
+<b class="fc">&nbsp;        canvas.validateParameters();</b>
+<b class="fc">&nbsp;        this.canvas = canvas;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArrayList&lt;ShapeParameters&gt; getShapesParams() {
+<b class="fc">&nbsp;        return this.shapes;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setShapesParams(ArrayList&lt;ShapeParameters&gt; shapes) {
+<b class="fc">&nbsp;        for (ShapeParameters shapeParameters : shapes) {</b>
+<b class="fc">&nbsp;            shapeParameters.validateParameters();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        this.shapes = shapes;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public RecursiveShapeAlgorithmParameters getRecursiveParams() {
+<b class="fc">&nbsp;        return this.rap;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setRecursiveParams(RecursiveShapeAlgorithmParameters rap) {
+<b class="fc">&nbsp;        if (rap.validateParameters()) {</b>
+<b class="fc">&nbsp;            this.rap = rap;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public CirclePackingAlgorithmParameters getPackingParams() {
+<b class="fc">&nbsp;        return this.cap;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPackingParams(CirclePackingAlgorithmParameters cap) {
+<b class="fc">&nbsp;        if (cap.validateParameters()) {</b>
+<b class="fc">&nbsp;            this.cap = cap;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public SierpinskiShapeAlgorithmParameters getSierpinskiParams() {
+<b class="fc">&nbsp;        return this.sap;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setSierpinskiParams(SierpinskiShapeAlgorithmParameters ssp) {
+<b class="fc">&nbsp;        if (ssp.validateParameters()) {</b>
+<b class="fc">&nbsp;            this.sap = ssp;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

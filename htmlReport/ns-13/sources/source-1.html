@@ -1,0 +1,210 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Validate</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">template.validate</a>
+</div>
+
+<h1>Coverage Summary for Class: Validate (template.validate)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Validate</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.4%
+  </span>
+  <span class="absValue">
+    (51/54)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package template.validate;
+&nbsp;
+&nbsp;import template.gui.view.panel.CirclePackingPanelView;
+&nbsp;import template.gui.view.panel.RecursivePanelView;
+&nbsp;import template.gui.view.panel.SierpinskiPanelView;
+&nbsp;
+<b class="nc">&nbsp;public class Validate {</b>
+&nbsp;
+&nbsp;    public static String validateRecursivePanelView(RecursivePanelView rp) {
+&nbsp;        String error;
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getStartXTextField().getText(), &quot;CenterX&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getStartYTextField().getText(), &quot;CenterY&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getRecursiveDepthTextField().getText(), &quot;Recursive depth&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getInitialRadiusTextField().getText(), &quot;Initial radius&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getNumShapeTextField().getText(), &quot;Number of shapes&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getLargeLineWidthTextField().getText(), &quot;Large shape line width&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(rp.getSmallLineWidthTextField().getText(), &quot;Small shape line width&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        return &quot;&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static String validateCirclePackingPanelView(CirclePackingPanelView cpp) {
+&nbsp;        String error;
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getStartXTextField().getText(), &quot;CentreX&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getStartYTextField().getText(), &quot;CentreY&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getMaxAttemptsTextField().getText(), &quot;MaxAttempts&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getBoundaryRadiusTextField().getText(), &quot;PolygonSize&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getBoundaryLineWidthTextField().getText(), &quot;Boundary Line Width&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getPackingLineWidthTextField().getText(), &quot;Packing Line Width&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getMaxRadiusCircleTextField().getText(), &quot;MaxRadius&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(cpp.getMinRadiusCircleTextField().getText(), &quot;MinRadius&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        return &quot;&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static String validateSierpinskiPanelView(SierpinskiPanelView sp) {
+&nbsp;        String error;
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(sp.getStartXTextField().getText(), &quot;CentreX&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(sp.getStartYTextField().getText(), &quot;CentreY&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(sp.getDepthTextField().getText(), &quot;Depth&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(sp.getSizeTextField().getText(), &quot;Polygon Size&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        error = validateInteger(sp.getLineWidthTextField().getText(), &quot;Shape Line Width&quot;);</b>
+<b class="fc">&nbsp;        if (!error.isEmpty()) return error;</b>
+&nbsp;
+<b class="fc">&nbsp;        return &quot;&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Integer safelyParseInteger(String text) {
+&nbsp;        try {
+<b class="fc">&nbsp;            return Integer.parseInt(text);</b>
+<b class="nc">&nbsp;        } catch (NumberFormatException e) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public static String validateInteger(String input, String parameterName) {
+&nbsp;        try {
+<b class="fc">&nbsp;            int value = Integer.parseInt(input);</b>
+<b class="fc">&nbsp;            if (value &lt;= 0) {</b>
+<b class="fc">&nbsp;                return parameterName + &quot; must be a positive integer.&quot;;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        } catch (NumberFormatException e) {</b>
+<b class="fc">&nbsp;            return parameterName + &quot; must be an integer.&quot;;</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return &quot;&quot;;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Hexagon</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">template.shapes</a>
+</div>
+
+<h1>Coverage Summary for Class: Hexagon (template.shapes)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Hexagon</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73%
+  </span>
+  <span class="absValue">
+    (27/37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package template.shapes;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;
+&nbsp;public class Hexagon extends Shape {
+&nbsp;    public int centerX, centerY;
+&nbsp;    public double radius;
+&nbsp;
+<b class="fc">&nbsp;    public Hexagon(int x, int y, double radius) {</b>
+<b class="fc">&nbsp;        this.centerX = x;</b>
+<b class="fc">&nbsp;        this.centerY = y;</b>
+<b class="fc">&nbsp;        this.radius = radius;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Point randomPositionInside() {
+&nbsp;        int x, y;
+&nbsp;        do {
+<b class="fc">&nbsp;            double angle = Math.random() * Math.PI * 2;</b>
+<b class="fc">&nbsp;            double distance = Math.random() * radius;</b>
+<b class="fc">&nbsp;            x = centerX + (int) (distance * Math.cos(angle));</b>
+<b class="fc">&nbsp;            y = centerY + (int) (distance * Math.sin(angle));</b>
+<b class="fc">&nbsp;        } while (!isPointInside(x, y));</b>
+<b class="fc">&nbsp;        return new Point(x, y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isPointInside(int x, int y) {
+<b class="fc">&nbsp;        int[] xPoints = new int[6];</b>
+<b class="fc">&nbsp;        int[] yPoints = new int[6];</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; 6; i++) {</b>
+<b class="fc">&nbsp;            xPoints[i] = (int) (centerX + radius * Math.cos(i * Math.PI / 3));</b>
+<b class="fc">&nbsp;            yPoints[i] = (int) (centerY + radius * Math.sin(i * Math.PI / 3));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        Polygon hexagon = new Polygon(xPoints, yPoints, 6);</b>
+<b class="fc">&nbsp;        return hexagon.contains(x, y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean isInside(Circle circle) {
+<b class="fc">&nbsp;        for (int angle = 0; angle &lt; 360; angle += 5) {</b>
+<b class="fc">&nbsp;            double rad = Math.toRadians(angle);</b>
+<b class="fc">&nbsp;            int pointX = (int) (circle.getX() + circle.getRadius() * Math.cos(rad));</b>
+<b class="fc">&nbsp;            int pointY = (int) (circle.getY() + circle.getRadius() * Math.sin(rad));</b>
+<b class="fc">&nbsp;            if (!isPointInside(pointX, pointY)) {</b>
+<b class="fc">&nbsp;                return false;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType) {
+<b class="nc">&nbsp;        int[] xPoints = new int[6];</b>
+<b class="nc">&nbsp;        int[] yPoints = new int[6];</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; 6; i++) {</b>
+<b class="nc">&nbsp;            xPoints[i] = (int) (centerX + radius * Math.cos(i * Math.PI / 3));</b>
+<b class="nc">&nbsp;            yPoints[i] = (int) (centerY + radius * Math.sin(i * Math.PI / 3));</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        g2d.setColor(fillColor);</b>
+<b class="nc">&nbsp;        g2d.fillPolygon(xPoints, yPoints, 6);</b>
+&nbsp;
+<b class="nc">&nbsp;        g2d.setColor(lineColor);</b>
+<b class="nc">&nbsp;        g2d.setStroke(new BasicStroke(lineWidth));</b>
+<b class="nc">&nbsp;        g2d.drawPolygon(xPoints, yPoints, 6);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setPosition(int x, int y) {
+<b class="fc">&nbsp;        this.centerX = x;</b>
+<b class="fc">&nbsp;        this.centerY = y;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setScale(double scale) {
+<b class="fc">&nbsp;        this.radius = scale;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>

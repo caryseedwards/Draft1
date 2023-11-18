@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CanvasParameters</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">strategyandfactory.parameters</a>
+</div>
+
+<h1>Coverage Summary for Class: CanvasParameters (strategyandfactory.parameters)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CanvasParameters</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package strategyandfactory.parameters;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;
+&nbsp;public class CanvasParameters extends Parameters {
+&nbsp;    private int height;
+&nbsp;    private int width;
+&nbsp;    private Color backgroundColour;
+&nbsp;
+<b class="fc">&nbsp;    public CanvasParameters(int height, int width, Color backgroundColour) {</b>
+<b class="fc">&nbsp;        this.parameterType = &quot;canvas&quot;;</b>
+<b class="fc">&nbsp;        this.height = height;</b>
+<b class="fc">&nbsp;        this.width = width;</b>
+<b class="fc">&nbsp;        this.backgroundColour = backgroundColour;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean validateParameters() {
+&nbsp;        try {
+<b class="fc">&nbsp;            if (height &lt;= 0 || width &lt;= 0) {</b>
+<b class="fc">&nbsp;                throw new IllegalArgumentException(&quot;Canvas height and width needs to be higher than 0&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (backgroundColour == null) {</b>
+<b class="fc">&nbsp;                throw new IllegalArgumentException(&quot;Canvas background colour is not initialised&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return true;</b>
+<b class="fc">&nbsp;        } catch (IllegalArgumentException e) {</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getHeight() {
+<b class="fc">&nbsp;        return height;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setHeight(int height) {
+<b class="fc">&nbsp;        this.height = height;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getWidth() {
+<b class="fc">&nbsp;        return width;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setWidth(int width) {
+<b class="fc">&nbsp;        this.width = width;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Color getBackgroundColour() {
+<b class="fc">&nbsp;        return backgroundColour;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBackgroundColour(Color backgroundColour) {
+<b class="fc">&nbsp;        this.backgroundColour = backgroundColour;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-18 17:34</div>
+</div>
+</body>
+</html>
