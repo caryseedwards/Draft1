@@ -107,17 +107,19 @@ public class ArtworkGUIController {
                 }
                 break;
             default:
-                view.getErrorLabel().setText("Please select a valid algorithm.");
+                view.setErrorLabel("Please select an algorithm.");
         }
 
-        context.executeAlgorithm();
-        context.drawPattern(g2d);
-        if (context.getStrategy() instanceof CirclePackingAlgorithm) {
-            startCirclePackingAnimation((CirclePackingAlgorithm) this.context.getStrategy());
+        if (!view.getAlgorithmDropdown().getSelectedItem().equals("-")) {
+            context.executeAlgorithm();
+            context.drawPattern(g2d);
+            if (context.getStrategy() instanceof CirclePackingAlgorithm) {
+                startCirclePackingAnimation((CirclePackingAlgorithm) this.context.getStrategy());
+            }
+            g2d.dispose();
+            view.setArtworkImage(image);
+            view.getCanvas().repaint();
         }
-        g2d.dispose();
-        view.setArtworkImage(image);
-        view.getCanvas().repaint();
     }
 
     private void startCirclePackingAnimation(CirclePackingAlgorithm cpa) {

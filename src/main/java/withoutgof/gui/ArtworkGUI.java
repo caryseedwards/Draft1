@@ -226,6 +226,8 @@ public class ArtworkGUI {
                     setErrorLabel(validationError);
                 }
                 break;
+            default:
+                setErrorLabel("Please select an algorithm.");
         }
     }
 

@@ -126,7 +126,7 @@ public class ArtworkGUIController {
                 }
                 break;
             default:
-                view.getErrorLabel().setText("Please select a valid algorithm.");
+                view.setErrorLabel("Please select an algorithm.");
         }
 
         g2d.dispose();
