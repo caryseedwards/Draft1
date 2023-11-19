@@ -1,6 +1,5 @@
 package black_box_test;
 
-import org.junit.Test;
 import withoutgof.algorithms.CirclePacking;
 import withoutgof.algorithms.RecursiveShape;
 import withoutgof.algorithms.SierpinskiShape;
@@ -69,7 +68,6 @@ public class VersionOneTests {
     public static void showSierpinskiShape(){
         JFrame frame = new JFrame("Version 1: Sierpinski");
         SierpinskiShapeParameters ssParameters = new SierpinskiShapeParameters();
-        ssParameters = new SierpinskiShapeParameters();
         ssParameters.setCentreX(400);
         ssParameters.setCentreY(1200);
         ssParameters.setPolygonSize(400);

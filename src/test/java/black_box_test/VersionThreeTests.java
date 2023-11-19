@@ -1,13 +1,10 @@
 package black_box_test;
 
-import org.junit.Test;
 import strategyandfactory.algorithms.*;
 import strategyandfactory.parameters.*;
-import withoutgof.algorithms.CirclePacking;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class VersionThreeTests {

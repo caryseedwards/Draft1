@@ -11,6 +11,7 @@ public class CirclePacking extends JPanel {
     private PatternShape boundaryShape;
     private final ArrayList<Circle> circles;
     private final CirclePackingParameters params;
+    private int attempts = 0;
 
     public CirclePacking(CirclePackingParameters params) {
 
@@ -31,6 +32,7 @@ public class CirclePacking extends JPanel {
 
     public void addCircle() {
         for (int i = 0; i < params.maxAttempts; i++) {
+            attempts++;
             Point randomPosition = boundaryShape.randomPositionInside();
             int randomRadius = params.minRadius + (int) (Math.random() * (params.maxRadius - params.minRadius));
             Circle newCircle = new Circle(randomPosition.x, randomPosition.y, randomRadius);
@@ -68,5 +70,9 @@ public class CirclePacking extends JPanel {
 
     public CirclePackingParameters getParams() {
         return params;
+    }
+
+    public int getAttempts() {
+        return attempts;
     }
 }
