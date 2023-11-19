@@ -305,7 +305,6 @@ public class ArtworkGUI {
                 ImageIO.write(image, "PNG", file);
                 JOptionPane.showMessageDialog(frame, "Image saved!", "Image Save", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
-                ex.printStackTrace();
                 JOptionPane.showMessageDialog(frame, "Error saving image: " + ex.getMessage(), "Image Save Error", JOptionPane.ERROR_MESSAGE);
             }
         }

@@ -72,7 +72,7 @@ public class ArtworkGUIController {
         Graphics2D g2d = image.createGraphics();
         applyRenderingHints(g2d);
 
-        String validationError;
+        String validationError = "";
         view.setErrorLabel("");
 
         switch (view.getAlgorithmDropdown().getSelectedItem()) {
@@ -110,7 +110,7 @@ public class ArtworkGUIController {
                 view.setErrorLabel("Please select an algorithm.");
         }
 
-        if (!view.getAlgorithmDropdown().getSelectedItem().equals("-")) {
+        if ((!view.getAlgorithmDropdown().getSelectedItem().equals("-")) && validationError.isEmpty()) {
             context.executeAlgorithm();
             context.drawPattern(g2d);
             if (context.getStrategy() instanceof CirclePackingAlgorithm) {

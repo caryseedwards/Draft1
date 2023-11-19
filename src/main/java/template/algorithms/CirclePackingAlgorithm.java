@@ -22,8 +22,6 @@ public class CirclePackingAlgorithm extends Algorithm {
         initialiseAlgorithm();
     }
 
-
-
     @Override
     protected void initialiseAlgorithm() {
         this.params = (CirclePackingAlgorithmParameters) getAlgorithmParams();

@@ -10,15 +10,14 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class VersionTwoTests {
-    CanvasParameters canvasParameters;
-    ArrayList<ShapeParameters> shapeParameters;
-    RecursiveShapeAlgorithmParameters rsParameters;
-    CirclePackingAlgorithmParameters cpParameters;
-    SierpinskiShapeAlgorithmParameters ssParameters;
+    public static CanvasParameters canvasParameters;
+    public static ArrayList<ShapeParameters> shapeParameters = new ArrayList<>();
+    public static RecursiveShapeAlgorithmParameters rsParameters;
+    public static CirclePackingAlgorithmParameters cpParameters;
+    public static SierpinskiShapeAlgorithmParameters ssParameters;
 
-    @Test
-    public void recursiveShapeTest(){
-        JFrame frame = new JFrame("Recursive Pattern");
+    public static void showRecursiveShape(){
+        JFrame frame = new JFrame("Version 2: Recursive Shape");
         canvasParameters = new CanvasParameters(500, 500, Color.WHITE);
         shapeParameters.add(new ShapeParameters("square", 1, Color.BLACK, Color.BLACK));
         shapeParameters.add(new ShapeParameters("hexagon", 1, Color.BLACK, Color.YELLOW));
@@ -31,9 +30,8 @@ public class VersionTwoTests {
         frame.setVisible(true);
     }
 
-    @Test
-    public void circlePackingTest(){
-        JFrame frame = new JFrame("Circle Packing Pattern");
+    public static void showCirclePacking(){
+        JFrame frame = new JFrame("Version 2: Circle Packing");
         canvasParameters = new CanvasParameters(500,500,Color.WHITE);
         shapeParameters = new ArrayList<ShapeParameters>();
         shapeParameters.add(new ShapeParameters("circle", 1, Color.BLACK, Color.WHITE));
@@ -52,9 +50,8 @@ public class VersionTwoTests {
         timer.start();
     }
 
-    @Test
-    public void sierpinskiShapeTest(){
-        JFrame frame = new JFrame("Sierpinski Pattern");
+    public static void showSierpinski(){
+        JFrame frame = new JFrame("Version 2: Sierpinski");
         canvasParameters = new CanvasParameters(800, 800, Color.WHITE);
         shapeParameters = new ArrayList<ShapeParameters>();
         shapeParameters.add(new ShapeParameters("triangle", 0.1f, Color.BLACK, Color.WHITE));
@@ -65,5 +62,13 @@ public class VersionTwoTests {
         frame.setSize(canvasParameters.getWidth(), canvasParameters.getHeight());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        showRecursiveShape();
+        Thread.sleep(1000);
+        showCirclePacking();
+        Thread.sleep(1000);
+        showSierpinski();
     }
 }
