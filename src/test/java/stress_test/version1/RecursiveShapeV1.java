@@ -5,8 +5,6 @@ import withoutgof.parameters.RecursiveShapeParameters;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.concurrent.CountDownLatch;
 
 public class RecursiveShapeV1 {
