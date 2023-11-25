@@ -1,5 +1,6 @@
 package unit_test.strategyandfactory.algorithms;
 
+import org.junit.After;
 import org.junit.Test;
 import strategyandfactory.algorithms.CirclePackingAlgorithm;
 import strategyandfactory.parameters.CanvasParameters;
@@ -11,6 +12,7 @@ import strategyandfactory.shapes.Square;
 import strategyandfactory.shapes.Triangle;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -29,6 +31,7 @@ public class CirclePackingAlgorithmTestStrategy {
 
         return new CirclePackingAlgorithm(canvas, shapes, algorithm);
     }
+
     @Test
     public void testInitializationAndBoundaryShape() {
         CirclePackingAlgorithm packing = createTestInstance();
@@ -135,4 +138,23 @@ public class CirclePackingAlgorithmTestStrategy {
         assertTrue(packing.getBoundaryShape().isInside(lastAddedCircle));
     }
 
+    @Test
+    public void testSaveImage() {
+        CirclePackingAlgorithm packing = createTestInstance();
+        String testFilePath = "test_circle_packing_algorithm.png";
+        packing.executeAlgorithm();
+        packing.saveImage(testFilePath);
+
+        File savedImage = new File(testFilePath);
+        assertTrue("Image file should be created", savedImage.exists() && !savedImage.isDirectory());
+    }
+
+    @After
+    public void cleanUp() {
+        String testFilePath = "test_circle_packing_algorithm.png";
+        File savedImage = new File(testFilePath);
+        if (savedImage.exists()) {
+            savedImage.delete();
+        }
+    }
 }

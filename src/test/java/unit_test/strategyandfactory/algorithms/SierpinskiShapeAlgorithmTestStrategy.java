@@ -1,5 +1,6 @@
 package unit_test.strategyandfactory.algorithms;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import strategyandfactory.algorithms.SierpinskiShapeAlgorithm;
@@ -8,6 +9,7 @@ import strategyandfactory.parameters.ShapeParameters;
 import strategyandfactory.parameters.SierpinskiShapeAlgorithmParameters;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -17,6 +19,7 @@ public class SierpinskiShapeAlgorithmTestStrategy {
     ArrayList<ShapeParameters> shapes;
     SierpinskiShapeAlgorithmParameters algorithm;
     SierpinskiShapeAlgorithm test;
+
     @Before
     public void createTestInstance() {
         canvas = new CanvasParameters(800, 800, Color.WHITE);
@@ -56,5 +59,23 @@ public class SierpinskiShapeAlgorithmTestStrategy {
         assertTrue("Valid parameters should pass validation", test.validateParameters());
         algorithm.setDepth(-1);
         assertFalse(test.validateParameters());
+    }
+
+    @Test
+    public void testSaveImage() {
+        test.executeAlgorithm();
+        String testFilePath = "test_sierpinski_shape_algorithm.png";
+        test.saveImage(testFilePath);
+        File savedImage = new File(testFilePath);
+        assertTrue("Image file should be created", savedImage.exists() && !savedImage.isDirectory());
+    }
+
+    @After
+    public void cleanUp() {
+        String testFilePath = "test_sierpinski_shape_algorithm.png";
+        File savedImage = new File(testFilePath);
+        if (savedImage.exists()) {
+            savedImage.delete();
+        }
     }
 }

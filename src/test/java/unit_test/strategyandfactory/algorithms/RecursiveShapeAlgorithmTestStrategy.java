@@ -1,5 +1,6 @@
 package unit_test.strategyandfactory.algorithms;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import strategyandfactory.algorithms.RecursiveShapeAlgorithm;
@@ -9,6 +10,7 @@ import strategyandfactory.parameters.ShapeParameters;
 import strategyandfactory.shapes.*;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -18,6 +20,7 @@ public class RecursiveShapeAlgorithmTestStrategy {
     ArrayList<ShapeParameters> shapes;
     RecursiveShapeAlgorithmParameters algorithm;
     RecursiveShapeAlgorithm test;
+
     @Before
     public void createTestInstance() {
         canvas = new CanvasParameters(500, 500, Color.WHITE);
@@ -127,6 +130,25 @@ public class RecursiveShapeAlgorithmTestStrategy {
                 .filter(shape -> (shape instanceof Triangle))
                 .count();
         assertEquals("Expected "+ expectedNumberOfSmallShapes +"number of small shapes, but have " + actualNumberOfSmallShapes+" instead.",expectedNumberOfSmallShapes, actualNumberOfSmallShapes);
+    }
+
+    @Test
+    public void testSaveImage() {
+        String testFilePath = "test_recursive_shape_algorithm.png";
+        test.executeAlgorithm();
+        test.saveImage(testFilePath);
+
+        File savedImage = new File(testFilePath);
+        assertTrue("Image file should be created", savedImage.exists() && !savedImage.isDirectory());
+    }
+
+    @After
+    public void cleanUp() {
+        String testFilePath = "test_recursive_shape_algorithm.png";
+        File savedImage = new File(testFilePath);
+        if (savedImage.exists()) {
+            savedImage.delete();
+        }
     }
 
 }
