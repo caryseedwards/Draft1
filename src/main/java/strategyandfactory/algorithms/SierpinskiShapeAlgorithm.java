@@ -9,6 +9,10 @@ import strategyandfactory.shapes.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * The implementation of the Sierpinski Shape algorithm
+ * @author carysedwards
+ */
 public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
     private final CanvasParameters canvasParameters;
     private final ShapeParameters shapeParameters;
@@ -16,6 +20,12 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
     private final ArrayList<Shape> shapesToDraw;
     private final ShapeFactory shapeFactory;
 
+    /**
+     * Constructor to create the sierpinski shape algorithm
+     * @param canvasParameters - details of the canvas to draw upon
+     * @param shapeParameters - details of the shapes used within the algorithm
+     * @param algorithmParameters - details of the algorithm
+     */
     public SierpinskiShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, SierpinskiShapeAlgorithmParameters algorithmParameters) {
         this.canvasParameters = canvasParameters;
         this.shapeParameters = shapeParameters.get(0);
@@ -24,10 +34,18 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         this.shapeFactory = new ShapeFactory();
     }
 
+    /**
+     * Validates the parameters passed to ensure the algorithm is safe to execute
+     * @return True if the parameters used are valid
+     */
     public boolean validateParameters() {
         return canvasParameters.validateParameters() && shapeParameters.validateParameters() && algorithmParameters.validateParameters();
     }
 
+    /**
+     * Executes the algorithm based on the parameters already passed
+     * The algorithm executes depends on the shape selected
+     */
     @Override
     public void executeAlgorithm() {
         if (validateParameters()) {
@@ -50,6 +68,10 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         }
     }
 
+    /**
+     * Draws the algorithm to the graphics object based on the parameters already passed
+     * @param g - The graphics object to draw to
+     */
     @Override
     public void drawPattern(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -61,6 +83,11 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         }
     }
 
+    /**
+     * Draws a triangle and adds it to the pattern
+      * @param triangle - previous triangle drawn
+     * @param depth - the recursive depth
+     */
     private void addSierpinski(Triangle triangle, int depth) {
         if (depth == 0) {
             shapesToDraw.add(triangle);
@@ -78,6 +105,11 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         addSierpinski((Triangle) shapeFactory.createShape(midX3, midY3 - (int) newRadius, newRadius, shapeParameters), depth - 1);
     }
 
+    /**
+     * Draws a circle and adds it to the pattern
+     * @param circle - previous circle drawn
+     * @param depth - the recursive depth
+     */
     private void addGasket(Circle circle, int depth) {
         if (depth <= 0) return;
 
@@ -92,6 +124,11 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         addGasket((Circle) shapeFactory.createShape(circle.getCenterX() + dx, circle.getCenterY() + dy, newRadius, shapeParameters), depth - 1);
     }
 
+    /**
+     * Draws a hexagon and adds it to the pattern
+     * @param hexagon - previous hexagon drawn
+     * @param depth - the recursive depth
+     */
     public void addHexagon(Hexagon hexagon, int depth) {
         if (depth == 0) {
             shapesToDraw.add(hexagon);
@@ -108,6 +145,11 @@ public class SierpinskiShapeAlgorithm implements AlgorithmStrategy {
         addHexagon((Hexagon) shapeFactory.createShape(hexagon.getCenterX(), hexagon.getCenterY(), newRadius, shapeParameters), depth - 1);
     }
 
+    /**
+     * Draws a square and adds it to the pattern
+     * @param square - previous square drawn
+     * @param depth - the recursive depth
+     */
     private void addCarpet(Square square, int depth) {
         if (depth == 0) {
             shapesToDraw.add(square);

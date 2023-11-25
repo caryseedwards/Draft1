@@ -1,0 +1,480 @@
+@startuml
+abstract class withoutgof.shapes.Shape {
++ ShapeParameters params
++ {abstract}Point randomPositionInside()
++ {abstract}boolean isInside(Circle)
++ {abstract}void draw(Graphics2D,Color,float,Color,String)
++ {abstract}void setPosition(int,int)
++ {abstract}void setScale(double)
++ ShapeParameters getShapeParameters()
++ void setShapeParameters(ShapeParameters)
+}
+class withoutgof.gui.model.ParametersModel {
++ {static} JLabel errorLabel
+- CanvasParameters canvas
+- ArrayList<ShapeParameters> shapes
+- RecursiveShapeAlgorithmParameters rap
+- CirclePackingAlgorithmParameters cap
+- SierpinskiShapeAlgorithmParameters sap
++ CanvasParameters getCanvasParams()
++ void setCanvasParams(CanvasParameters)
++ ArrayList<ShapeParameters> getShapesParams()
++ void setShapesParams(ArrayList<ShapeParameters>)
++ RecursiveShapeAlgorithmParameters getRecursiveParams()
++ void setRecursiveParams(RecursiveShapeAlgorithmParameters)
++ CirclePackingAlgorithmParameters getPackingParams()
++ void setPackingParams(CirclePackingAlgorithmParameters)
++ SierpinskiShapeAlgorithmParameters getSierpinskiParams()
++ void setSierpinskiParams(SierpinskiShapeAlgorithmParameters)
+}
+class withoutgof.gui.MainGUI {
++ {static} void main(String[])
+}
+class withoutgof.parameters.SierpinskiShapeAlgorithmParameters {
+- int centreX
+- int centreY
+- int polygonSize
+- int depth
++ void initialiseDefaultParameters()
++ boolean validateParameters()
++ int getCentreX()
++ void setCentreX(int)
++ int getCentreY()
++ void setCentreY(int)
++ int getPolygonSize()
++ void setPolygonSize(int)
++ int getDepth()
++ void setDepth(int)
+}
+class withoutgof.shapes.Hexagon {
++ int centerX
++ double radius
++ Point randomPositionInside()
++ boolean isPointInside(int,int)
++ boolean isInside(Circle)
++ void draw(Graphics2D,Color,float,Color,String)
++ void setPosition(int,int)
++ void setScale(double)
+}
+class withoutgof.parameters.CirclePackingAlgorithmParameters {
++ int centreX
++ int centreY
++ int polygonSize
++ int minRadius
++ int animationSpeed
++ void initialiseDefaultParameters()
++ boolean validateParameters()
++ int getCentreX()
++ void setCentreX(int)
++ int getCentreY()
++ void setCentreY(int)
++ int getPolygonSize()
++ void setPolygonSize(int)
++ int getMinRadius()
++ void setMinRadius(int)
++ int getMaxRadius()
++ void setMaxRadius(int)
++ int getMaxAttempts()
++ void setMaxAttempts(int)
++ int getAnimationSpeed()
++ void setAnimationSpeed(int)
+}
+class withoutgof.gui.view.panel.RecursivePanelView {
+- Panel recursivePanel
+- int canvasWidth
+- int canvasHeight
+- TextField startXTextField
+- TextField startYTextField
+- TextField recursiveDepthTextField
+- TextField initialRadiusTextField
+- TextField numShapeTextField
+- Choice largeShapeType
+- Button largeShapeColourButton
+- Button largeLineColourButton
+- TextField largeLineWidthTextField
+- Choice smallShapeType
+- Button smallShapeColourButton
+- Button smallLineColourButton
+- TextField smallLineWidthTextField
+- void setupPanel()
+- void addLabelAndField(GridBagConstraints,String,TextField,int)
+- void addLabelAndChoice(GridBagConstraints,String,Choice,String[],int)
+- void addColorChooserButton(GridBagConstraints,String,Button,int)
++ int getCanvasWidth()
++ int getCanvasHeight()
++ TextField getStartXTextField()
++ TextField getStartYTextField()
++ TextField getRecursiveDepthTextField()
++ TextField getInitialRadiusTextField()
++ TextField getNumShapeTextField()
++ Choice getLargeShapeType()
++ Button getLargeShapeColourButton()
++ Button getLargeLineColourButton()
++ TextField getLargeLineWidthTextField()
++ Choice getSmallShapeType()
++ Button getSmallShapeColourButton()
++ Button getSmallLineColourButton()
++ TextField getSmallLineWidthTextField()
++ Panel getPanel()
+}
+class withoutgof.gui.view.panel.CirclePackingPanelView {
+- Panel circlePackingPanel
+- int canvasWidth
+- int canvasHeight
+- TextField startXTextField
+- TextField startYTextField
+- TextField maxAttemptsTextField
+- Choice boundaryShapeType
+- Button boundaryFillColourButton
+- Button boundaryLineColourButton
+- TextField boundaryLineWidthTextField
+- TextField boundaryRadiusTextField
+- Button packingFillColourButton
+- Button packingLineColourButton
+- TextField packingLineWidthTextField
+- TextField minRadiusCircleTextField
+- TextField maxRadiusCircleTextField
+- void setupPanel()
+- void addLabelAndField(GridBagConstraints,String,Component,int)
+- void addSectionLabel(GridBagConstraints,String,int)
+- void addLabelAndChoice(GridBagConstraints,Choice,String[],int)
+- void addColourChooserButton(GridBagConstraints,String,Button,int)
++ int getCanvasWidth()
++ int getCanvasHeight()
++ TextField getStartXTextField()
++ TextField getStartYTextField()
++ TextField getMaxAttemptsTextField()
++ Choice getBoundaryShapeType()
++ Button getBoundaryFillColourButton()
++ Button getBoundaryLineColourButton()
++ TextField getBoundaryLineWidthTextField()
++ TextField getBoundaryRadiusTextField()
++ Button getPackingFillColourButton()
++ Button getPackingLineColourButton()
++ TextField getPackingLineWidthTextField()
++ TextField getMinRadiusCircleTextField()
++ TextField getMaxRadiusCircleTextField()
++ Panel getPanel()
+}
+class withoutgof.gui.controller.SierpinskiController {
+- ParametersModel model
+- SierpinskiPanelView view
+- void initController()
++ void updateStartX()
++ void updateStartY()
++ void updateSize()
++ void updateDepth()
++ void updateShapeType()
++ void updateFillColour()
++ void updateLineColour()
++ void updateLineWidth()
+}
+class withoutgof.parameters.ShapeParameters {
+- String shapeType
+- float lineWidth
+- Color lineColour
+- Color fillColour
++ void initialiseDefaultParameters()
++ boolean validateParameters()
++ String getShapeType()
++ void setShapeType(String)
++ float getLineWidth()
++ void setLineWidth(float)
++ Color getLineColour()
++ void setLineColour(Color)
++ Color getFillColour()
++ void setFillColour(Color)
+}
+class withoutgof.gui.view.ArtworkGUIView {
++ {static} int windowWidth
++ {static} int windowHeight
++ {static} int canvasWidth
++ {static} int canvasHeight
+- {static} RecursivePanelView recursivePanelView
+- {static} Panel recursivePanel
+- {static} CirclePackingPanelView circlePackingPanelView
+- {static} Panel circlePackingPanel
+- {static} SierpinskiPanelView sierpinskiPanelView
+- {static} Panel sierpinskiPanel
+- {static} Frame frame
+- {static} JPanel canvas
+- {static} Choice algorithmDropdown
+- {static} JLabel errorLabel
+- {static} Button generateBtn
+- {static} BufferedImage artworkImage
++ void setupViewWindow()
++ void setupFrame()
++ void setupLeftPanel()
++ void setupAlgorithmDropdown()
++ void setupAlgorithmPanels(GridBagConstraints,Panel)
++ BufferedImage createBufferedImage()
++ void setupCanvas()
++ void setArtworkImage(BufferedImage)
++ void setupBottomPanel()
++ void updateAlgorithmPanelVisibility()
++ void resetCanvas()
++ Frame getFrame()
++ JPanel getCanvas()
++ Choice getAlgorithmDropdown()
++ JLabel getErrorLabel()
++ void setErrorLabel(String)
++ Panel getRecursivePanel()
++ Panel getCirclePackingPanel()
++ Panel getSierpinskiPanel()
++ Button getGenerateBtn()
++ Button getSaveBtn()
++ Button getResetBtn()
++ SierpinskiPanelView getSierpinskiPanelView()
++ CirclePackingPanelView getCirclePackingPanelView()
++ RecursivePanelView getRecursivePanelView()
++ int getCanvasWidth()
++ int getCanvasHeight()
+}
+class withoutgof.shapes.Circle {
++ int centerX
++ double radius
++ int getX()
++ int getY()
++ double getRadius()
++ boolean overlaps(Circle)
++ Point randomPositionInside()
++ boolean isInside(Circle)
++ void draw(Graphics2D,Color,float,Color,String)
++ void setPosition(int,int)
++ void setScale(double)
+}
+class withoutgof.gui.controller.RecursiveShapeController {
+- RecursivePanelView view
+~ ParametersModel model
++ void initController()
++ void updateStartX()
++ void updateStartY()
++ void updateRecursiveDepth()
++ void updateInitialRadius()
++ void updateNumShapes()
++ void updateLargeShapeType()
++ void updateLargeShapeFillColour()
++ void updateLargeShapeLineColour()
++ void updateLargeLineWidth()
++ void updateSmallShapeType()
++ void updateSmallShapeFillColour()
++ void updateSmallShapeLineColour()
++ void updateSmallLineWidth()
+}
+abstract class withoutgof.parameters.Parameters {
+# String parameterType
++ {abstract}void initialiseDefaultParameters()
++ {abstract}boolean validateParameters()
+}
+class withoutgof.gui.controller.ArtworkGUIController {
+- ArtworkGUIView view
+- ParametersModel model
+- RecursiveShapeController recursivePanelController
+- CirclePackingController circlePackingPanelController
+- SierpinskiController sierpinskiPanelController
+- Timer animationTimer
+- void initialiseControllers()
++ void handleAlgorithmSelection(ItemEvent)
++ void updateAlgorithmPanelVisibility(String)
++ void generateArtwork()
+- void applyRenderingHints(Graphics2D)
++ void saveImage()
++ RecursiveShapeController getRecursiveController()
++ void setRecursiveController(RecursiveShapeController)
++ CirclePackingController getPackingController()
++ void setPackingController(CirclePackingController)
++ SierpinskiController getSierpinskiPanelController()
++ void setSierpinskiPanelController(SierpinskiController)
+}
+class withoutgof.validate.Validate {
++ {static} String validateRecursivePanelView(RecursivePanelView)
++ {static} String validateCirclePackingPanelView(CirclePackingPanelView)
++ {static} String validateSierpinskiPanelView(SierpinskiPanelView)
++ {static} Integer safelyParseInteger(String)
++ {static} String validateInteger(String,String)
+}
+class withoutgof.algorithms.RecursiveShapeAlgorithm {
+- ArrayList<Shape> shapesToDraw
+- RecursiveShapeAlgorithmParameters params
+- ShapeParameters largeShapeParams
+- ShapeParameters smallShapeParams
++ {static} void main(String[])
+# void initialiseAlgorithm()
++ void executeAlgorithm()
++ Shape createShape(String,int,int,int)
++ void addPattern(int,int,int,int)
++ void drawPattern(Graphics)
++ ArrayList<Shape> getShapesToDraw()
++ RecursiveShapeAlgorithmParameters getParams()
++ ShapeParameters getLargeShapeParams()
++ ShapeParameters getSmallShapeParams()
+}
+class withoutgof.algorithms.SierpinskiShapeAlgorithm {
+- SierpinskiShapeAlgorithmParameters params
+- ShapeParameters sierpinskiShape
+- ArrayList<Shape> shapesToDraw
++ {static} void main(String[])
+# void initialiseAlgorithm()
+- void addSierpinski(Triangle,int)
+- void addGasket(Circle,int)
++ void addHexagon(Hexagon,int)
+- void addCarpet(Square,int)
++ void executeAlgorithm()
++ void drawPattern(Graphics)
+}
+class withoutgof.gui.view.utilities {
++ {static} void configureColourPicker(Button)
+~ {static} Color chooseColour(Button)
++ {static} void updateButtonBackground(Button,Color)
++ {static} Color getColourFromButton(Button)
+}
+class withoutgof.algorithms.CirclePackingAlgorithm {
++ CirclePackingAlgorithmParameters params
+~ ShapeParameters boundaryParameters
+~ ShapeParameters circleParameters
+~ Shape boundaryShape
+- ArrayList<Circle> circles
++ {static} void main(String[])
+# void initialiseAlgorithm()
++ Shape getBoundaryShape()
++ void setBoundaryShape(String)
++ void addCircles()
++ ArrayList<Circle> getCircles()
++ void executeAlgorithm()
++ void drawPattern(Graphics)
++ CirclePackingAlgorithmParameters getAlgorithmParameters()
+}
+class withoutgof.parameters.CanvasParameters {
+- int height
+- int width
+- Color backgroundColour
++ void initialiseDefaultParameters()
++ boolean validateParameters()
++ int getHeight()
++ void setHeight(int)
++ int getWidth()
++ void setWidth(int)
++ Color getBackgroundColour()
++ void setBackgroundColour(Color)
+}
+class withoutgof.shapes.Square {
++ int centerX
++ double radius
++ boolean isInside(Circle)
++ Point randomPositionInside()
++ void draw(Graphics2D,Color,float,Color,String)
++ void setPosition(int,int)
++ void setScale(double)
+}
+class withoutgof.parameters.RecursiveShapeAlgorithmParameters {
+- int centerX
+- int centerY
+- int initialSize
+- int depth
+- int numShapes
++ void initialiseDefaultParameters()
++ boolean validateParameters()
++ int getCenterX()
++ void setCenterX(int)
++ int getCenterY()
++ void setCenterY(int)
++ int getInitialSize()
++ void setInitialSize(int)
++ int getDepth()
++ void setDepth(int)
++ int getNumShapes()
++ void setNumShapes(int)
+}
+class withoutgof.gui.view.panel.SierpinskiPanelView {
+- Panel sierpinskiPanel
+- int canvasWidth
+- int canvasHeight
+- TextField startXTextField
+- TextField startYTextField
+- TextField sizeTextField
+- TextField depthTextField
+- Choice shapeTypeChoice
+- Button fillColourButton
+- Button lineColourButton
+- TextField lineWidthTextField
+- void setupPanel()
+- void addLabelAndField(GridBagConstraints,String,Component,int)
+- void addLabelAndChoice(GridBagConstraints,Choice,String[],int)
+- void addColorChooserButton(GridBagConstraints,String,Button,int)
++ int getCanvasWidth()
++ int getCanvasHeight()
++ TextField getStartXTextField()
++ TextField getStartYTextField()
++ TextField getSizeTextField()
++ TextField getDepthTextField()
++ Choice getShapeTypeChoice()
++ Button getFillColourButton()
++ Button getLineColourButton()
++ TextField getLineWidthTextField()
++ Panel getPanel()
+}
+abstract class withoutgof.algorithms.Algorithm {
++ Graphics2D pattern
+- CanvasParameters canvasParams
+- ArrayList<ShapeParameters> shapeParams
+- Parameters algorithmParams
+# {abstract}void initialiseAlgorithm()
++ void initialiseDefaults()
++ boolean validateParameters()
++ {abstract}void executeAlgorithm()
++ {abstract}void drawPattern(Graphics)
+# void paintComponent(Graphics)
++ CanvasParameters getCanvasParameters()
++ void setCanvasParameters(CanvasParameters)
++ ArrayList<ShapeParameters> getShapeParameters()
++ void setShapeParameters(ArrayList<ShapeParameters>)
++ Parameters getAlgorithmParams()
++ void setAlgorithmParams(Parameters)
+}
+class withoutgof.gui.controller.CirclePackingController {
+- ParametersModel model
+- CirclePackingPanelView view
+- void initController()
++ void updateStartX()
++ void updateStartY()
++ void updateMaxAttempts()
++ void updateBoundaryShapeType()
++ void updateBoundaryFillColour()
++ void updateBoundaryLineColour()
++ void updateBoundaryLineWidth()
++ void updateBoundaryRadius()
++ void updatePackingShapeType()
++ void updatePackingFillColour()
++ void updatePackingLineColour()
++ void updatePackingLineWidth()
++ void updateMinRadius()
++ void updateMaxRadius()
+}
+class withoutgof.shapes.Triangle {
++ int centerX
++ double radius
++ int x1
++ void setVertices()
++ Point randomPositionInside()
++ boolean isInside(Circle)
++ boolean isPointInside(int,int)
++ void draw(Graphics2D,Color,float,Color,String)
++ void setPosition(int,int)
++ void setScale(double)
+}
+
+
+withoutgof.parameters.Parameters <|-- withoutgof.parameters.SierpinskiShapeAlgorithmParameters
+withoutgof.shapes.Shape <|-- withoutgof.shapes.Hexagon
+withoutgof.parameters.Parameters <|-- withoutgof.parameters.CirclePackingAlgorithmParameters
+withoutgof.parameters.Parameters <|-- withoutgof.parameters.ShapeParameters
+withoutgof.shapes.Shape <|-- withoutgof.shapes.Circle
+withoutgof.algorithms.Algorithm <|-- withoutgof.algorithms.RecursiveShapeAlgorithm
+withoutgof.algorithms.Algorithm <|-- withoutgof.algorithms.SierpinskiShapeAlgorithm
+withoutgof.algorithms.Algorithm <|-- withoutgof.algorithms.CirclePackingAlgorithm
+withoutgof.parameters.Parameters <|-- withoutgof.parameters.CanvasParameters
+withoutgof.shapes.Shape <|-- withoutgof.shapes.Square
+withoutgof.parameters.Parameters <|-- withoutgof.parameters.RecursiveShapeAlgorithmParameters
+withoutgof.algorithms.JPanel <|-- withoutgof.algorithms.Algorithm
+withoutgof.shapes.Shape <|-- withoutgof.shapes.Triangle
+@enduml

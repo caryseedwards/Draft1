@@ -5,10 +5,20 @@ import strategyandfactory.gui.view.panel.SierpinskiPanelView;
 import strategyandfactory.gui.view.utilities;
 import strategyandfactory.validate.Validate;
 
+/**
+ * The controller for the Sierpinski Shape algorithm via the GUI
+ * Part of the MVC pattern
+ * @author carysedwards
+ */
 public class SierpinskiController {
     private final ParametersModel model;
     private final SierpinskiPanelView view;
 
+    /**
+     * Creates the Sierpinski Shape controller
+     * @param model - the corresponding model for the controller
+     * @param view - the corresponding view for the controller
+     */
     public SierpinskiController(ParametersModel model, SierpinskiPanelView view) {
         this.model = model;
         this.view = view;
@@ -17,6 +27,9 @@ public class SierpinskiController {
         updateModelWithPanelSettings();
     }
 
+    /**
+     * Updates the algorithm parameters by retrieving the values set in the GUI
+     */
     public void updateModelWithPanelSettings() {
         updateStartX();
         updateStartY();
@@ -28,6 +41,9 @@ public class SierpinskiController {
         updateLineWidth();
     }
 
+    /**
+     * Updates the startX field for the parameter based on the GUI input
+     */
     public void updateStartX() {
         Integer startX = Validate.safelyParseInteger(view.getStartXTextField().getText());
         if (startX != null) {

@@ -9,6 +9,11 @@ import strategyandfactory.shapes.ShapeFactory;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * The implementation of the Recursive Shape algorithm
+ * Will recursively draw two shapes in a Euclidean pattern
+ * @author carysedwards
+ */
 public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
     private final ShapeFactory shapeFactory;
     private final ArrayList<Shape> shapesToDraw;
@@ -17,6 +22,12 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
     private final ShapeParameters smallShapeParameters;
     private final RecursiveShapeAlgorithmParameters algorithmParameters;
 
+    /**
+     * Constructor to create the recursive shape algorithm
+     * @param canvasParameters - details of the canvas to draw upon
+     * @param shapeParameters - details of the shapes used within the algorithm
+     * @param algorithmParameters - details of the algorithm
+     */
     public RecursiveShapeAlgorithm(CanvasParameters canvasParameters, ArrayList<ShapeParameters> shapeParameters, RecursiveShapeAlgorithmParameters algorithmParameters) {
         this.canvasParameters = canvasParameters;
         this.algorithmParameters = algorithmParameters;
@@ -26,11 +37,18 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
         this.shapeFactory = new ShapeFactory();
     }
 
+    /**
+     * Validates the parameters passed to ensure the algorithm is safe to execute
+     * @return True if the parameters used are valid
+     */
     @Override
     public boolean validateParameters() {
         return canvasParameters.validateParameters() && largeShapeParameters.validateParameters() && smallShapeParameters.validateParameters() && algorithmParameters.validateParameters();
     }
 
+    /**
+     * Executes the algorithm based on the parameters already passed
+     */
     @Override
     public void executeAlgorithm() {
         if (validateParameters()) {
@@ -38,6 +56,10 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
         }
     }
 
+    /**
+     * Draws the algorithm to the graphics object based on the parameters already passed
+     * @param g - The graphics object to draw to
+     */
     @Override
     public void drawPattern(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -49,6 +71,13 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
         }
     }
 
+    /**
+     * The business logic for the recursive algorithm
+     * @param x - the starting x co-ordinate for the shape
+     * @param y - the starting y co-ordinate for the shape
+     * @param size - the size of the shape to draw
+     * @param depth - the recusive depth of how many shapes to draw
+     */
     public void addPattern(int x, int y, int size, int depth) {
         if (depth == 0) return;
         Shape newLargeShape = shapeFactory.createShape(x, y, size, largeShapeParameters);
@@ -67,14 +96,26 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
         }
     }
 
+    /**
+     * Gets the shapes already calculated to draw to the canvas
+     * @return shapesToDraw
+     */
     public ArrayList<Shape> getShapesToDraw() {
         return shapesToDraw;
     }
 
+    /**
+     * Gets the large shape parameters selected for this algorithm
+     * @return largeShapeParameters
+     */
     public ShapeParameters getLargeShapeParameters() {
         return largeShapeParameters;
     }
 
+    /**
+     * Gets the small shape parameters selected for this algorithm
+     * @return smallShapeParameters
+     */
     public ShapeParameters getSmallShapeParameters() {
         return smallShapeParameters;
     }
