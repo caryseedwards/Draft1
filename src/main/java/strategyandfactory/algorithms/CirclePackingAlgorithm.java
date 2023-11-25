@@ -7,7 +7,11 @@ import strategyandfactory.shapes.Circle;
 import strategyandfactory.shapes.Shape;
 import strategyandfactory.shapes.ShapeFactory;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -91,6 +95,25 @@ public class CirclePackingAlgorithm implements AlgorithmStrategy {
                     circles.add(newCircle);
                 }
             }
+        }
+    }
+
+    /**
+     * Saves the current state of the algorithm to a PNG file at the specified path
+     * @param filePath The file path where the image will be saved
+     */
+    public void saveImage(String filePath) {
+        BufferedImage image = new BufferedImage(canvasParameters.getWidth(), canvasParameters.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        drawPattern(g2d);
+
+        try {
+            File file = new File(filePath);
+            ImageIO.write(image, "PNG", file);
+        } catch (IOException ex) {
+            System.err.println("Error saving image: " + ex.getMessage());
+        } finally {
+            g2d.dispose();
         }
     }
 

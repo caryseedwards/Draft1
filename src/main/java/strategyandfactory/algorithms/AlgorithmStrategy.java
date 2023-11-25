@@ -10,4 +10,5 @@ public interface AlgorithmStrategy {
     boolean validateParameters();
     void executeAlgorithm();
     void drawPattern(Graphics g);
+    void saveImage(String filePath);
 }
