@@ -2,7 +2,7 @@ package template.gui.controller;
 
 import template.gui.model.ParametersModel;
 import template.gui.view.panel.SierpinskiPanelView;
-import template.gui.view.utilities;
+import template.gui.view.Utilities;
 import template.validate.Validate;
 
 /**
@@ -92,14 +92,14 @@ public class SierpinskiController {
      * Updates the shape fill colour field for the parameter based on the GUI input
      */
     public void updateFillColour() {
-        model.getShapesParams().get(0).setFillColour(utilities.getColourFromButton(view.getFillColourButton()));
+        model.getShapesParams().get(0).setFillColour(Utilities.getColourFromButton(view.getFillColourButton()));
     }
 
     /**
      * Updates the line colour field for the parameter based on the GUI input
      */
     public void updateLineColour() {
-        model.getShapesParams().get(0).setLineColour(utilities.getColourFromButton(view.getLineColourButton()));
+        model.getShapesParams().get(0).setLineColour(Utilities.getColourFromButton(view.getLineColourButton()));
     }
 
     /**

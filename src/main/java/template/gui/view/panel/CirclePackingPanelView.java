@@ -1,6 +1,6 @@
 package template.gui.view.panel;
 
-import template.gui.view.utilities;
+import template.gui.view.Utilities;
 
 import java.awt.*;
 
@@ -90,10 +90,10 @@ public class CirclePackingPanelView {
         addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy++);
         gbc.weighty = 1;
 
-        utilities.configureColourPicker(boundaryFillColourButton);
-        utilities.configureColourPicker(boundaryLineColourButton);
-        utilities.configureColourPicker(packingFillColourButton);
-        utilities.configureColourPicker(packingLineColourButton);
+        Utilities.configureColourPicker(boundaryFillColourButton);
+        Utilities.configureColourPicker(boundaryLineColourButton);
+        Utilities.configureColourPicker(packingFillColourButton);
+        Utilities.configureColourPicker(packingLineColourButton);
     }
 
     /**

@@ -1,6 +1,6 @@
 package template.gui.view.panel;
 
-import template.gui.view.utilities;
+import template.gui.view.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,8 +63,8 @@ public class SierpinskiPanelView {
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
         addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy);
 
-        utilities.configureColourPicker(fillColourButton);
-        utilities.configureColourPicker(lineColourButton);
+        Utilities.configureColourPicker(fillColourButton);
+        Utilities.configureColourPicker(lineColourButton);
     }
 
     /**

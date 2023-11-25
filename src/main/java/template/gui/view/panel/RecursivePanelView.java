@@ -1,6 +1,6 @@
 package template.gui.view.panel;
 
-import template.gui.view.utilities;
+import template.gui.view.Utilities;
 
 import java.awt.*;
 
@@ -81,10 +81,10 @@ public class RecursivePanelView {
         addColorChooserButton(gbc, "Small Shape Line Color:", smallLineColourButton, gridy++);
         addLabelAndField(gbc, "Small Shape Line Width:", smallLineWidthTextField, gridy);
 
-        utilities.configureColourPicker(largeShapeColourButton);
-        utilities.configureColourPicker(largeLineColourButton);
-        utilities.configureColourPicker(smallShapeColourButton);
-        utilities.configureColourPicker(smallLineColourButton);
+        Utilities.configureColourPicker(largeShapeColourButton);
+        Utilities.configureColourPicker(largeLineColourButton);
+        Utilities.configureColourPicker(smallShapeColourButton);
+        Utilities.configureColourPicker(smallLineColourButton);
     }
 
     /**

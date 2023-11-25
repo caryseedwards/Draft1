@@ -3,7 +3,7 @@ package template.gui.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class utilities {
+public class Utilities {
     public static void configureColourPicker(Button colourButton) {
         colourButton.addActionListener(e -> {
             Color newColor = chooseColour(colourButton);

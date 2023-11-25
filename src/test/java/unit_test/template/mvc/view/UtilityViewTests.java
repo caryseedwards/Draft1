@@ -1,6 +1,6 @@
 package unit_test.template.mvc.view;
 
-import template.gui.view.utilities;
+import template.gui.view.Utilities;
 import org.junit.Test;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ public class UtilityViewTests {
         Button colourButton = new Button();
         colourButton.setBackground(Color.RED);
         Color newColor = Color.GREEN;
-        utilities.updateButtonBackground(colourButton, newColor);
+        Utilities.updateButtonBackground(colourButton, newColor);
         assertEquals(newColor, colourButton.getBackground());
     }
 
@@ -25,7 +25,7 @@ public class UtilityViewTests {
         Color initialColor = Color.RED;
         colourButton.setBackground(initialColor);
 
-        utilities.updateButtonBackground(colourButton, null);
+        Utilities.updateButtonBackground(colourButton, null);
 
         assertEquals(initialColor, colourButton.getBackground());
     }
@@ -36,7 +36,7 @@ public class UtilityViewTests {
         Color expectedColor = Color.YELLOW;
         colourButton.setBackground(expectedColor);
 
-        Color actualColor = utilities.getColourFromButton(colourButton);
+        Color actualColor = Utilities.getColourFromButton(colourButton);
 
         assertEquals(expectedColor, actualColor);
     }
@@ -45,7 +45,7 @@ public class UtilityViewTests {
         Button colourButton = new Button();
         Color defaultColor = colourButton.getBackground();
 
-        Color actualColor = utilities.getColourFromButton(colourButton);
+        Color actualColor = Utilities.getColourFromButton(colourButton);
 
         assertEquals(defaultColor, actualColor);
     }
