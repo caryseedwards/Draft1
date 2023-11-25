@@ -80,7 +80,7 @@ public class RecursiveShapeAlgorithm implements AlgorithmStrategy {
      * @param x - the starting x co-ordinate for the shape
      * @param y - the starting y co-ordinate for the shape
      * @param size - the size of the shape to draw
-     * @param depth - the recusive depth of how many shapes to draw
+     * @param depth - the recursive depth of how many shapes to draw
      */
     public void addPattern(int x, int y, int size, int depth) {
         if (depth == 0) return;

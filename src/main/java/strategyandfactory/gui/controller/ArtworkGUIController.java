@@ -45,7 +45,7 @@ public class ArtworkGUIController {
 
     /**
      * Initialises the necessary components of the controller
-     * Sets up child controllers for the algorithm pannels
+     * Sets up child controllers for the algorithm panels
      */
     private void initialiseControllers() {
         recursivePanelController = new RecursiveShapeController(model, view.getRecursivePanelView());

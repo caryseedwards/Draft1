@@ -4,6 +4,10 @@ import template.gui.view.utilities;
 
 import java.awt.*;
 
+/**
+ * Creates the Recursive Shape algorithm view for the GUI
+ * @author carysedwards
+ */
 public class RecursivePanelView {
     private final Panel recursivePanel;
     private final int canvasWidth;
@@ -22,6 +26,11 @@ public class RecursivePanelView {
     private Button smallLineColourButton;
     private TextField smallLineWidthTextField;
 
+    /**
+     * Creates the recursive shape algorithm panel
+     * @param canvasWidth - the starting canvas width
+     * @param canvasHeight - the starting canvas height
+     */
     public RecursivePanelView(int canvasWidth, int canvasHeight) {
         recursivePanel = new Panel(new GridBagLayout());
         this.canvasWidth = canvasWidth;
@@ -31,6 +40,9 @@ public class RecursivePanelView {
         setupPanel();
     }
 
+    /**
+     * Initialises the panel and sets default values
+     */
     private void setupPanel() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
@@ -75,6 +87,13 @@ public class RecursivePanelView {
         utilities.configureColourPicker(smallLineColourButton);
     }
 
+    /**
+     * Helper method for creating a label and field
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the string for the label
+     * @param textField - the string for the text
+     * @param gridy - the grid y value (column)
+     */
     private void addLabelAndField(GridBagConstraints gbc, String labelText, TextField textField, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -85,6 +104,13 @@ public class RecursivePanelView {
         recursivePanel.add(textField, gbc);
     }
 
+    /**
+     * Helper method for creating a choice dropdown and label
+     * @param gbc - the Grid layout constraints
+     * @param choice - The choice dropdown to add
+     * @param items - the items to go inside the choice dropdown
+     * @param gridy - the grid y value (column)
+     */
     private void addLabelAndChoice(GridBagConstraints gbc, String labelText, Choice choice, String[] items, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -97,6 +123,13 @@ public class RecursivePanelView {
         recursivePanel.add(choice, gbc);
     }
 
+    /**
+     * Helper method for creating a colour chooser and label
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the label text
+     * @param button - the button to launch the colour chooser
+     * @param gridy - the grid y value (column)
+     */
     private void addColorChooserButton(GridBagConstraints gbc, String labelText, Button button, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -107,66 +140,130 @@ public class RecursivePanelView {
         recursivePanel.add(button, gbc);
     }
 
+    /**
+     * Gets the canvas width
+     * @return canvasWidth
+     */
     public int getCanvasWidth() {
         return canvasWidth;
     }
 
+    /**
+     * Gets the canvas Height
+     * @return canvasHeight
+     */
     public int getCanvasHeight() {
         return canvasHeight;
     }
 
+    /**
+     * Gets the startx text field
+     * @return startXTextField
+     */
     public TextField getStartXTextField() {
         return startXTextField;
     }
 
+    /**
+     * Gets the starty text field
+     * @return startYTextField
+     */
     public TextField getStartYTextField() {
         return startYTextField;
     }
 
+    /**
+     * Gets the recursive depth text field
+     * @return recursiveDepthTextField
+     */
     public TextField getRecursiveDepthTextField() {
         return recursiveDepthTextField;
     }
 
+    /**
+     * Gets the initial radius text field
+     * @return initialRadiusTextField
+     */
     public TextField getInitialRadiusTextField() {
         return initialRadiusTextField;
     }
 
+    /**
+     * Gets the number of shapes text field
+     * @return numShapeTextField
+     */
     public TextField getNumShapeTextField() {
         return numShapeTextField;
     }
 
+    /**
+     * Gets the large shape type
+     * @return largeShapeType
+     */
     public Choice getLargeShapeType() {
         return largeShapeType;
     }
 
+    /**
+     * Gets the large shape colour button
+     * @return largeShapeColourButton
+     */
     public Button getLargeShapeColourButton() {
         return largeShapeColourButton;
     }
 
+    /**
+     * Gets the large line colour button
+     * @return largeLineColourButton
+     */
     public Button getLargeLineColourButton() {
         return largeLineColourButton;
     }
 
+    /**
+     * Gets the large line width text
+     * @return largeLineWidthTextField
+     */
     public TextField getLargeLineWidthTextField() {
         return largeLineWidthTextField;
     }
 
+    /**
+     * Gets the small shape type
+     * @return smallShapeType
+     */
     public Choice getSmallShapeType() {
         return smallShapeType;
     }
 
+    /**
+     * Gets the small shape colour button
+     * @return smallShapeColourButton
+     */
     public Button getSmallShapeColourButton() {
         return smallShapeColourButton;
     }
 
+    /**
+     * Gets the small line colour button
+     * @return smallLineColourButton
+     */
     public Button getSmallLineColourButton() {
         return smallLineColourButton;
     }
 
+    /**
+     * Gets the small line width text
+     * @return smallLineWidthTextField
+     */
     public TextField getSmallLineWidthTextField() {
         return smallLineWidthTextField;
     }
 
+    /**
+     * Gets the panel
+     * @return recursivePanel
+     */
     public Panel getPanel() {
         return recursivePanel;
     }

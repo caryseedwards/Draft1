@@ -10,17 +10,30 @@ import template.shapes.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * The implementation of the Sierpinski Shape algorithm
+ * @author carysedwards
+ */
 public class SierpinskiShapeAlgorithm extends Algorithm {
     private SierpinskiShapeAlgorithmParameters params;
     private ShapeParameters sierpinskiShape;
     private ArrayList<Shape> shapesToDraw = new ArrayList<>();
 
+    /**
+     * Constructor to create the sierpinski shape algorithm
+     * @param canvasParams - details of the canvas to draw upon
+     * @param shapeParams - details of the shapes used within the algorithm
+     * @param algorithmParams - details of the algorithm
+     */
     public SierpinskiShapeAlgorithm(CanvasParameters canvasParams, ArrayList<ShapeParameters> shapeParams, Parameters algorithmParams) {
         super(canvasParams, shapeParams, algorithmParams);
         initialiseAlgorithm();
         executeAlgorithm();
     }
 
+    /**
+     * Initialises the algorithm with default values
+     */
     @Override
     protected void initialiseAlgorithm() {
         this.params = (SierpinskiShapeAlgorithmParameters) getAlgorithmParams();
@@ -28,6 +41,11 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         this.shapesToDraw = new ArrayList<>();
     }
 
+    /**
+     * Draws a triangle and adds it to the pattern
+     * @param triangle - previous triangle drawn
+     * @param depth - the recursive depth
+     */
     private void addSierpinski(Triangle triangle, int depth) {
         if (depth == 0) {
             shapesToDraw.add(triangle);
@@ -46,6 +64,11 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         addSierpinski(new Triangle(midX3, midY3 - (int) newRadius, newRadius), depth - 1);
     }
 
+    /**
+     * Draws a circle and adds it to the pattern
+     * @param circle - previous circle drawn
+     * @param depth - the recursive depth
+     */
     private void addGasket(Circle circle, int depth) {
         if (depth <= 0) return;
 
@@ -60,6 +83,11 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         addGasket(new Circle(circle.centerX + dx, circle.centerY + dy, newRadius), depth - 1);
     }
 
+    /**
+     * Draws a hexagon and adds it to the pattern
+     * @param hexagon - previous hexagon drawn
+     * @param depth - the recursive depth
+     */
     public void addHexagon(Hexagon hexagon, int depth) {
         if (depth == 0) {
             shapesToDraw.add(hexagon);
@@ -77,6 +105,11 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         addHexagon(new Hexagon(hexagon.centerX, hexagon.centerY, newRadius), depth - 1);
     }
 
+    /**
+     * Draws a square and adds it to the pattern
+     * @param square - previous square drawn
+     * @param depth - the recursive depth
+     */
     private void addCarpet(Square square, int depth) {
         if (depth == 0) {
             shapesToDraw.add(square);
@@ -99,6 +132,10 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         }
     }
 
+    /**
+     * Executes the algorithm based on the parameters already passed
+     * The algorithm executes depends on the shape selected
+     */
     @Override
     public void executeAlgorithm() {
         switch (getShapeParameters().get(0).getShapeType()) {
@@ -119,6 +156,10 @@ public class SierpinskiShapeAlgorithm extends Algorithm {
         }
     }
 
+    /**
+     * Draws the algorithm to the graphics object based on the parameters already passed
+     * @param g - The graphics object to draw to
+     */
     @Override
     public void drawPattern(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;

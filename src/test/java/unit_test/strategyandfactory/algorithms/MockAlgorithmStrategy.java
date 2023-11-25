@@ -24,6 +24,10 @@ class MockAlgorithmStrategy implements AlgorithmStrategy {
         drawCalled = true;
     }
 
+    @Override
+    public void saveImage(String filePath) {
+    }
+
     public void setValidationOutcome(boolean outcome) {
         this.validationOutcome = outcome;
     }

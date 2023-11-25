@@ -15,6 +15,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The controller for the Artwork GUI
+ * Part of the MVC pattern
+ * @author carysedwards
+ */
 public class ArtworkGUIController {
     private final ArtworkGUIView view;
     private final ParametersModel model;
@@ -23,12 +28,21 @@ public class ArtworkGUIController {
     private SierpinskiController sierpinskiPanelController;
     private Timer animationTimer;
 
+    /**
+     * Creates an artwork gui controller
+     * @param view - the view for the controller
+     * @param model - the model for the controller
+     */
     public ArtworkGUIController(ArtworkGUIView view, ParametersModel model) {
         this.view = view;
         this.model = model;
         initialiseControllers();
     }
 
+    /**
+     * Initialises the necessary components of the controller
+     * Sets up child controllers for the algorithm panels
+     */
     private void initialiseControllers() {
         recursivePanelController = new RecursiveShapeController(model, view.getRecursivePanelView());
         circlePackingPanelController = new CirclePackingController(model, view.getCirclePackingPanelView());
@@ -39,6 +53,10 @@ public class ArtworkGUIController {
         view.getResetBtn().addActionListener(e -> view.resetCanvas());
     }
 
+    /**
+     * When an algorithm is selected change the panel
+     * @param e - algorithm selection event
+     */
     public void handleAlgorithmSelection(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             String selectedAlgorithm = e.getItem().toString();
@@ -46,6 +64,10 @@ public class ArtworkGUIController {
         }
     }
 
+    /**
+     * Updates the visibility of the algorithm panel
+     * @param selectedAlgorithm - the algorithm selected
+     */
     public void updateAlgorithmPanelVisibility(String selectedAlgorithm) {
         if (animationTimer != null) {
             animationTimer.stop();
@@ -63,7 +85,10 @@ public class ArtworkGUIController {
         view.getFrame().repaint();
     }
 
-
+    /**
+     * Generates the artwork by executing the algorithm selected
+     * with the given parameters
+     */
     public void generateArtwork() {
         BufferedImage image = view.createBufferedImage();
         Graphics2D g2d = image.createGraphics();
@@ -134,6 +159,10 @@ public class ArtworkGUIController {
         view.getCanvas().repaint();
     }
 
+    /**
+     * Helper method to improve the quality of the drawings
+     * @param g2d - the graphics object to improve quality of
+     */
     private void applyRenderingHints(Graphics2D g2d) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
@@ -142,6 +171,9 @@ public class ArtworkGUIController {
 
     }
 
+    /**
+     * Saves the current state of the canvas to a specified location in PNG format
+     */
     public void saveImage() {
         BufferedImage image = new BufferedImage(view.getCanvasWidth(), view.getCanvasHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
@@ -162,26 +194,47 @@ public class ArtworkGUIController {
         }
     }
 
+    /**
+     * Gets the recursive algorithm panel controller
+     * @return recursivePanelController
+     */
     public RecursiveShapeController getRecursiveController() {
         return recursivePanelController;
     }
 
+    /**
+     * Sets the recursive algorithm panel controller
+     */
     public void setRecursiveController(RecursiveShapeController rsc) {
         recursivePanelController = rsc;
     }
 
+    /**
+     * Gets the circle packing algorithm panel controller
+     * @return circlePackingPanelController
+     */
     public CirclePackingController getPackingController() {
         return circlePackingPanelController;
     }
 
+    /**
+     * Sets the circle packing algorithm panel controller
+     */
     public void setPackingController(CirclePackingController cpc) {
         circlePackingPanelController = cpc;
     }
 
+    /**
+     * Gets the sierpinski algorithm panel controller
+     * @return sierpinskiPanelController
+     */
     public SierpinskiController getSierpinskiPanelController() {
         return sierpinskiPanelController;
     }
 
+    /**
+     * Sets the sierpinski algorithm panel controller
+     */
     public void setSierpinskiPanelController(SierpinskiController sc) {
         sierpinskiPanelController = sc;
     }
