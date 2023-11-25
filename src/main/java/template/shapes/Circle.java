@@ -2,28 +2,30 @@ package template.shapes;
 
 import java.awt.*;
 
+/**
+ * Implements a Circle Shape to use in the algorithms
+ */
 public class Circle extends Shape {
     public int centerX, centerY;
     public double radius;
 
+    /**
+     * Constructor for a circle object
+     * @param x - the starting x co-ordinate
+     * @param y - the starting y co-ordinate
+     * @param radius - the scaling factor for the circle
+     */
     public Circle(int x, int y, int radius) {
         this.centerX = x;
         this.centerY = y;
         this.radius = radius;
     }
 
-    public int getX() {
-        return centerX;
-    }
-
-    public int getY() {
-        return centerY;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
+    /**
+     * Checks if this circle overlaps another circle
+     * @param other - the other circle
+     * @return true if the circles overlap
+     */
     public boolean overlaps(Circle other) {
         int dx = this.centerX - other.centerX;
         int dy = this.centerY - other.centerY;
@@ -31,6 +33,10 @@ public class Circle extends Shape {
         return distance < (this.radius + other.radius) * (this.radius + other.radius);
     }
 
+    /**
+     * Calculates a random position inside the circle
+     * @return A new point containing co-ordinates for a random point in the circle
+     */
     @Override
     public Point randomPositionInside() {
         double angle = 2 * Math.PI * Math.random();
@@ -43,6 +49,11 @@ public class Circle extends Shape {
         return new Point(finalX, finalY);
     }
 
+    /**
+     * Helper method to check this circle is inside another circle
+     * @param boundary - the other circle
+     * @return true if this circle is inside another circle
+     */
     @Override
     public boolean isInside(Circle boundary) {
         int dx = this.centerX - boundary.centerX;
@@ -51,6 +62,14 @@ public class Circle extends Shape {
         return distance <= (boundary.radius - this.radius) * (boundary.radius - this.radius);
     }
 
+    /**
+     * Draws the circle onto the given graphics object
+     * @param g2d - the graphics object to drawn
+     * @param lineColor - the line colour of the circle
+     * @param lineWidth - the line width of the circle
+     * @param fillColor - the fill colour of the circle
+     * @param lineType - the line type of the circle
+     */
     @Override
     public void draw(Graphics2D g2d, Color lineColor, float lineWidth, Color fillColor, String lineType) {
         int x = centerX - (int) radius;
@@ -65,12 +84,45 @@ public class Circle extends Shape {
         g2d.drawOval(x, y, diameter, diameter);
     }
 
+    /**
+     * Sets the starting x and y co-ordinates of the circle
+     * @param x - the x co-ordinate
+     * @param y - the y co-ordinate
+     */
     @Override
     public void setPosition(int x, int y) {
         this.centerX = x;
         this.centerY = y;
     }
 
+    /**
+     * Gets the circle's centrex co-ordinate
+     * @return centerX
+     */
+    public int getX() {
+        return centerX;
+    }
+
+    /**
+     * Gets the circle's centrey co-ordinate
+     * @return centerY
+     */
+    public int getY() {
+        return centerY;
+    }
+
+    /**
+     * Gets the circle's radius / scaling factor
+     * @return radius
+     */
+    public double getRadius() {
+        return radius;
+    }
+
+    /**
+     * Sets the scaling factor for the circle
+     * @param size - the scale of the circle
+     */
     @Override
     public void setScale(double size) {
         this.radius = size;

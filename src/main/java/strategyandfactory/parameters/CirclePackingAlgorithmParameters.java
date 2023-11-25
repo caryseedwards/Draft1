@@ -131,7 +131,7 @@ public class CirclePackingAlgorithmParameters extends Parameters {
     }
 
     /**
-     * Sets the maximum maximum of the fill circles
+     * Sets the maximum of the fill circles
      * @param maxRadius - minimum radius of the fill circles
      */
     public void setMaxRadius(int maxRadius) {

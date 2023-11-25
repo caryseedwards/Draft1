@@ -1,7 +1,7 @@
 package strategyandfactory.parameters;
 
 /**
- * The parent parameter class used to standarise all types of parameters.
+ * The parent parameter class used to standardise all types of parameters.
  * Part of the template pattern
  * @author carysedwards
  */

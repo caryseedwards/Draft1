@@ -8,6 +8,7 @@ import java.awt.*;
  * @author carysedwards
  */
 public class Utilities {
+
     /**
      * Configures the colour picker button to launch the colour picker and set the colour
      * @param colourButton
