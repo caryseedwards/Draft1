@@ -10,6 +10,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
+/**
+ * The main GUI View class for the application
+ * @author carysedwards
+ */
 public class ArtworkGUIView {
     public static int windowWidth = 1280;
     public static int windowHeight = 720;
@@ -29,6 +33,9 @@ public class ArtworkGUIView {
     private static Button generateBtn, saveBtn, resetBtn;
     private static BufferedImage artworkImage;
 
+    /**
+     * Creates an Artwork GUI Object
+     */
     public ArtworkGUIView() {
         setupFrame();
         setupLeftPanel();
@@ -37,6 +44,9 @@ public class ArtworkGUIView {
         artworkImage = createBufferedImage();
     }
 
+    /**
+     * Sets up and initialises the GUI View
+     */
     public void setupViewWindow() {
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
@@ -46,12 +56,18 @@ public class ArtworkGUIView {
         });
     }
 
+    /**
+     * Sets up the parent frame to house all components
+     */
     public void setupFrame() {
         frame = new Frame("Generative Art API");
         frame.setLayout(new BorderLayout());
         frame.setSize(windowWidth, windowHeight);
     }
 
+    /**
+     * Sets up the left panel for controlling parameters and widgets
+     */
     public void setupLeftPanel() {
         Panel leftPanel = new Panel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -88,6 +104,9 @@ public class ArtworkGUIView {
         frame.add(leftPanel, BorderLayout.WEST);
     }
 
+    /**
+     * Sets up the algorithm dropdown widget
+     */
     public void setupAlgorithmDropdown() {
         algorithmDropdown = new Choice();
         algorithmDropdown.add("-");
@@ -97,6 +116,11 @@ public class ArtworkGUIView {
         algorithmDropdown.addItemListener(e -> updateAlgorithmPanelVisibility());
     }
 
+    /**
+     * Creates and organises the algorithm panels
+     * @param gbc - the Grid layout contrasts
+     * @param leftPanel - the parent panel
+     */
     public void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
         recursivePanel.setVisible(false);
         circlePackingPanel.setVisible(false);
@@ -107,10 +131,17 @@ public class ArtworkGUIView {
         leftPanel.add(sierpinskiPanel, gbc);
     }
 
+    /**
+     * Creates a buffered image used for drawing the algorithm
+     * @return Buffered Image for the algorithm
+     */
     public BufferedImage createBufferedImage() {
         return new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_ARGB);
     }
 
+    /**
+     * Sets up the canvas used by the algorithms to draw the artwork
+     */
     public void setupCanvas() {
         canvas = new JPanel() {
             @Override
@@ -129,10 +160,17 @@ public class ArtworkGUIView {
         frame.add(canvas, BorderLayout.CENTER);
     }
 
+    /**
+     * Sets the artwork image
+     * @param image - the image created by the algorithms
+     */
     public void setArtworkImage(BufferedImage image) {
         artworkImage = image;
     }
 
+    /**
+     * Sets up and initialises the bottom panel
+     */
     public void setupBottomPanel() {
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setPreferredSize(new Dimension(windowWidth, 50));
@@ -144,6 +182,9 @@ public class ArtworkGUIView {
         frame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Used to control which panel is shown when an algorithm is selected
+     */
     public void updateAlgorithmPanelVisibility() {
         String selected = algorithmDropdown.getSelectedItem();
         canvasWidth = canvas.getWidth();
@@ -158,6 +199,9 @@ public class ArtworkGUIView {
         frame.repaint();
     }
 
+    /**
+     * Clears the canvas of any artwork drawn
+     */
     public synchronized void resetCanvas() {
         artworkImage = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics g = artworkImage.getGraphics();
@@ -167,22 +211,42 @@ public class ArtworkGUIView {
         canvas.repaint();
     }
 
+    /**
+     * Gets the frame
+     * @return frame
+     */
     public Frame getFrame() {
         return frame;
     }
 
+    /**
+     * Gets the canvas which holds the artwork
+     * @return canvas
+     */
     public JPanel getCanvas() {
         return canvas;
     }
 
+    /**
+     * Gets the algorithm dropdown box
+     * @return algorithmDropdown
+     */
     public Choice getAlgorithmDropdown() {
         return algorithmDropdown;
     }
 
+    /**
+     * Gets the error label
+     * @return errorLabel
+     */
     public JLabel getErrorLabel() {
         return errorLabel;
     }
 
+    /**
+     * Sets the error label to given string, used for validation
+     * @param message - the error message
+     */
     public void setErrorLabel(String message) {
         if (message == null || message.isEmpty()) {
             errorLabel.setText("");
@@ -193,46 +257,90 @@ public class ArtworkGUIView {
         }
     }
 
+    /**
+     * Gets the recursive panel
+     * @return recursivePanel
+     */
     public Panel getRecursivePanel() {
         return recursivePanel;
     }
 
+    /**
+     * Gets the circle packing panel
+     * @return circlePackingPanel
+     */
     public Panel getCirclePackingPanel() {
         return circlePackingPanel;
     }
 
+    /**
+     * Gets the sierpinski panel
+     * @return sierpinskiPanel
+     */
     public Panel getSierpinskiPanel() {
         return sierpinskiPanel;
     }
 
+    /**
+     * Gets the generate artwork button
+     * @return generateBtn
+     */
     public Button getGenerateBtn() {
         return generateBtn;
     }
 
+    /**
+     * Gets the save button used to export the artwork
+     * @return saveBtn
+     */
     public Button getSaveBtn() {
         return saveBtn;
     }
 
+    /**
+     * Gets the reset button
+     * @return resetBtn
+     */
     public Button getResetBtn() {
         return resetBtn;
     }
 
+    /**
+     * Gets the panel view associated with the Sierpinski panel
+     * @return sierpinskiPanelView
+     */
     public SierpinskiPanelView getSierpinskiPanelView() {
         return sierpinskiPanelView;
     }
 
+    /**
+     * Gets the panel view associated with the circle packing panel
+     * @return circlePackingPanelView
+     */
     public CirclePackingPanelView getCirclePackingPanelView() {
         return circlePackingPanelView;
     }
 
+    /**
+     * Gets the panel view associated with the recursive shape panel
+     * @return recursivePanelView
+     */
     public RecursivePanelView getRecursivePanelView() {
         return recursivePanelView;
     }
 
+    /**
+     * Gets the canvas width
+     * @return canvasWidth
+     */
     public int getCanvasWidth() {
         return canvasWidth;
     }
 
+    /**
+     * Gets the canvas  height
+     * @return canvasHeight
+     */
     public int getCanvasHeight() {
         return canvasHeight;
     }

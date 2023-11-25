@@ -7,7 +7,10 @@ import strategyandfactory.gui.view.ArtworkGUIView;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
+/**
+ * Entry point to the program for Version 3.
+ * @author carysedwards
+ */
 public class MainGUI {
     public static void main(String[] args) {
         ParametersModel model = new ParametersModel();
