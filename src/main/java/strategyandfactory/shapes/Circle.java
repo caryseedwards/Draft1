@@ -45,8 +45,19 @@ public class Circle extends Shape {
         double scaledRadius = radius * Math.sqrt(radiusScale);
         double newX = centerX + scaledRadius * Math.cos(angle);
         double newY = centerY + scaledRadius * Math.sin(angle);
-        int finalX = (int) (newX >= centerX ? Math.floor(newX) : Math.ceil(newX));
-        int finalY = (int) (newY >= centerY ? Math.floor(newY) : Math.ceil(newY));
+        int finalX;
+        if (newX >= centerX) {
+            finalX = (int) Math.floor(newX);
+        } else {
+            finalX = (int) Math.ceil(newX);
+        }
+
+        int finalY;
+        if (newY >= centerY) {
+            finalY = (int) Math.floor(newY);
+        } else {
+            finalY = (int) Math.ceil(newY);
+        }
         return new Point(finalX, finalY);
     }
 
