@@ -4,8 +4,18 @@ import withoutgof.gui.CirclePackingPanel;
 import withoutgof.gui.RecursivePanel;
 import withoutgof.gui.SierpinskiPanel;
 
+/**
+ * Validates the parameters used as input to the algorithms
+ * For both the GUI and the API
+ * @author carysedwards
+ */
 public class Validate {
 
+    /**
+     * Validates inputs for a recursive panel view
+     * @param rp the recursive panel view to validate
+     * @return error - empty if the panel passed validation
+     */
     public static String validateRecursiveParams(RecursivePanel rp) {
         String error;
 
@@ -33,6 +43,11 @@ public class Validate {
         return "";
     }
 
+    /**
+     * Validates inputs for a circle packing panel view
+     * @param cpp the circle packing view to validate
+     * @return error - empty if the panel passed validation
+     */
     public static String validateCirclePackingParams(CirclePackingPanel cpp) {
         String error;
 
@@ -63,6 +78,11 @@ public class Validate {
         return "";
     }
 
+    /**
+     * Validates inputs for a sierpinski panel view
+     * @param sp the circle packing view to validate
+     * @return error - empty if the panel passed validation
+     */
     public static String validateSierpinskiParams(SierpinskiPanel sp) {
         String error;
 
@@ -84,6 +104,12 @@ public class Validate {
         return "";
     }
 
+    /**
+     * Helper method to cast a String to an Integer
+     * @param input the input string
+     * @param parameterName the parameter name
+     * @return The string converted to an Integer or an empty string if not possible
+     */
     public static String validateInteger(String input, String parameterName) {
         try {
             int value = Integer.parseInt(input);

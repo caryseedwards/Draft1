@@ -9,13 +9,25 @@ import withoutgof.shapes.Triangle;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The implementation of the Sierpinski Shape algorithm
+ * @author carysedwards
+ */
 public class SierpinskiShape extends JPanel {
     private final SierpinskiShapeParameters params;
 
+    /**
+     * Constructor for the sierpinski shape algorithm
+     * @param params - the parameters
+     */
     public SierpinskiShape(SierpinskiShapeParameters params) {
         this.params = params;
     }
 
+    /**
+     * Draws the algorithm to the graphics object based on the parameters already passed
+     * @param g - The graphics object to draw to
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -39,6 +51,12 @@ public class SierpinskiShape extends JPanel {
         }
     }
 
+    /**
+     * Adds a sierpinski triangle to the graphics object
+     * @param g - the graphics object to draw to
+     * @param triangle - the triangle to draw
+     * @param depth - the recursive depth
+     */
     public void drawSierpinski(Graphics2D g, Triangle triangle, int depth) {
         if (depth == 0) {
             triangle.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, null);
@@ -57,6 +75,12 @@ public class SierpinskiShape extends JPanel {
         drawSierpinski(g, new Triangle(midX3, midY3 - (int) newRadius, newRadius), depth - 1);
     }
 
+    /**
+     * Adds a circle to the graphics object
+     * @param g - the graphics object to draw to
+     * @param circle - the circle to draw
+     * @param depth - the recursive depth
+     */
     private void drawGasket(Graphics2D g, Circle circle, int depth) {
         if (depth <= 0) return;
 
@@ -71,6 +95,12 @@ public class SierpinskiShape extends JPanel {
         drawGasket(g, new Circle(circle.centerX + dx, circle.centerY + dy, newRadius), depth - 1);
     }
 
+    /**
+     * Adds a hexagon to the graphics object
+     * @param g - the graphics object to draw to
+     * @param hexagon - the hexagon to draw
+     * @param depth - the recursive depth
+     */
     public void drawHexagon(Graphics2D g, Hexagon hexagon, int depth) {
         if (depth == 0) {
             hexagon.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, "");
@@ -88,6 +118,12 @@ public class SierpinskiShape extends JPanel {
         drawHexagon(g, new Hexagon(hexagon.centerX, hexagon.centerY, newRadius), depth - 1);
     }
 
+    /**
+     * Adds a square to the graphics object
+     * @param g - the graphics object to draw to
+     * @param square - the square to draw
+     * @param depth - the recursive depth
+     */
     public void drawCarpet(Graphics2D g, Square square, int depth) {
         if (depth == 0) {
             square.draw(g, params.shapeLineColour, params.shapeLineWidth, params.shapeFillColour, null);
@@ -110,6 +146,10 @@ public class SierpinskiShape extends JPanel {
         }
     }
 
+    /**
+     * Gets the algorithm parameters
+     * @return params
+     */
     public SierpinskiShapeParameters getParams() {
         return params;
     }

@@ -12,7 +12,7 @@ public class Triangle extends Shape {
     public int x1, y1, x2, y2, x3, y3;
 
     /**
-     * Consructor for the triangle
+     * Constructor for the triangle
      * @param x - the starting x co-ordinate
      * @param y - the starting y co-ordinate
      * @param radius - the scaling factor for the triangle

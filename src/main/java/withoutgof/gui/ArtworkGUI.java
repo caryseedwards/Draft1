@@ -17,7 +17,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * The Artwork GUI for version 1
+ * @author carysedwards
+ */
 public class ArtworkGUI {
 
     public static final int WINDOW_WIDTH = 1280;
@@ -37,12 +40,18 @@ public class ArtworkGUI {
     private static Timer animationTimer;
     private static Frame frame;
 
+    /**
+     * Sets up and initialises the GUI View
+     */
     public static void setupFrame() {
         frame = new Frame("Generative Art API");
         frame.setLayout(new BorderLayout());
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
+    /**
+     * Sets up the left panel for controlling parameters and widgets
+     */
     public static void setupLeftPanel() {
         Panel leftPanel = new Panel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -79,6 +88,10 @@ public class ArtworkGUI {
         frame.add(leftPanel, BorderLayout.WEST);
     }
 
+
+    /**
+     * Sets up the algorithm dropdown widget
+     */
     private static void setupAlgorithmDropdown() {
         algorithmDropdown = new Choice();
         algorithmDropdown.add("-");
@@ -88,6 +101,11 @@ public class ArtworkGUI {
         algorithmDropdown.addItemListener(e -> updateAlgorithmPanelVisibility());
     }
 
+    /**
+     * Creates and organises the algorithm panels
+     * @param gbc - the Grid layout contrasts
+     * @param leftPanel - the parent panel
+     */
     private static void setupAlgorithmPanels(GridBagConstraints gbc, Panel leftPanel) {
         recursivePanel = rp.getPanel();
         circlePackingPanel = cpp.getPanel();
@@ -102,6 +120,9 @@ public class ArtworkGUI {
         leftPanel.add(sierpinskiPanel, gbc);
     }
 
+    /**
+     * Sets up the canvas used by the algorithms to draw the artwork
+     */
     public static void setupCanvas() {
         canvas = new JPanel() {
             @Override
@@ -133,6 +154,9 @@ public class ArtworkGUI {
         frame.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * Sets up and initialises the bottom panel
+     */
     public static void setupBottomPanel() {
         int bottomPanelHeight = 50;
         Panel bottomPanel = new Panel(new FlowLayout(FlowLayout.CENTER));
@@ -148,6 +172,9 @@ public class ArtworkGUI {
         frame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Used to control which panel is shown when an algorithm is selected
+     */
     public static void updateAlgorithmPanelVisibility() {
         String selected = algorithmDropdown.getSelectedItem();
         int newCanvasWidth = canvas.getWidth();
@@ -164,6 +191,11 @@ public class ArtworkGUI {
         frame.repaint();
     }
 
+    /**
+     * utility method to recalculate the canvas center co-ordinates
+     * @param width - the width of the canvas
+     * @param height - the height of the canvas
+     */
     private static void recalcCanvasCenter(int width, int height) {
         rp.getStartXTextField().setText(String.valueOf(width / 2));
         rp.getStartYTextField().setText(String.valueOf(height / 2));
@@ -173,6 +205,10 @@ public class ArtworkGUI {
         sp.getStartYTextField().setText(String.valueOf(height / 2));
     }
 
+    /**
+     * Sets the error label to given string, used for validation
+     * @param message - the error message
+     */
     private static void setErrorLabel(String message) {
         if (message == null || message.isEmpty()) {
             errorLabel.setText("");
@@ -183,6 +219,10 @@ public class ArtworkGUI {
         }
     }
 
+    /**
+     * Generates the artwork by executing the algorithm selected
+     * with the given parameters
+     */
     private static void generateArtwork() {
         String selected = algorithmDropdown.getSelectedItem();
         Graphics2D g2d = (Graphics2D) canvas.getGraphics();
@@ -231,6 +271,10 @@ public class ArtworkGUI {
         }
     }
 
+    /**
+     * Gets the recursive shape parameters and initialises them with the values from the GUI
+     * @return RecursiveShapeParameters
+     */
     private static RecursiveShapeParameters getRecursiveShapeParameters() {
         RecursiveShapeParameters params = new RecursiveShapeParameters();
         params.setCenterX(Integer.parseInt(rp.getStartXTextField().getText()));
@@ -249,6 +293,10 @@ public class ArtworkGUI {
         return params;
     }
 
+    /**
+     * Gets the circle packing parameters and initialises them with the values from the GUI
+     * @return CirclePackingParameters
+     */
     private static CirclePackingParameters getCirclePackingParameters() {
         CirclePackingParameters params = new CirclePackingParameters();
         params.setCentreX(Integer.parseInt(cpp.getStartXTextField().getText()));
@@ -267,6 +315,10 @@ public class ArtworkGUI {
         return params;
     }
 
+    /**
+     * Gets the sierpinski shape parameters and initialises them with the values from the GUI
+     * @return SierpinskiShapeParameters
+     */
     private static SierpinskiShapeParameters getSierpinskiShapeParameters() {
         SierpinskiShapeParameters params = new SierpinskiShapeParameters();
         params.setCentreX(Integer.parseInt(sp.getStartXTextField().getText()));
@@ -280,6 +332,9 @@ public class ArtworkGUI {
         return params;
     }
 
+    /**
+     * Saves the current state of the canvas and exports the image as a PNG
+     */
     private static void saveImage() {
         Dimension size = canvas.getSize();
         BufferedImage image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
@@ -310,6 +365,9 @@ public class ArtworkGUI {
         }
     }
 
+    /**
+     * Resets the state of the canvas and sets it back to a blank page
+     */
     private static void resetCanvas() {
         Graphics g = canvas.getGraphics();
         g.setColor(Color.white);
@@ -321,6 +379,10 @@ public class ArtworkGUI {
         sierpinskiShape = null;
     }
 
+    /**
+     * Entrypoint for the artwork gui in version 1
+     * @param args - args to the program
+     */
     public static void main(String[] args) {
         setupFrame();
         setupLeftPanel();

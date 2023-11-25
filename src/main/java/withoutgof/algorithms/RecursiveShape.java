@@ -6,16 +6,32 @@ import withoutgof.shapes.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The implementation of the Recursive Shape algorithm
+ * Will recursively draw two shapes in a Euclidean pattern
+ * @author carysedwards
+ */
 public class RecursiveShape extends JPanel {
     private final RecursiveShapeParameters params;
     private PatternShape largeShape;
     private PatternShape smallShape;
 
+    /**
+     * Constructor for the recursive shape algorithm
+     * @param params - the parameters
+     */
     public RecursiveShape(RecursiveShapeParameters params) {
         this.params = params;
         initialiseShapes();
     }
 
+    /**
+     * Creates a shape to draw as part of the algorithm
+     * @param g2d - The graphics object to draw
+     * @param x - the start x co-ordinate
+     * @param y - the start y co-ordinate
+     * @param size - the size of the shape
+     */
     private void drawPattern(Graphics2D g2d, int x, int y, int size, int depth) {
         if (depth == 0) return;
 
@@ -42,6 +58,10 @@ public class RecursiveShape extends JPanel {
         }
     }
 
+    /**
+     * Draws the algorithm to the graphics object based on the parameters already passed
+     * @param g - The graphics object to draw to
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -53,6 +73,9 @@ public class RecursiveShape extends JPanel {
         drawPattern(g2d, params.centerX, params.centerY, params.initialSize, params.depth);
     }
 
+    /**
+     * Creates and initialises new shapes based on the large/small shape selected
+     */
     private void initialiseShapes() {
         switch (params.largeShapeType) {
             case "circle" -> largeShape = new Circle(params.centerX, params.centerY, params.initialSize);
@@ -69,14 +92,26 @@ public class RecursiveShape extends JPanel {
         }
     }
 
+    /**
+     * Gets the algorithm parameters
+     * @return params
+     */
     public RecursiveShapeParameters getParams() {
         return params;
     }
 
+    /**
+     * Gets the large shape
+     * @return largeShape
+     */
     public PatternShape getLargeShape() {
         return largeShape;
     }
 
+    /**
+     * Gets the small shape
+     * @return smallShape
+     */
     public PatternShape getSmallShape() {
         return smallShape;
     }

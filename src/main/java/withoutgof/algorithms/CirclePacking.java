@@ -7,20 +7,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * The implementation of the Circle Packing algorithm
+ * Will fill a specified shapes with circles as an animation
+ * @author carysedwards
+ */
 public class CirclePacking extends JPanel {
     private PatternShape boundaryShape;
     private final ArrayList<Circle> circles;
     private final CirclePackingParameters params;
     private int attempts = 0;
 
-    public CirclePacking(CirclePackingParameters params) {
 
+    /**
+     * Constructor to create the circle packing algorithm
+     * @param params - details of the circle packing algorithm to draw upon
+     */
+    public CirclePacking(CirclePackingParameters params) {
         this.params = params;
         setBoundary(this.params.boundaryType);
         this.circles = new ArrayList<>();
         addCircle();
     }
 
+    /**
+     * Sets the boundary type
+     * @param type - shape type Circle, Square, Hexagon, Triangle
+     */
     public void setBoundary(String type) {
         switch (type) {
             case "circle" -> this.boundaryShape = new Circle(params.centreX, params.centreY, params.polygonSize);
@@ -30,6 +43,10 @@ public class CirclePacking extends JPanel {
         }
     }
 
+    /**
+     * The implementation of the logic of the algorithm
+     * Will fill a bounded shapes with circles
+     */
     public void addCircle() {
         for (int i = 0; i < params.maxAttempts; i++) {
             attempts++;
@@ -47,6 +64,10 @@ public class CirclePacking extends JPanel {
         }
     }
 
+    /**
+     * Draws the algorithm to the graphics object based on the parameters already passed
+     * @param g - The graphics object to draw to
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -60,19 +81,28 @@ public class CirclePacking extends JPanel {
         }
     }
 
+    /**
+     * Gets the boundary shape
+     * @return boundaryShape
+     */
     public PatternShape getBoundaryShape() {
         return boundaryShape;
     }
 
+    /**
+     * Gets the circles to draw
+     * @return circles
+     */
     public ArrayList<Circle> getCircles() {
         return circles;
     }
 
+    /**
+     * Gets the algorithm parameters
+     * @return params
+     */
     public CirclePackingParameters getParams() {
         return params;
     }
 
-    public int getAttempts() {
-        return attempts;
-    }
 }

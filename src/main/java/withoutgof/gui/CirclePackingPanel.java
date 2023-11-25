@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Creates the Circle Packing algorithm panel for the GUI
+ * @author carysedwards
+ */
 public class CirclePackingPanel {
     private final TextField startXTextField;
     private final TextField startYTextField;
@@ -20,12 +24,20 @@ public class CirclePackingPanel {
     private Color packingFillColor = new Color(255, 255, 255, 255);
     private Color packingLineColor = new Color(0, 0, 0, 255);
 
+    /**
+     * Creates a new circle packing algorithm
+     * @param width - width of the panel
+     * @param height - height of the panel
+     */
     public CirclePackingPanel(int width, int height) {
         this.startXTextField = new TextField(String.valueOf(width / 2), 5);
         this.startYTextField = new TextField(String.valueOf(height / 2), 5);
         setupPanel();
     }
 
+    /**
+     * Sets up and initialises the circle packing panel
+     */
     private void setupPanel() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
@@ -87,7 +99,13 @@ public class CirclePackingPanel {
         circlePackingPanel.setVisible(true);
     }
 
-
+    /**
+     * Helper method for creating a label and field
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the string for the label
+     * @param textField - the text field to add
+     * @param gridy - the grid y value (column)
+     */
     private void addLabelAndField(GridBagConstraints gbc, String labelText, TextField textField, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -98,6 +116,12 @@ public class CirclePackingPanel {
         circlePackingPanel.add(textField, gbc);
     }
 
+    /**
+     * Helper method for creating a section label
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the text for the label
+     * @param gridy - the grid y value (column)
+     */
     private void addSectionLabel(GridBagConstraints gbc, String labelText, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -109,6 +133,13 @@ public class CirclePackingPanel {
         gbc.insets = new Insets(2, 5, 2, 5);
     }
 
+    /**
+     * Helper method for creating a choice dropdown and label
+     * @param gbc - the Grid layout constraints
+     * @param choice - The choice dropdown to add
+     * @param items - the items to go inside the choice dropdown
+     * @param gridy - the grid y value (column)
+     */
     private void addLabelAndChoice(GridBagConstraints gbc, Choice choice, String[] items, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -121,6 +152,13 @@ public class CirclePackingPanel {
         circlePackingPanel.add(choice, gbc);
     }
 
+    /**
+     * Helper method for creating a colour chooser and label
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the label text
+     * @param initialColor - the initial colour of the chooser
+     * @param gridy - the grid y value (column)
+     */
     private void addColorChooserButton(GridBagConstraints gbc, String labelText, int gridy, Color initialColor, ActionListener action) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -135,58 +173,114 @@ public class CirclePackingPanel {
         circlePackingPanel.add(colorButton, gbc);
     }
 
+    /**
+     * Gets the startx text field
+     * @return startXTextField
+     */
     public TextField getStartXTextField() {
         return startXTextField;
     }
 
+    /**
+     * Gets the starty text field
+     * @return startYTextField
+     */
     public TextField getStartYTextField() {
         return startYTextField;
     }
 
+    /**
+     * Gets the max attempts text field
+     * @return maxAttemptsTextField
+     */
     public TextField getMaxAttemptsTextField() {
         return maxAttemptsTextField;
     }
 
+    /**
+     * Gets the boundary shape type
+     * @return boundaryShapeType
+     */
     public Choice getBoundaryShapeType() {
         return boundaryShapeType;
     }
 
+    /**
+     * Gets the boundary fill colour
+     * @return boundaryFillColourButton
+     */
     public Color getBoundaryFillColor() {
         return boundaryFillColor;
     }
 
+    /**
+     * Gets the boundary line colour
+     * @return boundaryLineColourButton
+     */
     public Color getBoundaryLineColor() {
         return boundaryLineColor;
     }
 
+    /**
+     * Gets the boundary line width text
+     * @return boundaryLineWidthTextField
+     */
     public TextField getBoundaryLineWidthTextField() {
         return boundaryLineWidthTextField;
     }
 
+    /**
+     * Gets the boundary radius text
+     * @return boundaryRadiusTextField
+     */
     public TextField getBoundaryRadiusTextField() {
         return boundaryRadiusTextField;
     }
 
+    /**
+     * gets the packing fill colour
+     * @return packingFillColor
+     */
     public Color getPackingFillColor() {
         return packingFillColor;
     }
 
+    /**
+     * Gets the packing line colour
+     * @return packingLineColour
+     */
     public Color getPackingLineColor() {
         return packingLineColor;
     }
 
+    /**
+     * Gets the packing line width text
+     * @return packingLineWidthTextField
+     */
     public TextField getPackingLineWidthTextField() {
         return packingLineWidthTextField;
     }
 
+    /**
+     * Gets the minimum radius circle text
+     * @return minRadiusCircleTextField
+     */
     public TextField getMinRadiusCircleTextField() {
         return minRadiusCircleTextField;
     }
 
+    /**
+     * Gets the max radius circle text
+     * @return maxRadiusCircleTextField
+     */
     public TextField getMaxRadiusCircleTextField() {
         return maxRadiusCircleTextField;
     }
 
+    /**
+     * Gets the panel
+     * @return circlePackingPanel
+     */
     public Panel getPanel() {
         return circlePackingPanel;
     }

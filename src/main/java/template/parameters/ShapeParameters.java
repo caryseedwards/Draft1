@@ -66,7 +66,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Gets the shape type
-     *
      * @return shapeType
      */
     public String getShapeType() {
@@ -75,7 +74,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Sets the shape type
-     *
      * @param shapeType - the type of the shape (Circle, Triangle, Hexagon, Square)
      */
     public void setShapeType(String shapeType) {
@@ -84,7 +82,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Gets the line width
-     *
      * @return lineWidth
      */
     public float getLineWidth() {
@@ -93,7 +90,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Sets the line width
-     *
      * @param lineWidth - the width of the shape lines
      */
     public void setLineWidth(float lineWidth) {
@@ -102,7 +98,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Gets the line colour
-     *
      * @return lineColour
      */
     public Color getLineColour() {
@@ -111,7 +106,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Sets the line colour
-     *
      * @param lineColour - colour of the line
      */
     public void setLineColour(Color lineColour) {
@@ -120,7 +114,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Gets the shape fill colour
-     *
      * @return fillColour
      */
     public Color getFillColour() {
@@ -129,7 +122,6 @@ public class ShapeParameters extends Parameters {
 
     /**
      * Sets the fill colour of the shape
-     *
      * @param fillColour - the colour to fill the shape
      */
     public void setFillColour(Color fillColour) {
