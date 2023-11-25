@@ -4,6 +4,7 @@ import java.awt.*;
 
 /**
  * Implements a Square Shape to use in the algorithms
+ * @author carysedwards
  */
 public class Square extends Shape {
     private int centerX;

@@ -6,6 +6,7 @@ import java.awt.*;
 
 /**
  * Abstract class for creating Shapes to be used by the algorithms
+ * @author carysedwards
  */
 public abstract class Shape {
     public ShapeParameters params;

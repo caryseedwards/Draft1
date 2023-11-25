@@ -4,6 +4,7 @@ import java.awt.*;
 
 /**
  * Implements a Triangle Shape to use in the algorithms
+ * @author carysedwards
  */
 public class Triangle extends Shape {
     private int centerX;
