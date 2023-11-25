@@ -2,7 +2,7 @@ package strategyandfactory.gui.controller;
 
 import strategyandfactory.gui.model.ParametersModel;
 import strategyandfactory.gui.view.panel.SierpinskiPanelView;
-import strategyandfactory.gui.view.utilities;
+import strategyandfactory.gui.view.Utilities;
 import strategyandfactory.validate.Validate;
 
 /**
@@ -51,6 +51,9 @@ public class SierpinskiController {
         }
     }
 
+    /**
+     * Updates the startY field for the parameter based on the GUI input
+     */
     public void updateStartY() {
         Integer startY = Validate.safelyParseInteger(view.getStartYTextField().getText());
         if (startY != null) {
@@ -58,6 +61,9 @@ public class SierpinskiController {
         }
     }
 
+    /**
+     * Updates the size field for the parameter based on the GUI input
+     */
     public void updateSize() {
         Integer size = Validate.safelyParseInteger(view.getSizeTextField().getText());
         if (size != null) {
@@ -65,6 +71,9 @@ public class SierpinskiController {
         }
     }
 
+    /**
+     * Updates the depth field for the parameter based on the GUI input
+     */
     public void updateDepth() {
         Integer depth = Validate.safelyParseInteger(view.getDepthTextField().getText());
         if (depth != null) {
@@ -72,18 +81,30 @@ public class SierpinskiController {
         }
     }
 
+    /**
+     * Updates the shape type field for the parameter based on the GUI input
+     */
     public void updateShapeType() {
         model.getShapesParams().get(0).setShapeType(view.getShapeTypeChoice().getSelectedItem().toLowerCase());
     }
 
+    /**
+     * Updates the shape fill colour field for the parameter based on the GUI input
+     */
     public void updateFillColour() {
-        model.getShapesParams().get(0).setFillColour(utilities.getColourFromButton(view.getFillColourButton()));
+        model.getShapesParams().get(0).setFillColour(Utilities.getColourFromButton(view.getFillColourButton()));
     }
 
+    /**
+     * Updates the line colour field for the parameter based on the GUI input
+     */
     public void updateLineColour() {
-        model.getShapesParams().get(0).setLineColour(utilities.getColourFromButton(view.getLineColourButton()));
+        model.getShapesParams().get(0).setLineColour(Utilities.getColourFromButton(view.getLineColourButton()));
     }
 
+    /**
+     * Updates the line width field for the parameter based on the GUI input
+     */
     public void updateLineWidth() {
         Integer lineWidth = Validate.safelyParseInteger(view.getLineWidthTextField().getText());
         if (lineWidth != null) {

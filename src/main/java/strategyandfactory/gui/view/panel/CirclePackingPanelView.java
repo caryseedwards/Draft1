@@ -1,9 +1,13 @@
 package strategyandfactory.gui.view.panel;
 
-import strategyandfactory.gui.view.utilities;
+import strategyandfactory.gui.view.Utilities;
 
 import java.awt.*;
 
+/**
+ * Creates the Circle Packing algorithm view for the GUI
+ * @author carysedwards
+ */
 public class CirclePackingPanelView {
     private final Panel circlePackingPanel;
     private final int canvasWidth;
@@ -22,6 +26,11 @@ public class CirclePackingPanelView {
     private TextField minRadiusCircleTextField;
     private TextField maxRadiusCircleTextField;
 
+    /**
+     * Creates the circle packing algorithm panel
+     * @param canvasWidth - the starting canvas width
+     * @param canvasHeight - the starting canvas height
+     */
     public CirclePackingPanelView(int canvasWidth, int canvasHeight) {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
@@ -31,6 +40,9 @@ public class CirclePackingPanelView {
         setupPanel();
     }
 
+    /**
+     * Initialises the panel and sets default values
+     */
     private void setupPanel() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
@@ -78,12 +90,19 @@ public class CirclePackingPanelView {
         addLabelAndField(gbc, "Maximum Circle Radius:", maxRadiusCircleTextField, gridy);
         gbc.weighty = 1;
 
-        utilities.configureColourPicker(boundaryFillColourButton);
-        utilities.configureColourPicker(boundaryLineColourButton);
-        utilities.configureColourPicker(packingFillColourButton);
-        utilities.configureColourPicker(packingLineColourButton);
+        Utilities.configureColourPicker(boundaryFillColourButton);
+        Utilities.configureColourPicker(boundaryLineColourButton);
+        Utilities.configureColourPicker(packingFillColourButton);
+        Utilities.configureColourPicker(packingLineColourButton);
     }
 
+    /**
+     * Helper method for creating a label and field
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the string for the label
+     * @param component - the panel component to add
+     * @param gridy - the grid y value (column)
+     */
     private void addLabelAndField(GridBagConstraints gbc, String labelText, Component component, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -94,6 +113,12 @@ public class CirclePackingPanelView {
         circlePackingPanel.add(component, gbc);
     }
 
+    /**
+     * Helper method for creating a section label
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the text for the label
+     * @param gridy - the grid y value (column)
+     */
     private void addSectionLabel(GridBagConstraints gbc, String labelText, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -104,6 +129,13 @@ public class CirclePackingPanelView {
         gbc.gridwidth = 1;
     }
 
+    /**
+     * Helper method for creating a choice dropdown and label
+     * @param gbc - the Grid layout constraints
+     * @param choice - The choice dropdown to add
+     * @param items - the items to go inside the choice dropdown
+     * @param gridy - the grid y value (column)
+     */
     private void addLabelAndChoice(GridBagConstraints gbc, Choice choice, String[] items, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -116,6 +148,13 @@ public class CirclePackingPanelView {
         circlePackingPanel.add(choice, gbc);
     }
 
+    /**
+     * Helper method for creating a colour chooser and label
+     * @param gbc - the Grid layout constraints
+     * @param labelText - the label text
+     * @param button - the button to launch the colour chooser
+     * @param gridy - the grid y value (column)
+     */
     private void addColourChooserButton(GridBagConstraints gbc, String labelText, Button button, int gridy) {
         gbc.gridx = 0;
         gbc.gridy = gridy;
@@ -126,69 +165,131 @@ public class CirclePackingPanelView {
         circlePackingPanel.add(button, gbc);
     }
 
+    /**
+     * Gets the canvas width
+     * @return canvasWidth
+     */
     public int getCanvasWidth() {
         return canvasWidth;
     }
 
+    /**
+     * Gets the canvas Height
+     * @return canvasHeight
+     */
     public int getCanvasHeight() {
         return canvasHeight;
     }
 
+    /**
+     * Gets the startx text field
+     * @return startXTextField
+     */
     public TextField getStartXTextField() {
         return startXTextField;
     }
 
+    /**
+     * Gets the starty text field
+     * @return startYTextField
+     */
     public TextField getStartYTextField() {
         return startYTextField;
     }
 
+    /**
+     * Gets the max attempts text field
+     * @return maxAttemptsTextField
+     */
     public TextField getMaxAttemptsTextField() {
         return maxAttemptsTextField;
     }
 
+    /**
+     * Gets the boundary shape type
+     * @return boundaryShapeType
+     */
     public Choice getBoundaryShapeType() {
         return boundaryShapeType;
     }
 
+    /**
+     * Gets the boundary fill colour
+     * @return boundaryFillColourButton
+     */
     public Button getBoundaryFillColourButton() {
         return boundaryFillColourButton;
     }
 
+    /**
+     * Gets the boundary line colour
+     * @return boundaryLineColourButton
+     */
     public Button getBoundaryLineColourButton() {
         return boundaryLineColourButton;
     }
 
+    /**
+     * Gets the boundary line width text
+     * @return boundaryLineWidthTextField
+     */
     public TextField getBoundaryLineWidthTextField() {
         return boundaryLineWidthTextField;
     }
 
+    /**
+     * Gets the boundary radius text
+     * @return boundaryRadiusTextField
+     */
     public TextField getBoundaryRadiusTextField() {
         return boundaryRadiusTextField;
     }
 
+    /**
+     * gets the packing fill colour button
+     * @return packingFillColourButton
+     */
     public Button getPackingFillColourButton() {
         return packingFillColourButton;
     }
 
+    /**
+     * Gets the packing line colour button
+     * @return packingLineColourButton
+     */
     public Button getPackingLineColourButton() {
         return packingLineColourButton;
     }
 
+    /**
+     * Gets the packing line width text
+     * @return packingLineWidthTextField
+     */
     public TextField getPackingLineWidthTextField() {
         return packingLineWidthTextField;
     }
 
+    /**
+     * Gets the minimum radius circle text
+     * @return minRadiusCircleTextField
+     */
     public TextField getMinRadiusCircleTextField() {
         return minRadiusCircleTextField;
     }
 
+    /**
+     * Gets the max radius circle text
+     * @return maxRadiusCircleTextField
+     */
     public TextField getMaxRadiusCircleTextField() {
         return maxRadiusCircleTextField;
     }
 
+    /**
+     * Gets the panel
+     * @return circlePackingPanel
+     */
     public Panel getPanel() {
         return circlePackingPanel;
     }
-
-
 }

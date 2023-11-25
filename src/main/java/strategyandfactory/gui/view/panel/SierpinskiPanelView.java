@@ -1,6 +1,6 @@
 package strategyandfactory.gui.view.panel;
 
-import strategyandfactory.gui.view.utilities;
+import strategyandfactory.gui.view.Utilities;
 
 import java.awt.*;
 
@@ -50,8 +50,8 @@ public class SierpinskiPanelView {
         addColorChooserButton(gbc, "Line Colour:", lineColourButton, gridy++);
         addLabelAndField(gbc, "Line Width:", lineWidthTextField, gridy);
 
-        utilities.configureColourPicker(fillColourButton);
-        utilities.configureColourPicker(lineColourButton);
+        Utilities.configureColourPicker(fillColourButton);
+        Utilities.configureColourPicker(lineColourButton);
     }
 
     private void addLabelAndField(GridBagConstraints gbc, String labelText, Component component, int gridy) {

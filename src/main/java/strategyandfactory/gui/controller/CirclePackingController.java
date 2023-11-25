@@ -2,7 +2,7 @@ package strategyandfactory.gui.controller;
 
 import strategyandfactory.gui.model.ParametersModel;
 import strategyandfactory.gui.view.panel.CirclePackingPanelView;
-import strategyandfactory.gui.view.utilities;
+import strategyandfactory.gui.view.Utilities;
 import strategyandfactory.validate.Validate;
 
 import java.awt.*;
@@ -92,14 +92,14 @@ public class CirclePackingController {
      * Updates the boundary shape fill colour field for the parameter based on the GUI input
      */
     public void updateBoundaryFillColour() {
-        model.getShapesParams().get(0).setFillColour(utilities.getColourFromButton(view.getBoundaryFillColourButton()));
+        model.getShapesParams().get(0).setFillColour(Utilities.getColourFromButton(view.getBoundaryFillColourButton()));
     }
 
     /**
      * Updates the boundary shape line colour field for the parameter based on the GUI input
      */
     public void updateBoundaryLineColour() {
-        model.getShapesParams().get(0).setLineColour(utilities.getColourFromButton(view.getBoundaryLineColourButton()));
+        model.getShapesParams().get(0).setLineColour(Utilities.getColourFromButton(view.getBoundaryLineColourButton()));
     }
 
     /**
@@ -133,14 +133,14 @@ public class CirclePackingController {
      * Updates the packing shape fill colour parameter based on the GUI input
      */
     public void updatePackingFillColour() {
-        model.getShapesParams().get(1).setFillColour(utilities.getColourFromButton(view.getPackingFillColourButton()));
+        model.getShapesParams().get(1).setFillColour(Utilities.getColourFromButton(view.getPackingFillColourButton()));
     }
 
     /**
      * Updates the packing shape line colour parameter based on the GUI input
      */
     public void updatePackingLineColour() {
-        model.getShapesParams().get(1).setLineColour(utilities.getColourFromButton(view.getPackingLineColourButton()));
+        model.getShapesParams().get(1).setLineColour(Utilities.getColourFromButton(view.getPackingLineColourButton()));
     }
 
     /**

@@ -2,7 +2,7 @@ package strategyandfactory.gui.controller;
 
 import strategyandfactory.gui.model.ParametersModel;
 import strategyandfactory.gui.view.panel.RecursivePanelView;
-import strategyandfactory.gui.view.utilities;
+import strategyandfactory.gui.view.Utilities;
 import strategyandfactory.validate.Validate;
 
 import java.awt.*;
@@ -109,7 +109,7 @@ public class RecursiveShapeController {
      * Updates the larger shape fill colour field for the parameter based on the GUI input
      */
     public void updateLargeShapeFillColour() {
-        Color color = utilities.getColourFromButton(view.getLargeShapeColourButton());
+        Color color = Utilities.getColourFromButton(view.getLargeShapeColourButton());
         model.getShapesParams().get(0).setFillColour(color);
     }
 
@@ -117,7 +117,7 @@ public class RecursiveShapeController {
      * Updates the larger shape line colour field for the parameter based on the GUI input
      */
     public void updateLargeShapeLineColour() {
-        Color color = utilities.getColourFromButton(view.getLargeLineColourButton());
+        Color color = Utilities.getColourFromButton(view.getLargeLineColourButton());
         model.getShapesParams().get(0).setLineColour(color);
     }
 
@@ -142,7 +142,7 @@ public class RecursiveShapeController {
      * Updates the smaller shape fill colour field for the parameter based on the GUI input
      */
     public void updateSmallShapeFillColour() {
-        Color color = utilities.getColourFromButton(view.getSmallShapeColourButton());
+        Color color = Utilities.getColourFromButton(view.getSmallShapeColourButton());
         model.getShapesParams().get(1).setFillColour(color);
     }
 
@@ -150,7 +150,7 @@ public class RecursiveShapeController {
      * Updates the smaller shape line colour field for the parameter based on the GUI input
      */
     public void updateSmallShapeLineColour() {
-        Color color = utilities.getColourFromButton(view.getSmallLineColourButton());
+        Color color = Utilities.getColourFromButton(view.getSmallLineColourButton());
         model.getShapesParams().get(1).setLineColour(color);
     }
 
