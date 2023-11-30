@@ -1,44 +1,42 @@
 package stress_test.version3;
 
-import strategyandfactory.algorithms.*;
-import strategyandfactory.parameters.*;
+import version3.algorithms.CirclePacking;
+import version3.parameters.CirclePackingParameters;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class CirclePackingV3 {
-
-    static AlgorithmContext context = AlgorithmContext.getAlgorithmContext();
-
-    public static AlgorithmStrategy circlePackingStrategy() {
-        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
-        ArrayList<ShapeParameters> shapes = new ArrayList<>();
-        shapes.add(new ShapeParameters("circle", 1, Color.GREEN, Color.BLACK));
-        shapes.add(new ShapeParameters("circle", 1, Color.PINK, Color.BLACK));
-        CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 250, 1, 1, 10000, 1);
-        return new CirclePackingAlgorithm(canvas, shapes, algorithm);
-    }
-
     public static void showCirclePacking(){
-        context.setStrategy(circlePackingStrategy());
-        context.executeAlgorithm();
-
-        JFrame frame = new JFrame();
-        frame.add(context);
-        frame.setSize(400, 400);
+        JFrame frame = new JFrame("Version 3: Circle Packing");
+        CirclePackingParameters cpParameters = new CirclePackingParameters();
+        cpParameters = new CirclePackingParameters();
+        cpParameters.canvasWidth = 500;
+        cpParameters.canvasHeight = 500;
+        cpParameters.setCentreX(250);
+        cpParameters.setCentreY(250);
+        cpParameters.setBoundaryType("circle");
+        cpParameters.setBoundaryFillColour(Color.GREEN);
+        cpParameters.setBoundaryLineColour(Color.BLACK);
+        cpParameters.setCircleFillColour(Color.PINK);
+        cpParameters.setCircleLineColour(Color.BLACK);
+        cpParameters.setMaxRadius(1);
+        cpParameters.setMinRadius(1);
+        cpParameters.setMaxAttempts(10000);
+        cpParameters.setPolygonSize(250);
+        CirclePacking pattern = new CirclePacking(cpParameters);
+        frame.add(pattern);
+        frame.setSize(cpParameters.canvasWidth, cpParameters.canvasHeight);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Version 3: Circle Packing");
         frame.setVisible(true);
-        CirclePackingAlgorithm cp = (CirclePackingAlgorithm) context.getStrategy();
         Timer timer = new Timer(1, e -> {
-            cp.addCircles();
-            context.repaint();
+            pattern.addCircle();
+            pattern.repaint();
         });
         timer.start();
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         showCirclePacking();
     }
 }

@@ -1,13 +1,12 @@
 package black_box_test;
 
-import template.algorithms.CirclePackingAlgorithm;
-import template.algorithms.RecursiveShapeAlgorithm;
-import template.algorithms.SierpinskiShapeAlgorithm;
-import template.parameters.*;
+import version1.algorithms.CirclePackingAlgorithm;
+import version1.algorithms.RecursiveShapeAlgorithm;
+import version1.algorithms.SierpinskiShapeAlgorithm;
+import version1.parameters.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import org.junit.Test;
 
 public class VersionTwoTests {
     public static CanvasParameters canvasParameters;

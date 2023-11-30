@@ -1,9 +1,9 @@
 package black_box_test;
 
-import withoutgof.algorithms.CirclePacking;
-import withoutgof.algorithms.RecursiveShape;
-import withoutgof.algorithms.SierpinskiShape;
-import withoutgof.parameters.*;
+import version3.algorithms.CirclePacking;
+import version3.algorithms.RecursiveShape;
+import version3.algorithms.SierpinskiShape;
+import version3.parameters.*;
 
 import javax.swing.*;
 import java.awt.*;

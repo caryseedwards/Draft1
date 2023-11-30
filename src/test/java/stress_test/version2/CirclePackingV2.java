@@ -1,34 +1,39 @@
 package stress_test.version2;
 
-import template.algorithms.CirclePackingAlgorithm;
-import template.algorithms.RecursiveShapeAlgorithm;
-import template.algorithms.SierpinskiShapeAlgorithm;
-import template.parameters.*;
+import version2.algorithms.*;
+import version2.parameters.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class CirclePackingV2 {
-    public static CanvasParameters canvasParameters;
-    public static ArrayList<ShapeParameters> shapeParameters = new ArrayList<>();
-    public static CirclePackingAlgorithmParameters cpParameters;
+
+    static AlgorithmContext context = AlgorithmContext.getAlgorithmContext();
+
+    public static AlgorithmStrategy circlePackingStrategy() {
+        CanvasParameters canvas = new CanvasParameters(500, 500, Color.WHITE);
+        ArrayList<ShapeParameters> shapes = new ArrayList<>();
+        shapes.add(new ShapeParameters("circle", 1, Color.GREEN, Color.BLACK));
+        shapes.add(new ShapeParameters("circle", 1, Color.PINK, Color.BLACK));
+        CirclePackingAlgorithmParameters algorithm = new CirclePackingAlgorithmParameters(250, 250, 250, 1, 1, 10000, 1);
+        return new CirclePackingAlgorithm(canvas, shapes, algorithm);
+    }
 
     public static void showCirclePacking(){
-        JFrame frame = new JFrame("Version 2: Circle Packing");
-        canvasParameters = new CanvasParameters(500,500,Color.WHITE);
-        shapeParameters = new ArrayList<ShapeParameters>();
-        shapeParameters.add(new ShapeParameters("circle", 1, Color.GREEN, Color.BLACK));
-        shapeParameters.add(new ShapeParameters("circle", 1, Color.PINK, Color.BLACK));
-        cpParameters = new CirclePackingAlgorithmParameters(250, 250, 250, 1, 1, 10000, 1);
-        CirclePackingAlgorithm packing = new CirclePackingAlgorithm(canvasParameters, shapeParameters, cpParameters);
-        packing.executeAlgorithm();
-        frame.add(packing);
-        frame.setSize(canvasParameters.getWidth(), canvasParameters.getHeight());
+        context.setStrategy(circlePackingStrategy());
+        context.executeAlgorithm();
+
+        JFrame frame = new JFrame();
+        frame.add(context);
+        frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Version 2: Circle Packing");
         frame.setVisible(true);
-        Timer timer = new Timer(cpParameters.getAnimationSpeed(), e -> {
-            packing.addCircles();
-            packing.repaint();
+        CirclePackingAlgorithm cp = (CirclePackingAlgorithm) context.getStrategy();
+        Timer timer = new Timer(1, e -> {
+            cp.addCircles();
+            context.repaint();
         });
         timer.start();
     }

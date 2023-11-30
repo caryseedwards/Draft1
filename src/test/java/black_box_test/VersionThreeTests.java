@@ -1,7 +1,7 @@
 package black_box_test;
 
-import strategyandfactory.algorithms.*;
-import strategyandfactory.parameters.*;
+import version2.algorithms.*;
+import version2.parameters.*;
 
 import javax.swing.*;
 import java.awt.*;

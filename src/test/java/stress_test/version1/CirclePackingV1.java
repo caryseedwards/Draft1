@@ -1,46 +1,37 @@
 package stress_test.version1;
 
-import withoutgof.algorithms.CirclePacking;
-import withoutgof.algorithms.RecursiveShape;
-import withoutgof.algorithms.SierpinskiShape;
-import withoutgof.parameters.CirclePackingParameters;
-import withoutgof.parameters.RecursiveShapeParameters;
-import withoutgof.parameters.SierpinskiShapeParameters;
-
+import version1.algorithms.CirclePackingAlgorithm;
+import version1.parameters.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CirclePackingV1 {
+    public static CanvasParameters canvasParameters;
+    public static ArrayList<ShapeParameters> shapeParameters = new ArrayList<>();
+    public static CirclePackingAlgorithmParameters cpParameters;
+
     public static void showCirclePacking(){
         JFrame frame = new JFrame("Version 1: Circle Packing");
-        CirclePackingParameters cpParameters = new CirclePackingParameters();
-        cpParameters = new CirclePackingParameters();
-        cpParameters.canvasWidth = 500;
-        cpParameters.canvasHeight = 500;
-        cpParameters.setCentreX(250);
-        cpParameters.setCentreY(250);
-        cpParameters.setBoundaryType("circle");
-        cpParameters.setBoundaryFillColour(Color.GREEN);
-        cpParameters.setBoundaryLineColour(Color.BLACK);
-        cpParameters.setCircleFillColour(Color.PINK);
-        cpParameters.setCircleLineColour(Color.BLACK);
-        cpParameters.setMaxRadius(1);
-        cpParameters.setMinRadius(1);
-        cpParameters.setMaxAttempts(10000);
-        cpParameters.setPolygonSize(250);
-        CirclePacking pattern = new CirclePacking(cpParameters);
-        frame.add(pattern);
-        frame.setSize(cpParameters.canvasWidth, cpParameters.canvasHeight);
+        canvasParameters = new CanvasParameters(500,500,Color.WHITE);
+        shapeParameters = new ArrayList<ShapeParameters>();
+        shapeParameters.add(new ShapeParameters("circle", 1, Color.GREEN, Color.BLACK));
+        shapeParameters.add(new ShapeParameters("circle", 1, Color.PINK, Color.BLACK));
+        cpParameters = new CirclePackingAlgorithmParameters(250, 250, 250, 1, 1, 10000, 1);
+        CirclePackingAlgorithm packing = new CirclePackingAlgorithm(canvasParameters, shapeParameters, cpParameters);
+        packing.executeAlgorithm();
+        frame.add(packing);
+        frame.setSize(canvasParameters.getWidth(), canvasParameters.getHeight());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        Timer timer = new Timer(1, e -> {
-            pattern.addCircle();
-            pattern.repaint();
+        Timer timer = new Timer(cpParameters.getAnimationSpeed(), e -> {
+            packing.addCircles();
+            packing.repaint();
         });
         timer.start();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         showCirclePacking();
     }
 }

@@ -1,48 +1,52 @@
 package stress_test.version3;
 
-import strategyandfactory.algorithms.*;
-import strategyandfactory.parameters.*;
+import version3.algorithms.RecursiveShape;
+import version3.parameters.RecursiveShapeParameters;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 public class RecursiveShapeV3 {
+    private static CountDownLatch latch;
 
-    static AlgorithmContext context = AlgorithmContext.getAlgorithmContext();
-    public static ArrayList<ShapeParameters> shapeParameters = new ArrayList<ShapeParameters>();
-
-    public static AlgorithmStrategy recursiveShapeStrategy(CountDownLatch latch) {
-        CanvasParameters canvasParameters = new CanvasParameters(500, 500, Color.WHITE);
-        shapeParameters.add(new ShapeParameters("square", 1, Color.GRAY, Color.BLACK));
-        shapeParameters.add(new ShapeParameters("hexagon", 1, Color.BLUE, Color.BLACK));
-        RecursiveShapeAlgorithmParameters algorithm = new RecursiveShapeAlgorithmParameters(250, 250, 65, 9, 4);
-
-        return new RecursiveShapeAlgorithm(canvasParameters, shapeParameters, algorithm) {
+    public static void showRecursiveShape(){
+        JFrame frame = new JFrame("Version 3: Recursive Shape");
+        RecursiveShapeParameters rsParameters = new RecursiveShapeParameters();
+        rsParameters = new RecursiveShapeParameters();
+        rsParameters.canvasSizeX = 500;
+        rsParameters.canvasSizeY = 500;
+        rsParameters.setDepth(10);
+        rsParameters.setInitialRadius(65);
+        rsParameters.setNumShapes(4);
+        rsParameters.setLargeShapeType("square");
+        rsParameters.setLargeShapeFillColor(Color.GRAY);
+        rsParameters.setLargeShapeLineColor(Color.BLACK);
+        rsParameters.setLargeShapeLineWidth(1);
+        rsParameters.setSmallShapeType("hexagon");
+        rsParameters.setSmallShapeFillColor(Color.BLUE);
+        rsParameters.setSmallShapeLineColor(Color.BLACK);
+        rsParameters.setSmallShapeLineWidth(1);
+        rsParameters.backgroundColor = Color.WHITE;
+        rsParameters.setCenterX(250);
+        rsParameters.setCenterY(250);
+        RecursiveShape pattern = new RecursiveShape(rsParameters) {
             @Override
-            public void drawPattern(Graphics g) {
-                super.drawPattern(g);
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
                 latch.countDown();
             }
         };
-    }
-
-    public static void showRecursiveShape(CountDownLatch latch){
-        context.setStrategy(recursiveShapeStrategy(latch));
-        context.executeAlgorithm();
-        JFrame frame = new JFrame();
-        frame.add(context);
-        frame.setSize(400, 400);
+        frame.add(pattern);
+        frame.setSize(rsParameters.canvasSizeX, rsParameters.canvasSizeY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Version 3: Recursive Shape");
         frame.setVisible(true);
     }
 
     public static void main(String[] args) throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
+        latch = new CountDownLatch(1);
         long startTime = System.nanoTime();
-        showRecursiveShape(latch);
+        showRecursiveShape();
         latch.await();
         long endTime = System.nanoTime();
         double timeDiffInSeconds = (endTime - startTime) / 1_000_000_000.0;
