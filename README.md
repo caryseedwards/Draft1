@@ -1,32 +1,3 @@
-# Artwork Generator
-
-## About
-Generates artwork
-todo...
-
-## General
-Can be run with GUI mode or headless 
-
-todo...
-
-### Build
-`mvn clean install`
-
-### Run
-Without GoF GUI: 
-With GoF GUI: 
-
-
-### Maven targets
-PMD metrics: `mvn clean verify` generates in `target/site/pmd.html`
-https://github.com/pmd/pmd/tree/master/pmd-java/src/main/resources/rulesets/java
-
-Jacoco coverage: `mvn clean verify`
-
-### Other commands
-Checkstyle (Google) `java -jar checkstyle-*-all.jar -c /google_checks.xml src/ -o report.txt`
-
-
 ## Generate Artwork API Usage 
 
 ### Example 1: Strategy and Factory pattern 
